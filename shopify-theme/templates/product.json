@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "main": {
+      "type": "hs-main-product",
+      "blocks": {
+        "materials": { "type": "collapsible", "settings": { "heading": "Materials", "content": "<p>Upper: recycled polyester knit. Midsole: rebound EVA foam, 28 mm heel, 6 mm drop. Outsole: natural rubber, siped. Insole: removable, washable.</p>", "is_fit": false } },
+        "fit": { "type": "collapsible", "settings": { "heading": "Fit & size guide", "content": "<p>Runs true to UK sizing. Wide feet: go half a size up and round up. Between sizes: pick the larger one.</p>", "is_fit": true } },
+        "care": { "type": "collapsible", "settings": { "heading": "Care", "content": "<p>Take out the laces and insole, wash cold at 30° in a laundry bag, air dry. Don't tumble dry.</p>", "is_fit": false } },
+        "shipping": { "type": "collapsible", "settings": { "heading": "Shipping & returns", "content": "<p>Dispatch in 1–2 working days. Free returns within 30 days, even if you've worn them outside.</p>", "is_fit": false } }
+      },
+      "block_order": ["materials", "fit", "care", "shipping"],
+      "settings": { "use_renders": true, "show_3d": true, "prefix": "UK", "perks": "Order today for dispatch tomorrow\nFree shipping over $120, free size swaps\n30-day wear test: worn and not right? Send them back" }
+    }
+  },
+  "order": ["main"]
+}

@@ -1,0 +1,622 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Specials Board: Instagram for café owners</title>
+<meta name="description" content="A 6-week live course that teaches independent café owners to run their own Instagram in 20 minutes a day. Fictional course, built as a landing-page design sample.">
+<meta name="theme-color" content="#1D2A2E">
+<link rel="preload" href="assets/fonts/big-shoulders-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/instrument-sans-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%231D2A2E'/%3E%3Cpath d='M6 10h20M6 16h20M6 22h20' stroke='%23F5CF57' stroke-width='3'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/css/main.css">
+<script>
+/* Set before first paint so nothing shifts later. "motion" turns on the scroll scene and entrance;
+   if the main script has not started within 4s, fall back to the static page. */
+(function (r) {
+  r.classList.add('js');
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    r.classList.add('motion');
+    setTimeout(function () { if (!window.__sb) r.classList.remove('motion'); }, 4000);
+  }
+})(document.documentElement);
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<svg class="defs" width="0" height="0" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="g-crema" cx="45%" cy="40%" r="65%"><stop offset="0" stop-color="#C98B55"/><stop offset=".7" stop-color="#9A5E30"/><stop offset="1" stop-color="#6E3F1E"/></radialGradient>
+    <linearGradient id="g-jug" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#EEF1EC"/><stop offset="1" stop-color="#9BA6A0"/></linearGradient>
+    <linearGradient id="g-glass" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".5" stop-color="#fff" stop-opacity=".15"/><stop offset="1" stop-color="#fff" stop-opacity=".4"/></linearGradient>
+  </defs>
+  <symbol id="i-yes" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#2443C4"/><path d="M5.5 10.4l3 3 6-6.4" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-no" viewBox="0 0 20 20"><circle cx="10" cy="10" r="9" fill="none" stroke="#56656A" stroke-width="2"/><path d="M6.8 6.8l6.4 6.4M13.2 6.8l-6.4 6.4" stroke="#56656A" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-tick" viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 20 20"><rect x="2.5" y="4" width="15" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M2.5 8.5h15M7 2v4M13 2v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-back" viewBox="0 0 20 20"><path d="M7 5L3 9l4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.5 9H12a5 5 0 010 10H9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 6v4.4l2.8 1.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-play" viewBox="0 0 20 20"><path d="M6 4.2v11.6L15.5 10z" fill="currentColor"/></symbol>
+  <symbol id="i-cam" viewBox="0 0 20 20"><path d="M3 6.5h3l1.4-2h5.2l1.4 2h3v9H3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="10" cy="11" r="2.8" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+  <symbol id="i-pen" viewBox="0 0 20 20"><path d="M4 16l1-4 8.5-8.5 3 3L8 15z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 20 20"><path d="M3.5 4.5h13v9h-7l-4 3v-3h-2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 20 20"><path d="M2 10s3-5.5 8-5.5S18 10 18 10s-3 5.5-8 5.5S2 10 2 10z" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="10" cy="10" r="2.4" fill="currentColor"/></symbol>
+  <symbol id="i-save" viewBox="0 0 20 20"><path d="M5 3.5h10v13l-5-3.5-5 3.5z" fill="currentColor"/></symbol>
+  <symbol id="i-code" viewBox="0 0 20 20"><rect x="2.5" y="5" width="15" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M6 8.5v3M9 8.5v3M12 8.5v3M14.5 8.5v3" stroke="currentColor" stroke-width="1.6"/></symbol>
+
+  <!-- Café post illustrations, drawn for this sample (no stock photos, no brand marks) -->
+  <symbol id="p-latte" viewBox="0 0 100 100">
+    <ellipse cx="55" cy="58" rx="33" ry="33" fill="#0B1220" opacity=".25"/>
+    <circle cx="50" cy="52" r="33" fill="#F4F6F2"/><circle cx="50" cy="52" r="27.5" fill="#E1E6E0"/>
+    <rect x="68" y="47" width="18" height="10" rx="5" fill="#fff"/>
+    <circle cx="50" cy="52" r="22" fill="#fff"/><circle cx="50" cy="52" r="18.5" fill="url(#g-crema)"/>
+    <path d="M50 64C41 58 39 52 43 48.8c3-2.2 6-.8 7 1.7 1-2.5 4-3.9 7-1.7 4 3.2 2 9.2-7 15.2z" fill="#F6E7D3"/>
+    <path d="M44 42.5q6-3 12 0M46 39.5q4-2 8 0" stroke="#F6E7D3" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+    <path d="M18 80l13-13" stroke="#C9D0CA" stroke-width="4" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="p-croissant" viewBox="0 0 100 100">
+    <ellipse cx="53" cy="66" rx="40" ry="15" fill="#162024" opacity=".16"/>
+    <ellipse cx="50" cy="62" rx="40" ry="15" fill="#F4F6F2"/><ellipse cx="50" cy="61" rx="33" ry="11" fill="#E6EAE5"/>
+    <g stroke="#7A4A1C" stroke-width="1.1">
+      <ellipse cx="19" cy="59" rx="9" ry="5.5" transform="rotate(-40 19 59)" fill="#B26E2C"/>
+      <ellipse cx="81" cy="59" rx="9" ry="5.5" transform="rotate(40 81 59)" fill="#B26E2C"/>
+      <ellipse cx="33" cy="51" rx="12" ry="10" transform="rotate(-22 33 51)" fill="#C98236"/>
+      <ellipse cx="67" cy="51" rx="12" ry="10" transform="rotate(22 67 51)" fill="#C98236"/>
+      <ellipse cx="50" cy="46" rx="14.5" ry="13" fill="#D9923F"/>
+    </g>
+    <ellipse cx="46" cy="40" rx="7" ry="3" fill="#F4C67E" opacity=".75"/>
+    <ellipse cx="30" cy="46" rx="4" ry="2" fill="#F4C67E" opacity=".6" transform="rotate(-22 30 46)"/>
+    <circle cx="70" cy="68" r="1.2" fill="#C98236"/><circle cx="28" cy="70" r="1" fill="#C98236"/>
+  </symbol>
+  <symbol id="p-board" viewBox="0 0 100 100">
+    <path d="M24 90L32 14M76 90L68 14" stroke="#6E4527" stroke-width="4" stroke-linecap="round"/>
+    <rect x="18" y="12" width="64" height="66" rx="3" fill="#8A5A34"/>
+    <rect x="22" y="16" width="56" height="58" rx="1.5" fill="#1C2827"/>
+    <g fill="#F4F6F2" font-family="Big Shoulders, Arial Narrow, sans-serif" font-weight="700" text-anchor="middle">
+      <text x="50" y="30" font-size="10" letter-spacing="1.2">TODAY</text>
+      <text x="50" y="44" font-size="7.2" opacity=".95">CARDAMOM BUN</text>
+      <text x="50" y="54" font-size="7.2" opacity=".95">BATCH BREW</text>
+      <text x="50" y="64" font-size="7.2" opacity=".95">OAT FLAT WHITE</text>
+    </g>
+    <path d="M32 35h36" stroke="#F5CF57" stroke-width="1.2" stroke-dasharray="2.5 2"/>
+  </symbol>
+  <symbol id="p-bun" viewBox="0 0 100 100">
+    <ellipse cx="54" cy="57" rx="33" ry="31" fill="#5C2A1C" opacity=".22"/>
+    <circle cx="50" cy="52" r="31" fill="#C98A4A"/>
+    <path d="M50 52a2 2 0 014 0a4 4 0 01-8 0a6 6 0 0112 0a8 8 0 01-16 0a10 10 0 0120 0a12 12 0 01-24 0a14 14 0 0128 0" fill="none" stroke="#8A4E22" stroke-width="3" stroke-linecap="round"/>
+    <path d="M27 38c8-12 36-14 46 0 3 5-2 7-4 3-2-3-4 3-7 1-2-2-4 4-8 1-3-2-5 3-8 0-3-2-5 3-8 0-3-2-6 1-8-2-2-1-4-1-3-3z" fill="#FFF7EC" opacity=".92"/>
+    <circle cx="66" cy="66" r="1.6" fill="#FFF7EC"/><circle cx="36" cy="70" r="1.2" fill="#FFF7EC"/>
+  </symbol>
+  <symbol id="p-iced" viewBox="0 0 100 100">
+    <ellipse cx="51" cy="90" rx="22" ry="4" fill="#162024" opacity=".18"/>
+    <path d="M57 6l-7 62" stroke="#2443C4" stroke-width="4.5" stroke-linecap="round"/>
+    <path d="M34.6 47h30.8l-2.9 38a3.5 3.5 0 01-3.5 3.2H41a3.5 3.5 0 01-3.5-3.2z" fill="#7A4626"/>
+    <path d="M34.3 43h31.4l-.4 6c-6 3-10-1.5-15.5 1S40 53 34.6 49.5z" fill="#EBD5B8"/>
+    <rect x="39" y="30" width="12" height="11" rx="2" transform="rotate(-12 45 35)" fill="#fff" opacity=".45"/>
+    <rect x="50" y="33" width="11" height="10" rx="2" transform="rotate(14 55 38)" fill="#fff" opacity=".35"/>
+    <path d="M33 20h34l-4.6 65.5a4 4 0 01-4 3.7H41.6a4 4 0 01-4-3.7z" fill="url(#g-glass)" stroke="#fff" stroke-opacity=".8" stroke-width="1.4"/>
+  </symbol>
+  <symbol id="p-window" viewBox="0 0 100 100">
+    <rect y="58" width="100" height="42" fill="#C9D1CB"/>
+    <path d="M10 62l34-10 14 30-36 12z" fill="#FBE29A" opacity=".85"/>
+    <path d="M27 57l2.5 31" stroke="#C9D1CB" stroke-width="2.5"/>
+    <path d="M14 73l40-12" stroke="#C9D1CB" stroke-width="2.5"/>
+    <path d="M61 70L18 90l6 4 44-16z" fill="#162024" opacity=".13"/>
+    <path d="M56 56h22l-2.2 17a5 5 0 01-5 4.3H63.2a5 5 0 01-5-4.3z" fill="#fff"/>
+    <path d="M77.5 60a5 5 0 010 10" stroke="#fff" stroke-width="3" fill="none"/>
+    <ellipse cx="67" cy="56" rx="11" ry="2.4" fill="#9A5E30"/>
+    <path d="M62 50q2-4 0-8M68 49q2-5 0-10M73 50q2-4 0-7" stroke="#fff" stroke-width="1.4" fill="none" stroke-linecap="round" opacity=".8"/>
+    <rect x="8" y="8" width="38" height="44" rx="2" fill="#E9EEF0" opacity=".55"/><path d="M27 8v44M8 30h38" stroke="#C9D1CB" stroke-width="2"/>
+  </symbol>
+  <symbol id="p-pour" viewBox="0 0 100 100">
+    <path d="M58 10l26 9-9 25-22-7z" fill="url(#g-jug)"/>
+    <path d="M58 10l-5 27-6 3 4-6z" fill="#D6DCD7"/>
+    <path d="M50 38c-3 6-6 12-5.5 22" stroke="#F4F6F2" stroke-width="3.6" fill="none" stroke-linecap="round"/>
+    <path d="M26 60h44l-4.2 23a6 6 0 01-6 5H36.2a6 6 0 01-6-5z" fill="#F4F6F2"/>
+    <path d="M69 64a7.5 7.5 0 010 15" stroke="#F4F6F2" stroke-width="4" fill="none"/>
+    <ellipse cx="48" cy="60" rx="22" ry="4.6" fill="#A86B3C"/>
+    <ellipse cx="46" cy="60" rx="8" ry="2.2" fill="#F6E7D3"/>
+    <ellipse cx="48" cy="92" rx="30" ry="3.5" fill="#000" opacity=".2"/>
+  </symbol>
+  <symbol id="p-cake" viewBox="0 0 100 100">
+    <ellipse cx="52" cy="76" rx="38" ry="10" fill="#162024" opacity=".14"/>
+    <ellipse cx="50" cy="73" rx="38" ry="10" fill="#F4F6F2"/>
+    <path d="M24 44l48-8 6 8-48 8z" fill="#FFF3E2"/>
+    <path d="M30 52l48-8v22l-48 8z" fill="#E7B574"/>
+    <path d="M30 59.5l48-8" stroke="#7B3B24" stroke-width="3.2"/>
+    <path d="M30 66.5l48-8" stroke="#FFF3E2" stroke-width="2.6"/>
+    <path d="M24 44l6 8v22l-6-8z" fill="#CF9A5B"/>
+    <circle cx="52" cy="40" r="4.2" fill="#B4475F"/><circle cx="60" cy="38.6" r="3.4" fill="#C9586F"/>
+    <path d="M53 36l2-3" stroke="#4C7A4A" stroke-width="1.5" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="p-loaf" viewBox="0 0 100 100">
+    <rect x="8" y="58" width="84" height="22" rx="4" fill="#9A6A3E"/><rect x="8" y="58" width="84" height="4" rx="2" fill="#B5814F"/>
+    <path d="M84 69h8" stroke="#6E4527" stroke-width="3"/>
+    <ellipse cx="50" cy="52" rx="34" ry="18" fill="#B87437"/>
+    <ellipse cx="48" cy="47" rx="28" ry="11" fill="#CB8A45"/>
+    <path d="M28 50q6-9 12-1M42 47q6-9 12-1M56 45q6-9 12-1" stroke="#F1D3A2" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="p-awning" viewBox="0 0 100 100">
+    <rect x="12" y="34" width="76" height="62" fill="#F4F6F2"/>
+    <rect x="20" y="50" width="34" height="30" rx="1" fill="#1D2A2E"/>
+    <path d="M24 54h26v22H24z" fill="#27373C"/><path d="M28 70h18" stroke="#F5CF57" stroke-width="2"/>
+    <rect x="60" y="50" width="20" height="46" fill="#1D2A2E"/><circle cx="76" cy="74" r="1.4" fill="#F5CF57"/>
+    <rect x="62" y="56" width="16" height="7" rx="1" fill="#F5CF57"/>
+    <text x="70" y="61.6" font-size="5.6" text-anchor="middle" font-family="Big Shoulders, Arial Narrow, sans-serif" font-weight="800" fill="#162024">OPEN</text>
+    <path d="M8 22h84v12H8z" fill="#F5CF57"/>
+    <path d="M8 34q5.25 6 10.5 0t10.5 0 10.5 0 10.5 0 10.5 0 10.5 0 10.5 0 10.5 0z" fill="#F5CF57"/>
+    <path d="M18.5 22v12M39.5 22v12M60.5 22v12M81.5 22v12" stroke="#fff" stroke-width="5" opacity=".75"/>
+  </symbol>
+  <symbol id="p-beans" viewBox="0 0 100 100">
+    <g fill="#5A3420">
+      <ellipse cx="30" cy="34" rx="9" ry="6.5" transform="rotate(-30 30 34)"/><ellipse cx="62" cy="28" rx="9" ry="6.5" transform="rotate(20 62 28)"/>
+      <ellipse cx="46" cy="56" rx="9" ry="6.5" transform="rotate(60 46 56)"/><ellipse cx="74" cy="62" rx="9" ry="6.5" transform="rotate(-10 74 62)"/>
+      <ellipse cx="24" cy="70" rx="9" ry="6.5" transform="rotate(35 24 70)"/><ellipse cx="54" cy="82" rx="9" ry="6.5" transform="rotate(-50 54 82)"/>
+    </g>
+    <g stroke="#2E1A10" stroke-width="1.6" fill="none" stroke-linecap="round">
+      <path d="M23 38q7-2 14-8"/><path d="M55 25q7 2 14 6"/><path d="M42 50q5 5 8 12"/><path d="M66 63q8-1 16-2"/><path d="M18 66q5 5 12 8"/><path d="M49 87q4-5 10-10"/>
+    </g>
+  </symbol>
+  <symbol id="p-filter" viewBox="0 0 100 100">
+    <path d="M34 58h32l-3 30a4 4 0 01-4 3.6H41a4 4 0 01-4-3.6z" fill="url(#g-glass)" stroke="#fff" stroke-opacity=".75" stroke-width="1.3"/>
+    <path d="M37.4 74h25.2l-1.4 14a3 3 0 01-3 2.6H41.8a3 3 0 01-3-2.6z" fill="#7A4626"/>
+    <path d="M24 22h52L58 52H42z" fill="#F4F6F2"/><path d="M24 22h52v4H24z" fill="#DCE2DC"/>
+    <path d="M38 52h24v6H38z" fill="#DCE2DC"/>
+    <path d="M30 26l12 22M70 26L58 48M50 26v22" stroke="#C9D0CA" stroke-width="1.2"/>
+    <path d="M50 60v7" stroke="#7A4626" stroke-width="2" stroke-linecap="round" stroke-dasharray="2 3"/>
+  </symbol>
+</svg>
+
+<header class="site-head on-felt">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Specials Board, home"><span class="brand-mark" aria-hidden="true">S</span>Specials Board</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="#curriculum">Curriculum</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">Questions</a>
+      <button class="btn btn-primary nav-cta" type="button" data-checkout="Live cohort" data-price="$249" data-magnetic data-cursor="Reserve"><span class="btn-label">Reserve my seat</span></button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero on-felt" id="top" aria-labelledby="hero-title">
+    <div class="lamp" aria-hidden="true"></div>
+    <div class="wrap hero-grid">
+      <div class="hero-main">
+        <h1 class="board-title" id="hero-title">Run your café's Instagram in 20 minutes a day</h1>
+        <p class="board-price" aria-label="6-week live course, 249 US dollars"><span>6-week live course</span><span class="leader" aria-hidden="true"></span><span class="price" data-count-to="249">$249</span></p>
+        <p class="lede">A small-group course for independent café owners. You finish with a month of posts scheduled, a phone-photo routine your staff can follow, and a simple way to see which posts bring people in.</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" type="button" data-checkout="Live cohort" data-price="$249" data-magnetic data-cursor="Reserve"><span class="btn-label">Reserve my seat</span></button>
+          <a class="alt" href="#pricing" data-cursor="Compare">Compare all three options</a>
+        </div>
+        <ul class="hero-meta">
+          <li><svg width="18" height="18" aria-hidden="true"><use href="#i-cal"/></svg><span>Next cohort starts <b data-cohort-start>Monday 2 November</b>. Enrolment closes in <span class="countdown" data-countdown>16 days</span>.</span></li>
+          <li><svg width="18" height="18" aria-hidden="true"><use href="#i-back"/></svg><span>30-day full refund. No subscription.</span></li>
+        </ul>
+      </div>
+
+      <div class="phone-stage" data-cursor="Tilt me" role="img" aria-label="Illustration: a café's Instagram grid filling up one post at a time.">
+        <div class="phone-shadow" aria-hidden="true"></div>
+        <div class="tilt" data-tilt>
+        <div class="phone hero-phone" aria-hidden="true">
+          <div class="phone-edge"></div>
+          <div class="phone-body">
+            <div class="screen">
+              <div class="sbar"><span>9:41</span><span class="notch"></span><span class="sig"><i></i><i></i><i></i></span></div>
+              <div class="ig-head">
+                <span class="avatar">S</span>
+                <div class="ig-who"><b>yourcafe</b><span>Café · open 7 to 5</span></div>
+                <div class="ig-stat"><b data-postcount>0</b><span>posts</span></div>
+              </div>
+              <p class="ig-bio">Specials on the board every morning. Bakes out at 8.</p>
+              <div class="ig-hl"><span><i></i>Bakes</span><span><i></i>Menu</span><span><i></i>Team</span><span><i></i>Hours</span></div>
+              <div class="ig-tabs"><span class="on"></span><span></span><span></span></div>
+              <div class="feed" data-feed></div>
+            </div>
+            <div class="glare"></div>
+          </div>
+        </div>
+        <div class="float float-time" aria-hidden="true"><svg width="16" height="16"><use href="#i-clock"/></svg><span>Scheduled <b data-float-time>Tue 7:45</b></span></div>
+        <div class="float float-cap" aria-hidden="true"><span class="fc-label">Caption</span><span data-float-cap>Cardamom buns are out. Two trays, usually gone by ten.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="familiar" aria-labelledby="familiar-title">
+    <div class="wrap">
+      <h2 id="familiar-title" data-reveal>Sound familiar?</h2>
+      <div class="familiar-grid">
+        <p><span class="fam-no" aria-hidden="true">1</span>You post when you remember, then nothing for three weeks.</p>
+        <p><span class="fam-no" aria-hidden="true">2</span>The flat white looks lovely at the counter and flat on the feed.</p>
+        <p><span class="fam-no" aria-hidden="true">3</span>You can't tell if any of it brings a single person through the door.</p>
+      </div>
+      <p class="familiar-answer">The course fixes those three things in that order: a routine you can keep during a busy week, photos that look like your café, and a way to measure what works.</p>
+    </div>
+  </section>
+
+  <section class="curriculum" id="curriculum" aria-labelledby="curriculum-title">
+    <div class="wrap curr-intro">
+      <div>
+        <h2 id="curriculum-title" data-reveal>Six weeks, one habit at a time</h2>
+        <p class="curr-sub">Each week builds on the last. You do the work on your own account between calls, so by week six the routine is already running.</p>
+      </div>
+      <dl class="schedule">
+        <div><dt>Live call</dt><dd>Tuesdays, 3:30 to 4:30pm, after the lunch rush. Recorded if you miss it.</dd></div>
+        <div><dt>Homework</dt><dd>About 20 minutes a day, done on your phone.</dd></div>
+        <div><dt>Group size</dt><dd>Up to 24 owners, so every feed gets reviewed.</dd></div>
+      </dl>
+    </div>
+
+    <div class="curr-track" data-track>
+      <div class="curr-stage w2 w3 w4 w5 w6" data-stage data-week="6">
+        <div class="wrap stage-grid">
+          <div class="stage-copy">
+            <div class="rail" role="group" aria-label="Jump to a week">
+              <button type="button" data-goto="1" aria-label="Week 1">1</button><button type="button" data-goto="2" aria-label="Week 2">2</button><button type="button" data-goto="3" aria-label="Week 3">3</button><button type="button" data-goto="4" aria-label="Week 4">4</button><button type="button" data-goto="5" aria-label="Week 5">5</button><button type="button" data-goto="6" aria-label="Week 6">6</button>
+              <span class="rail-bar" aria-hidden="true"><i data-rail-fill></i></span>
+            </div>
+            <ol class="weeks">
+              <li class="week" data-w="1">
+                <div class="week-no" aria-hidden="true"><span>Week</span><b>1</b></div>
+                <div class="week-body">
+                  <h3>Decide what to post, once</h3>
+                  <p>Turn things you already do (the morning bake, the regulars, the person on the bar) into three repeatable post types.</p>
+                  <p class="leave"><b>You leave with</b> a one-page content menu you never have to rethink.</p>
+                </div>
+              </li>
+              <li class="week" data-w="2">
+                <div class="week-no" aria-hidden="true"><span>Week</span><b>2</b></div>
+                <div class="week-body">
+                  <h3>Phone photos that look like your café</h3>
+                  <p>Find the two best light spots in your room, set up a simple shot list, and edit in under a minute.</p>
+                  <p class="leave"><b>You leave with</b> a five-shot routine a staff member can follow without you.</p>
+                </div>
+              </li>
+              <li class="week" data-w="3">
+                <div class="week-no" aria-hidden="true"><span>Week</span><b>3</b></div>
+                <div class="week-body">
+                  <h3>Captions in your own voice</h3>
+                  <p>Write the way you talk at the counter. Short, specific, with one clear reason to visit.</p>
+                  <p class="leave"><b>You leave with</b> twelve caption starters written for your café.</p>
+                </div>
+              </li>
+              <li class="week" data-w="4">
+                <div class="week-no" aria-hidden="true"><span>Week</span><b>4</b></div>
+                <div class="week-body">
+                  <h3>Batch a month in one sitting</h3>
+                  <p>Plan, shoot and schedule four weeks of posts in a single quiet afternoon using free tools.</p>
+                  <p class="leave"><b>You leave with</b> next month's posts already scheduled.</p>
+                </div>
+              </li>
+              <li class="week" data-w="5">
+                <div class="week-no" aria-hidden="true"><span>Week</span><b>5</b></div>
+                <div class="week-body">
+                  <h3>Reels without dancing</h3>
+                  <p>Three short video formats you can film during service: the pour, the prep, the counter at 8am.</p>
+                  <p class="leave"><b>You leave with</b> three reels filmed and ready to post.</p>
+                </div>
+              </li>
+              <li class="week" data-w="6">
+                <div class="week-no" aria-hidden="true"><span>Week</span><b>6</b></div>
+                <div class="week-body">
+                  <h3>Know what's working</h3>
+                  <p>Track saves, messages and an in-store code so you can see which posts turn into visits.</p>
+                  <p class="leave"><b>You leave with</b> a ten-minute monthly check and a plan for month two.</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+
+          <div class="stage-visual" aria-hidden="true">
+            <div class="phone curr-phone">
+              <div class="phone-edge"></div>
+              <div class="phone-body">
+                <div class="screen">
+                  <div class="sbar"><span>9:41</span><span class="notch"></span><span class="sig"><i></i><i></i><i></i></span></div>
+                  <div class="ig-head">
+                    <span class="avatar">S</span>
+                    <div class="ig-who"><b>yourcafe</b><span data-stage-status>Ten-minute monthly check</span></div>
+                    <div class="ig-stat"><b data-stage-count>12</b><span>ready</span></div>
+                  </div>
+                  <div class="cfeed" data-cfeed>
+                    <div class="ctile has-sig" style="--bg:#F5CF57"><svg viewBox="0 0 100 100"><use href="#p-croissant"/></svg><span class="badge b-type">Bake</span><span class="badge b-sig"><svg aria-hidden="true"><use href="#i-save"/></svg>Saved</span></div>
+                    <div class="ctile" style="--bg:#E6EAE5"><svg viewBox="0 0 100 100"><use href="#p-window"/></svg><span class="badge b-type">Regulars</span></div>
+                    <div class="ctile is-reel" style="--bg:#1B3191"><svg viewBox="0 0 100 100"><use href="#p-pour"/></svg><span class="badge b-type">Bar</span><span class="badge b-play"><svg aria-hidden="true"><use href="#i-play"/></svg></span></div>
+                    <div class="ctile has-sig" style="--bg:#2443C4"><svg viewBox="0 0 100 100"><use href="#p-latte"/></svg><span class="badge b-sig"><svg aria-hidden="true"><use href="#i-chat"/></svg>Message</span></div>
+                    <div class="ctile is-reel" style="--bg:#EDC3BD"><svg viewBox="0 0 100 100"><use href="#p-bun"/></svg><span class="badge b-play"><svg aria-hidden="true"><use href="#i-play"/></svg></span></div>
+                    <div class="ctile" style="--bg:#27373C"><svg viewBox="0 0 100 100"><use href="#p-board"/></svg></div>
+                    <div class="ctile" style="--bg:#FBE29A"><svg viewBox="0 0 100 100"><use href="#p-cake"/></svg><span class="badge b-sched"><svg aria-hidden="true"><use href="#i-clock"/></svg>Sched.</span></div>
+                    <div class="ctile" style="--bg:#9FB8A8"><svg viewBox="0 0 100 100"><use href="#p-iced"/></svg><span class="badge b-sched"><svg aria-hidden="true"><use href="#i-clock"/></svg>Sched.</span></div>
+                    <div class="ctile is-reel has-sig" style="--bg:#9FB8A8"><svg viewBox="0 0 100 100"><use href="#p-awning"/></svg><span class="badge b-sched"><svg aria-hidden="true"><use href="#i-clock"/></svg>Sched.</span><span class="badge b-play"><svg aria-hidden="true"><use href="#i-play"/></svg></span><span class="badge b-sig"><svg aria-hidden="true"><use href="#i-code"/></svg>Code used</span></div>
+                    <div class="ctile" style="--bg:#1D2A2E"><svg viewBox="0 0 100 100"><use href="#p-loaf"/></svg><span class="badge b-sched"><svg aria-hidden="true"><use href="#i-clock"/></svg>Sched.</span></div>
+                    <div class="ctile" style="--bg:#F5CF57"><svg viewBox="0 0 100 100"><use href="#p-beans"/></svg><span class="badge b-sched"><svg aria-hidden="true"><use href="#i-clock"/></svg>Sched.</span></div>
+                    <div class="ctile" style="--bg:#2443C4"><svg viewBox="0 0 100 100"><use href="#p-filter"/></svg><span class="badge b-sched"><svg aria-hidden="true"><use href="#i-clock"/></svg>Sched.</span></div>
+                  </div>
+                  <div class="cap-card"><span>Caption starter 4</span>Cardamom buns out at 8. Two trays, usually gone by ten. Come early.</div>
+                </div>
+                <div class="glare"></div>
+              </div>
+            </div>
+            <figure class="spark">
+              <figcaption><b>Weekly footfall</b><span>Sketch, not real data</span></figcaption>
+              <svg viewBox="0 0 240 92">
+                <path class="spark-grid" d="M0 22H240M0 50H240M0 78H240"/>
+                <path class="spark-area" data-spark-area d="M0 70 L40 72 L80 64 L120 66 L160 52 L200 44 L240 34 L240 92 L0 92Z"/>
+                <path class="spark-line" data-spark pathLength="1" d="M0 70 L40 72 L80 64 L120 66 L160 52 L200 44 L240 34"/>
+                <g class="spark-marks"><circle cx="160" cy="52" r="4.5"/><circle cx="200" cy="44" r="4.5"/><circle cx="240" cy="34" r="4.5"/></g>
+              </svg>
+              <div class="spark-x"><span>W1</span><span>W2</span><span>W3</span><span>W4</span><span>W5</span><span>W6</span></div>
+              <p class="spark-note">Week 6 sets up an in-store code so you can draw your own line.</p>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="planner on-felt" id="planner" aria-labelledby="planner-title">
+    <div class="wrap planner-grid">
+      <div class="planner-copy">
+        <h2 id="planner-title" data-reveal>Where do 20 minutes a day fit?</h2>
+        <p>Here's the daily routine the course builds, in four small jobs. Drop each one into a quiet moment of a café day and watch the 20 minutes fill.</p>
+        <p class="planner-help" id="planner-help">Drag a task onto the day, or tap it to drop it into the next free slot. With a keyboard: press Enter on a task, then Enter on a slot.</p>
+      </div>
+      <div class="planner-app" data-planner>
+        <div class="tray" data-tray role="group" aria-label="Daily tasks, 20 minutes in total">
+          <div class="dock"><button type="button" class="chip" data-chip="photo" data-min="5" aria-describedby="planner-help" data-cursor="Drag"><svg width="18" height="18" aria-hidden="true"><use href="#i-cam"/></svg><span class="chip-t">Snap one photo from the shot list</span><span class="chip-m">5 min</span></button></div>
+          <div class="dock"><button type="button" class="chip" data-chip="post" data-min="5" aria-describedby="planner-help" data-cursor="Drag"><svg width="18" height="18" aria-hidden="true"><use href="#i-pen"/></svg><span class="chip-t">Post it with a caption starter</span><span class="chip-m">5 min</span></button></div>
+          <div class="dock"><button type="button" class="chip" data-chip="reply" data-min="6" aria-describedby="planner-help" data-cursor="Drag"><svg width="18" height="18" aria-hidden="true"><use href="#i-chat"/></svg><span class="chip-t">Reply to comments and messages</span><span class="chip-m">6 min</span></button></div>
+          <div class="dock"><button type="button" class="chip" data-chip="check" data-min="4" aria-describedby="planner-help" data-cursor="Drag"><svg width="18" height="18" aria-hidden="true"><use href="#i-eye"/></svg><span class="chip-t">Check saves and the in-store code</span><span class="chip-m">4 min</span></button></div>
+        </div>
+        <ol class="day" aria-label="A café day">
+          <li class="slot" data-slot="0"><span class="slot-time">7:40</span><span class="slot-name">Before the doors open</span><div class="drop" data-drop><button type="button" class="drop-target" aria-label="Empty slot: 7:40, before the doors open" data-cursor="Drop">Drop a task here</button></div></li>
+          <li class="slot" data-slot="1"><span class="slot-time">10:30</span><span class="slot-name">Mid-morning lull</span><div class="drop" data-drop><button type="button" class="drop-target" aria-label="Empty slot: 10:30, mid-morning lull" data-cursor="Drop">Drop a task here</button></div></li>
+          <li class="slot" data-slot="2"><span class="slot-time">14:45</span><span class="slot-name">After the lunch rush</span><div class="drop" data-drop><button type="button" class="drop-target" aria-label="Empty slot: 14:45, after the lunch rush" data-cursor="Drop">Drop a task here</button></div></li>
+          <li class="slot" data-slot="3"><span class="slot-time">17:15</span><span class="slot-name">Wiping down</span><div class="drop" data-drop><button type="button" class="drop-target" aria-label="Empty slot: 17:15, wiping down" data-cursor="Drop">Drop a task here</button></div></li>
+        </ol>
+        <div class="planner-foot">
+          <div class="ring" aria-hidden="true">
+            <svg viewBox="0 0 120 120"><circle class="ring-bg" cx="60" cy="60" r="52"/><circle class="ring-fg" data-ring cx="60" cy="60" r="52" pathLength="100"/></svg>
+            <div class="ring-txt"><b data-ring-min>0</b><span>of 20 min</span></div>
+          </div>
+          <p class="planner-status" data-planner-status aria-live="polite">Four jobs, four quiet moments. Nothing placed yet.</p>
+          <div class="planner-cta">
+            <button class="btn btn-primary" type="button" data-checkout="Live cohort" data-price="$249" data-magnetic data-cursor="Reserve"><span class="btn-label">Reserve my seat</span></button>
+            <button class="linkish" type="button" data-planner-reset>Start the day again</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section fit" aria-labelledby="fit-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="fit-title" data-reveal>Is this the right course for you?</h2>
+        <p>Better to know now than after you've paid.</p>
+      </div>
+      <div class="fit-grid">
+        <div class="fit-col">
+          <h3>It's for you if</h3>
+          <ul class="fit-list">
+            <li><svg width="20" height="20" aria-hidden="true"><use href="#i-yes"/></svg><span>You own or run an independent café, bakery or coffee cart.</span></li>
+            <li><svg width="20" height="20" aria-hidden="true"><use href="#i-yes"/></svg><span>You'd rather do it yourself than pay an agency every month.</span></li>
+            <li><svg width="20" height="20" aria-hidden="true"><use href="#i-yes"/></svg><span>You can spare 20 minutes a day and one hour a week.</span></li>
+            <li><svg width="20" height="20" aria-hidden="true"><use href="#i-yes"/></svg><span>You have a phone from the last five years. That's the whole kit.</span></li>
+          </ul>
+        </div>
+        <div class="fit-col fit-no">
+          <h3>It's not for you if</h3>
+          <ul class="fit-list">
+            <li><svg width="20" height="20" aria-hidden="true"><use href="#i-no"/></svg><span>You want thousands of followers fast. There are no growth hacks here.</span></li>
+            <li><svg width="20" height="20" aria-hidden="true"><use href="#i-no"/></svg><span>You run a chain with its own marketing team.</span></li>
+            <li><svg width="20" height="20" aria-hidden="true"><use href="#i-no"/></svg><span>You want someone else to post for you.</span></li>
+            <li><svg width="20" height="20" aria-hidden="true"><use href="#i-no"/></svg><span>You're mainly after paid ads. We cover them in one lesson, not six.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section teacher" aria-labelledby="teacher-title">
+    <div class="wrap teacher-grid">
+      <figure class="portrait">
+        <span class="portrait-mono" aria-hidden="true">IV</span>
+        <figcaption>Photo placeholder. Swap in a real portrait taken behind the counter.</figcaption>
+      </figure>
+      <div class="teacher-copy">
+        <span class="demo-note">Fictional instructor for this design sample</span>
+        <h2 id="teacher-title" data-reveal>Taught by Ines Varga</h2>
+        <p class="role">Former café owner. Ran her own Instagram for seven years on a phone and a break between shifts.</p>
+        <p>Ines opened a 28-seat café with no marketing budget and learned Instagram the slow way: posting at random, then building a routine she could keep on a Saturday with a queue out the door. This course is that routine, cut down to what still works when you're tired.</p>
+        <p>She teaches every live call herself and reviews every feed in the group, which is why cohorts are capped.</p>
+        <div class="facts">
+          <div><b>7 yrs</b><span>running her own café feed</span></div>
+          <div><b>24</b><span>owners per cohort, maximum</span></div>
+          <div><b>1 phone</b><span>all the equipment she uses</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="proof" aria-labelledby="proof-title">
+    <div class="wrap">
+      <div class="proof-slot">
+        <div>
+          <h2 id="proof-title">Your students' results go here</h2>
+          <p>Reserved for real outcomes after the first cohort: before and after feeds, named quotes shared with permission, a screenshot of an owner's own numbers. This sample deliberately shows none rather than invent them.</p>
+        </div>
+        <span class="tag">Placeholder</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section pricing" id="pricing" aria-labelledby="pricing-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="pricing-title" data-reveal>One price, paid once</h2>
+        <p>All prices in US dollars. No subscription, no upsell on the calls.</p>
+      </div>
+      <div class="tiers">
+        <article class="tier" aria-labelledby="t1" data-cursor="Compare">
+          <h3 id="t1">Self-paced</h3>
+          <p class="for">For owners who'd rather work through it alone, at night.</p>
+          <p class="amount">$149</p>
+          <ul>
+            <li><svg width="16" height="16" aria-hidden="true"><use href="#i-tick"/></svg>All six lessons, recorded</li>
+            <li><svg width="16" height="16" aria-hidden="true"><use href="#i-tick"/></svg>Content menu, shot list and caption templates</li>
+            <li><svg width="16" height="16" aria-hidden="true"><use href="#i-tick"/></svg>Lifetime access to updates</li>
+          </ul>
+          <button class="btn btn-quiet" type="button" data-checkout="Self-paced" data-price="$149"><span class="btn-label">Choose self-paced</span></button>
+          <div class="receipt" aria-hidden="true">
+            <p class="r-head">Itemised</p>
+            <p><span>Recorded lessons</span><i></i><b>6</b></p>
+            <p><span>Template sets</span><i></i><b>3</b></p>
+            <p><span>Live calls</span><i></i><b>0</b></p>
+            <p><span>Feed reviews</span><i></i><b>0</b></p>
+            <p><span>Updates</span><i></i><b>for life</b></p>
+            <p class="r-total"><span>Paid once</span><i></i><b>$149</b></p>
+          </div>
+        </article>
+        <article class="tier tier-rec on-felt" aria-labelledby="t2" data-cursor="Compare">
+          <span class="rec-flag">Recommended</span>
+          <h3 id="t2">Live cohort</h3>
+          <p class="for">For owners who want a deadline, feedback and a group to keep them going.</p>
+          <p class="amount">$249 <small>once</small></p>
+          <ul>
+            <li><svg width="16" height="16" aria-hidden="true"><use href="#i-tick"/></svg>Everything in self-paced</li>
+            <li><svg width="16" height="16" aria-hidden="true"><use href="#i-tick"/></svg>Six live calls with Ines, recorded</li>
+            <li><svg width="16" height="16" aria-hidden="true"><use href="#i-tick"/></svg>Your feed reviewed every week</li>
+            <li><svg width="16" height="16" aria-hidden="true"><use href="#i-tick"/></svg>Small group chat with the cohort</li>
+          </ul>
+          <button class="btn btn-primary" type="button" data-checkout="Live cohort" data-price="$249" data-magnetic data-cursor="Reserve"><span class="btn-label">Reserve my seat</span></button>
+          <div class="receipt" aria-hidden="true">
+            <p class="r-head">Itemised</p>
+            <p><span>Recorded lessons</span><i></i><b>6</b></p>
+            <p><span>Template sets</span><i></i><b>3</b></p>
+            <p><span>Live calls with Ines</span><i></i><b>6</b></p>
+            <p><span>Feed reviews</span><i></i><b>6</b></p>
+            <p><span>Cohort chat</span><i></i><b>yes</b></p>
+            <p class="r-total"><span>Paid once</span><i></i><b>$249</b></p>
+          </div>
+        </article>
+        <article class="tier" aria-labelledby="t3" data-cursor="Compare">
+          <h3 id="t3">Cohort + 1:1</h3>
+          <p class="for">For owners who want hands-on help on their actual account.</p>
+          <p class="amount">$449</p>
+          <ul>
+            <li><svg width="16" height="16" aria-hidden="true"><use href="#i-tick"/></svg>Everything in the live cohort</li>
+            <li><svg width="16" height="16" aria-hidden="true"><use href="#i-tick"/></svg>Two 45-minute one-to-one sessions</li>
+            <li><svg width="16" height="16" aria-hidden="true"><use href="#i-tick"/></svg>A written review of your first month</li>
+          </ul>
+          <button class="btn btn-quiet" type="button" data-checkout="Cohort + 1:1" data-price="$449"><span class="btn-label">Choose cohort + 1:1</span></button>
+          <div class="receipt" aria-hidden="true">
+            <p class="r-head">Itemised</p>
+            <p><span>Live cohort, all of it</span><i></i><b>yes</b></p>
+            <p><span>1:1 sessions, 45 min</span><i></i><b>2</b></p>
+            <p><span>Written month review</span><i></i><b>1</b></p>
+            <p><span>Feed reviews</span><i></i><b>6</b></p>
+            <p class="r-total"><span>Paid once</span><i></i><b>$449</b></p>
+          </div>
+        </article>
+      </div>
+      <div class="price-notes">
+        <div class="guarantee">
+          <svg width="64" height="64" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#F5CF57" stroke="#162024" stroke-width="2.5"/><path d="M20 33l8 8 16-17" fill="none" stroke="#162024" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div>
+            <h3>Try the first two weeks on us</h3>
+            <p>If the course isn't useful, email within 30 days of the start date and you get every dollar back. Keep the templates.</p>
+          </div>
+        </div>
+        <ul class="small-print">
+          <li>Card or PayPal. Receipt with your business details for your accountant.</li>
+          <li>Can't make this cohort? Move to the next one for free, once.</li>
+          <li>Seats are limited to 24 per cohort.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section faq" id="faq" aria-labelledby="faq-title">
+    <div class="wrap faq-grid">
+      <div>
+        <h2 id="faq-title" data-reveal>Questions owners ask before joining</h2>
+        <p class="faq-sub">Something else on your mind? Email <a href="mailto:hello@example.com">hello@example.com</a> and Ines replies within a working day.</p>
+      </div>
+      <div class="faq-list">
+        <details>
+          <summary data-cursor="Open">I barely have time to sit down. Is 20 minutes a day realistic?</summary>
+          <div class="answer"><p>Yes, because most of it happens in one batch session in week four. Day to day you're taking a photo during service and posting something already written. If a week goes sideways, the recordings wait for you.</p></div>
+        </details>
+        <details>
+          <summary data-cursor="Open">I'm not creative and I'm not a photographer.</summary>
+          <div class="answer"><p>You don't need to be. Week two gives you a shot list and two light spots in your own café. Most owners find it's a checklist, not a talent.</p></div>
+        </details>
+        <details>
+          <summary data-cursor="Open">Do I have to show my face or talk to camera?</summary>
+          <div class="answer"><p>No. Every format in the course works with hands, cups and the room. If you'd like to be on camera, there's an optional lesson for that.</p></div>
+        </details>
+        <details>
+          <summary data-cursor="Open">Will this bring more customers in?</summary>
+          <div class="answer"><p>We can't promise a number, and you should be wary of anyone who does. What the course gives you is a steady presence and, in week six, a way to measure which posts lead to visits so you can do more of those.</p></div>
+        </details>
+        <details>
+          <summary data-cursor="Open">What if I miss a live call?</summary>
+          <div class="answer"><p>Every call is recorded and up within a few hours. Post your questions in the group chat beforehand and Ines will answer them on the recording.</p></div>
+        </details>
+        <details>
+          <summary data-cursor="Open">Which phone and apps do I need?</summary>
+          <div class="answer"><p>Any iPhone or Android from the last five years, the Instagram app, and a free scheduling tool we set up together. Nothing to buy.</p></div>
+        </details>
+        <details>
+          <summary data-cursor="Open">Can a member of staff take the course instead of me?</summary>
+          <div class="answer"><p>Yes. Many owners hand Instagram to a barista. The seat is for one person, and they can share the templates with the team.</p></div>
+        </details>
+        <details>
+          <summary data-cursor="Open">How does the refund work?</summary>
+          <div class="answer"><p>Email within 30 days of the cohort start. No form, no call. The refund goes back to your card within five working days.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="closing on-felt" aria-labelledby="closing-title">
+    <div class="lamp" aria-hidden="true"></div>
+    <div class="wrap closing-grid">
+      <h2 id="closing-title" class="board-close">Next cohort starts <span class="date" data-cohort-start-short>2 November</span></h2>
+      <div>
+        <p>Enrolment closes in <span class="countdown" data-countdown>16 days</span>. 24 seats, a 30-day refund, and a month of posts scheduled by the end.</p>
+        <button class="btn btn-primary" type="button" data-checkout="Live cohort" data-price="$249" data-magnetic data-cursor="Reserve"><span class="btn-label">Reserve my seat</span></button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <p>Specials Board is a fictional course made as a landing-page design sample. No real students, reviews or payments.</p>
+    <p><a href="case-study.html">Read the case study</a> or <a href="before.html">see the original page</a></p>
+  </div>
+</footer>
+
+<div class="sticky-cta on-felt" data-sticky aria-hidden="true">
+  <div class="s-meta"><b>$249 live cohort</b>Closes in <span class="countdown" data-countdown>16 days</span></div>
+  <button class="btn btn-primary" type="button" data-checkout="Live cohort" data-price="$249" tabindex="-1"><span class="btn-label">Reserve my seat</span></button>
+</div>
+
+<dialog id="checkout" aria-labelledby="checkout-title">
+  <h2 id="checkout-title">Checkout would open here</h2>
+  <p>This is a design sample, so nothing is charged. On a live site this button goes straight to checkout for the <b data-checkout-tier>Live cohort</b> option at <b data-checkout-price>$249</b>, with the email field first and no account needed.</p>
+  <form method="dialog"><button class="btn btn-primary" type="submit"><span class="btn-label">Close</span></button></form>
+</dialog>
+
+<script src="vendor/gsap.min.js" defer></script>
+<script src="vendor/ScrollTrigger.min.js" defer></script>
+<script src="vendor/lenis.min.js" defer></script>
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

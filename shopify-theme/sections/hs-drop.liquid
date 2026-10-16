@@ -1,0 +1,31 @@
+<section class="drop hs-drop" id="drop" aria-labelledby="drop-h-{{ section.id }}" data-date="{{ section.settings.date | escape }}">
+  <div>
+    <p class="drop-word display" aria-hidden="true">{{ section.settings.word | upcase }}</p>
+    <h2 class="h2" id="drop-h-{{ section.id }}" style="font-size:clamp(26px,2.6vw,40px)">{{ section.settings.heading }}</h2>
+    <div class="countdown" role="timer" aria-label="Time until the drop">
+      <div><b>00</b><small>days</small></div><div><b>00</b><small>hours</small></div><div><b>00</b><small>minutes</small></div><div><b>00</b><small>seconds</small></div>
+    </div>
+    {%- form 'customer', class: 'notify', id: 'hs-drop-form' -%}
+      <input type="hidden" name="contact[tags]" value="newsletter,{{ section.settings.word | handleize }}-drop">
+      <label class="visually-hidden" for="hs-drop-email">Email</label>
+      <input id="hs-drop-email" type="email" name="contact[email]" placeholder="Your email" autocomplete="email" required>
+      <button class="btn" type="submit" data-magnetic>{{ section.settings.button }}</button>
+      <p class="notify-msg" aria-live="polite">{%- if form.posted_successfully? -%}Done. We'll email you when it goes live.{%- elsif form.errors -%}{{ form.errors | default_errors }}{%- endif -%}</p>
+    {%- endform -%}
+  </div>
+  <div class="drop-img"><img src="{{ 'hs-' | append: section.settings.colour_handle | append: '-side2.webp' | asset_url }}" alt="" loading="lazy" width="1400" height="1400"></div>
+</section>
+
+{% schema %}
+{
+  "name": "Halfstep next drop",
+  "settings": [
+    { "type": "text", "id": "word", "label": "Colour name (big word)", "default": "Ember" },
+    { "type": "text", "id": "colour_handle", "label": "Colour handle for the image", "default": "ember" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Lands Saturday, 10:00 IST" },
+    { "type": "text", "id": "date", "label": "Drop date and time (ISO, e.g. 2026-10-24T10:00:00+05:30)", "default": "2026-10-24T10:00:00+05:30" },
+    { "type": "text", "id": "button", "label": "Button", "default": "Get a reminder" }
+  ],
+  "presets": [{ "name": "Halfstep next drop" }]
+}
+{% endschema %}

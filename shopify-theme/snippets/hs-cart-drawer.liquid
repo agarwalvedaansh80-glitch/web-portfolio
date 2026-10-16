@@ -1,0 +1,12 @@
+<div class="drawer-scrim" data-close-cart></div>
+<aside class="drawer" role="dialog" aria-modal="true" aria-label="Your bag" tabindex="-1">
+  <div class="drawer-head"><h2>Your bag</h2><button class="icon-btn" type="button" data-close-cart aria-label="Close bag">×</button></div>
+  <div class="ship"><p></p><div class="ship-bar"><b></b></div></div>
+  <div class="lines"></div>
+  <div class="upsell" hidden></div>
+  <div class="drawer-foot">
+    <div class="row"><span>Total</span><span class="drawer-total">{{ cart.total_price | money }}</span></div>
+    <form action="{{ routes.cart_url }}" method="post"><button class="btn checkout" type="submit" name="checkout"><span class="btn-label">Check out</span></button></form>
+    <p class="pay-row">Taxes and shipping calculated at checkout</p>
+  </div>
+</aside>

@@ -1,0 +1,37 @@
+{%- liquid
+  assign p = section.settings.product | default: all_products['drift-knit']
+  assign word = section.settings.word | upcase
+-%}
+<section class="hero hs-hero" aria-label="{{ p.title | escape }}" data-size="{{ section.settings.quick_size | escape }}">
+  <script type="application/json" data-hs-product>{{ p | json }}</script>
+  <p class="hero-word display" aria-hidden="true">{%- for i in (1..word.size) -%}{%- assign idx = forloop.index0 -%}<span>{{ word | slice: idx }}</span>{%- endfor -%}</p>
+  <div class="hero-canvas" data-cursor="Drag"></div>
+  <div class="hero-ui">
+    <div class="hero-meta">
+      <h1>{{ section.settings.heading | default: p.title }}</h1>
+      <p>{{ section.settings.text }}</p>
+      <div class="swatches" role="group" aria-label="Colour"></div>
+      <p class="cw-name" data-cw-name aria-live="polite"></p>
+    </div>
+    <div class="hero-buy">
+      <span class="price">{{ p.price | money }}</span>
+      <button class="btn add" type="button" data-magnetic><span class="btn-label">Add to bag · {{ section.settings.quick_size }}</span><span class="btn-done" aria-hidden="true">Added ✓</span></button>
+      <a class="btn btn--ghost" href="{{ p.url }}" data-magnetic>Choose size</a>
+    </div>
+  </div>
+  <span class="scroll-hint" aria-hidden="true"></span>
+</section>
+
+{% schema %}
+{
+  "name": "Halfstep 3D hero",
+  "settings": [
+    { "type": "product", "id": "product", "label": "Product" },
+    { "type": "text", "id": "word", "label": "Big word behind the shoe", "default": "DRIFT" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Drift Knit" },
+    { "type": "text", "id": "text", "label": "Text", "default": "One knit upper. One foam sole. Six colours, released one at a time." },
+    { "type": "text", "id": "quick_size", "label": "Quick-add size (must match a Size option value)", "default": "UK 9" }
+  ],
+  "presets": [{ "name": "Halfstep 3D hero" }]
+}
+{% endschema %}

@@ -1,0 +1,6 @@
+{
+  "name": "t:sections.header.name",
+  "type": "header",
+  "sections": { "hs_header": { "type": "hs-header", "settings": { "logo_text": "Halfstep", "menu": "main-menu" } } },
+  "order": ["hs_header"]
+}

@@ -1,0 +1,22 @@
+<header class="hdr">
+  <a class="logo" href="{{ routes.root_url }}"><i aria-hidden="true"></i>{{ section.settings.logo_text | default: shop.name }}</a>
+  <nav class="nav" aria-label="Main">
+    {%- for link in section.settings.menu.links -%}
+      <a href="{{ link.url }}"{% if link.current %} aria-current="page"{% endif %}>{{ link.title }}</a>
+    {%- endfor -%}
+  </nav>
+  <div class="hdr-actions">
+    <a class="bag-btn" href="{{ routes.cart_url }}" data-open-cart data-magnetic=".25">Bag <span class="bag-count">{{ cart.item_count }}</span></a>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Halfstep header",
+  "class": "hs-header-section",
+  "settings": [
+    { "type": "text", "id": "logo_text", "label": "Logo text", "default": "Halfstep" },
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,37 @@
+{%- assign p = section.settings.product | default: all_products['drift-knit'] -%}
+<section class="fit hs-fit" id="fit" aria-labelledby="fit-h-{{ section.id }}" data-prefix="{{ section.settings.prefix }}">
+  <script type="application/json" data-hs-product>{{ p | json }}</script>
+  <div>
+    <h2 class="h2" id="fit-h-{{ section.id }}" data-reveal>{{ section.settings.heading }}</h2>
+    <p class="lede">{{ section.settings.text }}</p>
+  </div>
+  <div class="fit-card">
+    <div class="fit-meter" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    <div class="fit-step" data-q="size"><p class="fit-q">What size do you usually wear?</p>
+      <div class="choices">
+        {%- assign sizes = section.settings.sizes | split: ',' -%}
+        {%- for s in sizes -%}<button class="choice" type="button" data-v="{{ s | strip }}">{{ section.settings.prefix }} {{ s | strip }}</button>{%- endfor -%}
+      </div></div>
+    <div class="fit-step" data-q="width"><p class="fit-q">How wide are your feet?</p>
+      <div class="choices"><button class="choice" type="button" data-v="narrow">Narrow</button><button class="choice" type="button" data-v="regular">Regular</button><button class="choice" type="button" data-v="wide">Wide</button></div></div>
+    <div class="fit-step" data-q="feel"><p class="fit-q">How do you like your trainers to feel?</p>
+      <div class="choices"><button class="choice" type="button" data-v="snug">Snug</button><button class="choice" type="button" data-v="true">Just right</button><button class="choice" type="button" data-v="roomy">Roomy</button></div></div>
+    <div class="fit-step fit-result" aria-live="polite"><p class="small">Your size</p><b></b><p class="fit-why"></p>
+      <button class="btn fit-add" type="button" data-magnetic><span class="btn-label">Add to bag</span><span class="btn-done" aria-hidden="true">Added ✓</span></button><br>
+      <button class="fit-back" type="button">Start again</button></div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Halfstep fit finder",
+  "settings": [
+    { "type": "product", "id": "product", "label": "Product" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Find your size in 20 seconds" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Three taps. If the size is wrong, swap it free within 30 days." },
+    { "type": "text", "id": "prefix", "label": "Size prefix (as in the Size option, e.g. UK)", "default": "UK" },
+    { "type": "text", "id": "sizes", "label": "Sizes to offer (comma separated numbers)", "default": "6,7,8,9,10,11,12" }
+  ],
+  "presets": [{ "name": "Halfstep fit finder" }]
+}
+{% endschema %}

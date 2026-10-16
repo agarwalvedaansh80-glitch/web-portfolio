@@ -1,0 +1,27 @@
+{
+  "sections": {
+    "hero": { "type": "hs-hero", "settings": { "product": "", "word": "DRIFT", "heading": "Drift Knit", "text": "One knit upper. One foam sole. Six colours, released one at a time.", "quick_size": "UK 9" } },
+    "marquee": { "type": "hs-marquee", "blocks": {
+        "m1": { "type": "item", "settings": { "text": "Free shipping over $120" } },
+        "m2": { "type": "item", "settings": { "text": "30-day wear test" } },
+        "m3": { "type": "item", "settings": { "text": "Ember drops Saturday" } },
+        "m4": { "type": "item", "settings": { "text": "Machine washable knit" } } },
+      "block_order": ["m1", "m2", "m3", "m4"] },
+    "layers": { "type": "hs-layers", "settings": { "heading": "Three layers.\nNothing else." }, "blocks": {
+        "l1": { "type": "layer", "settings": { "title": "Knit upper", "text": "A single piece of recycled yarn, knitted to shape. It stretches where your foot flexes and goes in the wash at 30°.", "stat1": "212 g", "stat1_label": "per shoe, UK 9", "stat2": "1", "stat2_label": "piece, no stitched panels", "angle": "q34", "ring_x": 34, "ring_y": 22 } },
+        "l2": { "type": "layer", "settings": { "title": "Foam midsole", "text": "28 mm of rebound foam that keeps its spring after months of daily wear, not just the first week.", "stat1": "28 mm", "stat1_label": "heel stack", "stat2": "6 mm", "stat2_label": "drop", "angle": "side", "ring_x": 40, "ring_y": 56 } },
+        "l3": { "type": "layer", "settings": { "title": "Rubber grip", "text": "Siped rubber under the heel and forefoot, cut for wet pavements and tiled station floors.", "stat1": "3.5 mm", "stat1_label": "lug depth", "stat2": "100%", "stat2_label": "natural rubber", "angle": "back", "ring_x": 58, "ring_y": 62 } } },
+      "block_order": ["l1", "l2", "l3"] },
+    "rail": { "type": "hs-rail", "settings": { "product": "", "heading": "Pick your colour", "text": "Same shoe, six moods. Each colour is made in one run, and we don't restock." }, "blocks": {
+        "c1": { "type": "colour", "settings": { "colour": "Night Shift", "desc": "Black knit, coral stripes", "tag": "Best seller" } },
+        "c2": { "type": "colour", "settings": { "colour": "Harbour", "desc": "Sea blue, navy stripes", "tag": "" } },
+        "c3": { "type": "colour", "settings": { "colour": "Dusk", "desc": "Blush knit, rose stripes", "tag": "Low stock" } },
+        "c4": { "type": "colour", "settings": { "colour": "Moss", "desc": "Olive knit, gum stripes", "tag": "" } },
+        "c5": { "type": "colour", "settings": { "colour": "Chalk", "desc": "Off-white knit, black stripes", "tag": "" } },
+        "c6": { "type": "colour", "settings": { "colour": "Ember", "desc": "Burnt orange, black stripes", "tag": "Drops Saturday" } } },
+      "block_order": ["c1", "c2", "c3", "c4", "c5", "c6"] },
+    "drop": { "type": "hs-drop", "settings": { "word": "Ember", "colour_handle": "ember", "heading": "Lands Saturday, 10:00 IST", "date": "2026-10-24T10:00:00+05:30", "button": "Get a reminder" } },
+    "fit": { "type": "hs-fit", "settings": { "product": "", "heading": "Find your size in 20 seconds", "text": "Three taps. If the size is wrong, swap it free within 30 days.", "prefix": "UK", "sizes": "6,7,8,9,10,11,12" } }
+  },
+  "order": ["hero", "marquee", "layers", "rail", "drop", "fit"]
+}

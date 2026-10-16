@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Halfstep — Drift Knit sneakers</title>
+<meta name="description" content="Drift Knit: one knit upper, one foam sole, six colours released one at a time.">
+<link rel="preload" href="fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/halfstep.css">
+<link rel="preload" href="model/shoe.glb" as="fetch" crossorigin>
+<script type="importmap">{"imports":{"three":"./vendor/three.module.min.js"}}</script>
+<script src="vendor/gsap.min.js" defer></script>
+<script src="vendor/ScrollTrigger.min.js" defer></script>
+<script src="vendor/lenis.min.js" defer></script>
+</head>
+<body data-page="home">
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="hdr">
+  <a class="logo" href="index.html"><i aria-hidden="true"></i>Halfstep</a>
+  <nav class="nav" aria-label="Main"><a href="product.html">Shop</a><a href="#colours">Colours</a><a href="#drop">Next drop</a><a href="#fit">Fit finder</a></nav>
+  <div class="hdr-actions"><button class="bag-btn" type="button" data-open-cart data-magnetic=".25">Bag <span class="bag-count">0</span></button></div>
+</header>
+
+<main id="main">
+  <section class="hero" aria-label="Drift Knit">
+    <p class="hero-word display" aria-hidden="true"><span>D</span><span>R</span><span>I</span><span>F</span><span>T</span></p>
+    <div class="hero-canvas" data-cursor="Drag"></div>
+    <div class="hero-ui">
+      <div class="hero-meta">
+        <h1>Drift Knit</h1>
+        <p>One knit upper. One foam sole. Six colours, released one at a time.</p>
+        <div class="swatches" role="group" aria-label="Colour"></div>
+        <p class="cw-name" data-cw-name aria-live="polite"></p>
+      </div>
+      <div class="hero-buy">
+        <span class="price">$140</span>
+        <button class="btn add" type="button" data-magnetic><span class="btn-label">Add to bag · UK 9</span><span class="btn-done" aria-hidden="true">Added ✓</span></button>
+        <a class="btn btn--ghost" href="product.html" data-magnetic>Choose size</a>
+      </div>
+    </div>
+    <span class="scroll-hint" aria-hidden="true"></span>
+  </section>
+
+  <div class="marquee" aria-hidden="true"><div class="marquee-track">
+    <span>Free shipping over $120</span><span>30-day wear test</span><span>Ember drops Saturday</span><span>Machine washable knit</span>
+    <span>Free shipping over $120</span><span>30-day wear test</span><span>Ember drops Saturday</span><span>Machine washable knit</span>
+  </div></div>
+
+  <section class="layers" aria-labelledby="layers-h">
+    <div class="layers-pin">
+      <div>
+        <h2 class="h2" id="layers-h" data-reveal>Three layers.<br>Nothing else.</h2>
+        <div class="layers-progress" aria-hidden="true"><i><b></b></i><i><b></b></i><i><b></b></i></div>
+        <div class="layers-copy">
+          <article class="layer">
+            <h3>Knit upper</h3>
+            <p>A single piece of recycled yarn, knitted to shape. It stretches where your foot flexes and goes in the wash at 30°.</p>
+            <div class="spec"><div><b>212 g</b><span class="small">per shoe, UK 9</span></div><div><b>1</b><span class="small">piece, no stitched panels</span></div></div>
+          </article>
+          <article class="layer">
+            <h3>Foam midsole</h3>
+            <p>28 mm of rebound foam that keeps its spring after months of daily wear, not just the first week.</p>
+            <div class="spec"><div><b>28 mm</b><span class="small">heel stack</span></div><div><b>6 mm</b><span class="small">drop</span></div></div>
+          </article>
+          <article class="layer">
+            <h3>Rubber grip</h3>
+            <p>Siped rubber under the heel and forefoot, cut for wet pavements and tiled station floors.</p>
+            <div class="spec"><div><b>3.5 mm</b><span class="small">lug depth</span></div><div><b>100%</b><span class="small">natural rubber</span></div></div>
+          </article>
+        </div>
+      </div>
+      <div class="layers-visual" aria-hidden="true">
+        <img data-cw-img="q34" src="img/street_q34.webp" alt="">
+        <img data-cw-img="side" src="img/street_side.webp" alt="" style="opacity:0">
+        <img data-cw-img="back" src="img/street_back.webp" alt="" style="opacity:0">
+        <span class="ring" style="left:34%;top:22%"></span>
+        <span class="ring" style="left:40%;top:56%"></span>
+        <span class="ring" style="left:58%;top:62%"></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="rail" id="colours" aria-labelledby="rail-h">
+    <div class="rail-head">
+      <h2 class="h2" id="rail-h" data-reveal>Pick your colour</h2>
+      <p class="lede">Same shoe, six moods. Each colour is made in one run, and we don't restock.</p>
+    </div>
+    <div class="rail-track">
+      <a class="card" href="product.html?c=street" data-cursor="View" style="--sw:#F2546B"><div class="card-media"><span class="card-tag">Best seller</span><img src="img/street_q34.webp" alt="Drift Knit in Night Shift" loading="lazy"></div><div class="card-info"><span>Night Shift<small>Black knit, coral stripes</small></span><span class="price">$140</span></div></a>
+      <a class="card" href="product.html?c=midnight" data-cursor="View" style="--sw:#1B7FC0"><div class="card-media"><img src="img/midnight_q34.webp" alt="Drift Knit in Harbour" loading="lazy"></div><div class="card-info"><span>Harbour<small>Sea blue, navy stripes</small></span><span class="price">$140</span></div></a>
+      <a class="card" href="product.html?c=beach" data-cursor="View" style="--sw:#C98A93"><div class="card-media"><span class="card-tag">Low stock</span><img src="img/beach_q34.webp" alt="Drift Knit in Dusk" loading="lazy"></div><div class="card-info"><span>Dusk<small>Blush knit, rose stripes</small></span><span class="price">$140</span></div></a>
+      <a class="card" href="product.html?c=moss" data-cursor="View" style="--sw:#7D8C3E"><div class="card-media"><img src="img/moss_q34.webp" alt="Drift Knit in Moss" loading="lazy"></div><div class="card-info"><span>Moss<small>Olive knit, gum stripes</small></span><span class="price">$140</span></div></a>
+      <a class="card" href="product.html?c=chalk" data-cursor="View" style="--sw:#3C3F3A"><div class="card-media"><img src="img/chalk_q34.webp" alt="Drift Knit in Chalk" loading="lazy"></div><div class="card-info"><span>Chalk<small>Off-white knit, black stripes</small></span><span class="price">$140</span></div></a>
+      <a class="card" href="#drop" data-cursor="Saturday" style="--sw:#E0602A"><div class="card-media"><span class="card-tag">Drops Saturday</span><img src="img/ember_q34.webp" alt="Drift Knit in Ember" loading="lazy"></div><div class="card-info"><span>Ember<small>Burnt orange, black stripes</small></span><span class="price">$140</span></div></a>
+    </div>
+  </section>
+
+  <section class="drop" id="drop" aria-labelledby="drop-h">
+    <div>
+      <p class="drop-word display" aria-hidden="true">EMBER</p>
+      <h2 class="h2" id="drop-h" style="font-size:clamp(26px,2.6vw,40px)">Lands Saturday, 10:00 IST</h2>
+      <div class="countdown" role="timer" aria-label="Time until Ember goes live">
+        <div><b>00</b><small>days</small></div><div><b>00</b><small>hours</small></div><div><b>00</b><small>minutes</small></div><div><b>00</b><small>seconds</small></div>
+      </div>
+      <form class="notify" novalidate>
+        <label class="visually-hidden" for="notify-email">Email</label>
+        <input id="notify-email" type="email" placeholder="Your email" autocomplete="email">
+        <button class="btn" type="submit" data-magnetic>Get a reminder</button>
+      </form>
+      <p class="notify-msg" aria-live="polite"></p>
+    </div>
+    <div class="drop-img"><img src="img/ember_side2.webp" alt="Drift Knit in Ember" loading="lazy"></div>
+  </section>
+
+  <section class="fit" id="fit" aria-labelledby="fit-h">
+    <div>
+      <h2 class="h2" id="fit-h" data-reveal>Find your size in 20 seconds</h2>
+      <p class="lede">Three taps. If the size is wrong, swap it free within 30 days.</p>
+    </div>
+    <div class="fit-card">
+      <div class="fit-meter" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      <div class="fit-step" data-q="size"><p class="fit-q">What size do you usually wear?</p>
+        <div class="choices">
+          <button class="choice" type="button" data-v="6">UK 6</button><button class="choice" type="button" data-v="7">UK 7</button><button class="choice" type="button" data-v="8">UK 8</button><button class="choice" type="button" data-v="9">UK 9</button><button class="choice" type="button" data-v="10">UK 10</button><button class="choice" type="button" data-v="11">UK 11</button><button class="choice" type="button" data-v="12">UK 12</button>
+        </div></div>
+      <div class="fit-step" data-q="width"><p class="fit-q">How wide are your feet?</p>
+        <div class="choices"><button class="choice" type="button" data-v="narrow">Narrow</button><button class="choice" type="button" data-v="regular">Regular</button><button class="choice" type="button" data-v="wide">Wide</button></div></div>
+      <div class="fit-step" data-q="feel"><p class="fit-q">How do you like your trainers to feel?</p>
+        <div class="choices"><button class="choice" type="button" data-v="snug">Snug</button><button class="choice" type="button" data-v="true">Just right</button><button class="choice" type="button" data-v="roomy">Roomy</button></div></div>
+      <div class="fit-step fit-result" aria-live="polite"><p class="small">Your size</p><b>UK 9</b><p class="fit-why"></p>
+        <button class="btn fit-add" type="button" data-magnetic><span class="btn-label">Add to bag</span><span class="btn-done" aria-hidden="true">Added ✓</span></button><br>
+        <button class="fit-back" type="button">Start again</button></div>
+    </div>
+  </section>
+</main>
+
+<footer class="ftr">
+  <div class="ftr-grid">
+    <div><h4>Shop</h4><a href="product.html">Drift Knit</a><a href="#colours">All colours</a><a href="#drop">Next drop</a></div>
+    <div><h4>Help</h4><a href="#fit">Size guide</a><a href="#">Shipping &amp; returns</a><a href="#">Contact</a></div>
+    <div><h4>About</h4><a href="#">Our materials</a><a href="#">Wear test</a><a href="#">Stockists</a></div>
+  </div>
+  <p class="ftr-word display" aria-hidden="true">HALFSTEP</p>
+  <div class="ftr-legal"><span>Halfstep is a fictional brand, built as a Shopify design demo.</span><span class="credit">3D shoe model © 2021 Shopify, CC BY 4.0 (Khronos glTF sample assets). Colourways and renders are our own.</span></div>
+</footer>
+
+<div class="drawer-scrim" data-close-cart></div>
+<aside class="drawer" role="dialog" aria-modal="true" aria-label="Your bag" tabindex="-1">
+  <div class="drawer-head"><h2>Your bag</h2><button class="icon-btn" type="button" data-close-cart aria-label="Close bag">×</button></div>
+  <div class="ship"><p></p><div class="ship-bar"><b></b></div></div>
+  <div class="lines"></div>
+  <div class="upsell" hidden></div>
+  <div class="drawer-foot"><div class="row"><span>Total</span><span class="drawer-total">$0</span></div>
+    <a class="btn checkout" href="#"><span class="btn-label">Check out</span></a>
+    <p class="pay-row">Shop Pay · Apple Pay · Google Pay · Cards</p></div>
+</aside>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

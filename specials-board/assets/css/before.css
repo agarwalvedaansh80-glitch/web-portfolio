@@ -1,0 +1,53 @@
+/* The "before" page: a plausible template-built course page, written the way many are. No media queries on purpose. */
+@font-face { font-family: "Montserrat"; src: url("../fonts/montserrat-latin-700-normal.woff2") format("woff2"); font-weight: 700; }
+@font-face { font-family: "Montserrat"; src: url("../fonts/montserrat-latin-400-normal.woff2") format("woff2"); font-weight: 400; }
+@font-face { font-family: "Open Sans"; src: url("../fonts/open-sans-latin-400-normal.woff2") format("woff2"); font-weight: 400; }
+
+body { margin: 0; font-family: "Open Sans", Arial, sans-serif; color: #555; font-size: 15px; line-height: 1.75; background: #fff; }
+.container { width: 86%; max-width: 1140px; margin: 0 auto; }
+a { color: #6c4fd1; }
+h1, h2, h3 { font-family: "Montserrat", sans-serif; color: #333; }
+
+.demo-banner { background: #eee; color: #333; font-size: 13px; text-align: center; padding: 6px; }
+
+.top { background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,.08); padding: 18px 0; position: relative; z-index: 2; }
+.top .container { overflow: hidden; }
+.logo { float: left; font: 700 20px "Montserrat", sans-serif; color: #333; text-decoration: none; letter-spacing: 1px; }
+.logo span { color: #6c4fd1; font-weight: 400; }
+.top nav { float: right; }
+.top nav a { color: #555; text-decoration: none; margin-left: 26px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
+
+.hero { position: relative; height: 640px; overflow: hidden; }
+.hero-img, .hero-img svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(108,79,209,.78), rgba(32,178,170,.55)); display: flex; align-items: center; text-align: center; }
+.hero h1 { color: #fff; font-size: 58px; margin: 0 0 10px; font-weight: 700; letter-spacing: 1px; }
+.tagline { color: rgba(255,255,255,.85); font-size: 20px; margin: 0 0 34px; }
+.btn-ghost { display: inline-block; color: #fff; border: 2px solid #fff; padding: 12px 34px; border-radius: 30px; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; font-size: 13px; }
+
+section { padding: 80px 0; }
+h2 { text-align: center; font-size: 34px; margin: 0; }
+.divider { width: 60px; height: 3px; background: linear-gradient(90deg, #6c4fd1, #20b2aa); margin: 18px auto 40px; }
+.about p { text-align: justify; }
+
+.modules { background: #f7f7fb; }
+.grid { overflow: hidden; margin: 0 -12px; }
+.card { float: left; width: calc(33.333% - 24px); margin: 12px; background: #fff; border-radius: 10px; box-shadow: 0 6px 20px rgba(0,0,0,.08); padding: 26px; box-sizing: border-box; min-height: 150px; }
+.card h3 { margin: 0 0 8px; font-size: 18px; color: #6c4fd1; }
+.card p { margin: 0; }
+
+.feature { float: left; width: calc(33.333% - 24px); margin: 12px; text-align: center; box-sizing: border-box; padding: 0 16px; }
+.icon { width: 70px; height: 70px; line-height: 70px; border-radius: 50%; margin: 0 auto 16px; background: linear-gradient(135deg, #6c4fd1, #20b2aa); color: #fff; font-size: 28px; }
+.feature h3 { font-size: 19px; margin: 0 0 8px; }
+
+.pricing-b { background: #f7f7fb; text-align: center; }
+
+.contact form { max-width: 760px; margin: 0 auto; }
+.row { overflow: hidden; }
+.row label { float: left; width: 48%; margin-right: 4%; }
+.row label:last-child { margin-right: 0; }
+label { display: block; font-size: 13px; color: #333; margin-bottom: 16px; }
+input, select, textarea { display: block; width: 100%; box-sizing: border-box; margin-top: 6px; padding: 10px 12px; border: 1px solid #ddd; border-radius: 4px; font: inherit; background: #fff; }
+.btn-submit { display: block; margin: 10px auto 0; background: linear-gradient(90deg, #6c4fd1, #20b2aa); color: #fff; border: 0; padding: 14px 48px; border-radius: 30px; font: 700 13px "Montserrat", sans-serif; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; }
+
+.foot { background: #2d2d3a; color: #aaa; padding: 30px 0; font-size: 13px; text-align: center; }
+.foot a { color: #ccc; }

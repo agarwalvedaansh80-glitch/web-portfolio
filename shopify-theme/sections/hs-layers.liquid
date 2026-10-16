@@ -1,0 +1,51 @@
+<section class="layers hs-layers" aria-labelledby="layers-h-{{ section.id }}">
+  <div class="layers-pin">
+    <div>
+      <h2 class="h2" id="layers-h-{{ section.id }}" data-reveal>{{ section.settings.heading | newline_to_br }}</h2>
+      <div class="layers-progress" aria-hidden="true">{%- for block in section.blocks -%}<i><b></b></i>{%- endfor -%}</div>
+      <div class="layers-copy">
+        {%- for block in section.blocks -%}
+          <article class="layer" {{ block.shopify_attributes }}>
+            <h3>{{ block.settings.title }}</h3>
+            <p>{{ block.settings.text }}</p>
+            <div class="spec">
+              {%- if block.settings.stat1 != blank -%}<div><b>{{ block.settings.stat1 }}</b><span class="small">{{ block.settings.stat1_label }}</span></div>{%- endif -%}
+              {%- if block.settings.stat2 != blank -%}<div><b>{{ block.settings.stat2 }}</b><span class="small">{{ block.settings.stat2_label }}</span></div>{%- endif -%}
+            </div>
+          </article>
+        {%- endfor -%}
+      </div>
+    </div>
+    <div class="layers-visual" aria-hidden="true">
+      {%- for block in section.blocks -%}
+        <img data-cw-img="{{ block.settings.angle }}" src="{{ 'hs-night-shift-' | append: block.settings.angle | append: '.webp' | asset_url }}" alt="" {% unless forloop.first %}style="opacity:0"{% endunless %} loading="lazy" width="1400" height="1400">
+      {%- endfor -%}
+      {%- for block in section.blocks -%}
+        <span class="ring" style="left:{{ block.settings.ring_x }}%;top:{{ block.settings.ring_y }}%"></span>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Halfstep layers story",
+  "settings": [{ "type": "textarea", "id": "heading", "label": "Heading", "default": "Three layers.\nNothing else." }],
+  "blocks": [
+    { "type": "layer", "name": "Layer", "settings": [
+      { "type": "text", "id": "title", "label": "Title", "default": "Knit upper" },
+      { "type": "textarea", "id": "text", "label": "Text", "default": "A single piece of recycled yarn, knitted to shape." },
+      { "type": "text", "id": "stat1", "label": "Stat 1", "default": "212 g" },
+      { "type": "text", "id": "stat1_label", "label": "Stat 1 label", "default": "per shoe, UK 9" },
+      { "type": "text", "id": "stat2", "label": "Stat 2" },
+      { "type": "text", "id": "stat2_label", "label": "Stat 2 label" },
+      { "type": "select", "id": "angle", "label": "Shoe view", "default": "q34", "options": [
+        { "value": "q34", "label": "Three-quarter" }, { "value": "side", "label": "Side" }, { "value": "side2", "label": "Other side" }, { "value": "back", "label": "Back" }, { "value": "top", "label": "Top" } ] },
+      { "type": "range", "id": "ring_x", "label": "Highlight ring left (%)", "min": 0, "max": 80, "step": 1, "default": 34 },
+      { "type": "range", "id": "ring_y", "label": "Highlight ring top (%)", "min": 0, "max": 80, "step": 1, "default": 22 }
+    ] }
+  ],
+  "max_blocks": 5,
+  "presets": [{ "name": "Halfstep layers story", "blocks": [{ "type": "layer" }, { "type": "layer" }, { "type": "layer" }] }]
+}
+{% endschema %}

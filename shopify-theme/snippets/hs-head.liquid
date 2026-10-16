@@ -1,0 +1,42 @@
+{%- comment -%} Halfstep: fonts, styles, libraries and settings for the hs-* sections {%- endcomment -%}
+{{ 'hs-archivo.woff2' | asset_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: true }}
+<style>
+  @font-face{font-family:"Archivo";src:url("{{ 'hs-archivo.woff2' | asset_url }}") format("woff2-variations");font-weight:100 900;font-stretch:62% 125%;font-display:swap}
+  :root{--concrete:{{ settings.hs_concrete }};--ink:{{ settings.hs_ink }};}
+</style>
+{{ 'hs-theme.css' | asset_url | stylesheet_tag }}
+<script type="importmap">{"imports":{"three":"{{ 'hs-three.module.min.js' | asset_url }}"}}</script>
+<script src="{{ 'hs-gsap.min.js' | asset_url }}" defer></script>
+<script src="{{ 'hs-ScrollTrigger.min.js' | asset_url }}" defer></script>
+<script src="{{ 'hs-lenis.min.js' | asset_url }}" defer></script>
+{%- liquid
+  assign asset_base = 'hs-shoe.glb' | asset_url | split: 'hs-shoe.glb' | first
+  assign colour_lines = settings.hs_colours | newline_to_br | split: '<br />'
+-%}
+<script>
+  window.HS = {
+    assetBase: {{ asset_base | json }},
+    currency: {{ cart.currency.iso_code | json }},
+    locale: {{ request.locale.iso_code | json }},
+    freeShip: {{ settings.hs_free_shipping | times: 100 | json }},
+    routes: { add: {{ routes.cart_add_url | json }}, change: {{ routes.cart_change_url | json }}, cart: {{ routes.cart_url | json }} },
+    colours: [
+      {%- for line in colour_lines -%}
+        {%- assign parts = line | strip | split: '|' -%}
+        {%- if parts.size >= 4 -%}
+          { name: {{ parts[0] | strip | json }}, handle: {{ parts[0] | strip | handleize | json }}, sw: {{ parts[1] | strip | json }}, cw: {{ parts[2] | strip | json }}, ink: {{ parts[3] | strip | json }}, soon: {% if parts[4] and parts[4] contains 'soon' %}true{% else %}false{% endif %} },
+        {%- endif -%}
+      {%- endfor -%}
+    ],
+    t: {
+      empty: "Your bag is empty.", less: "Remove one", more: "Add one",
+      shipIdle: "Free shipping on orders over [amount]", shipLeft: "[amount] away from free shipping", shipDone: "Free shipping unlocked",
+      upsellTitle: {{ settings.hs_upsell_title | json }}, upsellText: {{ settings.hs_upsell_text | json }}, upsellAdd: "Add [size]",
+      soon: "coming soon", soldOut: "Sold out", inStock: "In stock", pickSize: "Pick a size", sizeFirst: "Pick a size first.",
+      unavailable: "That size is sold out in this colour.", drag: "Drag", spin: "Spin in 3D", showPhoto: "Show photo",
+      fitTrue: "Runs true to size, so your usual size is the one.", fitUp: "Runs true. We went half a size up for a roomier fit, then rounded to the nearest whole size.", fitDown: "Runs true. For a snug fit, go with your usual size rounded down.",
+      notified: "Done. We'll email you when it goes live."
+    }
+  };
+</script>
+<script type="module" src="{{ 'hs-app.js' | asset_url }}"></script>
