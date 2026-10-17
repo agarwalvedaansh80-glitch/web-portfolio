@@ -17,8 +17,8 @@
       {
         "type": "color",
         "id": "hs_concrete",
-        "label": "Background (concrete)",
-        "default": "#E2E3DF"
+        "label": "Background (cement)",
+        "default": "#EDEDE7"
       },
       {
         "type": "color",
@@ -30,8 +30,8 @@
         "type": "textarea",
         "id": "hs_colours",
         "label": "Colourways",
-        "info": "One per line: Name|swatch colour|accent colour|text on accent|soon (optional). Name must match the product's Colour option. The accent recolours the whole store when a shopper picks that colour.",
-        "default": "Night Shift|#1d1d1f|#F2546B|#000000\nHarbour|#1B7FC0|#1B7FC0|#ffffff\nDusk|#D9AEB4|#C98A93|#000000\nMoss|#6B7A35|#7D8C3E|#ffffff\nChalk|#ECECE8|#3C3F3A|#ffffff\nEmber|#E0602A|#E0602A|#000000|soon"
+        "info": "One per line: Name|swatch colour|acid accent|text on accent|soon (optional)|short description. Name must match the product's Colour option. Picking a colourway floods the whole store with its acid accent.",
+        "default": "Night Shift|#1d1d1f|#FF4D8D|#000000||Black knit, coral stripes\nHarbour|#1B7FC0|#3A5BFF|#ffffff||Sea blue, navy stripes\nDusk|#D9AEB4|#C9A6FF|#000000||Blush knit, rose stripes\nMoss|#6B7A35|#C8FF2E|#000000||Olive knit, gum stripes\nChalk|#ECECE8|#FFE81F|#000000||Off-white knit, black stripes\nEmber|#E0602A|#FF5B14|#000000|soon|Burnt orange, black stripes"
       },
       {
         "type": "header",
@@ -53,7 +53,13 @@
         "type": "text",
         "id": "hs_upsell_text",
         "label": "Upsell text",
-        "default": "Pair it with a second colour"
+        "default": "Same size, second colour"
+      },
+      {
+        "type": "text",
+        "id": "hs_upsell_badge",
+        "label": "Upsell sticker",
+        "info": "Leave blank unless a matching automatic discount is set up, e.g. -15%."
       }
     ]
   },

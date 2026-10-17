@@ -1,24 +1,46 @@
 {%- assign p = section.settings.product | default: all_products['drift-knit'] -%}
-<section class="fit hs-fit" id="fit" aria-labelledby="fit-h-{{ section.id }}" data-prefix="{{ section.settings.prefix }}">
+<section class="fit hs-fit" id="fit" aria-labelledby="fit-h-{{ section.id }}" data-prefix="{{ section.settings.prefix | escape }}" data-min="{{ section.settings.size_min }}" data-max="{{ section.settings.size_max }}">
   <script type="application/json" data-hs-product>{{ p | json }}</script>
-  <div>
-    <h2 class="h2" id="fit-h-{{ section.id }}" data-reveal>{{ section.settings.heading }}</h2>
-    <p class="lede">{{ section.settings.text }}</p>
+  <div class="fit-intro">
+    <h2 class="h2" id="fit-h-{{ section.id }}">{{ section.settings.heading }}</h2>
+    {%- if section.settings.text != blank -%}<p>{{ section.settings.text }}</p>{%- endif -%}
+    <ol class="fit-steps">
+      <li class="is-on"><b>{{ section.settings.step1 }}</b><span>{{ section.settings.step1_hint }}</span></li>
+      <li><b>{{ section.settings.step2 }}</b><span>{{ section.settings.step2_hint }}</span></li>
+      <li><b>{{ section.settings.step3 }}</b><span>{{ section.settings.step3_hint }}</span></li>
+    </ol>
+    {%- if section.settings.note != blank -%}<p class="small">{{ section.settings.note }}</p>{%- endif -%}
   </div>
-  <div class="fit-card">
-    <div class="fit-meter" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-    <div class="fit-step" data-q="size"><p class="fit-q">What size do you usually wear?</p>
-      <div class="choices">
-        {%- assign sizes = section.settings.sizes | split: ',' -%}
-        {%- for s in sizes -%}<button class="choice" type="button" data-v="{{ s | strip }}">{{ section.settings.prefix }} {{ s | strip }}</button>{%- endfor -%}
-      </div></div>
-    <div class="fit-step" data-q="width"><p class="fit-q">How wide are your feet?</p>
-      <div class="choices"><button class="choice" type="button" data-v="narrow">Narrow</button><button class="choice" type="button" data-v="regular">Regular</button><button class="choice" type="button" data-v="wide">Wide</button></div></div>
-    <div class="fit-step" data-q="feel"><p class="fit-q">How do you like your trainers to feel?</p>
-      <div class="choices"><button class="choice" type="button" data-v="snug">Snug</button><button class="choice" type="button" data-v="true">Just right</button><button class="choice" type="button" data-v="roomy">Roomy</button></div></div>
-    <div class="fit-step fit-result" aria-live="polite"><p class="small">Your size</p><b></b><p class="fit-why"></p>
-      <button class="btn fit-add" type="button" data-magnetic><span class="btn-label">Add to bag</span><span class="btn-done" aria-hidden="true">Added ✓</span></button><br>
-      <button class="fit-back" type="button">Start again</button></div>
+  <div class="gauge">
+    <div class="gauge-top">
+      <div class="readout"><span class="label">{{ section.settings.length_label }}</span><b class="num"><span class="len">27.1</span> cm</b></div>
+      <div class="readout readout--size"><span class="label">{{ section.settings.size_label }}</span><b class="size-out"><span>{{ section.settings.prefix }} 9</span></b></div>
+    </div>
+    <div class="gauge-field" data-cursor="DRAG">
+      <svg class="foot" viewBox="0 0 266 100" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M14 56C10 36 22 22 44 20C70 18 92 30 118 32C146 34 164 12 190 10C212 9 224 18 226 32C230 54 226 74 212 88C196 98 170 96 140 90C110 84 80 84 56 86C30 88 16 76 14 56Z"/>
+        <ellipse cx="243" cy="21" rx="15" ry="12"/><ellipse cx="252" cy="45" rx="9" ry="8"/><ellipse cx="250" cy="62" rx="8" ry="7"/><ellipse cx="243" cy="77" rx="7" ry="6.5"/><ellipse cx="232" cy="90" rx="6.5" ry="6"/>
+      </svg>
+      <div class="toe-pin" aria-hidden="true"><span>Drag</span></div>
+      <div class="ruler" aria-hidden="true"></div>
+      <label class="visually-hidden" for="foot-len-{{ section.id }}">{{ section.settings.length_label }} (cm)</label>
+      <input id="foot-len-{{ section.id }}" class="foot-range" type="range" min="22" max="31" step="0.1" value="27.1">
+    </div>
+    <div class="gauge-bottom">
+      <div class="widths" role="group" aria-label="{{ section.settings.step2 | escape }}">
+        <button type="button" data-w="narrow" aria-pressed="false">{{ section.settings.narrow }}</button><button type="button" data-w="regular" aria-pressed="true">{{ section.settings.regular }}</button><button type="button" data-w="wide" aria-pressed="false">{{ section.settings.wide }}</button>
+      </div>
+      <button class="btn btn--ink lock-btn" type="button" data-magnetic data-cursor="LOCK">{{ section.settings.lock_label }} <span class="lock-size">{{ section.settings.prefix }} 9</span></button>
+    </div>
+    <div class="stamp" hidden>
+      <div class="stamp-burst" aria-hidden="true"></div>
+      <p class="stamp-size" aria-live="polite"></p>
+      <p class="stamp-why"></p>
+      <div class="stamp-actions">
+        <button class="btn btn--acid fit-add" type="button" data-magnetic data-cursor="ADD"><span class="btn-label">Add to bag</span><span class="btn-done" aria-hidden="true">In the bag</span></button>
+        <button class="btn btn--line fit-again" type="button">{{ section.settings.again_label }}</button>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -27,10 +49,28 @@
   "name": "Halfstep fit finder",
   "settings": [
     { "type": "product", "id": "product", "label": "Product" },
-    { "type": "text", "id": "heading", "label": "Heading", "default": "Find your size in 20 seconds" },
-    { "type": "textarea", "id": "text", "label": "Text", "default": "Three taps. If the size is wrong, swap it free within 30 days." },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Measure your foot" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Stand on a sheet of paper, mark your heel and longest toe, and measure the gap. Or drag the toe until it looks about right." },
+    { "type": "text", "id": "note", "label": "Small print", "default": "Wrong size anyway? Swap it free within 30 days." },
+    { "type": "header", "content": "Steps" },
+    { "type": "text", "id": "step1", "label": "Step 1", "default": "Length" },
+    { "type": "text", "id": "step1_hint", "label": "Step 1 hint", "default": "Drag the toe" },
+    { "type": "text", "id": "step2", "label": "Step 2", "default": "Width" },
+    { "type": "text", "id": "step2_hint", "label": "Step 2 hint", "default": "Pick one" },
+    { "type": "text", "id": "step3", "label": "Step 3", "default": "Lock it in" },
+    { "type": "text", "id": "step3_hint", "label": "Step 3 hint", "default": "Get your size" },
+    { "type": "header", "content": "Gauge" },
+    { "type": "text", "id": "length_label", "label": "Length label", "default": "Foot length" },
+    { "type": "text", "id": "size_label", "label": "Size label", "default": "Your Drift size" },
+    { "type": "text", "id": "narrow", "label": "Narrow", "default": "Narrow" },
+    { "type": "text", "id": "regular", "label": "Regular", "default": "Regular" },
+    { "type": "text", "id": "wide", "label": "Wide", "default": "Wide" },
+    { "type": "text", "id": "lock_label", "label": "Lock button", "default": "Lock in" },
+    { "type": "text", "id": "again_label", "label": "Start again button", "default": "Measure again" },
+    { "type": "header", "content": "Sizing" },
     { "type": "text", "id": "prefix", "label": "Size prefix (as in the Size option, e.g. UK)", "default": "UK" },
-    { "type": "text", "id": "sizes", "label": "Sizes to offer (comma separated numbers)", "default": "6,7,8,9,10,11,12" }
+    { "type": "range", "id": "size_min", "label": "Smallest size", "min": 1, "max": 15, "step": 1, "default": 6 },
+    { "type": "range", "id": "size_max", "label": "Largest size", "min": 5, "max": 18, "step": 1, "default": 13 }
   ],
   "presets": [{ "name": "Halfstep fit finder" }]
 }

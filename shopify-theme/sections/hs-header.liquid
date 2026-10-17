@@ -1,14 +1,18 @@
 <header class="hdr">
-  <a class="logo" href="{{ routes.root_url }}"><i aria-hidden="true"></i>{{ section.settings.logo_text | default: shop.name }}</a>
+  <a class="logo" href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }} home" data-wipe><svg class="logo-mark" viewBox="0 0 40 28" aria-hidden="true"><path d="M2 26V14h12V2h24v24z"/></svg><span>{{ section.settings.logo_text | default: shop.name }}</span></a>
   <nav class="nav" aria-label="Main">
     {%- for link in section.settings.menu.links -%}
-      <a href="{{ link.url }}"{% if link.current %} aria-current="page"{% endif %}>{{ link.title }}</a>
+      <a href="{{ link.url }}"{% if link.current %} aria-current="page"{% endif %} data-wipe>{{ link.title }}</a>
     {%- endfor -%}
   </nav>
-  <div class="hdr-actions">
-    <a class="bag-btn" href="{{ routes.cart_url }}" data-open-cart data-magnetic=".25">Bag <span class="bag-count">{{ cart.item_count }}</span></a>
-  </div>
+  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="hs-menu">{{ section.settings.menu_label }}</button>
+  <a class="bag-btn" href="{{ routes.cart_url }}" data-open-cart data-magnetic=".2" data-cursor="BAG">{{ section.settings.bag_label }} <span class="bag-count">{{ cart.item_count }}</span></a>
 </header>
+<div class="menu" id="hs-menu" hidden>
+  <nav aria-label="Menu">
+    {%- for link in section.settings.menu.links -%}<a href="{{ link.url }}" data-wipe>{{ link.title }}</a>{%- endfor -%}
+  </nav>
+</div>
 
 {% schema %}
 {
@@ -16,7 +20,9 @@
   "class": "hs-header-section",
   "settings": [
     { "type": "text", "id": "logo_text", "label": "Logo text", "default": "Halfstep" },
-    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" }
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" },
+    { "type": "text", "id": "menu_label", "label": "Mobile menu button", "default": "Menu" },
+    { "type": "text", "id": "bag_label", "label": "Bag button", "default": "Bag" }
   ]
 }
 {% endschema %}

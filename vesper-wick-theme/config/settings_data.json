@@ -1,0 +1,21 @@
+{
+  "current": {
+    "color_ink": "#0f0c0a",
+    "color_bone": "#ece4d6",
+    "color_ember": "#e0672c",
+    "page_gutter": 56,
+    "smooth_scroll": true,
+    "custom_cursor": true,
+    "free_shipping_threshold": 50,
+    "cart_upsell": true,
+    "cart_note": "Taxes included. Ships in 2 working days.",
+    "sections": {}
+  },
+  "presets": {
+    "Default": {
+      "color_ink": "#0f0c0a",
+      "color_bone": "#ece4d6",
+      "color_ember": "#e0672c"
+    }
+  }
+}

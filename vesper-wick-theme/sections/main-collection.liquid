@@ -1,0 +1,76 @@
+{%- liquid
+  assign feels = 'Cosy,Fresh,Clean,Smoky' | split: ','
+-%}
+<section class="col-hero" aria-labelledby="col-h" data-collection-page data-copy-all="{{ collection.description | strip_html | default: section.settings.copy_all | escape }}" data-copy-cosy="{{ section.settings.copy_cosy | escape }}" data-copy-fresh="{{ section.settings.copy_fresh | escape }}" data-copy-clean="{{ section.settings.copy_clean | escape }}" data-copy-smoky="{{ section.settings.copy_smoky | escape }}" data-title-all="{{ collection.title | escape }}">
+  <div class="col-glow" aria-hidden="true"></div>
+  <span class="label">{{ section.settings.label | escape }}</span>
+  <h1 class="col-title" id="col-h"><em>{{ collection.title | escape }}</em></h1>
+  <div class="col-sub">
+    <p>{{ collection.description | strip_html | default: section.settings.copy_all | escape }}</p>
+    <div class="feel-tabs" role="group" aria-label="{{ 'sections.shelf.filter' | t }}">
+      <button class="feel-tab" type="button" data-feel="All" aria-pressed="true">{{ 'sections.shelf.all' | t }}</button>
+      {%- for f in feels -%}
+        {%- assign fk = 'feel_' | append: f | downcase -%}
+        <button class="feel-tab" type="button" data-feel="{{ f }}" data-color="{{ settings[fk] }}" aria-pressed="false"><span class="feel-dot" style="--fc: {{ settings[fk] }}"></span>{{ f }}</button>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+<div class="bone">
+  {%- paginate collection.products by section.settings.per_page -%}
+  <div class="col-tools">
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+      <div class="seg" data-k="type" role="group" aria-label="{{ 'sections.collection.type' | t }}">
+        <button type="button" data-type="all" aria-pressed="true">{{ 'sections.shelf.all' | t }}</button>
+        {%- for t in collection.all_types -%}<button type="button" data-type="{{ t | handleize }}" aria-pressed="false">{{ t | escape }}</button>{%- endfor -%}
+      </div>
+      <span class="col-count">{{ 'sections.collection.count' | t: count: collection.products_count }}</span>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+      <label class="sr" for="sort">{{ 'sections.collection.sort' | t }}</label>
+      <select id="sort" class="seg" style="height:44px;padding:0 16px;border:0;background:none;font:500 12px/1 var(--sans);letter-spacing:.08em;color:inherit" data-sort>
+        {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+        {%- for option in collection.sort_options -%}
+          <option value="{{ option.value | escape }}"{% if option.value == sort_by %} selected{% endif %}>{{ option.name | escape }}</option>
+        {%- endfor -%}
+      </select>
+      <div class="seg" data-k="view" role="group" aria-label="{{ 'sections.collection.view' | t }}"><button type="button" data-view="shelf" aria-pressed="true">{{ 'sections.collection.shelf' | t }}</button><button type="button" data-view="grid" aria-pressed="false">{{ 'sections.collection.grid' | t }}</button></div>
+    </div>
+  </div>
+  <section class="col-shelf" aria-label="{{ 'sections.collection.shelf' | t }}">
+    <div class="drag" data-cursor="{{ 'sections.shelf.drag' | t }}" aria-roledescription="carousel" aria-label="{{ collection.title | escape }}"><div class="drag-track">
+      {%- for product in collection.products -%}
+        {% render 'vw-product-card', product: product, index: forloop.index %}
+      {%- else -%}
+        <p class="col-count" style="padding:0 var(--gut)">{{ 'sections.collection.empty' | t }}</p>
+      {%- endfor -%}
+    </div></div>
+    <div class="drag-ui"><span class="shelf-hint">{{ 'sections.shelf.hint' | t }}</span><div class="drag-bar"><i></i></div><div class="drag-btns"><button class="circ" type="button" data-dir="-1" aria-label="{{ 'general.previous' | t }}"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false"><path d="M10 3L5 8l5 5"/></svg></button><button class="circ" type="button" data-dir="1" aria-label="{{ 'general.next' | t }}"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false"><path d="M6 3l5 5-5 5"/></svg></button></div></div>
+  </section>
+  <div class="col-grid" hidden></div>
+  {%- if paginate.pages > 1 -%}
+    <nav class="pagination" aria-label="{{ 'general.pagination' | t }}">
+      {%- for part in paginate.parts -%}
+        {%- if part.is_link -%}<a href="{{ part.url }}">{{ part.title }}</a>{%- else -%}<span aria-current="page">{{ part.title }}</span>{%- endif -%}
+      {%- endfor -%}
+    </nav>
+  {%- endif -%}
+  {%- endpaginate -%}
+</div>
+
+{% schema %}
+{
+  "name": "Collection",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Label", "default": "Shop · candles & room mists" },
+    { "type": "range", "id": "per_page", "label": "Products per page", "min": 8, "max": 48, "step": 4, "default": 24 },
+    { "type": "header", "content": "Feel descriptions" },
+    { "type": "textarea", "id": "copy_all", "label": "All", "default": "Eight scents, sorted by how they make a room feel rather than what is in them." },
+    { "type": "textarea", "id": "copy_cosy", "label": "Cosy", "default": "Soft, warm and close. Fig, saffron, vanilla and wood for the evenings you stay in." },
+    { "type": "textarea", "id": "copy_fresh", "label": "Fresh", "default": "Green, cold and awake. Juniper, tomato leaf and fir for windows-open days." },
+    { "type": "textarea", "id": "copy_clean", "label": "Clean", "default": "Linen, rain and white musk. The room after it has been put right." },
+    { "type": "textarea", "id": "copy_smoky", "label": "Smoky", "default": "Birch tar, leather and oud. For low light and the last chapter." }
+  ]
+}
+{% endschema %}

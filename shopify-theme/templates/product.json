@@ -3,14 +3,130 @@
     "main": {
       "type": "hs-main-product",
       "blocks": {
-        "materials": { "type": "collapsible", "settings": { "heading": "Materials", "content": "<p>Upper: recycled polyester knit. Midsole: rebound EVA foam, 28 mm heel, 6 mm drop. Outsole: natural rubber, siped. Insole: removable, washable.</p>", "is_fit": false } },
-        "fit": { "type": "collapsible", "settings": { "heading": "Fit & size guide", "content": "<p>Runs true to UK sizing. Wide feet: go half a size up and round up. Between sizes: pick the larger one.</p>", "is_fit": true } },
-        "care": { "type": "collapsible", "settings": { "heading": "Care", "content": "<p>Take out the laces and insole, wash cold at 30° in a laundry bag, air dry. Don't tumble dry.</p>", "is_fit": false } },
-        "shipping": { "type": "collapsible", "settings": { "heading": "Shipping & returns", "content": "<p>Dispatch in 1–2 working days. Free returns within 30 days, even if you've worn them outside.</p>", "is_fit": false } }
+        "materials": {
+          "type": "collapsible",
+          "settings": {
+            "heading": "Materials",
+            "content": "<p>Upper: recycled polyester knit, one piece. Midsole: rebound EVA foam, 28 mm heel, 6 mm drop. Outsole: natural rubber, siped. Insole: removable and washable.</p>"
+          }
+        },
+        "fit": {
+          "type": "collapsible",
+          "settings": {
+            "heading": "Fit and size guide",
+            "content": "<p>Drift runs true to UK sizing. Wide feet: go up half a size and round up. Between sizes: take the larger one.</p>"
+          }
+        },
+        "care": {
+          "type": "collapsible",
+          "settings": {
+            "heading": "Care",
+            "content": "<p>Take out the laces and insole, wash cold at 30° in a laundry bag, then air dry. No tumble dryer.</p>"
+          }
+        },
+        "shipping": {
+          "type": "collapsible",
+          "settings": {
+            "heading": "Shipping and returns",
+            "content": "<p>Dispatch in 1 to 2 working days. Free returns within 30 days, even if you have worn them outside.</p>"
+          }
+        }
       },
-      "block_order": ["materials", "fit", "care", "shipping"],
-      "settings": { "use_renders": true, "show_3d": true, "prefix": "UK", "perks": "Order today for dispatch tomorrow\nFree shipping over $120, free size swaps\n30-day wear test: worn and not right? Send them back" }
+      "block_order": [
+        "materials",
+        "fit",
+        "care",
+        "shipping"
+      ],
+      "settings": {
+        "use_renders": true,
+        "live_sticker": "Live 3D, drag it",
+        "price_note": "Free shipping over $120. Free size swaps.",
+        "prefix": "UK",
+        "fit_link": "/#fit",
+        "fit_link_label": "Measure your foot",
+        "perks": "Order by 15:00 IST for dispatch the same day\nFree shipping over $120, free size swaps\n30-day wear test: worn outside and not right? Send them back"
+      }
+    },
+    "marquee": {
+      "type": "hs-marquee",
+      "settings": {
+        "layout": "single"
+      },
+      "blocks": {
+        "m1": {
+          "type": "item",
+          "settings": {
+            "text": "Free shipping over $120",
+            "dark": false
+          }
+        },
+        "m2": {
+          "type": "item",
+          "settings": {
+            "text": "30-day wear test",
+            "dark": false
+          }
+        },
+        "m3": {
+          "type": "item",
+          "settings": {
+            "text": "Ember drops Saturday",
+            "dark": false
+          }
+        },
+        "m4": {
+          "type": "item",
+          "settings": {
+            "text": "212 g a shoe",
+            "dark": false
+          }
+        }
+      },
+      "block_order": [
+        "m1",
+        "m2",
+        "m3",
+        "m4"
+      ]
+    },
+    "rail": {
+      "type": "hs-rail",
+      "settings": {
+        "product": "",
+        "heading": "Other colours",
+        "text": "Same shoe, same price. Drag through the runs that are still in stock.",
+        "flood": false,
+        "anchor": "other-colours",
+        "wear_label": "Wear this colour",
+        "remind_label": "Get a reminder",
+        "soon_tag": "Coming soon"
+      },
+      "blocks": {
+        "c1": {
+          "type": "colour",
+          "settings": {
+            "colour": "Night Shift",
+            "tag": "Best seller"
+          }
+        },
+        "c3": {
+          "type": "colour",
+          "settings": {
+            "colour": "Dusk",
+            "tag": "Low stock"
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c3"
+      ]
     }
   },
-  "order": ["main"]
+  "order": [
+    "main",
+    "marquee",
+    "rail"
+  ]
 }

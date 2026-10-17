@@ -1,0 +1,123 @@
+{%- liquid
+  assign accent = product.metafields.custom.accent_color.value | default: settings.color_ember
+  capture feel
+    render 'vw-feel', product: product
+  endcapture
+  assign feel = feel | strip
+  assign v = product.selected_or_first_available_variant
+  assign pair_handle = product.metafields.custom.pairs_with_handle.value
+  if pair_handle != blank
+    assign pair = all_products[pair_handle]
+  endif
+  assign num = product.metafields.custom.scent_number.value
+  assign is_mist = false
+  if product.type contains 'ist'
+    assign is_mist = true
+  endif
+-%}
+<div class="pdp" style="--accent: {{ accent }}" data-product-page data-product-id="{{ product.id }}">
+  <div class="gal">
+    {%- for media in product.media limit: 3 -%}
+      {%- if media.media_type == 'image' -%}
+        {%- assign m_alt = media.alt | default: product.title | escape -%}
+        <figure>{{ media | image_url: width: 1400 | image_tag: loading: 'eager', widths: '600, 900, 1200, 1400', sizes: '(min-width: 860px) 54vw, 88vw', alt: m_alt }}</figure>
+      {%- endif -%}
+    {%- else -%}
+      <figure>{{ 'product-1' | placeholder_svg_tag: 'card-ph' }}</figure>
+    {%- endfor -%}
+    {%- if section.settings.show_pyramid -%}
+      <figure class="notes-panel on-dark">
+        <span class="label">{{ 'products.product.intensity_label' | t }}</span>
+        <h3>{{ 'products.product.unfolds' | t }}</h3>
+        {% render 'vw-notes', product: product, style: 'pyramid', accent: accent %}
+        <p style="color:var(--mute);margin:26px 0 0;font-size:14px;max-width:44ch">{{ 'products.product.pyramid_note' | t }}</p>
+      </figure>
+    {%- endif -%}
+  </div>
+
+  <div class="buy"><div class="buy-in">
+    <nav class="crumb" aria-label="{{ 'accessibility.breadcrumb' | t }}">
+      <a href="{{ routes.all_products_collection_url }}">{{ 'general.shop' | t }}</a>
+      {%- if feel != blank -%}<span aria-hidden="true">/</span><a href="{{ routes.all_products_collection_url }}?feel={{ feel | downcase }}">{{ feel }}</a>{%- endif -%}
+      {%- if num != blank -%}<span aria-hidden="true">/</span><span>No. {{ num }}</span>{%- endif -%}
+    </nav>
+    <h1>{{ product.title | escape }}</h1>
+    {%- if product.metafields.custom.tagline != blank -%}<p class="p-line">{{ product.metafields.custom.tagline.value | escape }}</p>{%- endif -%}
+    <div class="p-price"><b data-price>{{ v.price | money }}</b>{%- if v.compare_at_price > v.price -%}<s style="color:#6b6157">{{ v.compare_at_price | money }}</s>{%- endif -%}<span>{{ product.type | escape }} · {{ 'products.product.free_over' | t: amount: settings.free_shipping_threshold }}</span></div>
+    <div class="p-desc rte">{{ product.description }}</div>
+
+    {%- form 'product', product, id: 'product-form', class: 'pform', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+      <input type="hidden" name="id" value="{{ v.id }}" data-variant-input>
+      {%- unless product.has_only_default_variant -%}
+        {%- for option in product.options_with_values -%}
+          <div class="opt-label"><span>{{ option.name | escape }}</span><span data-vname>{{ option.selected_value | escape }}</span></div>
+          <div class="sizes" role="radiogroup" aria-label="{{ option.name | escape }}">
+            {%- for value in option.values -%}
+              {%- assign vv = nil -%}
+              {%- for variant in product.variants -%}
+                {%- if variant.options[forloop.parentloop.parentloop.index0] == value -%}{%- assign vv = variant -%}{%- break -%}{%- endif -%}
+              {%- endfor -%}
+              <button class="size" type="button" role="radio" aria-checked="{% if option.selected_value == value %}true{% else %}false{% endif %}" data-option="{{ forloop.parentloop.index0 }}" data-value="{{ value | escape }}">
+                <b>{{ value | split: ' · ' | first | escape }}</b><span>{{ value | split: ' · ' | last | escape }}</span>{%- if vv -%}<em>{{ vv.price | money_without_trailing_zeros }}</em>{%- endif -%}
+              </button>
+            {%- endfor -%}
+          </div>
+        {%- endfor -%}
+      {%- endunless -%}
+      <div class="buy-row">
+        <div class="qty" aria-label="{{ 'products.product.quantity' | t }}"><button type="button" data-pq="-1" aria-label="{{ 'products.product.decrease' | t }}">−</button><output data-qty>1</output><button type="button" data-pq="1" aria-label="{{ 'products.product.increase' | t }}">+</button></div>
+        <input type="hidden" name="quantity" value="1" data-qty-input>
+        <button class="btn main-add" type="submit" name="add" data-magnetic=".1" {% unless v.available %}disabled{% endunless %}><span data-addlabel>{% if v.available %}{{ 'products.product.add_to_bag' | t }} · {{ v.price | money }}{% else %}{{ 'products.product.sold_out' | t }}{% endif %}</span><span class="done" aria-hidden="true">{{ 'products.product.added' | t }}</span></button>
+      </div>
+      <p class="vw-form-error" data-form-error hidden></p>
+    {%- endform -%}
+    <p class="ship-hint"><i></i><span data-shiphint></span></p>
+    <div class="p-notes">
+      <div class="opt-label"><span>{{ 'products.product.notes' | t }}</span><span>{{ 'products.product.top' | t }} · {{ 'products.product.heart' | t }} · {{ 'products.product.base' | t }}</span></div>
+      <div style="display:grid;gap:12px">{% render 'vw-notes', product: product, style: 'tiers', accent: accent %}</div>
+    </div>
+
+    <div class="facts">
+      <div><b data-size>{{ v.option1 | split: ' · ' | last }}</b><span>{% if is_mist %}{{ 'products.product.bottle' | t }}{% else %}{{ 'products.product.wax_weight' | t }}{% endif %}</span></div>
+      <div><b>{{ product.metafields.custom.burn_time.value | default: '—' }}</b><span>{% if is_mist %}{{ 'products.product.per_bottle' | t }}{% else %}{{ 'products.product.burn_time' | t }}{% endif %}</span></div>
+      <div><b>{{ feel | default: '—' }}</b><span>{{ 'products.product.feel' | t }}</span></div>
+    </div>
+
+    <script type="application/json" data-variants>{{ product.variants | json }}</script>
+
+    {%- for block in section.blocks -%}
+      <details class="acc" {% if forloop.first %}open{% endif %} {{ block.shopify_attributes }}><summary>{{ block.settings.title | escape }}<i aria-hidden="true"></i></summary><div class="rte">{{ block.settings.text }}</div></details>
+    {%- endfor -%}
+
+    {%- if pair != blank and pair.id != product.id -%}
+      {%- assign pa = pair.metafields.custom.accent_color.value | default: settings.color_ember -%}
+      <div class="pair" style="--pa: {{ pa }}">
+        {{ pair.featured_image | image_url: width: 200 | image_tag: loading: 'lazy', alt: '' }}
+        <div><span class="label" style="color:#6b6157">{{ 'cart.pairs_well' | t }}</span><h4>{{ pair.title | escape }}</h4><small>{{ pair.price | money }}</small></div>
+        <button class="btn btn--dark" type="button" data-variant="{{ pair.selected_or_first_available_variant.id }}" data-product="{{ pair.id }}" style="height:44px;padding:0 18px">{{ 'products.product.add' | t }}<span class="done" aria-hidden="true">✓</span></button>
+      </div>
+    {%- endif -%}
+  </div></div>
+</div>
+
+<div class="sticky-atc" aria-label="{{ 'products.product.quick_add' | t }}" style="--accent: {{ accent }}">
+  {{ product.featured_image | image_url: width: 120 | image_tag: loading: 'lazy', alt: '' }}
+  <div><b>{{ product.title | escape }}</b><small data-sticky-meta>{{ v.title | escape }} · {{ v.price | money }}</small></div>
+  <button class="btn" type="button" data-sticky-add {% unless v.available %}disabled{% endunless %}>{{ 'products.product.add_to_bag' | t }}</button>
+</div>
+
+{% schema %}
+{
+  "name": "Product",
+  "tag": "section",
+  "settings": [
+    { "type": "checkbox", "id": "show_pyramid", "label": "Show note intensity panel", "default": true }
+  ],
+  "blocks": [
+    { "type": "accordion", "name": "Accordion", "settings": [
+      { "type": "text", "id": "title", "label": "Title", "default": "Burn & care" },
+      { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Let the first burn reach the edge of the jar (about two hours). Trim the wick to 5 mm before each light.</p>" }
+    ] }
+  ]
+}
+{% endschema %}

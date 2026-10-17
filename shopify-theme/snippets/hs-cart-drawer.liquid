@@ -1,12 +1,17 @@
+{%- comment -%} Halfstep: slide-out bag (Shopify AJAX Cart API) + page-transition overlay {%- endcomment -%}
 <div class="drawer-scrim" data-close-cart></div>
-<aside class="drawer" role="dialog" aria-modal="true" aria-label="Your bag" tabindex="-1">
-  <div class="drawer-head"><h2>Your bag</h2><button class="icon-btn" type="button" data-close-cart aria-label="Close bag">×</button></div>
+<aside class="drawer" role="dialog" aria-modal="true" aria-labelledby="hs-drawer-h" tabindex="-1">
+  <div class="drawer-head">
+    <h2 id="hs-drawer-h">Bag <span class="num bag-count">{{ cart.item_count }}</span></h2>
+    <button class="sq-btn" type="button" data-close-cart aria-label="Close bag"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5 5 19"/></svg></button>
+  </div>
   <div class="ship"><p></p><div class="ship-bar"><b></b></div></div>
   <div class="lines"></div>
   <div class="upsell" hidden></div>
   <div class="drawer-foot">
-    <div class="row"><span>Total</span><span class="drawer-total">{{ cart.total_price | money }}</span></div>
-    <form action="{{ routes.cart_url }}" method="post"><button class="btn checkout" type="submit" name="checkout"><span class="btn-label">Check out</span></button></form>
+    <div class="row"><span>Total</span><b class="num drawer-total">{{ cart.total_price | money }}</b></div>
+    <form action="{{ routes.cart_url }}" method="post"><button class="btn btn--ink checkout" type="submit" name="checkout" data-cursor="PAY"><span class="btn-label">Check out</span></button></form>
     <p class="pay-row">Taxes and shipping calculated at checkout</p>
   </div>
 </aside>
+<div class="wipe" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><b>{{ shop.name }}</b></div>

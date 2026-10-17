@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}" class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="{{ settings.color_ink }}">
+    <link rel="canonical" href="{{ canonical_url }}">
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 64, height: 64 }}">
+    {%- endif -%}
+    <title>
+      {{ page_title }}
+      {%- if current_tags %} &ndash; {{ current_tags | join: ', ' }}{% endif -%}
+      {%- if current_page != 1 %} &ndash; {{ 'general.page' | t: page: current_page }}{% endif -%}
+      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+    </title>
+    {%- if page_description -%}
+      <meta name="description" content="{{ page_description | escape }}">
+    {%- endif -%}
+    {% render 'vw-meta-tags' %}
+
+    {{ 'vw-instrument-serif.woff2' | asset_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: 'anonymous' }}
+    {{ 'vw-hanken-grotesk.woff2' | asset_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: 'anonymous' }}
+    {{ 'vw-theme.css' | asset_url | stylesheet_tag }}
+    <style>
+      @font-face{font-family:"Instrument Serif";src:url({{ 'vw-instrument-serif.woff2' | asset_url }}) format("woff2");font-weight:400;font-style:normal;font-display:swap}
+      @font-face{font-family:"Instrument Serif";src:url({{ 'vw-instrument-serif-italic.woff2' | asset_url }}) format("woff2");font-weight:400;font-style:italic;font-display:swap}
+      @font-face{font-family:"Hanken Grotesk";src:url({{ 'vw-hanken-grotesk.woff2' | asset_url }}) format("woff2");font-weight:100 900;font-display:swap}
+      :root{
+        --ink:{{ settings.color_ink }};--bone:{{ settings.color_bone }};--ember:{{ settings.color_ember }};
+        --gut:clamp(16px,4vw,{{ settings.page_gutter }}px);
+      }
+    </style>
+
+    <script src="{{ 'vw-gsap.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'vw-scrolltrigger.min.js' | asset_url }}" defer></script>
+    {%- if settings.smooth_scroll -%}
+      <script src="{{ 'vw-lenis.min.js' | asset_url }}" defer></script>
+    {%- endif -%}
+    <script src="{{ 'vw-smoke.js' | asset_url }}" defer></script>
+    <script src="{{ 'vw-pour.js' | asset_url }}" defer></script>
+    <script src="{{ 'vw-theme.js' | asset_url }}" defer></script>
+    <script>
+      document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+      window.VWTheme = {
+        routes: { cart: {{ routes.cart_url | json }}, cartAdd: {{ routes.cart_add_url | json }}, cartChange: {{ routes.cart_change_url | json }}, recommendations: {{ routes.product_recommendations_url | json }}, root: {{ routes.root_url | json }} },
+        freeShip: {{ settings.free_shipping_threshold | times: 100 | json }},
+        moneyFormat: {{ shop.money_format | json }},
+        cursor: {{ settings.custom_cursor | json }},
+        strings: {
+          added: {{ 'products.product.added' | t | json }},
+          away: {{ 'cart.away_from_free' | t | json }},
+          unlocked: {{ 'cart.free_unlocked' | t | json }},
+          empty: {{ 'cart.empty' | t | json }},
+          remove: {{ 'cart.remove' | t | json }},
+          add: {{ 'products.product.add' | t | json }},
+          soldOut: {{ 'products.product.sold_out' | t | json }}
+        }
+      };
+    </script>
+    {{ content_for_header }}
+  </head>
+
+  <body data-template="{{ template.name }}" class="template-{{ template.name }}">
+    <a class="skip" href="#main">{{ 'accessibility.skip_to_content' | t }}</a>
+    {% sections 'header-group' %}
+
+    <main id="main" role="main">
+      {{ content_for_layout }}
+    </main>
+
+    {% sections 'footer-group' %}
+    {% render 'vw-cart-drawer' %}
+  </body>
+</html>

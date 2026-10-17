@@ -1,0 +1,32 @@
+{%- comment -%} Outputs the colour for a note family. Usage: {% render 'vw-note-color', family: 'spice', fallback: '#e0672c' %} {%- endcomment -%}
+{%- liquid
+  assign f = family | downcase | strip
+  case f
+    when 'citrus'
+      echo settings.note_citrus
+    when 'spice'
+      echo settings.note_spice
+    when 'wood'
+      echo settings.note_wood
+    when 'smoke', 'leather'
+      echo settings.note_smoke
+    when 'resin', 'amber'
+      echo settings.note_resin
+    when 'gourmand'
+      echo settings.note_gourmand
+    when 'green'
+      echo settings.note_green
+    when 'herbal'
+      echo settings.note_herbal
+    when 'musk'
+      echo settings.note_musk
+    when 'floral'
+      echo settings.note_floral
+    when 'aquatic'
+      echo settings.note_aquatic
+    when 'mineral'
+      echo settings.note_mineral
+    else
+      echo fallback | default: settings.color_ember
+  endcase
+-%}

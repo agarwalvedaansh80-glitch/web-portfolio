@@ -3,9 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Drift Knit — Halfstep</title>
-<meta name="description" content="Drift Knit sneaker: knit upper, 28 mm foam midsole, natural rubber grip. $140, free shipping over $120.">
+<title>Drift Knit · Halfstep</title>
+<meta name="description" content="Drift Knit sneaker: one-piece knit upper, 28 mm foam midsole, natural rubber grip. $140, free shipping over $120.">
+<meta name="theme-color" content="#EDEDE7">
+<script>try{if(sessionStorage.getItem('hs-wipe'))document.documentElement.classList.add('is-wiping')}catch(e){}</script>
 <link rel="preload" href="fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/jbmono-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/halfstep.css">
 <script type="importmap">{"imports":{"three":"./vendor/three.module.min.js"}}</script>
 <script src="vendor/gsap.min.js" defer></script>
@@ -14,63 +17,107 @@
 </head>
 <body data-page="product">
 <a class="skip" href="#main">Skip to content</a>
+
 <header class="hdr">
-  <a class="logo" href="index.html"><i aria-hidden="true"></i>Halfstep</a>
-  <nav class="nav" aria-label="Main"><a href="product.html">Shop</a><a href="index.html#colours">Colours</a><a href="index.html#drop">Next drop</a><a href="index.html#fit">Fit finder</a></nav>
-  <div class="hdr-actions"><button class="bag-btn" type="button" data-open-cart data-magnetic=".25">Bag <span class="bag-count">0</span></button></div>
+  <a class="logo" href="index.html" aria-label="Halfstep home" data-wipe><svg class="logo-mark" viewBox="0 0 40 28" aria-hidden="true"><path d="M2 26V14h12V2h24v24z"/></svg><span>Halfstep</span></a>
+  <nav class="nav" aria-label="Main">
+    <a href="product.html" aria-current="page">Shop</a><a href="index.html#colours" data-wipe>Colours</a><a href="index.html#anatomy" data-wipe>Anatomy</a><a href="index.html#fit" data-wipe>Fit</a><a href="index.html#drop" data-wipe>Next drop</a>
+  </nav>
+  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+  <button class="bag-btn" type="button" data-open-cart data-magnetic=".2" data-cursor="BAG">Bag <span class="bag-count">0</span></button>
 </header>
 
+<div class="menu" id="menu" hidden>
+  <nav aria-label="Menu"><a href="product.html">Shop</a><a href="index.html#colours" data-wipe>Colours</a><a href="index.html#anatomy" data-wipe>Anatomy</a><a href="index.html#fit" data-wipe>Fit</a><a href="index.html#drop" data-wipe>Next drop</a></nav>
+</div>
+
 <main id="main" class="pdp">
-  <div class="gallery">
-    <figure><img src="img/street_q34.webp" alt="" width="1400" height="1400"><button class="spin-btn" type="button">Spin in 3D</button></figure>
-    <figure><img src="img/street_side.webp" alt="" loading="lazy"></figure>
-    <figure><img src="img/street_back.webp" alt="" loading="lazy"></figure>
-    <figure class="wide"><img src="img/street_top.webp" alt="" loading="lazy"></figure>
+  <div class="pdp-media">
+    <div class="pdp-stage" data-cursor="DRAG" tabindex="0" role="img" aria-label="Drift Knit in 3D. Drag, or use the arrow keys, to spin it.">
+      <span class="sticker sticker--tilt pdp-live" aria-hidden="true">Live 3D, drag it</span>
+    </div>
+    <div class="pdp-shots">
+      <figure><img data-angle="side" src="img/street_side.webp" alt="" width="1400" height="827" loading="lazy"><figcaption>Side</figcaption></figure>
+      <figure><img data-angle="back" src="img/street_back.webp" alt="" width="1400" height="1400" loading="lazy"><figcaption>Heel</figcaption></figure>
+      <figure><img data-angle="top" src="img/street_top.webp" alt="" width="1400" height="1400" loading="lazy"><figcaption>Top</figcaption></figure>
+    </div>
   </div>
 
   <div class="buy">
-    <p class="small stock">In stock</p>
-    <h1>Drift Knit</h1>
-    <p class="price">$140</p>
-    <div class="label-row"><span>Colour: <span data-cw-name></span></span></div>
-    <div class="swatches" role="group" aria-label="Colour"></div>
-    <div class="label-row"><span>Size: <span data-size>Pick a size</span></span><button type="button" data-size-guide>Size guide</button></div>
-    <div class="sizes" role="group" aria-label="Size (UK)"></div>
-    <p class="size-hint" aria-live="polite"></p>
-    <button class="btn add" type="button" data-magnetic=".15"><span class="btn-label">Add to bag — $140</span><span class="btn-done" aria-hidden="true">Added ✓</span></button>
-    <div class="perks">
-      <div><span aria-hidden="true">→</span>Order in the next few hours for dispatch tomorrow</div>
-      <div><span aria-hidden="true">→</span>Free shipping over $120, free size swaps</div>
-      <div><span aria-hidden="true">→</span>30-day wear test: worn and not right? Send them back</div>
+    <p class="stock sticker sticker--acid">In stock</p>
+    <h1 class="buy-title">Drift Knit</h1>
+    <p class="buy-price"><b class="num">$140</b><span>Free shipping over $120. Free size swaps.</span></p>
+
+    <div class="pick">
+      <div class="pick-row"><span class="label">Colour</span><b data-cw-name>Night Shift</b></div>
+      <div class="swatches" role="group" aria-label="Colour"></div>
     </div>
-    <div class="acc"><button type="button" aria-expanded="true">Materials</button><div class="panel"><div><p>Upper: recycled polyester knit. Midsole: rebound EVA foam, 28 mm heel, 6 mm drop. Outsole: natural rubber, siped. Insole: removable, washable.</p></div></div></div>
-    <div class="acc"><button type="button" aria-expanded="false" id="acc-fit">Fit &amp; size guide</button><div class="panel"><div><p>Drift runs true to UK sizing. Wide feet: go half a size up and round up. Between sizes: pick the larger one. Not sure? Use the fit finder on the home page.</p></div></div></div>
-    <div class="acc"><button type="button" aria-expanded="false">Care</button><div class="panel"><div><p>Take out the laces and insole, wash cold at 30° in a laundry bag, air dry. Don't tumble dry.</p></div></div></div>
-    <div class="acc"><button type="button" aria-expanded="false">Shipping &amp; returns</button><div class="panel"><div><p>Dispatch in 1–2 working days. Free returns within 30 days, even if you've worn them outside.</p></div></div></div>
+    <div class="pick">
+      <div class="pick-row"><span class="label">Size (UK)</span><b data-size>Pick a size</b><a class="buy-link" href="index.html#fit" data-wipe>Measure your foot</a></div>
+      <div class="sizes" role="group" aria-label="Size (UK)"></div>
+      <p class="size-hint" aria-live="polite"></p>
+    </div>
+    <button class="btn btn--acid btn--xl add" type="button" data-magnetic=".12" data-cursor="ADD"><span class="btn-label">Add to bag, $140</span><span class="btn-done" aria-hidden="true">In the bag</span></button>
+    <ul class="perks">
+      <li>Order by 15:00 IST for dispatch the same day</li>
+      <li>Free shipping over $120, free size swaps</li>
+      <li>30-day wear test: worn outside and not right? Send them back</li>
+    </ul>
+    <div class="acc"><button type="button" aria-expanded="true" aria-controls="p1">Materials</button><div class="panel" id="p1"><div><p>Upper: recycled polyester knit, one piece. Midsole: rebound EVA foam, 28 mm heel, 6 mm drop. Outsole: natural rubber, siped. Insole: removable and washable.</p></div></div></div>
+    <div class="acc"><button type="button" aria-expanded="false" aria-controls="p2" id="acc-fit">Fit and size guide</button><div class="panel" id="p2"><div><p>Drift runs true to UK sizing. Wide feet: go up half a size and round up. Between sizes: take the larger one. Not sure? Measure your foot on the home page.</p></div></div></div>
+    <div class="acc"><button type="button" aria-expanded="false" aria-controls="p3">Care</button><div class="panel" id="p3"><div><p>Take out the laces and insole, wash cold at 30° in a laundry bag, then air dry. No tumble dryer.</p></div></div></div>
+    <div class="acc"><button type="button" aria-expanded="false" aria-controls="p4">Shipping and returns</button><div class="panel" id="p4"><div><p>Dispatch in 1 to 2 working days. Free returns within 30 days, even if you have worn them outside.</p></div></div></div>
   </div>
 </main>
 
-<div class="sticky-atc" aria-hidden="false">
-  <img src="img/street_q34.webp" alt="" width="56" height="56">
-  <div class="t">Drift Knit — <span data-cw-name></span><small><span data-size>Pick a size</span> · $140</small></div>
-  <button class="btn" type="button"><span class="btn-label">Add to bag</span><span class="btn-done" aria-hidden="true">Added ✓</span></button>
+<div class="marquees marquees--single" aria-hidden="true">
+  <div class="mq mq--a"><div class="mq-track"><span>Free shipping over $120</span><span>30-day wear test</span><span>Ember drops Saturday</span><span>Machine washable at 30°</span><span>212 g a shoe</span></div></div>
 </div>
 
+<section class="rail rail--mini" aria-labelledby="rail-h">
+  <div class="rail-head">
+    <h2 class="h2" id="rail-h">Other colours</h2>
+    <p>Same shoe, same price. Drag through the runs that are still in stock.</p>
+    <div class="rail-ctrl">
+      <button class="sq-btn" type="button" data-rail="prev" aria-label="Previous colour" data-magnetic=".3"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4 7 12l8 8"/></svg></button>
+      <span class="rail-count num" aria-live="polite">1/6</span>
+      <button class="sq-btn" type="button" data-rail="next" aria-label="Next colour" data-magnetic=".3"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 4 8 8-8 8"/></svg></button>
+    </div>
+  </div>
+  <div class="rail-view" data-cursor="DRAG"><div class="rail-track"></div></div>
+  <div class="rail-bar" aria-hidden="true"></div>
+</section>
+
 <footer class="ftr">
-  <p class="ftr-word display" aria-hidden="true">HALFSTEP</p>
-  <div class="ftr-legal"><span>Halfstep is a fictional brand, built as a Shopify design demo.</span><span class="credit">3D shoe model © 2021 Shopify, CC BY 4.0 (Khronos glTF sample assets). Colourways and renders are our own.</span></div>
+  <div class="ftr-grid">
+    <div><h4>Shop</h4><a href="product.html">Drift Knit</a><a href="index.html#colours" data-wipe>All colours</a><a href="index.html#drop" data-wipe>Next drop</a></div>
+    <div><h4>Help</h4><a href="index.html#fit" data-wipe>Size guide</a><a href="#">Shipping and returns</a><a href="#">Contact</a></div>
+    <div><h4>About</h4><a href="index.html#anatomy" data-wipe>Materials</a><a href="#">Wear test</a><a href="#">Stockists</a></div>
+    <div class="ftr-note"><p>Halfstep is a fictional brand, built as a Shopify design demo.</p></div>
+  </div>
+  <p class="ftr-word" aria-hidden="true"><span>H</span><span>A</span><span>L</span><span>F</span><span>S</span><span>T</span><span>E</span><span>P</span></p>
+  <p class="ftr-legal">3D shoe model © 2021 Shopify, CC BY 4.0 (Khronos glTF sample assets). Colourways and renders are our own.</p>
 </footer>
 
+<div class="sticky-atc" aria-hidden="true">
+  <img src="img/street_q34.webp" alt="" width="56" height="45">
+  <div class="t"><b>Drift Knit</b><small><span data-cw-name>Night Shift</span>, <span data-size>Pick a size</span></small></div>
+  <button class="btn btn--acid" type="button" tabindex="-1" data-cursor="ADD"><span class="btn-label">Add $140</span><span class="btn-done" aria-hidden="true">Added</span></button>
+</div>
+
 <div class="drawer-scrim" data-close-cart></div>
-<aside class="drawer" role="dialog" aria-modal="true" aria-label="Your bag" tabindex="-1">
-  <div class="drawer-head"><h2>Your bag</h2><button class="icon-btn" type="button" data-close-cart aria-label="Close bag">×</button></div>
+<aside class="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-h" tabindex="-1">
+  <div class="drawer-head"><h2 id="drawer-h">Bag <span class="num bag-count">0</span></h2><button class="sq-btn" type="button" data-close-cart aria-label="Close bag"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5 5 19"/></svg></button></div>
   <div class="ship"><p></p><div class="ship-bar"><b></b></div></div>
   <div class="lines"></div>
   <div class="upsell" hidden></div>
-  <div class="drawer-foot"><div class="row"><span>Total</span><span class="drawer-total">$0</span></div>
-    <a class="btn checkout" href="#"><span class="btn-label">Check out</span></a>
-    <p class="pay-row">Shop Pay · Apple Pay · Google Pay · Cards</p></div>
+  <div class="drawer-foot"><div class="row"><span>Total</span><b class="num drawer-total">$0</b></div>
+    <a class="btn btn--ink checkout" href="#" data-cursor="PAY"><span class="btn-label">Check out</span></a>
+    <p class="pay-row">Shop Pay, Apple Pay, Google Pay and cards</p></div>
 </aside>
+
+<div class="wipe" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><b>Halfstep</b></div>
+
 <script type="module" src="js/app.js"></script>
 </body>
 </html>

@@ -1,51 +1,52 @@
-<section class="layers hs-layers" aria-labelledby="layers-h-{{ section.id }}">
-  <div class="layers-pin">
-    <div>
-      <h2 class="h2" id="layers-h-{{ section.id }}" data-reveal>{{ section.settings.heading | newline_to_br }}</h2>
-      <div class="layers-progress" aria-hidden="true">{%- for block in section.blocks -%}<i><b></b></i>{%- endfor -%}</div>
-      <div class="layers-copy">
-        {%- for block in section.blocks -%}
-          <article class="layer" {{ block.shopify_attributes }}>
-            <h3>{{ block.settings.title }}</h3>
-            <p>{{ block.settings.text }}</p>
-            <div class="spec">
-              {%- if block.settings.stat1 != blank -%}<div><b>{{ block.settings.stat1 }}</b><span class="small">{{ block.settings.stat1_label }}</span></div>{%- endif -%}
-              {%- if block.settings.stat2 != blank -%}<div><b>{{ block.settings.stat2 }}</b><span class="small">{{ block.settings.stat2_label }}</span></div>{%- endif -%}
-            </div>
-          </article>
-        {%- endfor -%}
-      </div>
+<section class="anatomy hs-anatomy" id="anatomy" aria-labelledby="ana-h-{{ section.id }}">
+  <div class="ana-pin">
+    <div class="ana-head">
+      <h2 class="h2" id="ana-h-{{ section.id }}">{{ section.settings.heading }}</h2>
+      {%- if section.settings.text != blank -%}<p>{{ section.settings.text }}</p>{%- endif -%}
     </div>
-    <div class="layers-visual" aria-hidden="true">
+    <div class="ana-stage" aria-hidden="true"></div>
+    <svg class="ana-lines" aria-hidden="true"></svg>
+    <div class="ana-calls">
       {%- for block in section.blocks -%}
-        <img data-cw-img="{{ block.settings.angle }}" src="{{ 'hs-night-shift-' | append: block.settings.angle | append: '.webp' | asset_url }}" alt="" {% unless forloop.first %}style="opacity:0"{% endunless %} loading="lazy" width="1400" height="1400">
-      {%- endfor -%}
-      {%- for block in section.blocks -%}
-        <span class="ring" style="left:{{ block.settings.ring_x }}%;top:{{ block.settings.ring_y }}%"></span>
+        <article class="call" data-k="{{ block.settings.part }}" {{ block.shopify_attributes }}>
+          <h3>{{ block.settings.title }}</h3>
+          {%- if block.settings.text != blank -%}<p>{{ block.settings.text }}</p>{%- endif -%}
+          <div class="stats">
+            {%- if block.settings.stat1 != blank -%}<div><b class="num" data-count="{{ block.settings.stat1 | escape }}">{{ block.settings.stat1 }}</b><span>{{ block.settings.stat1_label }}</span></div>{%- endif -%}
+            {%- if block.settings.stat2 != blank -%}<div><b class="num" data-count="{{ block.settings.stat2 | escape }}">{{ block.settings.stat2 }}</b><span>{{ block.settings.stat2_label }}</span></div>{%- endif -%}
+          </div>
+        </article>
       {%- endfor -%}
     </div>
+    <div class="ana-ruler" aria-hidden="true"><i class="ana-fill"></i><span class="ana-step num"></span></div>
   </div>
 </section>
 
 {% schema %}
 {
-  "name": "Halfstep layers story",
-  "settings": [{ "type": "textarea", "id": "heading", "label": "Heading", "default": "Three layers.\nNothing else." }],
+  "name": "Halfstep anatomy",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Pull it apart" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Scroll to take a Drift apart. Four parts, each one doing a single job." }
+  ],
   "blocks": [
-    { "type": "layer", "name": "Layer", "settings": [
+    { "type": "layer", "name": "Part callout", "settings": [
+      { "type": "select", "id": "part", "label": "Part of the 3D shoe", "default": "upper", "info": "Each part can be used once. Upper and midsole sit on the left, laces and outsole on the right.", "options": [
+        { "value": "laces", "label": "Laces and eyelets" }, { "value": "upper", "label": "Knit upper" }, { "value": "foam", "label": "Foam midsole" }, { "value": "outsole", "label": "Rubber outsole" } ] },
       { "type": "text", "id": "title", "label": "Title", "default": "Knit upper" },
-      { "type": "textarea", "id": "text", "label": "Text", "default": "A single piece of recycled yarn, knitted to shape." },
-      { "type": "text", "id": "stat1", "label": "Stat 1", "default": "212 g" },
-      { "type": "text", "id": "stat1_label", "label": "Stat 1 label", "default": "per shoe, UK 9" },
-      { "type": "text", "id": "stat2", "label": "Stat 2" },
-      { "type": "text", "id": "stat2_label", "label": "Stat 2 label" },
-      { "type": "select", "id": "angle", "label": "Shoe view", "default": "q34", "options": [
-        { "value": "q34", "label": "Three-quarter" }, { "value": "side", "label": "Side" }, { "value": "side2", "label": "Other side" }, { "value": "back", "label": "Back" }, { "value": "top", "label": "Top" } ] },
-      { "type": "range", "id": "ring_x", "label": "Highlight ring left (%)", "min": 0, "max": 80, "step": 1, "default": 34 },
-      { "type": "range", "id": "ring_y", "label": "Highlight ring top (%)", "min": 0, "max": 80, "step": 1, "default": 22 }
+      { "type": "textarea", "id": "text", "label": "Text", "default": "One piece of recycled yarn, knitted to shape." },
+      { "type": "text", "id": "stat1", "label": "Stat 1 (number, counts up)", "default": "212" },
+      { "type": "text", "id": "stat1_label", "label": "Stat 1 label", "default": "g per shoe, UK 9" },
+      { "type": "text", "id": "stat2", "label": "Stat 2 (number, counts up)" },
+      { "type": "text", "id": "stat2_label", "label": "Stat 2 label" }
     ] }
   ],
-  "max_blocks": 5,
-  "presets": [{ "name": "Halfstep layers story", "blocks": [{ "type": "layer" }, { "type": "layer" }, { "type": "layer" }] }]
+  "max_blocks": 4,
+  "presets": [{ "name": "Halfstep anatomy", "blocks": [
+    { "type": "layer", "settings": { "part": "upper" } },
+    { "type": "layer", "settings": { "part": "laces", "title": "Flat laces", "stat1": "8", "stat1_label": "metal eyelets" } },
+    { "type": "layer", "settings": { "part": "foam", "title": "Foam midsole", "stat1": "28", "stat1_label": "mm heel stack" } },
+    { "type": "layer", "settings": { "part": "outsole", "title": "Rubber outsole", "stat1": "3.5", "stat1_label": "mm lug depth" } }
+  ] }]
 }
 {% endschema %}

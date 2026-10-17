@@ -1,0 +1,9 @@
+<div class="page-wrap">
+  <span class="label">{{ article.published_at | time_tag: format: 'date' }}</span>
+  <h1>{{ article.title | escape }}</h1>
+  <div class="rte">{{ article.content }}</div>
+</div>
+
+{% schema %}
+{ "name": "Article", "tag": "section", "settings": [] }
+{% endschema %}

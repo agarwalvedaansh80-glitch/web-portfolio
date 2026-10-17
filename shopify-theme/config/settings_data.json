@@ -191,11 +191,12 @@
           }
         }
       },
-      "hs_concrete": "#E2E3DF",
+      "hs_concrete": "#EDEDE7",
       "hs_ink": "#000000",
       "hs_free_shipping": 120,
       "hs_upsell_title": "Add [colour]",
-      "hs_upsell_text": "Pair it with a second colour"
+      "hs_upsell_text": "Same size, second colour",
+      "hs_colours": "Night Shift|#1d1d1f|#FF4D8D|#000000||Black knit, coral stripes\nHarbour|#1B7FC0|#3A5BFF|#ffffff||Sea blue, navy stripes\nDusk|#D9AEB4|#C9A6FF|#000000||Blush knit, rose stripes\nMoss|#6B7A35|#C8FF2E|#000000||Olive knit, gum stripes\nChalk|#ECECE8|#FFE81F|#000000||Off-white knit, black stripes\nEmber|#E0602A|#FF5B14|#000000|soon|Burnt orange, black stripes"
     }
   }
 }

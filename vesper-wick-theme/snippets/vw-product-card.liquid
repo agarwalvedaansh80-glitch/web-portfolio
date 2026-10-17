@@ -1,0 +1,39 @@
+{%- comment -%} Product card with scent-tinted background and note chips. Params: product, index {%- endcomment -%}
+{%- liquid
+  assign accent = product.metafields.custom.accent_color.value | default: settings.color_ember
+  capture feel
+    render 'vw-feel', product: product
+  endcapture
+  assign feel = feel | strip
+  assign v = product.selected_or_first_available_variant
+  assign num = product.metafields.custom.scent_number.value
+  if num == blank
+    assign num = index | default: 1 | prepend: '0' | slice: -2, 2
+  endif
+  assign img_alt = product.featured_image.alt | default: product.title | escape
+-%}
+<article class="card" style="--accent: {{ accent }}" data-feel="{{ feel | default: 'Other' }}" data-type="{{ product.type | handleize }}" data-handle="{{ product.handle }}" data-price="{{ product.price }}">
+  <a class="card-link" href="{{ product.url }}" data-cursor="{{ 'products.product.view' | t }}" draggable="false">
+    <div class="card-media">
+      <span class="card-no">No. {{ num }}</span>
+      {%- if feel != blank -%}<span class="card-feel">{{ feel }}</span>{%- endif -%}
+      {%- if product.featured_image -%}
+        {{ product.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '400, 600, 900', sizes: '(min-width: 990px) 26vw, 78vw', alt: img_alt, draggable: 'false' }}
+      {%- else -%}
+        {{ 'product-1' | placeholder_svg_tag: 'card-ph' }}
+      {%- endif -%}
+    </div>
+    <div class="card-body">
+      <h3 class="card-name">{{ product.title | escape }}</h3>
+      {%- if product.metafields.custom.tagline != blank -%}<p class="card-line">{{ product.metafields.custom.tagline.value | escape }}</p>{%- endif -%}
+      {% render 'vw-notes', product: product, style: 'chips', limit: 4, accent: accent %}
+    </div>
+  </a>
+  <div class="card-foot">
+    <span class="card-price">{{ v.price | money }}</span>
+    <span class="card-meta">{{ v.title | split: ' · ' | first }}{% if product.metafields.custom.burn_time != blank %} · {{ product.metafields.custom.burn_time.value }}{% endif %}</span>
+    <button class="card-add" type="button" data-variant="{{ v.id }}" data-product="{{ product.id }}" {% unless v.available %}disabled{% endunless %} aria-label="{{ 'products.product.add_named' | t: title: product.title | escape }}">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M8 2v12M2 8h12"/></svg>
+    </button>
+  </div>
+</article>

@@ -1,10 +1,30 @@
-<div class="marquee" aria-hidden="true"><div class="marquee-track">
-  {%- for n in (1..2) -%}{%- for block in section.blocks -%}<span {{ block.shopify_attributes }}>{{ block.settings.text }}</span>{%- endfor -%}{%- endfor -%}
-</div></div>
+{%- assign single = false -%}
+{%- if section.settings.layout == 'single' -%}{%- assign single = true -%}{%- endif -%}
+<div class="marquees{% if single %} marquees--single{% endif %}" aria-hidden="true">
+  <div class="mq mq--a"><div class="mq-track">
+    {%- for block in section.blocks -%}
+      {%- assign on_a = true -%}
+      {%- if block.settings.dark and single == false -%}{%- assign on_a = false -%}{%- endif -%}
+      {%- if on_a -%}<span {{ block.shopify_attributes }}>{{ block.settings.text }}</span>{%- endif -%}
+    {%- endfor -%}
+  </div></div>
+  {%- unless single -%}
+    <div class="mq mq--b"><div class="mq-track">
+      {%- for block in section.blocks -%}{%- if block.settings.dark -%}<span {{ block.shopify_attributes }}>{{ block.settings.text }}</span>{%- endif -%}{%- endfor -%}
+    </div></div>
+  {%- endunless -%}
+</div>
 {% schema %}
 {
   "name": "Halfstep marquee",
-  "blocks": [{ "type": "item", "name": "Item", "settings": [{ "type": "text", "id": "text", "label": "Text", "default": "Free shipping over $120" }] }],
-  "presets": [{ "name": "Halfstep marquee", "blocks": [{ "type": "item" }, { "type": "item" }] }]
+  "settings": [
+    { "type": "select", "id": "layout", "label": "Layout", "default": "double", "options": [
+      { "value": "double", "label": "Two crossing strips" }, { "value": "single", "label": "One straight strip" } ] }
+  ],
+  "blocks": [{ "type": "item", "name": "Item", "settings": [
+    { "type": "text", "id": "text", "label": "Text", "default": "Free shipping over $120" },
+    { "type": "checkbox", "id": "dark", "label": "Put on the black strip", "default": false }
+  ] }],
+  "presets": [{ "name": "Halfstep marquee", "blocks": [{ "type": "item" }, { "type": "item", "settings": { "text": "30-day wear test", "dark": true } }] }]
 }
 {% endschema %}

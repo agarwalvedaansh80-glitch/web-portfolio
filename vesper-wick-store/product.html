@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ember Hour — Vesper &amp; Wick</title>
+<meta name="description" content="Hand-poured scented candles and room mists with top, heart and base notes, burn time and size.">
+<meta name="theme-color" content="#0f0c0a">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230f0c0a'/%3E%3Cpath d='M16 6c3 5 4 8 4 10a4 4 0 0 1-8 0c0-2 1-5 4-10z' fill='%23e0672c'/%3E%3Crect x='11' y='20' width='10' height='7' rx='1' fill='%23ece4d6'/%3E%3C/svg%3E">
+<link rel="preload" href="fonts/instrument-serif.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/hanken-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/vw.css">
+<script src="vendor/gsap.min.js" defer></script>
+<script src="vendor/ScrollTrigger.min.js" defer></script>
+<script src="vendor/lenis.min.js" defer></script>
+<script src="js/data.js" defer></script>
+<script src="js/app.js" defer></script>
+</head>
+<body data-page="product">
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="hdr">
+  <a class="logo" href="index.html" aria-label="Vesper and Wick, home">Vesper <i>&amp;</i> Wick</a>
+  <nav class="nav" aria-label="Main"><a href="collection.html">Shop</a><a href="index.html#finder">Find your scent</a><a href="index.html#poured">How it’s poured</a><a href="collection.html?feel=smoky">Smoky</a></nav>
+  <div class="hdr-actions">
+    <button class="icon-btn snd" type="button" aria-pressed="false" aria-label="Ambient fire sound"><span class="bars" aria-hidden="true"><i></i><i></i><i></i></span><span class="snd-t">Sound off</span></button>
+    <button class="icon-btn bag-btn" type="button" data-open-cart data-magnetic=".25">Bag <span class="bag-count">0</span></button>
+    <button class="icon-btn menu-btn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menu"><span aria-hidden="true"><i></i><i></i></span></button>
+  </div>
+</header>
+<nav class="menu" id="menu" aria-label="Menu"><a href="collection.html" style="--i:0">Shop all</a><a href="index.html#finder" style="--i:1">Find your <em>scent</em></a><a href="index.html#poured" style="--i:2">How it’s poured</a><a href="collection.html?feel=smoky" style="--i:3">The <em>smoky</em> ones</a><p>Free UK delivery over £50 · Poured in runs of 120</p></nav>
+
+<main id="main">
+  <div class="pdp">
+    <div class="gal"></div>
+    <div class="buy"><div class="buy-in"></div></div>
+  </div>
+  <section class="more" aria-labelledby="more-h">
+    <div class="shelf-head"><h2 class="h2" id="more-h">More to burn.</h2><a class="link" href="collection.html" style="font-size:14px">Shop all eight →</a></div>
+    <div class="drag" data-cursor="Drag" aria-roledescription="carousel" aria-label="More products"><div class="drag-track"></div></div>
+    <div class="drag-ui"><span class="shelf-hint">Drag the shelf</span><div class="drag-bar"><i></i></div><div class="drag-btns"><button class="circ" type="button" data-dir="-1" aria-label="Previous"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M10 3L5 8l5 5"/></svg></button><button class="circ" type="button" data-dir="1" aria-label="Next"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 3l5 5-5 5"/></svg></button></div></div>
+  </section>
+  <div class="sticky-atc" aria-label="Quick add"></div>
+</main>
+
+<footer class="ftr">
+  <div class="ftr-top">
+    <div><h3>Letters from the studio.</h3><p>One email a month: new runs before they sell out, and 10% off your first order.</p>
+      <form class="news" onsubmit="event.preventDefault();this.querySelector('button').textContent='Thank you';"><label class="sr" for="em">Email address</label><input id="em" type="email" placeholder="Your email" required><button class="btn" type="submit" data-magnetic=".2">Sign up</button></form></div>
+    <div><ul><li><a href="collection.html">Shop all</a></li><li><a href="collection.html?feel=cosy">Cosy</a></li><li><a href="collection.html?feel=fresh">Fresh</a></li><li><a href="collection.html?feel=clean">Clean</a></li><li><a href="collection.html?feel=smoky">Smoky</a></li></ul></div>
+    <div><ul><li><a href="index.html#finder">Find your scent</a></li><li><a href="index.html#poured">How it’s poured</a></li><li><a href="product.html?p=ember-hour">Bestseller: Ember Hour</a></li><li><a href="#" data-open-cart>Your bag</a></li></ul></div>
+  </div>
+  <div class="ftr-word" aria-hidden="true">Vesper <i>&amp;</i> Wick</div>
+  <div class="ftr-base"><span>© 2026 Vesper &amp; Wick · Concept store, prices in GBP</span><span>Poured by hand in small batches</span></div>
+</footer>
+</body>
+</html>

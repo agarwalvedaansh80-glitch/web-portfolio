@@ -1,5 +1,5 @@
 {%- liquid
-  assign p = section.settings.product | default: all_products['drift-knit']
+  assign p = section.settings.product | default: product | default: all_products['drift-knit']
   assign colour_index = 0
   for opt in p.options_with_values
     if opt.name contains 'olo'
@@ -7,72 +7,105 @@
     endif
   endfor
   assign colour_option = p.options_with_values[colour_index]
+  assign colour_lines = settings.hs_colours | newline_to_br | split: '<br />'
 -%}
-<section class="rail hs-rail" id="colours" aria-labelledby="rail-h-{{ section.id }}">
+<section class="rail hs-rail{% unless section.settings.flood %} rail--mini{% endunless %}" id="{{ section.settings.anchor | default: 'colours' | handleize }}" aria-labelledby="rail-h-{{ section.id }}" data-flood="{{ section.settings.flood }}">
   <div class="rail-head">
-    <h2 class="h2" id="rail-h-{{ section.id }}" data-reveal>{{ section.settings.heading }}</h2>
-    <p class="lede">{{ section.settings.text }}</p>
+    <h2 class="h2" id="rail-h-{{ section.id }}">{{ section.settings.heading }}</h2>
+    {%- if section.settings.text != blank -%}<p>{{ section.settings.text }}</p>{%- endif -%}
+    <div class="rail-ctrl">
+      <button class="sq-btn" type="button" data-rail="prev" aria-label="Previous colour" data-magnetic=".3"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4 7 12l8 8"/></svg></button>
+      <span class="rail-count num" aria-live="polite">1/{{ colour_option.values.size }}</span>
+      <button class="sq-btn" type="button" data-rail="next" aria-label="Next colour" data-magnetic=".3"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 4 8 8-8 8"/></svg></button>
+    </div>
   </div>
-  <div class="rail-track">
-    {%- for value in colour_option.values -%}
-      {%- liquid
-        assign h = value | handleize
-        assign first_variant = nil
-        assign any_available = false
-        for v in p.variants
-          assign vc = v.options[colour_index] | handleize
-          if vc == h
-            if first_variant == nil
-              assign first_variant = v
+  <div class="rail-view" data-cursor="DRAG">
+    <div class="rail-track">
+      {%- for value in colour_option.values -%}
+        {%- liquid
+          assign h = value | handleize
+          assign first_variant = nil
+          assign any_available = false
+          for v in p.variants
+            assign vc = v.options[colour_index] | handleize
+            if vc == h
+              if first_variant == nil
+                assign first_variant = v
+              endif
+              if v.available
+                assign any_available = true
+              endif
             endif
-            if v.available
-              assign any_available = true
+          endfor
+          assign acid = '#C8FF2E'
+          assign desc = ''
+          for line in colour_lines
+            assign parts = line | strip | split: '|'
+            assign ph = parts[0] | strip | handleize
+            if ph == h
+              assign acid = parts[2] | strip
+              if parts[5]
+                assign desc = parts[5] | strip
+              endif
             endif
+          endfor
+          assign tag = ''
+          for b in section.blocks
+            assign bh = b.settings.colour | handleize
+            if bh == h
+              assign tag = b.settings.tag
+              if b.settings.desc != blank
+                assign desc = b.settings.desc
+              endif
+            endif
+          endfor
+          assign href = first_variant.url
+          if any_available == false
+            assign href = routes.root_url | append: '#drop'
           endif
-        endfor
-        assign swatch = '#8C8F89'
-        assign colour_lines = settings.hs_colours | newline_to_br | split: '<br />'
-        for line in colour_lines
-          assign parts = line | strip | split: '|'
-          assign ph = parts[0] | strip | handleize
-          if ph == h
-            assign swatch = parts[2] | strip
-          endif
-        endfor
-        assign tag = ''
-        for b in section.blocks
-          assign bh = b.settings.colour | handleize
-          if bh == h
-            assign tag = b.settings.tag
-            assign desc = b.settings.desc
-          endif
-        endfor
-      -%}
-      <a class="card" href="{% if any_available %}{{ first_variant.url }}{% else %}#drop{% endif %}" data-cursor="{% if any_available %}View{% else %}Soon{% endif %}" style="--sw:{{ swatch }}">
-        <div class="card-media">
-          {%- if tag != blank -%}<span class="card-tag">{{ tag }}</span>{%- elsif any_available == false -%}<span class="card-tag">Coming soon</span>{%- endif -%}
-          <img src="{{ 'hs-' | append: h | append: '-q34.webp' | asset_url }}" alt="{{ p.title | escape }} in {{ value | escape }}" loading="lazy" width="1400" height="1400">
-        </div>
-        <div class="card-info"><span>{{ value }}<small>{{ desc }}</small></span><span class="price">{{ first_variant.price | money }}</span></div>
-      </a>
-      {%- assign desc = '' -%}
-    {%- endfor -%}
+        -%}
+        <article class="card" style="--c:{{ acid }}">
+          <div class="card-in">
+            <a class="card-media" href="{{ href }}" data-cursor="{% if any_available %}VIEW{% else %}SOON{% endif %}" data-wipe tabindex="-1" aria-hidden="true">
+              {%- if tag != blank -%}<span class="sticker card-tag">{{ tag }}</span>{%- elsif any_available == false -%}<span class="sticker card-tag">{{ section.settings.soon_tag }}</span>{%- endif -%}
+              <img src="{{ 'hs-' | append: h | append: '-q34.webp' | asset_url }}" alt="" loading="lazy" width="1400" height="1115" draggable="false">
+            </a>
+            <div class="card-body">
+              <h3><a href="{{ href }}" data-wipe data-cursor="{% if any_available %}VIEW{% else %}SOON{% endif %}">{{ value }}</a></h3>
+              <p>{{ desc }}</p>
+              <b class="card-price num">{{ first_variant.price | money_without_trailing_zeros }}</b>
+              {%- if any_available -%}
+                <button class="btn card-wear" type="button" data-handle="{{ h }}" data-cursor="PICK" aria-pressed="false">{{ section.settings.wear_label }}</button>
+              {%- else -%}
+                <button class="btn card-wear" type="button" data-remind data-cursor="SOON">{{ section.settings.remind_label }}</button>
+              {%- endif -%}
+            </div>
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
   </div>
+  <div class="rail-bar" aria-hidden="true">{%- for value in colour_option.values -%}<i></i>{%- endfor -%}</div>
 </section>
 
 {% schema %}
 {
   "name": "Halfstep colour rail",
   "settings": [
-    { "type": "product", "id": "product", "label": "Product" },
-    { "type": "text", "id": "heading", "label": "Heading", "default": "Pick your colour" },
-    { "type": "textarea", "id": "text", "label": "Text", "default": "Same shoe, six moods. Each colour is made in one run, and we don't restock." }
+    { "type": "product", "id": "product", "label": "Product", "info": "On a product page, leave empty to use that product." },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Six colours" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Each colour is knitted in one run. When a run sells out, it doesn't come back." },
+    { "type": "checkbox", "id": "flood", "label": "Recolour the section to match the card in view", "default": true },
+    { "type": "text", "id": "anchor", "label": "Anchor (for menu links like /#colours)", "default": "colours" },
+    { "type": "text", "id": "wear_label", "label": "Pick button", "default": "Wear this colour" },
+    { "type": "text", "id": "remind_label", "label": "Button for colours that aren't out yet", "default": "Get a reminder" },
+    { "type": "text", "id": "soon_tag", "label": "Sticker for colours that aren't out yet", "default": "Coming soon" }
   ],
   "blocks": [
     { "type": "colour", "name": "Colour label", "settings": [
       { "type": "text", "id": "colour", "label": "Colour (exactly as in the product option)" },
       { "type": "text", "id": "desc", "label": "Short description" },
-      { "type": "text", "id": "tag", "label": "Tag, e.g. Best seller" }
+      { "type": "text", "id": "tag", "label": "Sticker, e.g. Best seller" }
     ] }
   ],
   "presets": [{ "name": "Halfstep colour rail" }]

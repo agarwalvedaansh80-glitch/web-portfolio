@@ -1,0 +1,30 @@
+<div class="page-wrap cart-page-wrap">
+  <h1>{{ 'cart.title' | t }}</h1>
+  {%- if cart.item_count > 0 -%}
+    <form action="{{ routes.cart_url }}" method="post" class="cart-page">
+      {%- for item in cart.items -%}
+        <div class="line" style="--accent: {{ item.product.metafields.custom.accent_color.value | default: settings.color_ember }}">
+          <a class="line-img" href="{{ item.url }}">{%- if item.image -%}{{ item.image | image_url: width: 200 | image_tag: loading: 'lazy', alt: item.title }}{%- endif -%}</a>
+          <div>
+            <h4><a href="{{ item.url }}">{{ item.product.title | escape }}</a></h4>
+            {%- unless item.product.has_only_default_variant -%}<p>{{ item.variant.title | escape }}</p>{%- endunless -%}
+            <label class="sr" for="qty-{{ item.key }}">{{ 'products.product.quantity' | t }}</label>
+            <input class="qty" id="qty-{{ item.key }}" style="width:80px;padding:0 12px;border:0" type="number" name="updates[]" value="{{ item.quantity }}" min="0">
+          </div>
+          <div class="line-r"><b>{{ item.final_line_price | money }}</b><a href="{{ item.url_to_remove }}">{{ 'cart.remove' | t }}</a></div>
+        </div>
+      {%- endfor -%}
+      <div class="dr-foot" style="padding-inline:0">
+        <div class="dr-sum"><span>{{ 'cart.subtotal' | t }}</span><b>{{ cart.total_price | money }}</b></div>
+        <p class="dr-note">{{ settings.cart_note | escape }}</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn btn--dark" type="submit" name="update">{{ 'cart.update' | t }}</button><button class="btn" type="submit" name="checkout">{{ 'cart.checkout' | t }} <span class="arr" aria-hidden="true">→</span></button></div>
+      </div>
+    </form>
+  {%- else -%}
+    <p class="rte">{{ 'cart.empty' | t }} <a href="{{ routes.all_products_collection_url }}">{{ 'general.shop' | t }}</a></p>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{ "name": "Cart", "tag": "section", "settings": [] }
+{% endschema %}

@@ -1,0 +1,14 @@
+{%- comment -%} Outputs a product's feel (metafield custom.feel, or a "feel:Smoky" tag). {%- endcomment -%}
+{%- liquid
+  assign feel_out = product.metafields.custom.feel.value
+  if feel_out == blank
+    for tag in product.tags
+      assign tl = tag | downcase
+      if tl contains 'feel:'
+        assign feel_out = tag | split: ':' | last | strip
+        break
+      endif
+    endfor
+  endif
+  echo feel_out
+-%}

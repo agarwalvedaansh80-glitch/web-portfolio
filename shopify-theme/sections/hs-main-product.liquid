@@ -1,47 +1,55 @@
 {%- liquid
   assign current_variant = product.selected_or_first_available_variant
 -%}
-<section class="pdp hs-product" data-renders="{{ section.settings.use_renders }}" data-prefix="{{ section.settings.prefix }}">
+<section class="pdp hs-product" data-renders="{{ section.settings.use_renders }}" data-prefix="{{ section.settings.prefix | escape }}">
   <script type="application/json" data-hs-product>{{ product | json }}</script>
-  <div class="gallery">
-    <figure><img src="{{ 'hs-night-shift-q34.webp' | asset_url }}" alt="{{ product.title | escape }}" width="1400" height="1400" fetchpriority="high">{%- if section.settings.show_3d -%}<button class="spin-btn" type="button">Spin in 3D</button>{%- endif -%}</figure>
-    <figure><img src="{{ 'hs-night-shift-side.webp' | asset_url }}" alt="" loading="lazy" width="1400" height="1400"></figure>
-    <figure><img src="{{ 'hs-night-shift-back.webp' | asset_url }}" alt="" loading="lazy" width="1400" height="1400"></figure>
-    <figure class="wide"><img src="{{ 'hs-night-shift-top.webp' | asset_url }}" alt="" loading="lazy" width="1400" height="1400"></figure>
+  <div class="pdp-media">
+    <div class="pdp-stage" data-cursor="DRAG" tabindex="0" role="img" aria-label="{{ product.title | escape }} in 3D. Drag, or use the arrow keys, to spin it.">
+      {%- if section.settings.live_sticker != blank -%}<span class="sticker sticker--tilt pdp-live" aria-hidden="true">{{ section.settings.live_sticker }}</span>{%- endif -%}
+    </div>
+    <div class="pdp-shots">
+      <figure><img data-angle="side" src="{{ 'hs-night-shift-side.webp' | asset_url }}" alt="{{ product.title | escape }}" width="1400" height="827" loading="lazy"><figcaption>Side</figcaption></figure>
+      <figure><img data-angle="back" src="{{ 'hs-night-shift-back.webp' | asset_url }}" alt="" width="1400" height="1400" loading="lazy"><figcaption>Heel</figcaption></figure>
+      <figure><img data-angle="top" src="{{ 'hs-night-shift-top.webp' | asset_url }}" alt="" width="1400" height="1400" loading="lazy"><figcaption>Top</figcaption></figure>
+    </div>
   </div>
 
   <div class="buy">
-    <p class="small stock">{% if current_variant.available %}In stock{% else %}Sold out{% endif %}</p>
-    <h1>{{ product.title }}</h1>
-    <p class="price" data-price>{{ current_variant.price | money }}</p>
-    <div class="label-row"><span>Colour: <span data-cw-name></span></span></div>
-    <div class="swatches" role="group" aria-label="Colour"></div>
-    <div class="label-row"><span>Size: <span data-size>Pick a size</span></span><button type="button" data-size-guide>Size guide</button></div>
-    <div class="sizes" role="group" aria-label="Size"></div>
-    <p class="size-hint" aria-live="polite"></p>
+    <p class="stock sticker sticker--acid">{% if current_variant.available %}In stock{% else %}Sold out{% endif %}</p>
+    <h1 class="buy-title">{{ product.title }}</h1>
+    <p class="buy-price"><b class="num" data-price>{{ current_variant.price | money_without_trailing_zeros }}</b>{%- if section.settings.price_note != blank -%}<span>{{ section.settings.price_note }}</span>{%- endif -%}</p>
+    <div class="pick">
+      <div class="pick-row"><span class="label">Colour</span><b data-cw-name></b></div>
+      <div class="swatches" role="group" aria-label="Colour"></div>
+    </div>
+    <div class="pick">
+      <div class="pick-row"><span class="label">Size ({{ section.settings.prefix }})</span><b data-size>Pick a size</b>{%- if section.settings.fit_link != blank -%}<a class="buy-link" href="{{ section.settings.fit_link }}" data-wipe>{{ section.settings.fit_link_label }}</a>{%- endif -%}</div>
+      <div class="sizes" role="group" aria-label="Size"></div>
+      <p class="size-hint" aria-live="polite"></p>
+    </div>
     {%- form 'product', product, class: 'hs-form', novalidate: 'novalidate' -%}
       <input type="hidden" name="id" value="{{ current_variant.id }}">
-      <button class="btn add" type="submit" data-magnetic=".15"><span class="btn-label">Add to bag — <span data-price>{{ current_variant.price | money }}</span></span><span class="btn-done" aria-hidden="true">Added ✓</span></button>
+      <button class="btn btn--acid btn--xl add" type="submit" data-magnetic=".12" data-cursor="ADD"><span class="btn-label">Add to bag, <span data-price>{{ current_variant.price | money_without_trailing_zeros }}</span></span><span class="btn-done" aria-hidden="true">In the bag</span></button>
     {%- endform -%}
     {%- if section.settings.perks != blank -%}
-      <div class="perks">
+      <ul class="perks">
         {%- assign perks = section.settings.perks | newline_to_br | split: '<br />' -%}
-        {%- for perk in perks -%}<div><span aria-hidden="true">→</span>{{ perk | strip }}</div>{%- endfor -%}
-      </div>
+        {%- for perk in perks -%}<li>{{ perk | strip }}</li>{%- endfor -%}
+      </ul>
     {%- endif -%}
     {%- if product.description != blank -%}
       <div class="acc"><button type="button" aria-expanded="true">Description</button><div class="panel"><div>{{ product.description }}</div></div></div>
     {%- endif -%}
     {%- for block in section.blocks -%}
-      <div class="acc" {{ block.shopify_attributes }}><button type="button" aria-expanded="false"{% if block.settings.is_fit %} data-acc-fit{% endif %}>{{ block.settings.heading }}</button><div class="panel"><div>{{ block.settings.content }}</div></div></div>
+      <div class="acc" {{ block.shopify_attributes }}><button type="button" aria-expanded="false">{{ block.settings.heading }}</button><div class="panel"><div>{{ block.settings.content }}</div></div></div>
     {%- endfor -%}
   </div>
 </section>
 
-<div class="sticky-atc">
-  <img src="{{ 'hs-night-shift-q34.webp' | asset_url }}" alt="" width="56" height="56">
-  <div class="t">{{ product.title }} — <span data-cw-name></span><small><span data-size>Pick a size</span> · <span data-price>{{ current_variant.price | money }}</span></small></div>
-  <button class="btn" type="button"><span class="btn-label">Add to bag</span><span class="btn-done" aria-hidden="true">Added ✓</span></button>
+<div class="sticky-atc" aria-hidden="true">
+  <img src="{{ 'hs-night-shift-q34.webp' | asset_url }}" alt="" width="56" height="45">
+  <div class="t"><b>{{ product.title }}</b><small><span data-cw-name></span>, <span data-size>Pick a size</span></small></div>
+  <button class="btn btn--acid" type="button" tabindex="-1" data-cursor="ADD"><span class="btn-label">Add <span data-price>{{ current_variant.price | money_without_trailing_zeros }}</span></span><span class="btn-done" aria-hidden="true">Added</span></button>
 </div>
 
 {% schema %}
@@ -49,15 +57,17 @@
   "name": "Halfstep product",
   "settings": [
     { "type": "checkbox", "id": "use_renders", "label": "Use the built-in 3D renders for the gallery", "info": "Turn off to show the product's own photos. Set each photo's alt text to its colour name.", "default": true },
-    { "type": "checkbox", "id": "show_3d", "label": "Show 'Spin in 3D'", "default": true },
+    { "type": "text", "id": "live_sticker", "label": "Sticker on the 3D viewer", "default": "Live 3D, drag it" },
+    { "type": "text", "id": "price_note", "label": "Note next to the price", "default": "Free shipping over $120. Free size swaps." },
     { "type": "text", "id": "prefix", "label": "Size prefix (as in the Size option, e.g. UK)", "default": "UK" },
-    { "type": "textarea", "id": "perks", "label": "Perks (one per line)", "default": "Order today for dispatch tomorrow\nFree shipping over $120, free size swaps\n30-day wear test: worn and not right? Send them back" }
+    { "type": "text", "id": "fit_link", "label": "Fit finder link (path)", "default": "/#fit" },
+    { "type": "text", "id": "fit_link_label", "label": "Fit finder link text", "default": "Measure your foot" },
+    { "type": "textarea", "id": "perks", "label": "Perks (one per line)", "default": "Order by 15:00 IST for dispatch the same day\nFree shipping over $120, free size swaps\n30-day wear test: worn outside and not right? Send them back" }
   ],
   "blocks": [
     { "type": "collapsible", "name": "Collapsible row", "settings": [
       { "type": "text", "id": "heading", "label": "Heading", "default": "Materials" },
-      { "type": "richtext", "id": "content", "label": "Content", "default": "<p>Upper: recycled polyester knit.</p>" },
-      { "type": "checkbox", "id": "is_fit", "label": "This is the size guide (opens from the 'Size guide' link)", "default": false }
+      { "type": "richtext", "id": "content", "label": "Content", "default": "<p>Upper: recycled polyester knit.</p>" }
     ] }
   ]
 }

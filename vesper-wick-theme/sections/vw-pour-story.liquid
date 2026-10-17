@@ -1,0 +1,47 @@
+<section class="pour" id="poured" aria-labelledby="pour-h-{{ section.id }}" data-pour>
+  <div class="pour-pin">
+    <span class="pour-ghost" aria-hidden="true">01</span>
+    <div class="pour-stage"><canvas role="img" aria-label="{{ section.settings.canvas_label | escape }}"></canvas></div>
+    <div class="pour-copy">
+      <span class="label">{{ section.settings.label | escape }}</span>
+      <h2 class="h2" id="pour-h-{{ section.id }}">{{ section.settings.heading }}</h2>
+      <div class="steps"><span class="steps-fill" aria-hidden="true"></span><ol>
+        {%- for block in section.blocks -%}
+          <li class="step{% if forloop.first %} is-on{% endif %}" {{ block.shopify_attributes }}><h3><small>{{ forloop.index | prepend: '0' }}</small>{{ block.settings.title | escape }}</h3><p>{{ block.settings.text | escape }}</p></li>
+        {%- endfor -%}
+      </ol></div>
+      <div class="pour-meter" aria-hidden="true">
+        <div><b data-temp>{{ section.settings.pour_temp }}°</b><span>{{ 'sections.pour.temp' | t }}</span></div>
+        <div><b data-jars data-max="{{ section.settings.batch }}">0</b><span>{{ 'sections.pour.jars' | t }}</span></div>
+        <div><b data-day data-max="{{ section.settings.cure_days }}">00</b><span>{{ 'sections.pour.day' | t }}</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Pour story",
+  "tag": "div",
+  "max_blocks": 3,
+  "settings": [
+    { "type": "text", "id": "label", "label": "Label", "default": "How it’s poured" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Slow on <em>purpose</em>." },
+    { "type": "range", "id": "pour_temp", "label": "Pour temperature", "min": 50, "max": 90, "step": 1, "unit": "°C", "default": 62 },
+    { "type": "range", "id": "batch", "label": "Jars per run", "min": 10, "max": 500, "step": 10, "default": 120 },
+    { "type": "range", "id": "cure_days", "label": "Days of cure", "min": 3, "max": 30, "step": 1, "default": 14 },
+    { "type": "text", "id": "canvas_label", "label": "Illustration description (screen readers)", "default": "Illustration: wax is poured into a glass jar, the wick is centred with a wooden bar, the candle cures and is lit." }
+  ],
+  "blocks": [
+    { "type": "step", "name": "Step", "settings": [
+      { "type": "text", "id": "title", "label": "Title", "default": "Poured at 62°" },
+      { "type": "textarea", "id": "text", "label": "Text", "default": "Coconut and rapeseed wax, melted slowly and poured at 62°C so the fragrance binds instead of flashing off." }
+    ] }
+  ],
+  "presets": [{ "name": "Pour story", "blocks": [
+    { "type": "step", "settings": { "title": "Poured at 62°", "text": "Coconut and rapeseed wax, melted slowly and poured at 62°C so the fragrance binds instead of flashing off. A run is 120 jars, never more." } },
+    { "type": "step", "settings": { "title": "Centred by hand", "text": "A waxed cotton wick, held dead centre by a beech bar while the jar sets. Off-centre wicks tunnel; ours burn flat to the edge." } },
+    { "type": "step", "settings": { "title": "Cured for fourteen days", "text": "Fragrance needs two weeks to marry the wax. We wait, so your first burn smells like the hundredth." } }
+  ] }]
+}
+{% endschema %}

@@ -1,0 +1,36 @@
+<footer class="ftr">
+  <div class="ftr-top">
+    <div>
+      <h3>{{ section.settings.news_heading | escape }}</h3>
+      <p>{{ section.settings.news_text | escape }}</p>
+      {%- form 'customer', class: 'news', id: 'footer-news' -%}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <label class="sr" for="footer-email">{{ 'general.email' | t }}</label>
+        <input id="footer-email" type="email" name="contact[email]" placeholder="{{ 'general.email' | t }}" autocomplete="email" required>
+        <button class="btn" type="submit" data-magnetic=".2">{{ 'general.sign_up' | t }}</button>
+        {%- if form.posted_successfully? -%}<p class="vw-form-error" style="color:var(--ember-2)">{{ 'general.thanks' | t }}</p>{%- endif -%}
+        {%- if form.errors -%}<p class="vw-form-error">{{ form.errors | default_errors }}</p>{%- endif -%}
+      {%- endform -%}
+    </div>
+    <div><ul>{%- for link in section.settings.menu_1.links -%}<li><a href="{{ link.url }}">{{ link.title | escape }}</a></li>{%- endfor -%}</ul></div>
+    <div><ul>{%- for link in section.settings.menu_2.links -%}<li><a href="{{ link.url }}">{{ link.title | escape }}</a></li>{%- endfor -%}</ul></div>
+  </div>
+  <div class="ftr-word" aria-hidden="true">{{ section.settings.word_1 | escape }} <i>&amp;</i> {{ section.settings.word_2 | escape }}</div>
+  <div class="ftr-base"><span>&copy; {{ 'now' | date: '%Y' }} {{ shop.name | escape }}</span><span>{{ section.settings.base_note | escape }}</span></div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "enabled_on": { "groups": ["footer"] },
+  "settings": [
+    { "type": "text", "id": "news_heading", "label": "Newsletter heading", "default": "Letters from the studio." },
+    { "type": "text", "id": "news_text", "label": "Newsletter text", "default": "One email a month: new runs before they sell out, and 10% off your first order." },
+    { "type": "link_list", "id": "menu_1", "label": "First menu", "default": "main-menu" },
+    { "type": "link_list", "id": "menu_2", "label": "Second menu", "default": "footer" },
+    { "type": "text", "id": "word_1", "label": "Wordmark, first word", "default": "Vesper" },
+    { "type": "text", "id": "word_2", "label": "Wordmark, second word", "default": "Wick" },
+    { "type": "text", "id": "base_note", "label": "Bottom note", "default": "Poured by hand in small batches" }
+  ]
+}
+{% endschema %}

@@ -1,24 +1,23 @@
+{%- assign word = section.settings.word | default: shop.name | upcase -%}
 <footer class="ftr">
   <div class="ftr-grid">
     {%- for block in section.blocks -%}
       <div {{ block.shopify_attributes }}>
         <h4>{{ block.settings.heading }}</h4>
-        {%- for link in block.settings.menu.links -%}<a href="{{ link.url }}">{{ link.title }}</a>{%- endfor -%}
+        {%- for link in block.settings.menu.links -%}<a href="{{ link.url }}" data-wipe>{{ link.title }}</a>{%- endfor -%}
       </div>
     {%- endfor -%}
+    <div class="ftr-note"><p>© {{ 'now' | date: '%Y' }} {{ shop.name }}. {{ section.settings.note }}</p></div>
   </div>
-  <p class="ftr-word display" aria-hidden="true">{{ section.settings.word | default: shop.name | upcase }}</p>
-  <div class="ftr-legal">
-    <span>© {{ 'now' | date: '%Y' }} {{ shop.name }}. {{ section.settings.note }}</span>
-    <span class="credit">{{ section.settings.credit }}</span>
-  </div>
+  <p class="ftr-word" aria-hidden="true">{%- assign chars = word | split: '' -%}{%- for c in chars -%}<span>{{ c }}</span>{%- endfor -%}</p>
+  {%- if section.settings.credit != blank -%}<p class="ftr-legal">{{ section.settings.credit }}</p>{%- endif -%}
 </footer>
 
 {% schema %}
 {
   "name": "Halfstep footer",
   "settings": [
-    { "type": "text", "id": "word", "label": "Big word", "default": "HALFSTEP" },
+    { "type": "text", "id": "word", "label": "Big word (letters widen near the cursor)", "default": "HALFSTEP" },
     { "type": "text", "id": "note", "label": "Note", "default": "Halfstep is a fictional brand, built as a Shopify theme demo." },
     { "type": "text", "id": "credit", "label": "Credits", "default": "3D shoe model © 2021 Shopify, CC BY 4.0 (Khronos glTF sample assets). Colourways and renders are our own." }
   ],
@@ -28,6 +27,6 @@
       { "type": "link_list", "id": "menu", "label": "Menu", "default": "footer" }
     ] }
   ],
-  "max_blocks": 4
+  "max_blocks": 3
 }
 {% endschema %}

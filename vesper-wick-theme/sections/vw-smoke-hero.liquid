@@ -1,0 +1,64 @@
+{%- liquid
+  assign fp = section.settings.product
+-%}
+<section class="hero" aria-label="{{ section.settings.line_1 | escape }} {{ section.settings.line_2 | escape }}" data-smoke data-tip-x="{{ section.settings.flame_x | divided_by: 100.0 }}" data-tip-y="{{ section.settings.flame_y | divided_by: 100.0 }}" data-amount="{{ section.settings.smoke_amount | divided_by: 100.0 }}">
+  <div class="hero-fallback" aria-hidden="true"></div>
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="hero-candle">
+    {%- if section.settings.candle != blank -%}
+      {{ section.settings.candle | image_url: width: 900 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '450, 700, 900', sizes: '(min-width: 600px) 430px, 64vw', alt: section.settings.candle.alt }}
+    {%- else -%}
+      <img src="{{ 'vw-hero-candle.webp' | asset_url }}" alt="{{ 'sections.hero.candle_alt' | t }}" width="700" height="700" fetchpriority="high">
+    {%- endif -%}
+  </div>
+  <canvas aria-hidden="true"></canvas>
+  <div class="hero-copy">
+    <h1 class="hero-title" aria-label="{{ section.settings.line_1 | escape }} {{ section.settings.italic_word | escape }} {{ section.settings.line_2 | escape }}"><span class="ln">{{ section.settings.line_1 | escape }}</span><span class="ln">{% if section.settings.italic_word != blank %}<em>{{ section.settings.italic_word | escape }}</em> {% endif %}{{ section.settings.line_2 | escape }}</span></h1>
+    <div class="hero-foot">
+      <div>
+        {%- if section.settings.intro != blank -%}<p class="hero-intro">{{ section.settings.intro | escape }}</p>{%- endif -%}
+        <div class="hero-ctas">
+          {%- if section.settings.button_1 != blank -%}<a class="btn" href="{{ section.settings.link_1 | default: '#finder' }}" data-magnetic=".2">{{ section.settings.button_1 | escape }} <span class="arr" aria-hidden="true">→</span></a>{%- endif -%}
+          {%- if section.settings.button_2 != blank -%}<a class="btn btn--ghost" href="{{ section.settings.link_2 | default: routes.all_products_collection_url }}" data-magnetic=".2">{{ section.settings.button_2 | escape }}</a>{%- endif -%}
+        </div>
+      </div>
+      <div></div>
+      {%- if fp != blank -%}
+        <div class="hero-now">
+          <span class="label"><i></i>{{ section.settings.now_label | escape }}</span>
+          <b>{{ fp.title | escape }}</b>
+          <span style="color:var(--mute);font-size:13px">{% render 'vw-notes-line', product: fp %}</span>
+          <button class="mini-add" type="button" data-variant="{{ fp.selected_or_first_available_variant.id }}" data-product="{{ fp.id }}" data-magnetic=".3">{{ 'products.product.add' | t }} · {{ fp.price | money_without_trailing_zeros }}</button>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Smoke hero",
+  "tag": "div",
+  "class": "section-smoke-hero",
+  "settings": [
+    { "type": "header", "content": "Headline" },
+    { "type": "text", "id": "line_1", "label": "First line", "default": "Light the" },
+    { "type": "text", "id": "italic_word", "label": "Italic word (second line)", "default": "quiet" },
+    { "type": "text", "id": "line_2", "label": "Rest of second line", "default": "hours." },
+    { "type": "textarea", "id": "intro", "label": "Intro", "default": "Small-batch candles and room mists, poured by hand in runs of 120 and cured for fourteen days before they leave the studio." },
+    { "type": "text", "id": "button_1", "label": "First button", "default": "Find your scent" },
+    { "type": "url", "id": "link_1", "label": "First button link" },
+    { "type": "text", "id": "button_2", "label": "Second button", "default": "Shop all eight" },
+    { "type": "url", "id": "link_2", "label": "Second button link" },
+    { "type": "header", "content": "Candle and smoke" },
+    { "type": "image_picker", "id": "candle", "label": "Candle image", "info": "Transparent PNG or WebP, square, unlit wick near the top centre. Leave empty for the built-in jar." },
+    { "type": "range", "id": "flame_x", "label": "Wick position across the image", "min": 0, "max": 100, "step": 1, "unit": "%", "default": 50 },
+    { "type": "range", "id": "flame_y", "label": "Wick position down the image", "min": 0, "max": 100, "step": 1, "unit": "%", "default": 22 },
+    { "type": "range", "id": "smoke_amount", "label": "Smoke density", "min": 20, "max": 150, "step": 5, "unit": "%", "default": 100 },
+    { "type": "header", "content": "Burning now" },
+    { "type": "product", "id": "product", "label": "Featured product" },
+    { "type": "text", "id": "now_label", "label": "Label", "default": "Burning now · No. 01" }
+  ],
+  "presets": [{ "name": "Smoke hero" }]
+}
+{% endschema %}

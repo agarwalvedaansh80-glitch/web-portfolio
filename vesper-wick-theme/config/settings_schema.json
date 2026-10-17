@@ -1,0 +1,226 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Vesper & Wick",
+    "theme_version": "1.0.0",
+    "theme_author": "Vesper & Wick studio",
+    "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
+    "theme_support_url": "https://help.shopify.com"
+  },
+  {
+    "name": "Colours",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_ink",
+        "label": "Near-black",
+        "default": "#0f0c0a"
+      },
+      {
+        "type": "color",
+        "id": "color_bone",
+        "label": "Bone",
+        "default": "#ece4d6"
+      },
+      {
+        "type": "color",
+        "id": "color_ember",
+        "label": "Ember accent",
+        "default": "#e0672c"
+      }
+    ]
+  },
+  {
+    "name": "Layout",
+    "settings": [
+      {
+        "type": "range",
+        "id": "page_gutter",
+        "label": "Maximum page gutter",
+        "min": 24,
+        "max": 96,
+        "step": 4,
+        "unit": "px",
+        "default": 56
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon"
+      }
+    ]
+  },
+  {
+    "name": "Motion",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "smooth_scroll",
+        "label": "Smooth scrolling (Lenis)",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "custom_cursor",
+        "label": "Ember cursor and magnetic buttons",
+        "default": true
+      },
+      {
+        "type": "paragraph",
+        "content": "Visitors who ask their device for reduced motion always get a calm version with no smoke animation, smooth scrolling or pinned scenes."
+      }
+    ]
+  },
+  {
+    "name": "Cart",
+    "settings": [
+      {
+        "type": "range",
+        "id": "free_shipping_threshold",
+        "label": "Free shipping threshold",
+        "min": 0,
+        "max": 200,
+        "step": 5,
+        "unit": "£",
+        "default": 50
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_upsell",
+        "label": "Show 'Pairs well with' upsell in the cart drawer",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "cart_note",
+        "label": "Drawer note",
+        "default": "Taxes included. Ships in 2 working days."
+      }
+    ]
+  },
+  {
+    "name": "Scent notes",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Notes come from product metafields custom.top_notes, custom.heart_notes and custom.base_notes, written as 'Name:intensity:family' separated by commas, for example 'Black pepper:70:spice, Bergamot:40:citrus'. If they are empty, tags such as 'top:Black pepper' are used instead."
+      },
+      {
+        "type": "color",
+        "id": "note_citrus",
+        "label": "Citrus",
+        "default": "#e2b34a"
+      },
+      {
+        "type": "color",
+        "id": "note_spice",
+        "label": "Spice",
+        "default": "#d9622b"
+      },
+      {
+        "type": "color",
+        "id": "note_wood",
+        "label": "Wood",
+        "default": "#9a7650"
+      },
+      {
+        "type": "color",
+        "id": "note_smoke",
+        "label": "Smoke & leather",
+        "default": "#8d8580"
+      },
+      {
+        "type": "color",
+        "id": "note_resin",
+        "label": "Resin & amber",
+        "default": "#c27a3a"
+      },
+      {
+        "type": "color",
+        "id": "note_gourmand",
+        "label": "Gourmand",
+        "default": "#c9a27a"
+      },
+      {
+        "type": "color",
+        "id": "note_green",
+        "label": "Green",
+        "default": "#7fa05a"
+      },
+      {
+        "type": "color",
+        "id": "note_herbal",
+        "label": "Herbal",
+        "default": "#6fa38e"
+      },
+      {
+        "type": "color",
+        "id": "note_musk",
+        "label": "Musk",
+        "default": "#cbbfb2"
+      },
+      {
+        "type": "color",
+        "id": "note_floral",
+        "label": "Floral",
+        "default": "#b98aa6"
+      },
+      {
+        "type": "color",
+        "id": "note_aquatic",
+        "label": "Aquatic",
+        "default": "#86a7b8"
+      },
+      {
+        "type": "color",
+        "id": "note_mineral",
+        "label": "Mineral",
+        "default": "#9aa29a"
+      }
+    ]
+  },
+  {
+    "name": "Feels",
+    "settings": [
+      {
+        "type": "color",
+        "id": "feel_cosy",
+        "label": "Cosy",
+        "default": "#c48a5c"
+      },
+      {
+        "type": "color",
+        "id": "feel_fresh",
+        "label": "Fresh",
+        "default": "#5f9a8a"
+      },
+      {
+        "type": "color",
+        "id": "feel_clean",
+        "label": "Clean",
+        "default": "#7f98a6"
+      },
+      {
+        "type": "color",
+        "id": "feel_smoky",
+        "label": "Smoky",
+        "default": "#d9622b"
+      }
+    ]
+  },
+  {
+    "name": "Social media",
+    "settings": [
+      {
+        "type": "text",
+        "id": "social_instagram",
+        "label": "Instagram URL"
+      },
+      {
+        "type": "text",
+        "id": "social_pinterest",
+        "label": "Pinterest URL"
+      }
+    ]
+  }
+]

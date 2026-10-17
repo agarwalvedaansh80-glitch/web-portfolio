@@ -1,0 +1,112 @@
+{
+  "general": {
+    "page": "Page {{ page }}",
+    "sound": "Ambient fire sound",
+    "sound_off": "Sound off",
+    "sound_on": "Sound on",
+    "email": "Your email",
+    "sign_up": "Sign up",
+    "thanks": "Thank you. The first letter is on its way.",
+    "previous": "Previous",
+    "next": "Next",
+    "shop": "Shop",
+    "pagination": "Pagination",
+    "not_found": "Snuffed out.",
+    "not_found_text": "We couldn’t find that page. The candles are still where you left them.",
+    "search": "Search",
+    "search_placeholder": "Search scents, notes or feels",
+    "no_results": "No scents match that search yet.",
+    "collections": "Collections"
+  },
+  "accessibility": {
+    "skip_to_content": "Skip to content",
+    "main_nav": "Main",
+    "menu": "Menu",
+    "breadcrumb": "Breadcrumb"
+  },
+  "cart": {
+    "title": "Your bag",
+    "bag": "Bag",
+    "close": "Close bag",
+    "subtotal": "Subtotal",
+    "checkout": "Checkout",
+    "remove": "Remove",
+    "update": "Update bag",
+    "empty": "Nothing burning yet.",
+    "pairs_well": "Pairs well with",
+    "away_from_free": "You’re [amount] away from free delivery.",
+    "free_unlocked": "Free delivery unlocked. We’ll wrap it in tissue, too."
+  },
+  "products": {
+    "product": {
+      "add": "Add",
+      "add_named": "Add {{ title }} to bag",
+      "add_to_bag": "Add to bag",
+      "added": "Added ✓",
+      "sold_out": "Sold out",
+      "view": "View",
+      "notes": "The notes",
+      "top": "Top",
+      "heart": "Heart",
+      "base": "Base",
+      "intensity": "Intensity {{ value }} of 100",
+      "intensity_label": "Note intensity",
+      "unfolds": "How it unfolds",
+      "pyramid_note": "Top notes lead for the first half hour; the heart fills the room; the base is what you notice when you walk back in.",
+      "free_over": "free UK delivery over £{{ amount }}",
+      "bottle": "Bottle",
+      "wax_weight": "Wax weight",
+      "per_bottle": "Per bottle",
+      "burn_time": "Burn time",
+      "feel": "Feel",
+      "quantity": "Quantity",
+      "decrease": "Decrease quantity",
+      "increase": "Increase quantity",
+      "quick_add": "Quick add"
+    }
+  },
+  "sections": {
+    "hero": {
+      "candle_alt": "A lit candle in an amber glass jar"
+    },
+    "shelf": {
+      "filter": "Filter by feel",
+      "all": "All",
+      "drag": "Drag",
+      "hint": "Drag the shelf",
+      "placeholder": "Your scent"
+    },
+    "pour": {
+      "temp": "Wax temp",
+      "jars": "Jars this run",
+      "day": "Day of cure"
+    },
+    "quiz": {
+      "back": "Back a step",
+      "you_chose": "You chose",
+      "match": "Your match",
+      "second": "Close second",
+      "view": "View",
+      "again": "Start again"
+    },
+    "quote": {
+      "label": "Customer review"
+    },
+    "collection": {
+      "type": "Product type",
+      "count": {
+        "one": "{{ count }} scent",
+        "other": "{{ count }} scents"
+      },
+      "sort": "Sort",
+      "view": "View",
+      "shelf": "Shelf",
+      "grid": "Grid",
+      "empty": "Nothing here yet. Try another feel."
+    },
+    "related": {
+      "all": "Shop all",
+      "label": "More products"
+    }
+  }
+}

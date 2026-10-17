@@ -1,0 +1,242 @@
+{
+  "sections": {
+    "hero": {
+      "type": "vw-smoke-hero",
+      "settings": {
+        "line_1": "Light the",
+        "italic_word": "quiet",
+        "line_2": "hours.",
+        "now_label": "Burning now · No. 01",
+        "product": "ember-hour"
+      }
+    },
+    "ticker": {
+      "type": "vw-ticker",
+      "blocks": {
+        "t0": {
+          "type": "item",
+          "settings": {
+            "text": "Poured in runs of 120"
+          }
+        },
+        "t1": {
+          "type": "item",
+          "settings": {
+            "text": "Coconut & rapeseed wax"
+          }
+        },
+        "t2": {
+          "type": "item",
+          "settings": {
+            "text": "60-hour burn"
+          }
+        },
+        "t3": {
+          "type": "item",
+          "settings": {
+            "text": "Cotton wicks, centred by hand"
+          }
+        },
+        "t4": {
+          "type": "item",
+          "settings": {
+            "text": "Free UK delivery over £50"
+          }
+        },
+        "t5": {
+          "type": "item",
+          "settings": {
+            "text": "Cured for fourteen days"
+          }
+        }
+      },
+      "block_order": [
+        "t0",
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5"
+      ]
+    },
+    "shelf": {
+      "type": "vw-feel-carousel",
+      "settings": {
+        "collection": "all",
+        "limit": 12
+      }
+    },
+    "pour": {
+      "type": "vw-pour-story",
+      "blocks": {
+        "s1": {
+          "type": "step",
+          "settings": {
+            "title": "Poured at 62°",
+            "text": "Coconut and rapeseed wax, melted slowly and poured at 62°C so the fragrance binds instead of flashing off. A run is 120 jars, never more."
+          }
+        },
+        "s2": {
+          "type": "step",
+          "settings": {
+            "title": "Centred by hand",
+            "text": "A waxed cotton wick, held dead centre by a beech bar while the jar sets. Off-centre wicks tunnel; ours burn flat to the edge."
+          }
+        },
+        "s3": {
+          "type": "step",
+          "settings": {
+            "title": "Cured for fourteen days",
+            "text": "Fragrance needs two weeks to marry the wax. We wait, so your first burn smells like the hundredth."
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3"
+      ]
+    },
+    "finder": {
+      "type": "vw-scent-finder",
+      "settings": {
+        "collection": "all"
+      },
+      "blocks": {
+        "q1": {
+          "type": "question",
+          "settings": {
+            "key": "mood",
+            "title": "How should the room <em>feel</em>?",
+            "weight": 12,
+            "label_1": "Calm",
+            "sub_1": "Slow breaths, nothing urgent",
+            "value_1": "calm",
+            "icon_1": "calm",
+            "color_1": "#8fb3c4",
+            "label_2": "Cosy",
+            "sub_2": "Blanket, mug, nowhere to be",
+            "value_2": "cosy",
+            "icon_2": "cosy",
+            "color_2": "#d39a64",
+            "label_3": "Awake",
+            "sub_3": "Windows open, kettle on",
+            "value_3": "awake",
+            "icon_3": "awake",
+            "color_3": "#e6c25a",
+            "label_4": "Moody",
+            "sub_4": "Low light, a record playing",
+            "value_4": "moody",
+            "icon_4": "moody",
+            "color_4": "#8e6f86"
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "key": "room",
+            "title": "Where will it <em>burn</em>?",
+            "weight": 10,
+            "label_1": "Living room",
+            "sub_1": "Where everyone ends up",
+            "value_1": "living",
+            "icon_1": "living",
+            "color_1": "#c48a5c",
+            "label_2": "Bedroom",
+            "sub_2": "The last hour of the day",
+            "value_2": "bedroom",
+            "icon_2": "bedroom",
+            "color_2": "#b99ab0",
+            "label_3": "Bathroom",
+            "sub_3": "Long soaks and steam",
+            "value_3": "bath",
+            "icon_3": "bath",
+            "color_3": "#8fb3c4",
+            "label_4": "Study",
+            "sub_4": "Desk, books, focus",
+            "value_4": "study",
+            "icon_4": "study",
+            "color_4": "#9a7650"
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "key": "season",
+            "title": "Which <em>season</em> are you chasing?",
+            "weight": 11,
+            "label_1": "Spring",
+            "sub_1": "Green and just washed",
+            "value_1": "spring",
+            "icon_1": "spring",
+            "color_1": "#a6c27a",
+            "label_2": "Summer",
+            "sub_2": "Salt air, open doors",
+            "value_2": "summer",
+            "icon_2": "summer",
+            "color_2": "#e6c25a",
+            "label_3": "Autumn",
+            "sub_3": "Woodsmoke and wool",
+            "value_3": "autumn",
+            "icon_3": "autumn",
+            "color_3": "#d9622b",
+            "label_4": "Winter",
+            "sub_4": "Frost outside, fire in",
+            "value_4": "winter",
+            "icon_4": "winter",
+            "color_4": "#a9c2cf"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3"
+      ]
+    },
+    "promise": {
+      "type": "vw-promise",
+      "blocks": {
+        "p1": {
+          "type": "promise",
+          "settings": {
+            "figure": "60 h",
+            "text": "From a 300 g jar, burnt in three-hour sittings. We test every run before it ships."
+          }
+        },
+        "p2": {
+          "type": "promise",
+          "settings": {
+            "figure": "0 %",
+            "text": "Paraffin. Coconut and rapeseed wax only, with cotton wicks and phthalate-free fragrance."
+          }
+        },
+        "p3": {
+          "type": "promise",
+          "settings": {
+            "figure": "£8",
+            "text": "Refill pouches for every candle. Keep the jar and pour it again."
+          }
+        }
+      },
+      "block_order": [
+        "p1",
+        "p2",
+        "p3"
+      ]
+    },
+    "quote": {
+      "type": "vw-quote",
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero",
+    "ticker",
+    "shelf",
+    "pour",
+    "finder",
+    "promise",
+    "quote"
+  ]
+}

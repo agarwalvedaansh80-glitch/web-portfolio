@@ -1,0 +1,16 @@
+<section class="quote" aria-label="{{ 'sections.quote.label' | t }}">
+  <blockquote>{{ section.settings.quote }}</blockquote>
+  {%- if section.settings.author != blank -%}<p>{{ section.settings.author | escape }}</p>{%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Quote",
+  "tag": "div",
+  "settings": [
+    { "type": "inline_richtext", "id": "quote", "label": "Quote", "default": "“The only candle my partner has never asked me to <em>blow out</em>.”", "info": "Words light up one by one as the visitor scrolls." },
+    { "type": "text", "id": "author", "label": "Author", "default": "Hannah, Bristol · on Night Reading" }
+  ],
+  "presets": [{ "name": "Quote" }]
+}
+{% endschema %}

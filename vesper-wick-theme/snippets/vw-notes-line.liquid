@@ -1,0 +1,19 @@
+{%- comment -%} One-line summary of a product's first notes, e.g. "Smoked birch, black pepper, vetiver". Param: product {%- endcomment -%}
+{%- liquid
+  assign raw = product.metafields.custom.heart_notes.value | append: ',' | append: product.metafields.custom.top_notes.value | append: ',' | append: product.metafields.custom.base_notes.value
+  assign items = raw | split: ','
+  assign out = ''
+  assign c = 0
+  for item in items
+    assign nm = item | split: ':' | first | strip
+    if nm != blank and c < 3
+      if c > 0
+        assign out = out | append: ', '
+        assign nm = nm | downcase
+      endif
+      assign out = out | append: nm
+      assign c = c | plus: 1
+    endif
+  endfor
+  echo out | escape
+-%}

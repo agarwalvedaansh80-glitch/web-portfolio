@@ -1,8 +1,11 @@
 {%- comment -%} Halfstep: fonts, styles, libraries and settings for the hs-* sections {%- endcomment -%}
+<script>try{if(sessionStorage.getItem('hs-wipe'))document.documentElement.classList.add('is-wiping')}catch(e){}</script>
 {{ 'hs-archivo.woff2' | asset_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: true }}
+{{ 'hs-jbmono.woff2' | asset_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: true }}
 <style>
   @font-face{font-family:"Archivo";src:url("{{ 'hs-archivo.woff2' | asset_url }}") format("woff2-variations");font-weight:100 900;font-stretch:62% 125%;font-display:swap}
-  :root{--concrete:{{ settings.hs_concrete }};--ink:{{ settings.hs_ink }};}
+  @font-face{font-family:"JB Mono";src:url("{{ 'hs-jbmono.woff2' | asset_url }}") format("woff2-variations");font-weight:100 800;font-display:swap}
+  :root{--sheet:{{ settings.hs_concrete }};--ink:{{ settings.hs_ink }};}
 </style>
 {{ 'hs-theme.css' | asset_url | stylesheet_tag }}
 <script type="importmap">{"imports":{"three":"{{ 'hs-three.module.min.js' | asset_url }}"}}</script>
@@ -19,23 +22,27 @@
     currency: {{ cart.currency.iso_code | json }},
     locale: {{ request.locale.iso_code | json }},
     freeShip: {{ settings.hs_free_shipping | times: 100 | json }},
-    routes: { add: {{ routes.cart_add_url | json }}, change: {{ routes.cart_change_url | json }}, cart: {{ routes.cart_url | json }} },
+    routes: { add: {{ routes.cart_add_url | json }}, change: {{ routes.cart_change_url | json }}, cart: {{ routes.cart_url | json }}, root: {{ routes.root_url | json }} },
     colours: [
       {%- for line in colour_lines -%}
         {%- assign parts = line | strip | split: '|' -%}
         {%- if parts.size >= 4 -%}
-          { name: {{ parts[0] | strip | json }}, handle: {{ parts[0] | strip | handleize | json }}, sw: {{ parts[1] | strip | json }}, cw: {{ parts[2] | strip | json }}, ink: {{ parts[3] | strip | json }}, soon: {% if parts[4] and parts[4] contains 'soon' %}true{% else %}false{% endif %} },
+          { name: {{ parts[0] | strip | json }}, handle: {{ parts[0] | strip | handleize | json }}, sw: {{ parts[1] | strip | json }}, acid: {{ parts[2] | strip | json }}, ink: {{ parts[3] | strip | json }}, soon: {% if parts[4] and parts[4] contains 'soon' %}true{% else %}false{% endif %}, desc: {{ parts[5] | default: '' | strip | json }} },
         {%- endif -%}
       {%- endfor -%}
     ],
     t: {
-      empty: "Your bag is empty.", less: "Remove one", more: "Add one",
+      empty: "Bag's empty", emptyText: "Pick a colour and add a pair.", less: "Remove one", more: "Add one",
       shipIdle: "Free shipping on orders over [amount]", shipLeft: "[amount] away from free shipping", shipDone: "Free shipping unlocked",
-      upsellTitle: {{ settings.hs_upsell_title | json }}, upsellText: {{ settings.hs_upsell_text | json }}, upsellAdd: "Add [size]",
-      soon: "coming soon", soldOut: "Sold out", inStock: "In stock", pickSize: "Pick a size", sizeFirst: "Pick a size first.",
-      unavailable: "That size is sold out in this colour.", drag: "Drag", spin: "Spin in 3D", showPhoto: "Show photo",
-      fitTrue: "Runs true to size, so your usual size is the one.", fitUp: "Runs true. We went half a size up for a roomier fit, then rounded to the nearest whole size.", fitDown: "Runs true. For a snug fit, go with your usual size rounded down.",
-      notified: "Done. We'll email you when it goes live."
+      upsellTitle: {{ settings.hs_upsell_title | default: '' | json }}, upsellText: {{ settings.hs_upsell_text | default: '' | json }}, upsellBadge: {{ settings.hs_upsell_badge | default: '' | json }}, upsellAdd: "Add [size]",
+      soon: "drops soon", soldOut: "Sold out", inStock: "In stock", pickSize: "Pick a size", sizeFirst: "Pick a size first.",
+      unavailable: "[size] is sold out in [colour]", addSize: "Add [size] to bag", addPrice: "Add to bag, [price]",
+      fitTrue: "Drift runs true to size, and a [cm] cm foot is a [size].",
+      fitWide: "A [cm] cm foot is a [base]. Wide feet get half a size more, rounded to a whole size: [size].",
+      fitNarrow: "A [cm] cm foot sits at [size]. The knit hugs narrow feet, so there's no need to size down further.",
+      emailMissing: "Add your email first, like name@example.com.", emailBad: "\"[email]\" isn't a full email. Try name@example.com.",
+      notified: "You're on the list. One email, ten minutes before it goes live.", notifiedBtn: "On the list",
+      stepStart: "Assembled. Keep scrolling.", stepPart: "Part [n] of [total]: [name]"
     }
   };
 </script>

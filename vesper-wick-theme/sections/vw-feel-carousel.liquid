@@ -1,0 +1,59 @@
+{%- liquid
+  assign coll = section.settings.collection
+  if coll == blank
+    assign coll = collections.all
+  endif
+  assign feels = 'Cosy,Fresh,Clean,Smoky' | split: ','
+-%}
+<section class="shelf bone" id="shop" aria-labelledby="shelf-h-{{ section.id }}" data-shelf>
+  <div class="shelf-head wrap">
+    <div>
+      {%- if section.settings.label != blank -%}<span class="label" style="display:block;margin-bottom:18px">{{ section.settings.label | escape }}</span>{%- endif -%}
+      <h2 class="h2 split" id="shelf-h-{{ section.id }}">{{ section.settings.heading }}</h2>
+    </div>
+    <div style="display:grid;gap:18px;justify-items:start">
+      {%- if section.settings.text != blank -%}<p class="lede">{{ section.settings.text | escape }}</p>{%- endif -%}
+      <div class="feel-tabs" role="group" aria-label="{{ 'sections.shelf.filter' | t }}">
+        <button class="feel-tab" type="button" data-feel="All" aria-pressed="true">{{ 'sections.shelf.all' | t }}<sup>{{ coll.products_count }}</sup></button>
+        {%- for f in feels -%}
+          {%- assign fk = 'feel_' | append: f | downcase -%}
+          <button class="feel-tab" type="button" data-feel="{{ f }}" aria-pressed="false"><span class="feel-dot" style="--fc: {{ settings[fk] }}"></span>{{ f }}</button>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+  <div class="drag" data-cursor="{{ 'sections.shelf.drag' | t }}" aria-roledescription="carousel" aria-label="{{ coll.title | escape }}">
+    <div class="drag-track">
+      {%- for product in coll.products limit: section.settings.limit -%}
+        {% render 'vw-product-card', product: product, index: forloop.index %}
+      {%- else -%}
+        {%- for i in (1..4) -%}
+          <article class="card" style="--accent: {{ settings.color_ember }}"><div class="card-media">{{ 'product-1' | placeholder_svg_tag: 'card-ph' }}</div><div class="card-body"><h3 class="card-name">{{ 'sections.shelf.placeholder' | t }}</h3></div></article>
+        {%- endfor -%}
+      {%- endfor -%}
+    </div>
+  </div>
+  <div class="drag-ui">
+    <span class="shelf-hint">{{ 'sections.shelf.hint' | t }}</span>
+    <div class="drag-bar"><i></i></div>
+    <div class="drag-btns">
+      <button class="circ" type="button" data-dir="-1" aria-label="{{ 'general.previous' | t }}"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false"><path d="M10 3L5 8l5 5"/></svg></button>
+      <button class="circ" type="button" data-dir="1" aria-label="{{ 'general.next' | t }}"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false"><path d="M6 3l5 5-5 5"/></svg></button>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Feel carousel",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Label", "default": "The collection · 8 scents" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Shop by <em>feel</em>, not by notes.", "info": "Italic text is shown in the ember accent." },
+    { "type": "text", "id": "text", "label": "Text", "default": "Choose the mood first. Every scent is filed under the way it makes a room feel." },
+    { "type": "collection", "id": "collection", "label": "Collection" },
+    { "type": "range", "id": "limit", "label": "Products to show", "min": 4, "max": 24, "step": 1, "default": 12 }
+  ],
+  "presets": [{ "name": "Feel carousel" }]
+}
+{% endschema %}

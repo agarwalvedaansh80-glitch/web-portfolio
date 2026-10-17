@@ -1,0 +1,14 @@
+<div class="page-wrap">
+  <h1>{{ blog.title | escape }}</h1>
+  {%- paginate blog.articles by 12 -%}
+    <div style="display:grid;gap:40px;max-width:760px">
+      {%- for article in blog.articles -%}
+        <article><h2 style="font:400 38px/1.05 var(--serif);margin:0 0 8px"><a href="{{ article.url }}">{{ article.title | escape }}</a></h2><p class="rte" style="color:#6b6157">{{ article.excerpt_or_content | strip_html | truncatewords: 30 }}</p></article>
+      {%- endfor -%}
+    </div>
+  {%- endpaginate -%}
+</div>
+
+{% schema %}
+{ "name": "Blog", "tag": "section", "settings": [] }
+{% endschema %}

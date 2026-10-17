@@ -1,0 +1,10 @@
+<div class="page-wrap">
+  <h1>{{ 'general.collections' | t }}</h1>
+  <ul class="rte" style="list-style:none;padding:0;display:grid;gap:10px">
+    {%- for c in collections -%}<li><a class="link" style="font:400 40px/1.1 var(--serif)" href="{{ c.url }}">{{ c.title | escape }}</a></li>{%- endfor -%}
+  </ul>
+</div>
+
+{% schema %}
+{ "name": "Collections list", "tag": "section", "settings": [] }
+{% endschema %}

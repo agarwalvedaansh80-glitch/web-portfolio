@@ -1,0 +1,48 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "settings": {
+        "show_pyramid": true
+      },
+      "blocks": {
+        "a1": {
+          "type": "accordion",
+          "settings": {
+            "title": "Burn & care",
+            "text": "<p>Let the first burn reach the edge of the jar (about two hours). Trim the wick to 5 mm before each light. Stop when 1 cm of wax is left.</p>"
+          }
+        },
+        "a2": {
+          "type": "accordion",
+          "settings": {
+            "title": "What it is made of",
+            "text": "<p>Coconut and rapeseed wax, a cotton wick and fine fragrance, poured into a reusable glass jar. Vegan, no paraffin.</p>"
+          }
+        },
+        "a3": {
+          "type": "accordion",
+          "settings": {
+            "title": "Delivery & returns",
+            "text": "<p>Dispatched in 2 working days. Free UK delivery over £50, otherwise £3.95. Unlit candles can be returned within 30 days.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "a1",
+        "a2",
+        "a3"
+      ]
+    },
+    "related": {
+      "type": "vw-related",
+      "settings": {
+        "limit": 8
+      }
+    }
+  },
+  "order": [
+    "main",
+    "related"
+  ]
+}

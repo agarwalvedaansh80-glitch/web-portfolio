@@ -1,0 +1,20 @@
+<div class="ticker" aria-hidden="true"><div class="ticker-track">
+  {%- for i in (1..2) -%}
+    {%- for block in section.blocks -%}<span {{ block.shopify_attributes }}>{{ block.settings.text | escape }}</span>{%- endfor -%}
+  {%- endfor -%}
+</div></div>
+
+{% schema %}
+{
+  "name": "Ticker",
+  "tag": "section",
+  "max_blocks": 8,
+  "blocks": [{ "type": "item", "name": "Item", "settings": [{ "type": "text", "id": "text", "label": "Text", "default": "Poured in runs of 120" }] }],
+  "presets": [{ "name": "Ticker", "blocks": [
+    { "type": "item", "settings": { "text": "Poured in runs of 120" } },
+    { "type": "item", "settings": { "text": "Coconut & rapeseed wax" } },
+    { "type": "item", "settings": { "text": "60-hour burn" } },
+    { "type": "item", "settings": { "text": "Free UK delivery over £50" } }
+  ] }]
+}
+{% endschema %}

@@ -1,30 +1,40 @@
+{%- assign word = section.settings.word | upcase | slice: 0, 8 -%}
 <section class="drop hs-drop" id="drop" aria-labelledby="drop-h-{{ section.id }}" data-date="{{ section.settings.date | escape }}">
-  <div>
-    <p class="drop-word display" aria-hidden="true">{{ section.settings.word | upcase }}</p>
-    <h2 class="h2" id="drop-h-{{ section.id }}" style="font-size:clamp(26px,2.6vw,40px)">{{ section.settings.heading }}</h2>
-    <div class="countdown" role="timer" aria-label="Time until the drop">
-      <div><b>00</b><small>days</small></div><div><b>00</b><small>hours</small></div><div><b>00</b><small>minutes</small></div><div><b>00</b><small>seconds</small></div>
+  <div class="board-wrap">
+    <div class="board" role="timer" aria-label="{{ section.settings.timer_label | escape }}">
+      <div class="board-row board-word" data-word="{{ word | escape }}"></div>
+      <div class="board-row board-time"></div>
+      <div class="board-labels"><span>Days</span><span>Hours</span><span>Min</span><span>Sec</span></div>
     </div>
-    {%- form 'customer', class: 'notify', id: 'hs-drop-form' -%}
-      <input type="hidden" name="contact[tags]" value="newsletter,{{ section.settings.word | handleize }}-drop">
+    <img class="drop-shoe" src="{{ 'hs-' | append: section.settings.colour_handle | append: '-side.webp' | asset_url }}" alt="{{ section.settings.image_alt | escape }}" loading="lazy" width="1400" height="827">
+  </div>
+  <div class="drop-copy">
+    <h2 class="h2" id="drop-h-{{ section.id }}">{{ section.settings.heading }}</h2>
+    {%- if section.settings.text != blank -%}<p>{{ section.settings.text }}</p>{%- endif -%}
+    {%- form 'customer', class: 'notify', id: 'hs-drop-form', novalidate: 'novalidate' -%}
+      <input type="hidden" name="contact[tags]" value="newsletter,{{ word | handleize }}-drop">
       <label class="visually-hidden" for="hs-drop-email">Email</label>
-      <input id="hs-drop-email" type="email" name="contact[email]" placeholder="Your email" autocomplete="email" required>
-      <button class="btn" type="submit" data-magnetic>{{ section.settings.button }}</button>
-      <p class="notify-msg" aria-live="polite">{%- if form.posted_successfully? -%}Done. We'll email you when it goes live.{%- elsif form.errors -%}{{ form.errors | default_errors }}{%- endif -%}</p>
+      <input id="hs-drop-email" type="email" name="contact[email]" placeholder="{{ section.settings.placeholder | escape }}" autocomplete="email">
+      <button class="btn btn--ink" type="submit" data-magnetic=".2" data-cursor="SEND">{{ section.settings.button }}</button>
+      <p class="notify-msg" aria-live="polite" data-posted="{% if form.posted_successfully? %}true{% endif %}"></p>
     {%- endform -%}
   </div>
-  <div class="drop-img"><img src="{{ 'hs-' | append: section.settings.colour_handle | append: '-side2.webp' | asset_url }}" alt="" loading="lazy" width="1400" height="1400"></div>
+  <canvas class="confetti" aria-hidden="true"></canvas>
 </section>
 
 {% schema %}
 {
   "name": "Halfstep next drop",
   "settings": [
-    { "type": "text", "id": "word", "label": "Colour name (big word)", "default": "Ember" },
-    { "type": "text", "id": "colour_handle", "label": "Colour handle for the image", "default": "ember" },
-    { "type": "text", "id": "heading", "label": "Heading", "default": "Lands Saturday, 10:00 IST" },
+    { "type": "text", "id": "word", "label": "Word on the split-flap board (up to 8 letters)", "default": "Ember" },
+    { "type": "text", "id": "colour_handle", "label": "Colour handle for the shoe image", "default": "ember" },
+    { "type": "text", "id": "image_alt", "label": "Image alt text", "default": "Drift Knit in Ember, side view" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Ember lands Saturday" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Burnt orange knit, black stripes. 400 pairs at 10:00 IST. We send one email ten minutes before, and nothing else." },
     { "type": "text", "id": "date", "label": "Drop date and time (ISO, e.g. 2026-10-24T10:00:00+05:30)", "default": "2026-10-24T10:00:00+05:30" },
-    { "type": "text", "id": "button", "label": "Button", "default": "Get a reminder" }
+    { "type": "text", "id": "timer_label", "label": "Timer label (screen readers)", "default": "Time until Ember goes live" },
+    { "type": "text", "id": "placeholder", "label": "Email placeholder", "default": "you@example.com" },
+    { "type": "text", "id": "button", "label": "Button", "default": "Remind me" }
   ],
   "presets": [{ "name": "Halfstep next drop" }]
 }

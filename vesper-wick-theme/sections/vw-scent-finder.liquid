@@ -1,0 +1,578 @@
+{%- liquid
+  assign coll = section.settings.collection
+  if coll == blank
+    assign coll = collections.all
+  endif
+-%}
+<section class="quiz bone" id="finder" aria-labelledby="quiz-h-{{ section.id }}" data-quiz data-result-label="{{ section.settings.result_label | escape }}">
+  <div class="quiz-head">
+    <div>
+      {%- if section.settings.label != blank -%}<span class="label" style="display:block;margin-bottom:18px">{{ section.settings.label | escape }}</span>{%- endif -%}
+      <h2 class="h2 split" id="quiz-h-{{ section.id }}">{{ section.settings.heading }}</h2>
+    </div>
+    <div style="display:grid;gap:16px;justify-items:end">
+      {%- if section.settings.text != blank -%}<p class="lede" style="text-align:right">{{ section.settings.text | escape }}</p>{%- endif -%}
+      <div class="quiz-prog" aria-live="polite">{%- for block in section.blocks -%}<i></i>{%- endfor -%}<b>01 / {{ section.blocks.size | prepend: '0' }}</b></div>
+    </div>
+  </div>
+  <div class="quiz-stage">
+    {%- for block in section.blocks -%}
+      <div class="qstep" data-q="{{ block.settings.key }}" data-weight="{{ block.settings.weight | divided_by: 10.0 }}" {{ block.shopify_attributes }}>
+        <h3>{{ block.settings.title }}</h3>
+        <div class="choices">
+          {%- for i in (1..4) -%}
+            {%- assign lk = 'label_' | append: i -%}{%- assign sk = 'sub_' | append: i -%}{%- assign vk = 'value_' | append: i -%}{%- assign ik = 'icon_' | append: i -%}{%- assign ck = 'color_' | append: i -%}
+            {%- if block.settings[lk] != blank -%}
+              <button class="choice" type="button" data-v="{{ block.settings[vk] | default: block.settings[lk] | handleize }}" style="--cc: {{ block.settings[ck] }}" aria-pressed="false">
+                <span class="k">{{ 'ABCD' | slice: forloop.index0 }}</span>
+                {% render 'vw-quiz-icon', name: block.settings[ik] %}
+                <span><b>{{ block.settings[lk] | escape }}</b>{%- if block.settings[sk] != blank -%}<small>{{ block.settings[sk] | escape }}</small>{%- endif -%}</span>
+              </button>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endfor -%}
+    <div class="qstep qresult" data-q="result" aria-live="polite"></div>
+  </div>
+  <button class="quiz-back" type="button">← {{ 'sections.quiz.back' | t }}</button>
+  <script type="application/json" data-quiz-products>
+    [
+    {%- for p in coll.products limit: 40 -%}
+      {%- liquid
+        assign v = p.selected_or_first_available_variant
+        capture feel
+          render 'vw-feel', product: p
+        endcapture
+        capture pyramid
+          render 'vw-notes', product: p, style: 'pyramid', accent: p.metafields.custom.accent_color.value
+        endcapture
+      -%}
+      {
+        "id": {{ p.id | json }},
+        "variant": {{ v.id | json }},
+        "available": {{ v.available | json }},
+        "title": {{ p.title | json }},
+        "url": {{ p.url | json }},
+        "price": {{ v.price | money | json }},
+        "image": {{ p.featured_image | image_url: width: 900 | json }},
+        "accent": {{ p.metafields.custom.accent_color.value | default: settings.color_ember | json }},
+        "feel": {{ feel | strip | json }},
+        "number": {{ p.metafields.custom.scent_number.value | json }},
+        "tagline": {{ p.metafields.custom.tagline.value | json }},
+        "profile": {{ p.metafields.custom.quiz_profile.value | json }},
+        "tags": {{ p.tags | json }},
+        "pyramid": {{ pyramid | strip_newlines | json }},
+        "heart": {{ p.metafields.custom.heart_notes.value | json }},
+        "base": {{ p.metafields.custom.base_notes.value | json }}
+      }{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+    ]
+  </script>
+</section>
+
+{% schema %}
+{
+  "name": "Scent finder quiz",
+  "tag": "div",
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label",
+      "default": "Find your scent · 30 seconds"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Three questions. One <em>candle</em>."
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text",
+      "default": "No notes to decode. Tell us the mood, the room and the season, and we’ll match you to one of eight."
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Products to match from"
+    },
+    {
+      "type": "paragraph",
+      "content": "Results come from each product's custom.quiz_profile metafield (JSON such as {\"mood\":{\"moody\":3},\"room\":{\"living\":3},\"season\":{\"winter\":3}}). Products without it are scored from tags like mood:moody, room:living and season:winter."
+    },
+    {
+      "type": "text",
+      "id": "result_label",
+      "label": "Result label",
+      "default": "Your scent is"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Question",
+      "settings": [
+        {
+          "type": "select",
+          "id": "key",
+          "label": "Question type",
+          "options": [
+            {
+              "value": "mood",
+              "label": "Mood"
+            },
+            {
+              "value": "room",
+              "label": "Room"
+            },
+            {
+              "value": "season",
+              "label": "Season"
+            }
+          ],
+          "default": "mood"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "title",
+          "label": "Question",
+          "default": "How should the room <em>feel</em>?"
+        },
+        {
+          "type": "range",
+          "id": "weight",
+          "label": "Weight in the match",
+          "min": 5,
+          "max": 20,
+          "step": 1,
+          "default": 10,
+          "info": "10 = normal. Raise it to let this answer count for more."
+        },
+        {
+          "type": "header",
+          "content": "Choice 1"
+        },
+        {
+          "type": "text",
+          "id": "label_1",
+          "label": "Label"
+        },
+        {
+          "type": "text",
+          "id": "sub_1",
+          "label": "Hint"
+        },
+        {
+          "type": "text",
+          "id": "value_1",
+          "label": "Value",
+          "info": "Matched against product tags such as mood:moody, or the custom.quiz_profile metafield."
+        },
+        {
+          "type": "select",
+          "id": "icon_1",
+          "label": "Animated icon",
+          "options": [
+            {
+              "value": "calm",
+              "label": "Calm"
+            },
+            {
+              "value": "cosy",
+              "label": "Cosy"
+            },
+            {
+              "value": "awake",
+              "label": "Awake"
+            },
+            {
+              "value": "moody",
+              "label": "Moody"
+            },
+            {
+              "value": "living",
+              "label": "Living"
+            },
+            {
+              "value": "bedroom",
+              "label": "Bedroom"
+            },
+            {
+              "value": "bath",
+              "label": "Bath"
+            },
+            {
+              "value": "study",
+              "label": "Study"
+            },
+            {
+              "value": "spring",
+              "label": "Spring"
+            },
+            {
+              "value": "summer",
+              "label": "Summer"
+            },
+            {
+              "value": "autumn",
+              "label": "Autumn"
+            },
+            {
+              "value": "winter",
+              "label": "Winter"
+            }
+          ],
+          "default": "calm"
+        },
+        {
+          "type": "color",
+          "id": "color_1",
+          "label": "Aura colour",
+          "default": "#c48a5c"
+        },
+        {
+          "type": "header",
+          "content": "Choice 2"
+        },
+        {
+          "type": "text",
+          "id": "label_2",
+          "label": "Label"
+        },
+        {
+          "type": "text",
+          "id": "sub_2",
+          "label": "Hint"
+        },
+        {
+          "type": "text",
+          "id": "value_2",
+          "label": "Value",
+          "info": "Matched against product tags such as mood:moody, or the custom.quiz_profile metafield."
+        },
+        {
+          "type": "select",
+          "id": "icon_2",
+          "label": "Animated icon",
+          "options": [
+            {
+              "value": "calm",
+              "label": "Calm"
+            },
+            {
+              "value": "cosy",
+              "label": "Cosy"
+            },
+            {
+              "value": "awake",
+              "label": "Awake"
+            },
+            {
+              "value": "moody",
+              "label": "Moody"
+            },
+            {
+              "value": "living",
+              "label": "Living"
+            },
+            {
+              "value": "bedroom",
+              "label": "Bedroom"
+            },
+            {
+              "value": "bath",
+              "label": "Bath"
+            },
+            {
+              "value": "study",
+              "label": "Study"
+            },
+            {
+              "value": "spring",
+              "label": "Spring"
+            },
+            {
+              "value": "summer",
+              "label": "Summer"
+            },
+            {
+              "value": "autumn",
+              "label": "Autumn"
+            },
+            {
+              "value": "winter",
+              "label": "Winter"
+            }
+          ],
+          "default": "cosy"
+        },
+        {
+          "type": "color",
+          "id": "color_2",
+          "label": "Aura colour",
+          "default": "#c48a5c"
+        },
+        {
+          "type": "header",
+          "content": "Choice 3"
+        },
+        {
+          "type": "text",
+          "id": "label_3",
+          "label": "Label"
+        },
+        {
+          "type": "text",
+          "id": "sub_3",
+          "label": "Hint"
+        },
+        {
+          "type": "text",
+          "id": "value_3",
+          "label": "Value",
+          "info": "Matched against product tags such as mood:moody, or the custom.quiz_profile metafield."
+        },
+        {
+          "type": "select",
+          "id": "icon_3",
+          "label": "Animated icon",
+          "options": [
+            {
+              "value": "calm",
+              "label": "Calm"
+            },
+            {
+              "value": "cosy",
+              "label": "Cosy"
+            },
+            {
+              "value": "awake",
+              "label": "Awake"
+            },
+            {
+              "value": "moody",
+              "label": "Moody"
+            },
+            {
+              "value": "living",
+              "label": "Living"
+            },
+            {
+              "value": "bedroom",
+              "label": "Bedroom"
+            },
+            {
+              "value": "bath",
+              "label": "Bath"
+            },
+            {
+              "value": "study",
+              "label": "Study"
+            },
+            {
+              "value": "spring",
+              "label": "Spring"
+            },
+            {
+              "value": "summer",
+              "label": "Summer"
+            },
+            {
+              "value": "autumn",
+              "label": "Autumn"
+            },
+            {
+              "value": "winter",
+              "label": "Winter"
+            }
+          ],
+          "default": "awake"
+        },
+        {
+          "type": "color",
+          "id": "color_3",
+          "label": "Aura colour",
+          "default": "#c48a5c"
+        },
+        {
+          "type": "header",
+          "content": "Choice 4"
+        },
+        {
+          "type": "text",
+          "id": "label_4",
+          "label": "Label"
+        },
+        {
+          "type": "text",
+          "id": "sub_4",
+          "label": "Hint"
+        },
+        {
+          "type": "text",
+          "id": "value_4",
+          "label": "Value",
+          "info": "Matched against product tags such as mood:moody, or the custom.quiz_profile metafield."
+        },
+        {
+          "type": "select",
+          "id": "icon_4",
+          "label": "Animated icon",
+          "options": [
+            {
+              "value": "calm",
+              "label": "Calm"
+            },
+            {
+              "value": "cosy",
+              "label": "Cosy"
+            },
+            {
+              "value": "awake",
+              "label": "Awake"
+            },
+            {
+              "value": "moody",
+              "label": "Moody"
+            },
+            {
+              "value": "living",
+              "label": "Living"
+            },
+            {
+              "value": "bedroom",
+              "label": "Bedroom"
+            },
+            {
+              "value": "bath",
+              "label": "Bath"
+            },
+            {
+              "value": "study",
+              "label": "Study"
+            },
+            {
+              "value": "spring",
+              "label": "Spring"
+            },
+            {
+              "value": "summer",
+              "label": "Summer"
+            },
+            {
+              "value": "autumn",
+              "label": "Autumn"
+            },
+            {
+              "value": "winter",
+              "label": "Winter"
+            }
+          ],
+          "default": "moody"
+        },
+        {
+          "type": "color",
+          "id": "color_4",
+          "label": "Aura colour",
+          "default": "#c48a5c"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Scent finder quiz",
+      "blocks": [
+        {
+          "type": "question",
+          "settings": {
+            "key": "mood",
+            "title": "How should the room <em>feel</em>?",
+            "weight": 12,
+            "label_1": "Calm",
+            "sub_1": "Slow breaths, nothing urgent",
+            "value_1": "calm",
+            "icon_1": "calm",
+            "color_1": "#8fb3c4",
+            "label_2": "Cosy",
+            "sub_2": "Blanket, mug, nowhere to be",
+            "value_2": "cosy",
+            "icon_2": "cosy",
+            "color_2": "#d39a64",
+            "label_3": "Awake",
+            "sub_3": "Windows open, kettle on",
+            "value_3": "awake",
+            "icon_3": "awake",
+            "color_3": "#e6c25a",
+            "label_4": "Moody",
+            "sub_4": "Low light, a record playing",
+            "value_4": "moody",
+            "icon_4": "moody",
+            "color_4": "#8e6f86"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "key": "room",
+            "title": "Where will it <em>burn</em>?",
+            "weight": 10,
+            "label_1": "Living room",
+            "sub_1": "Where everyone ends up",
+            "value_1": "living",
+            "icon_1": "living",
+            "color_1": "#c48a5c",
+            "label_2": "Bedroom",
+            "sub_2": "The last hour of the day",
+            "value_2": "bedroom",
+            "icon_2": "bedroom",
+            "color_2": "#b99ab0",
+            "label_3": "Bathroom",
+            "sub_3": "Long soaks and steam",
+            "value_3": "bath",
+            "icon_3": "bath",
+            "color_3": "#8fb3c4",
+            "label_4": "Study",
+            "sub_4": "Desk, books, focus",
+            "value_4": "study",
+            "icon_4": "study",
+            "color_4": "#9a7650"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "key": "season",
+            "title": "Which <em>season</em> are you chasing?",
+            "weight": 11,
+            "label_1": "Spring",
+            "sub_1": "Green and just washed",
+            "value_1": "spring",
+            "icon_1": "spring",
+            "color_1": "#a6c27a",
+            "label_2": "Summer",
+            "sub_2": "Salt air, open doors",
+            "value_2": "summer",
+            "icon_2": "summer",
+            "color_2": "#e6c25a",
+            "label_3": "Autumn",
+            "sub_3": "Woodsmoke and wool",
+            "value_3": "autumn",
+            "icon_3": "autumn",
+            "color_3": "#d9622b",
+            "label_4": "Winter",
+            "sub_4": "Frost outside, fire in",
+            "value_4": "winter",
+            "icon_4": "winter",
+            "color_4": "#a9c2cf"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

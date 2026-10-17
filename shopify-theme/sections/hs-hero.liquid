@@ -2,24 +2,32 @@
   assign p = section.settings.product | default: all_products['drift-knit']
   assign word = section.settings.word | upcase
 -%}
-<section class="hero hs-hero" aria-label="{{ p.title | escape }}" data-size="{{ section.settings.quick_size | escape }}">
+<section class="hero hs-hero" aria-labelledby="hero-h-{{ section.id }}" data-size="{{ section.settings.quick_size | escape }}" data-word="{{ word | escape }}">
   <script type="application/json" data-hs-product>{{ p | json }}</script>
-  <p class="hero-word display" aria-hidden="true">{%- for i in (1..word.size) -%}{%- assign idx = forloop.index0 -%}<span>{{ word | slice: idx }}</span>{%- endfor -%}</p>
-  <div class="hero-canvas" data-cursor="Drag"></div>
-  <div class="hero-ui">
-    <div class="hero-meta">
-      <h1>{{ section.settings.heading | default: p.title }}</h1>
-      <p>{{ section.settings.text }}</p>
-      <div class="swatches" role="group" aria-label="Colour"></div>
-      <p class="cw-name" data-cw-name aria-live="polite"></p>
+  <div class="hero-stage" data-cursor="DRAG" tabindex="0" role="img" aria-label="{{ p.title | escape }} in 3D. Drag, or use the arrow keys, to spin it."></div>
+  <div class="hero-title sticker">
+    <h1 id="hero-h-{{ section.id }}">{{ section.settings.heading | default: p.title }}</h1>
+    {%- if section.settings.text != blank -%}<p>{{ section.settings.text }}</p>{%- endif -%}
+  </div>
+  <div class="hero-price sticker sticker--acid" aria-hidden="true"><b class="num">{{ p.price | money_without_trailing_zeros }}</b><span>{{ section.settings.price_note }}</span></div>
+  {%- if section.settings.hint != blank -%}<p class="hero-hint" aria-hidden="true"><span>{{ section.settings.hint }}</span></p>{%- endif -%}
+  <div class="hero-bar">
+    <div class="hb-colour">
+      <span class="label">{{ section.settings.colour_label }}</span>
+      <p class="hb-name" data-cw-name aria-live="polite"></p>
+      <p class="hb-desc" data-cw-desc></p>
     </div>
-    <div class="hero-buy">
-      <span class="price">{{ p.price | money }}</span>
-      <button class="btn add" type="button" data-magnetic><span class="btn-label">Add to bag · {{ section.settings.quick_size }}</span><span class="btn-done" aria-hidden="true">Added ✓</span></button>
-      <a class="btn btn--ghost" href="{{ p.url }}" data-magnetic>Choose size</a>
+    <div class="hb-swatches swatches" role="group" aria-label="{{ section.settings.colour_label | escape }}"></div>
+    <div class="hb-buy">
+      <button class="btn btn--acid add-quick" type="button" data-magnetic data-cursor="ADD"><span class="btn-label">{{ section.settings.add_label }}, {{ section.settings.quick_size }}</span><span class="btn-done" aria-hidden="true">{{ section.settings.added_label }}</span></button>
+      <a class="btn btn--line" href="{{ p.url }}" data-magnetic data-cursor="VIEW" data-wipe>{{ section.settings.size_label }}</a>
     </div>
   </div>
-  <span class="scroll-hint" aria-hidden="true"></span>
+  <div class="sticky-atc" aria-hidden="true">
+    <img src="{{ 'hs-night-shift-q34.webp' | asset_url }}" alt="" width="56" height="45">
+    <div class="t"><b>{{ p.title }}</b><small><span data-cw-name></span>, {{ section.settings.quick_size }}</small></div>
+    <button class="btn btn--acid" type="button" tabindex="-1" data-cursor="ADD"><span class="btn-label">{{ section.settings.add_short }}</span><span class="btn-done" aria-hidden="true">{{ section.settings.added_label }}</span></button>
+  </div>
 </section>
 
 {% schema %}
@@ -27,10 +35,17 @@
   "name": "Halfstep 3D hero",
   "settings": [
     { "type": "product", "id": "product", "label": "Product" },
-    { "type": "text", "id": "word", "label": "Big word behind the shoe", "default": "DRIFT" },
+    { "type": "text", "id": "word", "label": "Kinetic word behind the shoe", "info": "Warps with the cursor and splits with scroll speed. Short words work best.", "default": "DRIFT" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Drift Knit" },
-    { "type": "text", "id": "text", "label": "Text", "default": "One knit upper. One foam sole. Six colours, released one at a time." },
-    { "type": "text", "id": "quick_size", "label": "Quick-add size (must match a Size option value)", "default": "UK 9" }
+    { "type": "text", "id": "text", "label": "Text", "default": "One knit upper. One foam sole. Six colours, each knitted once." },
+    { "type": "text", "id": "price_note", "label": "Price sticker note", "default": "Free shipping over $120" },
+    { "type": "text", "id": "hint", "label": "Hint under the shoe", "default": "Drag to spin" },
+    { "type": "text", "id": "colour_label", "label": "Colour label", "default": "Colour" },
+    { "type": "text", "id": "quick_size", "label": "Quick-add size (must match a Size option value)", "default": "UK 9" },
+    { "type": "text", "id": "add_label", "label": "Add button", "default": "Add to bag" },
+    { "type": "text", "id": "add_short", "label": "Add button (mobile sticky bar)", "default": "Add to bag" },
+    { "type": "text", "id": "added_label", "label": "Added message", "default": "In the bag" },
+    { "type": "text", "id": "size_label", "label": "Size button", "default": "Choose size" }
   ],
   "presets": [{ "name": "Halfstep 3D hero" }]
 }

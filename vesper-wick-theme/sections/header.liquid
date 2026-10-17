@@ -1,0 +1,38 @@
+<header class="hdr">
+  <a class="logo" href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }}">
+    {%- if section.settings.logo_word_1 != blank -%}{{ section.settings.logo_word_1 | escape }} <i>&amp;</i> {{ section.settings.logo_word_2 | escape }}{%- else -%}{{ shop.name | escape }}{%- endif -%}
+  </a>
+  <nav class="nav" aria-label="{{ 'accessibility.main_nav' | t }}">
+    {%- for link in section.settings.menu.links -%}
+      <a href="{{ link.url }}"{% if link.current %} aria-current="page"{% endif %}>{{ link.title | escape }}</a>
+    {%- endfor -%}
+  </nav>
+  <div class="hdr-actions">
+    {%- if section.settings.show_sound -%}
+      <button class="icon-btn snd" type="button" aria-pressed="false" aria-label="{{ 'general.sound' | t }}"><span class="bars" aria-hidden="true"><i></i><i></i><i></i></span><span class="snd-t">{{ 'general.sound_off' | t }}</span></button>
+    {%- endif -%}
+    <a class="icon-btn bag-btn" href="{{ routes.cart_url }}" data-open-cart data-magnetic=".25">{{ 'cart.bag' | t }} <span class="bag-count">{{ cart.item_count }}</span></a>
+    <button class="icon-btn menu-btn" type="button" aria-expanded="false" aria-controls="menu" aria-label="{{ 'accessibility.menu' | t }}"><span aria-hidden="true"><i></i><i></i></span></button>
+  </div>
+</header>
+<nav class="menu" id="menu" aria-label="{{ 'accessibility.menu' | t }}">
+  {%- for link in section.settings.menu.links -%}
+    <a href="{{ link.url }}" style="--i: {{ forloop.index0 }}">{{ link.title | escape }}</a>
+  {%- endfor -%}
+  {%- if section.settings.menu_note != blank -%}<p>{{ section.settings.menu_note | escape }}</p>{%- endif -%}
+</nav>
+
+{% schema %}
+{
+  "name": "Header",
+  "class": "section-header",
+  "enabled_on": { "groups": ["header"] },
+  "settings": [
+    { "type": "text", "id": "logo_word_1", "label": "Logo, first word", "default": "Vesper" },
+    { "type": "text", "id": "logo_word_2", "label": "Logo, second word", "default": "Wick", "info": "Shown after an ember ampersand. Leave both empty to use the store name." },
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" },
+    { "type": "checkbox", "id": "show_sound", "label": "Show ambient sound toggle", "default": true, "info": "A soft crackle synthesised in the browser. Always off until the visitor turns it on." },
+    { "type": "text", "id": "menu_note", "label": "Mobile menu note", "default": "Free UK delivery over £50 · Poured in runs of 120" }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,25 @@
+<section class="more" aria-labelledby="more-h-{{ section.id }}" data-shelf data-recommendations-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ section.settings.limit }}">
+  <div class="shelf-head"><h2 class="h2" id="more-h-{{ section.id }}">{{ section.settings.heading }}</h2><a class="link" href="{{ routes.all_products_collection_url }}" style="font-size:14px">{{ 'sections.related.all' | t }} →</a></div>
+  <div class="drag" data-cursor="{{ 'sections.shelf.drag' | t }}" aria-roledescription="carousel" aria-label="{{ 'sections.related.label' | t }}"><div class="drag-track">
+    {%- if recommendations.performed and recommendations.products_count > 0 -%}
+      {%- for p in recommendations.products -%}{% render 'vw-product-card', product: p, index: forloop.index %}{%- endfor -%}
+    {%- else -%}
+      {%- for p in collections.all.products limit: 9 -%}
+        {%- unless p.id == product.id -%}{% render 'vw-product-card', product: p, index: forloop.index %}{%- endunless -%}
+      {%- endfor -%}
+    {%- endif -%}
+  </div></div>
+  <div class="drag-ui"><span class="shelf-hint">{{ 'sections.shelf.hint' | t }}</span><div class="drag-bar"><i></i></div><div class="drag-btns"><button class="circ" type="button" data-dir="-1" aria-label="{{ 'general.previous' | t }}"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false"><path d="M10 3L5 8l5 5"/></svg></button><button class="circ" type="button" data-dir="1" aria-label="{{ 'general.next' | t }}"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false"><path d="M6 3l5 5-5 5"/></svg></button></div></div>
+</section>
+
+{% schema %}
+{
+  "name": "More to burn",
+  "tag": "div",
+  "settings": [
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "More to <em>burn</em>." },
+    { "type": "range", "id": "limit", "label": "Products", "min": 3, "max": 10, "step": 1, "default": 8 }
+  ],
+  "presets": [{ "name": "More to burn" }]
+}
+{% endschema %}

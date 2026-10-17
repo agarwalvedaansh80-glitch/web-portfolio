@@ -1,0 +1,83 @@
+{%- comment -%}
+  Scent notes for a product, as animated chips or intensity bars.
+  Source: metafields custom.top_notes / custom.heart_notes / custom.base_notes
+  ("Black pepper:70:spice, Bergamot:40:citrus"). Fallback: tags "top:Black pepper", "heart:...", "base:...".
+  Params: product, style ('chips' | 'tiers' | 'pyramid'), limit (chips only), accent
+{%- endcomment -%}
+{%- liquid
+  assign style = style | default: 'chips'
+  assign limit = limit | default: 6
+  assign raw_top = product.metafields.custom.top_notes.value | append: ''
+  assign raw_heart = product.metafields.custom.heart_notes.value | append: ''
+  assign raw_base = product.metafields.custom.base_notes.value | append: ''
+  if raw_top == blank and raw_heart == blank and raw_base == blank
+    for tag in product.tags
+      assign parts = tag | split: ':'
+      assign key = parts.first | downcase | strip
+      assign val = tag | remove_first: parts.first | remove_first: ':' | strip
+      case key
+        when 'top'
+          assign raw_top = raw_top | append: val | append: ','
+        when 'heart'
+          assign raw_heart = raw_heart | append: val | append: ','
+        when 'base'
+          assign raw_base = raw_base | append: val | append: ','
+      endcase
+    endfor
+  endif
+  assign n = 0
+-%}
+{%- if raw_top != blank or raw_heart != blank or raw_base != blank -%}
+  {%- case style -%}
+    {%- when 'chips' -%}
+      {%- assign all_notes = raw_top | append: ',' | append: raw_heart | append: ',' | append: raw_base | split: ',' -%}
+      <ul class="chips" aria-label="{{ 'products.product.notes' | t }}">
+        {%- for item in all_notes -%}
+          {%- assign bits = item | split: ':' -%}
+          {%- assign nm = bits[0] | strip -%}
+          {%- if nm == blank or n >= limit -%}{%- continue -%}{%- endif -%}
+          <li class="chip" style="--c: {% render 'vw-note-color', family: bits[2], fallback: accent %}; --i: {{ n }}; --cd: {{ n | times: 0.37 }}s"><i aria-hidden="true"></i>{{ nm | escape }}</li>
+          {%- assign n = n | plus: 1 -%}
+        {%- endfor -%}
+      </ul>
+    {%- when 'tiers' -%}
+      {%- for tier in (1..3) -%}
+        {%- case tier -%}
+          {%- when 1 -%}{%- assign raw = raw_top -%}{%- assign tname = 'products.product.top' | t -%}
+          {%- when 2 -%}{%- assign raw = raw_heart -%}{%- assign tname = 'products.product.heart' | t -%}
+          {%- else -%}{%- assign raw = raw_base -%}{%- assign tname = 'products.product.base' | t -%}
+        {%- endcase -%}
+        {%- assign items = raw | split: ',' -%}
+        <div class="tier"><span>{{ tname }}</span><ul class="chips is-anim">
+          {%- for item in items -%}
+            {%- assign bits = item | split: ':' -%}
+            {%- assign nm = bits[0] | strip -%}
+            {%- if nm == blank -%}{%- continue -%}{%- endif -%}
+            <li class="chip" style="--c: {% render 'vw-note-color', family: bits[2], fallback: accent %}; --i: {{ forloop.index0 }}; --cd: {{ forloop.index0 | times: 0.5 }}s"><i aria-hidden="true"></i>{{ nm | escape }}</li>
+          {%- endfor -%}
+        </ul></div>
+      {%- endfor -%}
+    {%- else -%}
+      <div class="pyramid">
+        {%- for tier in (1..3) -%}
+          {%- case tier -%}
+            {%- when 1 -%}{%- assign raw = raw_top -%}{%- assign tname = 'products.product.top' | t -%}
+            {%- when 2 -%}{%- assign raw = raw_heart -%}{%- assign tname = 'products.product.heart' | t -%}
+            {%- else -%}{%- assign raw = raw_base -%}{%- assign tname = 'products.product.base' | t -%}
+          {%- endcase -%}
+          {%- assign items = raw | split: ',' -%}
+          <div class="tier"><span>{{ tname }}</span><ul>
+            {%- for item in items -%}
+              {%- assign bits = item | split: ':' -%}
+              {%- assign nm = bits[0] | strip -%}
+              {%- if nm == blank -%}{%- continue -%}{%- endif -%}
+              {%- assign lvl = bits[1] | strip | plus: 0 -%}
+              {%- if lvl == 0 -%}{%- assign lvl = 60 -%}{%- endif -%}
+              {%- assign n = n | plus: 1 -%}
+              <li class="bar" style="--c: {% render 'vw-note-color', family: bits[2], fallback: accent %}; --v: {{ lvl | divided_by: 100.0 }}; --bd: {{ n | times: 0.12 }}s"><em>{{ nm | escape }}</em><i role="img" aria-label="{{ 'products.product.intensity' | t: value: lvl }}"></i><small>{{ lvl }}</small></li>
+            {%- endfor -%}
+          </ul></div>
+        {%- endfor -%}
+      </div>
+  {%- endcase -%}
+{%- endif -%}

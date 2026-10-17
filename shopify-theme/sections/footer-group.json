@@ -1,10 +1,37 @@
 {
   "name": "t:sections.footer.name",
   "type": "footer",
-  "sections": { "hs_footer": { "type": "hs-footer", "blocks": {
-      "f1": { "type": "column", "settings": { "heading": "Shop", "menu": "main-menu" } },
-      "f2": { "type": "column", "settings": { "heading": "Help", "menu": "footer" } } },
-    "block_order": ["f1", "f2"],
-    "settings": { "word": "HALFSTEP", "note": "Halfstep is a fictional brand, built as a Shopify theme demo.", "credit": "3D shoe model © 2021 Shopify, CC BY 4.0 (Khronos glTF sample assets). Colourways and renders are our own." } } },
-  "order": ["hs_footer"]
+  "sections": {
+    "hs_footer": {
+      "type": "hs-footer",
+      "blocks": {
+        "f1": {
+          "type": "column",
+          "settings": {
+            "heading": "Shop",
+            "menu": "main-menu"
+          }
+        },
+        "f2": {
+          "type": "column",
+          "settings": {
+            "heading": "Help",
+            "menu": "footer"
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2"
+      ],
+      "settings": {
+        "word": "HALFSTEP",
+        "note": "Halfstep is a fictional brand, built as a Shopify theme demo.",
+        "credit": "3D shoe model © 2021 Shopify, CC BY 4.0 (Khronos glTF sample assets). Colourways and renders are our own."
+      }
+    }
+  },
+  "order": [
+    "hs_footer"
+  ]
 }

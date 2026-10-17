@@ -1,6 +1,18 @@
 {
   "name": "t:sections.header.name",
   "type": "header",
-  "sections": { "hs_header": { "type": "hs-header", "settings": { "logo_text": "Halfstep", "menu": "main-menu" } } },
-  "order": ["hs_header"]
+  "sections": {
+    "hs_header": {
+      "type": "hs-header",
+      "settings": {
+        "logo_text": "Halfstep",
+        "menu": "main-menu",
+        "menu_label": "Menu",
+        "bag_label": "Bag"
+      }
+    }
+  },
+  "order": [
+    "hs_header"
+  ]
 }

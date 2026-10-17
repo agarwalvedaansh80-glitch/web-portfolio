@@ -1,0 +1,24 @@
+{%- comment -%} Slide-out cart drawer. Filled by assets/vw-theme.js through the AJAX Cart API. {%- endcomment -%}
+<div class="scrim" data-close-cart></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="dr-h" tabindex="-1" data-upsell="{{ settings.cart_upsell }}">
+  <div class="dr-head">
+    <h2 id="dr-h">{{ 'cart.title' | t }}<sup class="dr-n">{{ cart.item_count }}</sup></h2>
+    <button class="dr-close" type="button" data-close-cart aria-label="{{ 'cart.close' | t }}"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M1 1l12 12M13 1L1 13"/></svg></button>
+  </div>
+  <div class="ship" aria-live="polite"><p class="ship-msg"></p><div class="ship-bar"><i></i><b></b></div></div>
+  <div class="dr-items" data-lenis-prevent></div>
+  <div class="upsell" hidden>
+    <img alt="" width="58" height="70" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=">
+    <div><span class="label">{{ 'cart.pairs_well' | t }}</span><h5></h5><small></small></div>
+    <button type="button">{{ 'products.product.add' | t }}</button>
+  </div>
+  <div class="dr-foot">
+    <div class="dr-sum"><span>{{ 'cart.subtotal' | t }}</span><b class="dr-total">{{ cart.total_price | money }}</b></div>
+    <p class="dr-note">{{ settings.cart_note | escape }}</p>
+    <form action="{{ routes.cart_url }}" method="post">
+      <button class="btn" type="submit" name="checkout" data-magnetic=".12">{{ 'cart.checkout' | t }} <span class="arr" aria-hidden="true">→</span></button>
+    </form>
+  </div>
+</aside>
+<div class="toast" role="status" aria-live="polite"></div>
+<div class="cur" aria-hidden="true"></div><div class="cur-halo" aria-hidden="true"><span></span></div>

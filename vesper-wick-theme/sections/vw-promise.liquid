@@ -1,0 +1,24 @@
+<section class="promise bone" aria-labelledby="promise-h-{{ section.id }}">
+  <h2 id="promise-h-{{ section.id }}">{{ section.settings.heading }}</h2>
+  {%- for block in section.blocks -%}
+    <div data-rv style="transition-delay: {{ forloop.index0 | times: 0.1 }}s" {{ block.shopify_attributes }}><b>{{ block.settings.figure | escape }}</b><p>{{ block.settings.text | escape }}</p></div>
+  {%- endfor -%}
+</section>
+
+{% schema %}
+{
+  "name": "Promises",
+  "tag": "div",
+  "max_blocks": 3,
+  "settings": [{ "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "What you can <em>count</em> on." }],
+  "blocks": [{ "type": "promise", "name": "Promise", "settings": [
+    { "type": "text", "id": "figure", "label": "Figure", "default": "60 h" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "From a 300 g jar, burnt in three-hour sittings." }
+  ] }],
+  "presets": [{ "name": "Promises", "blocks": [
+    { "type": "promise", "settings": { "figure": "60 h", "text": "From a 300 g jar, burnt in three-hour sittings. We test every run before it ships." } },
+    { "type": "promise", "settings": { "figure": "0 %", "text": "Paraffin. Coconut and rapeseed wax only, with cotton wicks and phthalate-free fragrance." } },
+    { "type": "promise", "settings": { "figure": "£8", "text": "Refill pouches for every candle. Keep the jar and pour it again." } }
+  ] }]
+}
+{% endschema %}
