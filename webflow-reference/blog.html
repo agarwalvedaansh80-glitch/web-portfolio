@@ -10,78 +10,118 @@
 <meta property="og:image" content="images/og-image.png">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#070B14">
+<link rel="icon" type="image/svg+xml" href="images/mark-slotted.svg">
 <link rel="icon" type="image/png" href="images/favicon-32.png">
 <link rel="apple-touch-icon" href="images/webclip-256.png">
-<link rel="preload" href="fonts/Archivo-800.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="fonts/Archivo-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/GeistMono-Variable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-
-<header class="navbar">
+<body class="page-blog">
+<a class="skip-link" href="#main">Skip to content</a>
+<!-- COMPONENT: Navbar -->
+<header class="navbar" data-nav>
   <div class="padding-global"><div class="container-large navbar_container">
-    <a href="index.html" class="navbar_logo" aria-label="Slotted home"><img src="images/logo-slotted.svg" alt="Slotted" width="123" height="32"></a>
-    <nav class="navbar_menu" aria-label="Main">
-      <div class="navbar_links">
-        <a href="index.html#how" class="navbar_link">How it works</a>
-        <a href="index.html#features" class="navbar_link">Features</a>
-        <a href="index.html#pricing" class="navbar_link">Pricing</a>
-        <a href="blog.html" class="navbar_link w--current">Field notes</a>
-      </div>
-      <div class="navbar_actions">
-        <a href="#" class="navbar_signin">Sign in</a>
-        <a href="#" class="button is-small">Start free trial</a>
-      </div>
+    <a href="index.html" class="navbar_logo" aria-label="Slotted home"><img src="images/mark-slotted.svg" alt="" width="28" height="28"><span>Slotted</span></a>
+    <nav class="navbar_menu" id="nav-menu" aria-label="Main">
+      <a href="index.html#story" class="navbar_link"><span class="navbar_index">01</span>Board</a>
+      <a href="index.html#features" class="navbar_link"><span class="navbar_index">02</span>Features</a>
+      <a href="index.html#stories" class="navbar_link"><span class="navbar_index">03</span>Crews</a>
+      <a href="index.html#pricing" class="navbar_link"><span class="navbar_index">04</span>Pricing</a>
+      <a href="blog.html" class="navbar_link w--current" aria-current="page"><span class="navbar_index">05</span>Field notes</a>
     </nav>
-    <button class="navbar_burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <div class="navbar_status" aria-hidden="true"><span class="led"></span><span>4 VANS LIVE</span><span class="navbar_clock" data-clock>10:42</span></div>
+    <div class="navbar_actions">
+      <a href="#" class="navbar_signin">Sign in</a>
+      <a href="index.html#pricing" class="button is-small" data-magnetic><span>Start free trial</span></a>
+    </div>
+    <button class="navbar_burger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu" data-burger><span></span><span></span></button>
   </div></div>
 </header>
-<main>
+<main id="main">
 <section class="section_blog-header">
-  <div class="padding-global"><div class="container-large">
-    <div class="blog-header_component">
-      <h1 class="hero_heading"><span class="hero_line is-1">Field notes</span></h1>
-      <p class="text-size-large text-color-steel" data-load style="--ly:1rem;--d:.35s">Practical writing on dispatch, scheduling and running a calmer service day, from the people who build Slotted.</p>
+  <div class="hero_bg" aria-hidden="true"><div class="hero_grid"></div><div class="hero_glow"></div></div>
+  <div class="padding-global"><div class="container-large blog-header_component">
+    <div class="hero_title-wrap">
+      <div class="eyebrow"><span class="eyebrow_index">[ 05 ]</span><span data-decode>Field notes · 3 notes</span></div>
+      <h1 class="blog-header_heading" data-kinetic aria-label="Field notes"><span class="hero_line">Field notes</span></h1>
     </div>
-    <div style="padding-bottom:6rem">
-      <a href="blog-drive-time-buffers.html" class="blog_featured" data-load style="--ly:2.5rem;--d:.5s;--dur:1s">
-        <div class="blog_image-wrap"><img class="blog_image" src="images/blog-cover-drive-time.webp" alt="Illustrated route with four stops and highlighted buffer segments between them"></div>
-        <div class="blog_featured-content"><div class="blog_tag" style="background:#8FD9B6">Scheduling</div><h2>How to build a drive-time buffer that survives Monday</h2><p class="text-size-large text-color-steel">Most schedules break on the road, not on the job. Here is a simple way to size the gaps between visits so the afternoon still works.</p><div class="blog_meta"><span>Marisol Vega</span><span>Sep 30, 2026</span><span>4 min read</span></div></div>
-      </a>
-      <h2 class="blog_list-title">Latest notes</h2>
-      <div class="blog_grid"><div data-reveal style="--d:0s"><a href="blog-off-the-whiteboard.html" class="blog_card"><div class="blog_image-wrap"><img class="blog_image" src="images/blog-cover-whiteboard.webp" alt="Coloured job cards lifting off a whiteboard grid" loading="lazy"></div><div class="blog_tag" style="background:#FFC629">Operations</div><h3>Moving off the whiteboard in two weeks</h3><p class="text-color-steel">The magnetic board on the office wall has served you well. Here is a two-week plan to replace it without a single missed visit.</p><div class="blog_meta"><span>Oct 14, 2026</span><span>4 min read</span></div></a></div><div data-reveal style="--d:0.12s"><a href="blog-running-late-texts.html" class="blog_card"><div class="blog_image-wrap"><img class="blog_image" src="images/blog-cover-late-text.webp" alt="Large text message bubble announcing a new arrival window next to a clock" loading="lazy"></div><div class="blog_tag" style="background:#9CC7F0">Customer updates</div><h3>What to text a customer when the tech is running late</h3><p class="text-color-steel">A late arrival is forgivable. A late arrival with no message is not. Four short texts that keep customers on your side.</p><div class="blog_meta"><span>Oct 7, 2026</span><span>3 min read</span></div></a></div></div>
+    <div class="blog-header_aside">
+      <p>Practical writing on dispatch, scheduling and running a calmer service day, from the people who build Slotted.</p>
+      <div class="blog_filters" role="group" aria-label="Filter by category"><button class="blog_filter is-active" data-filter="all" aria-pressed="true">All<b>3</b></button><button class="blog_filter" data-filter="scheduling" aria-pressed="false">Scheduling<b>1</b></button><button class="blog_filter" data-filter="customer-updates" aria-pressed="false">Customer updates<b>1</b></button><button class="blog_filter" data-filter="operations" aria-pressed="false">Operations<b>1</b></button></div>
     </div>
   </div></div>
 </section>
-
+<section class="section_blog-list">
+  <div class="padding-global"><div class="container-large">
+    <!-- CMS Collection List: Posts (sorted by Featured, then Published date) -->
+    <div class="blog_list">
+      <!-- CMS item: Posts -->
+      <a href="blog-drive-time-buffers.html" class="blog_card is-featured" data-category="scheduling" data-reveal style="--d:0s">
+        <div class="blog_image-wrap"><img class="blog_image" src="images/blog-cover-drive-time.webp" alt="Stylised route map with four stops and hatched buffer segments between them" loading="eager" width="1600" height="900"></div>
+        <div class="blog_content">
+          <div class="blog_tag" style="--tag:var(--c-teal)">Scheduling</div>
+          <h2 class="blog_title">How to build a drive-time buffer that survives Monday</h2>
+          <p class="blog_excerpt">Most schedules break on the road, not on the job. Here is a simple way to size the gaps between visits so the afternoon still works.</p>
+          <div class="blog_meta"><span>Marisol Vega</span><span>Sep 30, 2026</span><span>4 min read</span></div>
+          <span class="blog_read">READ THE NOTE <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span>
+        </div>
+      </a>
+      <!-- CMS item: Posts -->
+      <a href="blog-off-the-whiteboard.html" class="blog_card" data-category="operations" data-reveal style="--d:0.1s">
+        <div class="blog_image-wrap"><img class="blog_image" src="images/blog-cover-whiteboard.webp" alt="Job magnets on a wall board dissolving into blocks on a live digital board" loading="lazy" width="1600" height="900"></div>
+        <div class="blog_content">
+          <div class="blog_tag" style="--tag:var(--c-route-4)">Operations</div>
+          <h3 class="blog_title">Moving off the whiteboard in two weeks</h3>
+          <p class="blog_excerpt">The magnetic board on the office wall has served you well. Here is a two-week plan to replace it without a single missed visit.</p>
+          <div class="blog_meta"><span>Marisol Vega</span><span>Oct 14, 2026</span><span>4 min read</span></div>
+          <span class="blog_read">READ THE NOTE <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span>
+        </div>
+      </a>
+      <!-- CMS item: Posts -->
+      <a href="blog-running-late-texts.html" class="blog_card" data-category="customer-updates" data-reveal style="--d:0.2s">
+        <div class="blog_image-wrap"><img class="blog_image" src="images/blog-cover-late-text.webp" alt="Text message announcing a new arrival window next to a clock face with the window highlighted" loading="lazy" width="1600" height="900"></div>
+        <div class="blog_content">
+          <div class="blog_tag" style="--tag:var(--c-route-2)">Customer updates</div>
+          <h3 class="blog_title">What to text a customer when the tech is running late</h3>
+          <p class="blog_excerpt">A late arrival is forgivable. A late arrival with no message is not. Four short texts that keep customers on your side.</p>
+          <div class="blog_meta"><span>Jonah Pratt</span><span>Oct 7, 2026</span><span>3 min read</span></div>
+          <span class="blog_read">READ THE NOTE <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span>
+        </div>
+      </a>
+    </div>
+  </div></div>
+</section>
+<!-- COMPONENT: CTA -->
 <section class="section_cta">
-  <div class="cta_cards" aria-hidden="true">
-    <div class="cta_float is-1" data-scrub='{"t":".section_cta","desktop":true,"k":[[0,{"y":90}],[100,{"y":-90}]]}'><div class="cta_card is-mint"><b>Boiler service</b><span>14 Larch Rd, 7:30 to 9:00</span></div></div>
-    <div class="cta_float is-2" data-scrub='{"t":".section_cta","desktop":true,"k":[[0,{"y":-50}],[100,{"y":70}]]}'><div class="cta_card is-white"><b>Dripping valve</b><span>9 Pell Ct, 14:30 to 16:00</span></div></div>
-    <div class="cta_float is-3" data-scrub='{"t":".section_cta","desktop":true,"k":[[0,{"y":140}],[100,{"y":-120}]]}'><div class="cta_card is-rose"><b>Heat pump install</b><span>40 Wren Way, 10:00 to 12:30</span></div></div>
-    <div class="cta_float is-4" data-scrub='{"t":".section_cta","desktop":true,"k":[[0,{"y":40}],[100,{"y":-70}]]}'><div class="cta_card is-sky"><b>Filter changes</b><span>Harbor Clinic, 8:00 to 9:30</span></div></div>
-  </div>
+  <div class="cta_radar" aria-hidden="true"><span></span><span></span><span></span><i></i></div>
   <div class="padding-global"><div class="container-large padding-section-large">
     <div class="cta_component">
-      <h2 class="cta_heading">Wipe the whiteboard.</h2>
-      <p class="text-size-large">Start a 14-day trial with your real jobs. Import a spreadsheet and the board fills itself in.</p>
-      <div class="button-group"><a href="#" class="button is-dark">Start 14-day trial</a><a href="#" class="button is-secondary">Book a walkthrough</a></div>
+      <div class="eyebrow is-center"><span class="eyebrow_index">[ 07 ]</span><span>Start tomorrow’s board today</span></div>
+      <h2 class="cta_heading" data-split>Wipe the whiteboard.</h2>
+      <p class="cta_sub">Start a 14-day trial with your real jobs. Import a spreadsheet and the board fills itself in.</p>
+      <div class="button-group is-center"><a href="index.html#pricing" class="button is-large" data-magnetic><span>Start 14-day trial</span></a><a href="#" class="button is-ghost is-large" data-magnetic><span>Book a walkthrough</span></a></div>
     </div>
   </div></div>
 </section>
 </main>
-
+<!-- COMPONENT: Footer -->
 <footer class="footer">
   <div class="padding-global"><div class="container-large">
     <div class="footer_top">
-      <div class="footer_brand"><img src="images/logo-slotted-light.svg" alt="Slotted" width="123" height="32"><p>Dispatch and scheduling for field-service crews.</p></div>
-      <div class="footer_col"><div class="footer_col-title">Product</div><a href="index.html#how">How it works</a><a href="index.html#features">Features</a><a href="index.html#pricing">Pricing</a></div>
-      <div class="footer_col"><div class="footer_col-title">Resources</div><a href="blog.html">Field notes</a><a href="#">Help centre</a><a href="#">System status</a></div>
-      <div class="footer_col"><div class="footer_col-title">Company</div><a href="#">About</a><a href="#">Careers</a><a href="#">Contact</a></div>
+      <div class="footer_brand"><a href="index.html" class="navbar_logo"><img src="images/mark-slotted.svg" alt="" width="28" height="28"><span>Slotted</span></a><p>Dispatch and scheduling for field-service crews.</p><div class="footer_status mono"><span class="led"></span>ALL SYSTEMS NOMINAL</div></div>
+      <div class="footer_col"><div class="footer_col-title mono">PRODUCT</div><a href="index.html#story">The board</a><a href="index.html#features">Features</a><a href="index.html#pricing">Pricing</a></div>
+      <div class="footer_col"><div class="footer_col-title mono">RESOURCES</div><a href="blog.html">Field notes</a><a href="#">Help centre</a><a href="#">System status</a></div>
+      <div class="footer_col"><div class="footer_col-title mono">COMPANY</div><a href="#">About</a><a href="#">Careers</a><a href="#">Contact</a></div>
     </div>
-    <div class="footer_bottom"><div>© 2026 Slotted. A fictional company created as a design sample.</div><div>Privacy&nbsp;&nbsp;&nbsp;Terms</div></div>
+    <div class="footer_bottom mono"><div>© 2026 Slotted · A fictional brand, designed for a web portfolio</div><div>PRIVACY · TERMS</div></div>
   </div></div>
 </footer>
-<script src="js/main.js"></script>
+
+<div class="cursor" data-cursor aria-hidden="true"><div class="cursor_cross"><i></i><i></i><i></i><i></i></div><div class="cursor_dot"></div><div class="cursor_label mono" data-cursor-label></div><div class="cursor_coords mono" data-cursor-coords></div></div>
+
+<script src="vendor/lenis.min.js"></script>
+<script src="js/core.js"></script>
 </body>
 </html>

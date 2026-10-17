@@ -2,93 +2,128 @@
 <html lang="en-GB">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Book a visit | Ondé (design sample)</title>
-<meta name="description" content="Choose a service, date and time at Ondé. A fictional design sample of an online booking flow.">
-<meta name="robots" content="noindex">
-<meta property="og:title" content="Book a visit | Ondé (design sample)">
-<meta property="og:description" content="Choose a service, date and time at Ondé. A fictional design sample of an online booking flow.">
-<meta property="og:image" content="assets/social-share.png">
-<meta name="theme-color" content="#2A1730">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Book a visit | Ondé, Stoke Newington</title>
+<meta name="description" content="Choose a service, then a date and time at Ondé in Stoke Newington. You pay in the studio after your visit.">
+<meta property="og:title" content="Book a visit | Ondé, Stoke Newington">
+<meta property="og:description" content="Choose a service, then a date and time at Ondé in Stoke Newington. You pay in the studio after your visit.">
+<meta property="og:image" content="assets/social-share.jpg">
+<meta name="theme-color" content="#EFEAE2">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="icon" href="assets/favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="assets/favicon-180.png">
-<link rel="preload" href="fonts/BodoniModaDisplay-Regular.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="fonts/BodoniModaText-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/bodoni-moda.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/hanken-grotesk.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/site.css">
+<script>try{if(sessionStorage.getItem('onde-wash'))document.documentElement.classList.add('washing')}catch(e){}</script>
 </head>
 <body data-page="book">
-<a class="sr" href="#main">Skip to content</a>
-<div class="demo">Design sample. Ondé is a fictional studio; names, prices, address and contact details are placeholders.</div>
-<header class="hdr">
-  <div class="wrap">
-    <a class="logo" href="index.html" aria-label="Ondé home"><b>Ondé</b><span>colour &amp; cut</span></a>
-    <nav class="nav" aria-label="Main">
-      <a href="services.html">Services</a>
-      <a href="index.html#visit">First visit</a>
-      <a href="index.html#team">Team</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-    <a class="btn btn-primary" href="book.html">Book a visit</a>
-    <button class="burger" aria-label="Menu" aria-expanded="false" aria-controls="mnav"><i></i><i></i></button>
-  </div>
+<a class="skip" href="#main">Skip to content</a>
+<header class="hdr" data-hdr>
+  <a class="logo" href="index.html" aria-label="Ondé, home">Ond<span>é</span></a>
+  <nav class="nav" aria-label="Main"><a href="services.html">Services</a><a href="index.html#consult">Colour route</a><a href="index.html#visit">First visit</a><a href="index.html#team">Team</a><a href="contact.html">Contact</a></nav>
+  <a class="hdr-cta" href="book.html" data-cursor="book" aria-current="page"><span>Book a visit</span></a>
+  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu"><span class="sr">Open menu</span><i></i><i></i></button>
 </header>
-<nav class="mnav" id="mnav" aria-label="Mobile">
-  <a href="index.html">Home</a><a href="services.html">Services</a><a href="index.html#visit">First visit</a><a href="index.html#team">Team</a><a href="contact.html">Contact</a>
-  <a class="btn btn-primary" href="book.html">Book a visit</a>
-</nav>
+<div class="menu" id="menu" hidden>
+  <nav aria-label="Mobile"><a href="index.html" style="--i:0"><small>01</small>Home</a><a href="services.html" style="--i:1"><small>02</small>Services</a><a href="index.html#consult" style="--i:2"><small>03</small>Colour route</a><a href="index.html#visit" style="--i:3"><small>04</small>First visit</a><a href="index.html#team" style="--i:4"><small>05</small>Team</a><a href="contact.html" style="--i:5"><small>06</small>Contact</a><a href="book.html" style="--i:6"><small>07</small>Book a visit</a></nav>
+  <p class="menu-foot">7 Lavell Yard, London N16 · Tue to Sat</p>
+</div>
+<div class="cur" aria-hidden="true"><span class="cur-ring"><b>Book</b></span><span class="cur-dot"></span></div>
+<div class="wash" aria-hidden="true"><div class="wash-fill"><i></i><i></i><i></i><i></i></div><p class="wash-label"></p></div>
 <main id="main">
-<section class="phero ink"><div class="strip" aria-hidden="true"></div><div class="wrap"><h1 data-anim="up">Book a visit</h1><p class="lead" data-anim="up" data-d=".12">Choose a service, then a time. You pay in the studio after your visit. This is a demo; no booking is sent.</p></div></section>
-<section class="sec" style="padding-top:64px"><div class="wrap" id="booking">
-  <ol class="bsteps" aria-label="Booking steps"><li class="on">1. Service</li><li>2. Date and time</li><li>3. Your details</li></ol>
-  <div data-step="1">
-    <div class="svc-list">
-      <div class="svc-row"><img src="assets/service-colour.webp" alt="" width="120" height="120"><div><h3>Colour consultation</h3><p>Talk through your goals and get an exact price. In the studio or by video.</p><p class="meta">15 min, free</p></div><button class="btn btn-primary" data-pick="consult">Book</button></div>
-      <div class="svc-row"><img src="assets/service-gloss.webp" alt="" width="120" height="120"><div><h3>Root colour &amp; gloss</h3><p>Regrowth colour matched to your formula, finished with a toning gloss.</p><p class="meta">2 hr, £95</p></div><button class="btn btn-primary" data-pick="root">Book</button></div>
-      <div class="svc-row"><img src="assets/service-cut.webp" alt="" width="120" height="120"><div><h3>Restyle cut &amp; finish</h3><p>A new shape, cut for how you style at home, with a blow-dry.</p><p class="meta">1 hr 15 min, £72</p></div><button class="btn btn-primary" data-pick="cut">Book</button></div>
-    </div>
+<section class="ph" aria-labelledby="ph-h">
+  <canvas class="fluid" data-fluid="calm" data-palette="rose,copper" aria-hidden="true"></canvas>
+  <div class="ph-in">
+    <p class="eyebrow" data-intro>Book a visit</p>
+    <h1 id="ph-h" class="ph-h" data-kinetic><span class="l">Choose a time</span><span class="l"><em>that suits you.</em></span></h1>
+    <p class="ph-lead" data-intro>Three short steps. You pay in the studio after your visit, and can move a booking free up to 48 hours before.</p>
   </div>
-  <div data-step="2" hidden>
-    <div class="blayout">
-      <div class="cal">
-        <div class="cal-top"><h3>Month</h3><div class="cal-nav"><button data-dir="-1" aria-label="Previous month">‹</button><button data-dir="1" aria-label="Next month">›</button></div></div>
-        <div class="month"></div>
-        <p class="w-label">Open times</p>
-        <div class="slots" aria-live="polite"></div>
-        <button class="textlink" data-back="1" style="background:none;border:0;padding:0;cursor:pointer;font:500 15px var(--sans);color:var(--ink)">Change service</button>
+</section>
+
+<section class="bk" id="booking" aria-label="Booking">
+  <div class="bk-grid">
+    <div class="bk-main">
+      <ol class="bk-steps" aria-label="Booking steps"><li class="is-on" aria-current="step"><span>01</span>Service</li><li><span>02</span>Date &amp; time</li><li><span>03</span>Your details</li></ol>
+      <div class="bk-steps-line" aria-hidden="true"><i></i></div>
+      <div class="bk-panes">
+        <div class="bk-pane is-on" data-pane="1">
+          <h2 class="bk-h" tabindex="-1">What are we doing?</h2>
+          <fieldset class="bk-svcs"><legend class="sr">Service</legend><div class="bk-group" data-group="colour"><h3>Colour</h3><label class="bk-svc" style="--c:#c99b8f"><input type="radio" name="service" value="consult" data-name="Colour consultation" data-dur="15 min" data-price="Free" data-col="#c99b8f"><span class="bk-drop" aria-hidden="true"></span><span class="bk-svc-t"><b>Colour consultation</b><small>In the studio or by video</small></span><span class="bk-svc-m"><span>15 min</span><span>Free</span></span></label><label class="bk-svc" style="--c:#7b4f35"><input type="radio" name="service" value="root" data-name="Root colour &amp; gloss" data-dur="2 hr" data-price="from £95" data-col="#7b4f35"><span class="bk-drop" aria-hidden="true"></span><span class="bk-svc-t"><b>Root colour &amp; gloss</b><small>Regrowth matched to your formula</small></span><span class="bk-svc-m"><span>2 hr</span><span>from £95</span></span></label><label class="bk-svc" style="--c:#c49a52"><input type="radio" name="service" value="balayage" data-name="Hand-painted balayage" data-dur="3 hr 30" data-price="from £210" data-col="#c49a52"><span class="bk-drop" aria-hidden="true"></span><span class="bk-svc-t"><b>Hand-painted balayage</b><small>Soft, lived-in placement</small></span><span class="bk-svc-m"><span>3 hr 30</span><span>from £210</span></span></label><label class="bk-svc" style="--c:#d3b2a6"><input type="radio" name="service" value="toner" data-name="Toner refresh" data-dur="45 min" data-price="from £48" data-col="#d3b2a6"><span class="bk-drop" aria-hidden="true"></span><span class="bk-svc-t"><b>Toner refresh</b><small>Cancels brass between colours</small></span><span class="bk-svc-m"><span>45 min</span><span>from £48</span></span></label></div><div class="bk-group" data-group="cut"><h3>Cut &amp; finish</h3><label class="bk-svc" style="--c:#3b3835"><input type="radio" name="service" value="restyle" data-name="Restyle cut &amp; finish" data-dur="1 hr 15" data-price="from £72" data-col="#3b3835"><span class="bk-drop" aria-hidden="true"></span><span class="bk-svc-t"><b>Restyle cut &amp; finish</b><small>A new shape, with a blow-dry</small></span><span class="bk-svc-m"><span>1 hr 15</span><span>from £72</span></span></label><label class="bk-svc" style="--c:#5c564f"><input type="radio" name="service" value="reshape" data-name="Re-shape cut" data-dur="45 min" data-price="from £55" data-col="#5c564f"><span class="bk-drop" aria-hidden="true"></span><span class="bk-svc-t"><b>Re-shape cut</b><small>Keeps your shape sharp</small></span><span class="bk-svc-m"><span>45 min</span><span>from £55</span></span></label><label class="bk-svc" style="--c:#6e4a33"><input type="radio" name="service" value="curl" data-name="Curl cut, cut dry" data-dur="1 hr 30" data-price="from £85" data-col="#6e4a33"><span class="bk-drop" aria-hidden="true"></span><span class="bk-svc-t"><b>Curl cut, cut dry</b><small>Each curl cut where it sits</small></span><span class="bk-svc-m"><span>1 hr 30</span><span>from £85</span></span></label><label class="bk-svc" style="--c:#a99e90"><input type="radio" name="service" value="blowdry" data-name="Blow-dry" data-dur="45 min" data-price="from £40" data-col="#a99e90"><span class="bk-drop" aria-hidden="true"></span><span class="bk-svc-t"><b>Blow-dry</b><small>Smooth, bend or volume</small></span><span class="bk-svc-m"><span>45 min</span><span>from £40</span></span></label></div><div class="bk-group" data-group="gloss"><h3>Gloss &amp; care</h3><label class="bk-svc" style="--c:#cbbfc6"><input type="radio" name="service" value="gloss" data-name="Toning gloss" data-dur="45 min" data-price="from £48" data-col="#cbbfc6"><span class="bk-drop" aria-hidden="true"></span><span class="bk-svc-t"><b>Toning gloss</b><small>Brass out, shine in</small></span><span class="bk-svc-m"><span>45 min</span><span>from £48</span></span></label><label class="bk-svc" style="--c:#b9a487"><input type="radio" name="service" value="bond" data-name="Bond-repair treatment" data-dur="30 min" data-price="from £35" data-col="#b9a487"><span class="bk-drop" aria-hidden="true"></span><span class="bk-svc-t"><b>Bond-repair treatment</b><small>After lightening, or any time</small></span><span class="bk-svc-m"><span>30 min</span><span>from £35</span></span></label></div><div class="bk-group" data-group="occasion"><h3>Occasion</h3><label class="bk-svc" style="--c:#c48b84"><input type="radio" name="service" value="upstyle" data-name="Event up-style" data-dur="1 hr" data-price="from £75" data-col="#c48b84"><span class="bk-drop" aria-hidden="true"></span><span class="bk-svc-t"><b>Event up-style</b><small>Pinned to last the night</small></span><span class="bk-svc-m"><span>1 hr</span><span>from £75</span></span></label><label class="bk-svc" style="--c:#b4683f"><input type="radio" name="service" value="trial" data-name="Trial session" data-dur="1 hr 30" data-price="from £95" data-col="#b4683f"><span class="bk-drop" aria-hidden="true"></span><span class="bk-svc-t"><b>Trial session</b><small>Six weeks before the day</small></span><span class="bk-svc-m"><span>1 hr 30</span><span>from £95</span></span></label></div></fieldset>
+          <fieldset class="bk-with"><legend>With</legend>
+            <label class="chip"><input type="radio" name="with" value="any" checked><span>First available</span></label>
+            <label class="chip"><input type="radio" name="with" value="mira"><span>Mira</span></label>
+            <label class="chip"><input type="radio" name="with" value="jonah"><span>Jonah</span></label>
+            <label class="chip"><input type="radio" name="with" value="adaeze"><span>Adaeze</span></label>
+          </fieldset>
+          <div class="bk-nav"><span></span><button class="btn btn-ink" type="button" data-next="2" disabled><span>Choose a time</span></button></div>
+        </div>
+        <div class="bk-pane" data-pane="2" hidden>
+          <h2 class="bk-h" tabindex="-1">When suits you?</h2>
+          <div class="cal">
+            <div class="cal-top"><p class="cal-m" aria-live="polite"></p><div class="cal-nav"><button type="button" data-month="-1" aria-label="Previous month"><span aria-hidden="true">←</span></button><button type="button" data-month="1" aria-label="Next month"><span aria-hidden="true">→</span></button></div></div>
+            <div class="cal-dow" aria-hidden="true"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div>
+            <div class="cal-grid" role="grid" aria-label="Choose a date"></div>
+            <p class="cal-key"><span class="k-open"></span>Open <span class="k-full"></span>Fully booked <span class="k-off"></span>Closed</p>
+          </div>
+          <div class="slots" aria-live="polite"><p class="slots-empty">Pick a day to see open times.</p></div>
+          <div class="bk-nav"><button class="btn btn-line" type="button" data-prev="1"><span>Back</span></button><button class="btn btn-ink" type="button" data-next="3" disabled><span>Your details</span></button></div>
+        </div>
+        <div class="bk-pane" data-pane="3" hidden>
+          <h2 class="bk-h" tabindex="-1">Who’s coming in?</h2>
+          <form class="form" id="bk-form" novalidate>
+            <div class="f"><input id="f-first" name="first" autocomplete="given-name" required placeholder=" "><label for="f-first">First name</label><small class="err" id="e-first"></small></div>
+            <div class="f"><input id="f-last" name="last" autocomplete="family-name" placeholder=" "><label for="f-last">Last name</label></div>
+            <div class="f"><input id="f-email" type="email" name="email" autocomplete="email" required placeholder=" "><label for="f-email">Email</label><small class="err" id="e-email"></small></div>
+            <div class="f"><input id="f-phone" type="tel" name="phone" autocomplete="tel" placeholder=" "><label for="f-phone">Phone (optional)</label></div>
+            <div class="f f-full"><textarea id="f-notes" name="notes" rows="3" placeholder=" " aria-describedby="h-notes"></textarea><label for="f-notes">Anything we should know?</label><small class="hint" id="h-notes">Recent colour, product allergies, the look you’re after.</small></div>
+            <div class="bk-nav f-full"><button class="btn btn-line" type="button" data-prev="2"><span>Back</span></button><button class="btn btn-ink" type="submit"><span>Request this time</span></button></div>
+          </form>
+        </div>
       </div>
-      <aside class="summary"><h3>Your booking</h3><dl></dl><button class="btn btn-primary" id="to-details" disabled>Next</button><p class="small">Times shown are generated for this demo.</p></aside>
     </div>
+    <aside class="bk-sum" aria-label="Your visit">
+      <div class="bk-sum-top"><span class="bk-sum-drop" aria-hidden="true"></span><p class="eyebrow">Your visit</p></div>
+      <dl>
+        <div><dt>Service</dt><dd data-sum="service">Not chosen yet</dd></div>
+        <div><dt>With</dt><dd data-sum="with">First available</dd></div>
+        <div><dt>Date</dt><dd data-sum="date">–</dd></div>
+        <div><dt>Time</dt><dd data-sum="time">–</dd></div>
+        <div><dt>Length</dt><dd data-sum="dur">–</dd></div>
+        <div class="tot"><dt>Price</dt><dd data-sum="price">–</dd></div>
+      </dl>
+      <button class="btn btn-ink bk-sum-go" type="button" data-sum-go disabled><span>Choose a time</span></button>
+      <p class="bk-sum-note">Pay in the studio after your visit. Move or cancel free up to 48 hours before.</p>
+    </aside>
   </div>
-  <div data-step="3" hidden>
-    <div class="blayout">
-      <form class="form cal" id="details" novalidate>
-        <p class="full" style="font-weight:500">Booking <span id="chosen"></span></p>
-        <label>First name<input name="first" autocomplete="given-name" required></label>
-        <label>Last name<input name="last" autocomplete="family-name" required></label>
-        <label>Email<input type="email" name="email" autocomplete="email" required></label>
-        <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
-        <label class="full">Anything we should know?<textarea name="notes" placeholder="Recent colour, allergies to products, the look you are after"></textarea></label>
-        <div class="full" style="display:flex;gap:12px;flex-wrap:wrap"><button class="btn btn-primary" type="submit">Book now</button><button class="btn btn-ghost" type="button" data-back="2">Back</button></div>
-      </form>
-      <aside class="summary"><h3>Good to know</h3><p style="color:var(--mist)">You pay in the studio after your visit. Move or cancel free up to 48 hours before.</p></aside>
-    </div>
+  <div class="bk-done" hidden tabindex="-1">
+    <svg class="bk-tick" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="56"/><path d="M38 62l15 15 30-34"/></svg>
+    <p class="eyebrow">Your visit, planned</p>
+    <h2 class="bk-done-h" data-done-h>See you soon.</h2>
+    <p class="bk-done-when" data-done-when></p>
+    <p class="bk-done-note">This is a preview of the booking flow, so nothing has been sent and no time is held. On the live site, Wix Bookings confirms your visit by email.</p>
+    <div class="bk-done-cta"><button class="btn btn-ink" type="button" data-ics><span>Add to calendar</span></button><a class="btn btn-line" href="index.html"><span>Back to home</span></a></div>
   </div>
-  <div data-step="done" hidden><div class="done-msg"><div class="tick"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><h2>Booked</h2><p class="lead"><span id="done-when"></span>. In a live site, a confirmation email follows.</p><p style="margin-top:28px"><a class="btn btn-ghost" href="index.html">Back to home</a></p></div></div>
-</div></section>
+</section>
+<div class="bloom" aria-hidden="true"></div>
 </main>
-<footer class="ftr">
-  <div class="wrap">
-    <div class="ftr-grid">
-      <div><p style="max-width:34ch;font-size:17px;color:var(--pearl)">Colour that grows out beautifully. A colour-and-cut house in Stoke Newington, London.</p><p style="margin-top:22px"><a class="btn btn-primary" href="book.html">Book a visit</a></p></div>
-      <div><h4>Visit</h4><ul><li>00 Demo Row</li><li>London N16 0XX</li><li>(placeholder address)</li></ul></div>
-      <div><h4>Hours</h4><ul><li>Tue to Wed, 10 to 7</li><li>Thu to Fri, 10 to 8</li><li>Sat, 9 to 5</li><li>Sun and Mon, closed</li></ul></div>
-      <div><h4>Contact</h4><ul><li><a href="tel:+442079460321">020 7946 0321</a></li><li><a href="mailto:hello@onde.example">hello@onde.example</a></li><li>Instagram: @onde.demo</li></ul></div>
-    </div>
-    <div class="wordmark" aria-hidden="true" data-pan="-180">Ondé</div>
-    <div class="fine"><span>© 2026 Ondé. A fictional business made as a web design sample.</span><span><a href="contact.html">Contact</a> &nbsp; <a href="services.html">Services</a> &nbsp; <a href="book.html">Book</a></span></div>
+<footer class="ftr" data-theme="dark">
+  <div class="ftr-cta">
+    <p class="eyebrow">Stoke Newington, N16</p>
+    <h2 class="ftr-h" data-reveal="words">Book a chair. <em>Leave with a plan.</em></h2>
+    <a class="btn btn-light" href="book.html" data-cursor="book" data-magnetic><span>Book a visit</span></a>
   </div>
+  <div class="ftr-cols">
+    <div><h3>Visit</h3><p>7 Lavell Yard<br>Stoke Newington<br>London N16</p></div>
+    <div><h3>Hours</h3><p>Tue to Wed, 10:00 to 19:00<br>Thu to Fri, 10:00 to 20:00<br>Sat, 09:00 to 17:00<br>Sun and Mon, closed</p></div>
+    <div><h3>Contact</h3><p><a href="tel:+442079460321">020 7946 0321</a><br><a href="mailto:hello@onde.example">hello@onde.example</a><br>Instagram @onde.n16</p></div>
+    <div><h3>Pages</h3><p><a href="services.html">Services</a><br><a href="book.html">Book a visit</a><br><a href="contact.html">Contact</a></p></div>
+  </div>
+  <div class="ftr-word" aria-hidden="true" data-wordmark>Ondé</div>
+  <div class="ftr-base"><span>© 2026 Ondé</span><span class="ftr-note">Ondé is a brand created for this portfolio; names, prices and address are illustrative.</span></div>
 </footer>
+<script src="vendor/lenis.min.js"></script>
+<script src="js/fluid.js"></script>
 <script src="js/site.js"></script>
+<script src="js/book.js"></script>
 </body>
 </html>

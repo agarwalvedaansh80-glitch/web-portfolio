@@ -1,294 +1,371 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-look="dusk">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Overnight — a shared camera roll that develops in the morning</title>
-<meta name="description" content="Overnight is a shared camera roll for trips and nights out. Everyone shoots into one roll, nobody sees a thing, and the whole roll develops at 9 a.m.">
-<meta property="og:title" content="Overnight — Shoot all day. See it tomorrow.">
-<meta property="og:description" content="A shared camera roll for trips and nights out. The whole roll develops at once, the next morning.">
-<meta property="og:image" content="img/social.png">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Overnight — shoot all night, see it at nine</title>
+<meta name="description" content="Overnight is a shared camera roll for trips and nights out. Everyone shoots into one roll, nobody sees a thing, and at 9 a.m. the whole roll develops at once. iOS and Android, spring 2027.">
+<meta name="theme-color" content="#1a0504">
+<meta property="og:title" content="Overnight — shoot all night, see it at nine">
+<meta property="og:description" content="One shared roll for the whole crew. Nobody peeks. At 9 a.m. it develops for everyone at once.">
+<meta property="og:image" content="img/social.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
-<link rel="preload" href="fonts/big-shoulders-display-latin-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/fraunces-latin-full-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/fraunces-latin-full-italic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/dm-mono-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
-<header class="nav" data-fx="appear:pageload">
-  <a class="brand" href="#top" aria-label="Overnight home">
-    <svg class="brand__mark" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#FFE04A"/><circle cx="27" cy="15" r="14" fill="#1B1A4B"/></svg>
+<!-- Fixed atmosphere: sky gradient, safelight glow, light leaks, grain, sprocket rails -->
+<div class="sky" aria-hidden="true"><div class="sky__glow"></div><div class="sky__sun"></div></div>
+<div class="leaks" aria-hidden="true"><i class="leak leak--a"></i><i class="leak leak--b"></i></div>
+<div class="rails" aria-hidden="true"><i class="rail rail--l"></i><i class="rail rail--r"></i></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="flashframe" aria-hidden="true"></div>
+
+<!-- Viewfinder cursor -->
+<div class="vf" aria-hidden="true">
+  <i class="vf__c vf__c--tl"></i><i class="vf__c vf__c--tr"></i><i class="vf__c vf__c--bl"></i><i class="vf__c vf__c--br"></i>
+  <i class="vf__dot"></i><span class="vf__label"></span>
+</div>
+
+<header class="nav">
+  <a class="brand" href="#top" aria-label="Overnight, back to the top" data-snap>
+    <svg class="brand__mark" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="17" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M20 3a17 17 0 0 1 0 34z" fill="currentColor"/><circle cx="20" cy="20" r="5.5" fill="var(--bg-ink)" stroke="currentColor" stroke-width="2.4"/></svg>
     <span class="brand__word">Overnight</span>
   </a>
-  <nav class="nav__links" aria-label="Sections">
-    <a href="#how">How it works</a>
-    <a href="#features">Features</a>
-    <a href="#roll">Flip the roll</a>
-    <a href="#faq">FAQ</a>
-  </nav>
-  <a class="btn btn--flash btn--sm" href="#waitlist">Join the waitlist</a>
+  <button class="nav__index" type="button" aria-expanded="false" aria-controls="reel" data-sound="advance">
+    <span class="nav__index-holes" aria-hidden="true"></span>
+    <span class="nav__index-lbl">Frames</span><span class="nav__index-count mono" aria-hidden="true">07</span>
+  </button>
+  <div class="nav__right">
+    <div class="looks-mini" role="radiogroup" aria-label="Film look for every photo">
+      <button type="button" role="radio" aria-checked="true" data-look-set="dusk" class="looks-mini__b"><i style="--sw:linear-gradient(135deg,#ffb36b,#a83d4a)"></i><span>Dusk</span></button>
+      <button type="button" role="radio" aria-checked="false" data-look-set="harbor" class="looks-mini__b"><i style="--sw:linear-gradient(135deg,#9fe3e6,#1d4e6b)"></i><span>Harbor</span></button>
+      <button type="button" role="radio" aria-checked="false" data-look-set="bleach" class="looks-mini__b"><i style="--sw:linear-gradient(135deg,#f2f1ec,#3b3d40)"></i><span>Bleach</span></button>
+    </div>
+    <button class="sound" type="button" aria-pressed="false" aria-label="Ambient sound">
+      <span class="sound__bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <span class="sound__txt mono">Sound off</span>
+    </button>
+    <a class="btn btn--primary btn--sm" href="#waitlist" data-shutter><span class="lg">Join the waitlist</span><span class="sm" aria-hidden="true">Waitlist</span></a>
+  </div>
 </header>
 
+<!-- Full-screen film-strip navigation (reel) -->
+<div class="reel" id="reel" role="dialog" aria-modal="true" aria-label="Sections as film frames" hidden>
+  <div class="reel__head">
+    <p class="mono reel__kicker">Roll index · drag the film, click a frame</p>
+    <button class="reel__close" type="button" data-shutter>Close<span aria-hidden="true"> ✕</span></button>
+  </div>
+  <div class="filmstrip filmstrip--reel" data-filmstrip></div>
+  <p class="reel__foot mono" aria-hidden="true"><span data-reel-readout>▸ 01 Develop</span></p>
+</div>
+
 <main id="main">
-<!-- HERO -->
-<section class="hero" id="top">
-  <div class="hero__stars" aria-hidden="true"></div>
-  <div class="hero__glow" aria-hidden="true"></div>
-  <div class="wrap hero__grid">
+
+<!-- 01 HERO: developing strip ------------------------------------------------------ -->
+<section class="hero" id="top" data-time="23:00-23:20" data-frame="01" aria-labelledby="hero-title">
+  <div class="hero__pin">
+    <canvas class="hero__gl" aria-hidden="true"></canvas>
+    <img class="hero__fallback" src="img/bonfire.webp" alt="" aria-hidden="true">
+    <p class="hero__hint mono" aria-hidden="true"><span class="hero__hint-dot"></span><span class="hero__hint-txt">Hover the film to develop it. Hold to push harder.</span></p>
+    <div class="hero__meter mono" aria-hidden="true"><span>Bath</span><b data-dev-readout>00%</b><i><em data-dev-bar></em></i></div>
     <div class="hero__copy">
-      <p class="pill" data-load="1"><span class="pill__dot"></span>Coming to iOS and Android, spring 2027</p>
-      <h1 class="hero__title">
-        <span class="line"><span data-load="2">Shoot all day.</span></span>
-        <span class="line line--develop"><span data-load="3">See it tomorrow.</span></span>
+      <p class="eyebrow mono"><span class="dot"></span>Shared camera roll · iOS + Android · spring 2027</p>
+      <h1 class="hero__title" id="hero-title">
+        <span class="hl"><span class="hl__in">Shoot all night.</span></span>
+        <span class="hl"><span class="hl__in">See it at <em>nine.</em></span></span>
       </h1>
-      <p class="hero__lede" data-load="4">Overnight is a shared camera roll for trips and nights out. Everyone shoots into the same roll, nobody sees a thing, and at 9&nbsp;a.m. the whole roll develops at once.</p>
-      <div class="hero__ctas" data-load="5">
-        <a class="btn btn--flash" href="#waitlist">Join the waitlist</a>
-        <a class="btn btn--ghost" href="#how">See how it works</a>
+      <div class="hero__side">
+        <p class="hero__lede">One camera roll for the whole crew. Everyone shoots, nobody peeks, and at 9&nbsp;a.m. the roll develops for everyone at once.</p>
+        <div class="hero__ctas">
+          <a class="btn btn--primary" href="#waitlist" data-shutter>Join the waitlist</a>
+          <a class="btn btn--ghost" href="#roll" data-shutter>Develop a roll early</a>
+        </div>
       </div>
     </div>
+  </div>
+</section>
 
-    <div class="hero__stage">
-      <figure class="print print--a" data-parallax="-140" data-rot="-9"><img src="img/beach-dusk-sm.webp" alt="" width="450" height="562"><figcaption>Anjuna, 6:12 pm</figcaption></figure>
-      <figure class="print print--b" data-parallax="-60" data-rot="7"><img src="img/neon-street-sm.webp" alt="" width="450" height="562"><figcaption>Rain, 11:40 pm</figcaption></figure>
-      <figure class="print print--c" data-parallax="-200" data-rot="-4"><img src="img/ridge-dawn-sm.webp" alt="" width="450" height="562"><figcaption>Day 2, early</figcaption></figure>
+<!-- 02 INDEX: draggable film strip of the page ------------------------------------- -->
+<section class="index" id="frames" data-time="23:20-23:40" aria-labelledby="index-title">
+  <div class="wrap index__head">
+    <p class="edge mono" aria-hidden="true">◂ 00 &nbsp;OVERNIGHT 400&nbsp; 00A ▸ &nbsp;contents</p>
+    <h2 class="h2" id="index-title">Seven frames, <em>one night.</em></h2>
+    <p class="index__note">This page is a roll of film. Drag it, flick it, or pick a frame to jump there.</p>
+  </div>
+  <div class="filmstrip filmstrip--inline" data-filmstrip></div>
+</section>
 
-      <div class="phone hero__phone" data-load="phone" role="img" aria-label="Overnight camera screen: roll named Goa, December with 14 shots left">
+<!-- 03 HOW: three darkroom trays --------------------------------------------------- -->
+<section class="how" id="how" data-time="23:40-00:00" data-frame="02" aria-labelledby="how-title">
+  <div class="wrap">
+    <p class="edge mono" aria-hidden="true">◂ 02 &nbsp;OVERNIGHT 400&nbsp; 02A ▸</p>
+    <div class="how__head">
+      <h2 class="h2" id="how-title">Three trays, <em>no peeking.</em></h2>
+      <p class="lede">Overnight works like a darkroom you carry in your pocket. Nothing comes out of the bath until the morning.</p>
+    </div>
+    <ol class="trays">
+      <li class="tray" data-tilt>
+        <div class="tray__bath">
+          <canvas class="tray__print" data-film="img/rooftop.webp" data-dev="0" data-seed="1.3" data-snap="Negative · 11:12 pm" role="img" aria-label="A string-light rooftop photo, still an orange negative"></canvas>
+        </div>
+        <p class="tray__tag mono">Tray 01 · Developer</p>
+        <h3 class="h3">Start a roll</h3>
+        <p>Name it, set the shots per person (27 is the classic), and send one link. Friends join from the invite, no account needed.</p>
+      </li>
+      <li class="tray" data-tilt>
+        <div class="tray__bath">
+          <canvas class="tray__print" data-film="img/sparklers.webp" data-dev="0.52" data-seed="4.1" data-snap="Latent · 12:03 am" role="img" aria-label="A sparkler photo halfway through developing"></canvas>
+        </div>
+        <p class="tray__tag mono">Tray 02 · Stop bath</p>
+        <h3 class="h3">Shoot without looking</h3>
+        <p>No gallery, no preview, no retakes. Take the shot, the counter drops by one, and you're straight back in the moment.</p>
+      </li>
+      <li class="tray" data-tilt>
+        <div class="tray__bath">
+          <canvas class="tray__print" data-film="img/ferris.webp" data-dev="1" data-seed="2.2" data-snap="Positive · 12:40 am" role="img" aria-label="A Ferris wheel at night, fully developed"></canvas>
+        </div>
+        <p class="tray__tag mono">Tray 03 · Fixer</p>
+        <h3 class="h3">Wake up to the roll</h3>
+        <p>At 9&nbsp;a.m. every frame develops for everyone at once, in the order it was shot. The whole night, from every angle, over breakfast.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- 04 THE NIGHT: pinned scroll story --------------------------------------------- -->
+<section class="night" id="night" data-time="00:00-05:40" data-frame="03" aria-labelledby="night-title">
+  <h2 class="sr-only" id="night-title">One night on a shared roll</h2>
+  <div class="night__pin">
+    <!-- depth layers -->
+    <div class="layer layer--strips" data-depth="-0.35" aria-hidden="true">
+      <div class="nstrip nstrip--a"><canvas data-film="img/neon-b.webp" data-dev="0"></canvas><canvas data-film="img/dance-b.webp" data-dev="0"></canvas><canvas data-film="img/moon-b.webp" data-dev="0"></canvas><canvas data-film="img/ferris-b.webp" data-dev="0"></canvas><canvas data-film="img/trails-b.webp" data-dev="0"></canvas></div>
+      <div class="nstrip nstrip--b"><canvas data-film="img/rooftop-b.webp" data-dev="0"></canvas><canvas data-film="img/bonfire-b.webp" data-dev="0"></canvas><canvas data-film="img/sparklers-b.webp" data-dev="0"></canvas><canvas data-film="img/bluehour-b.webp" data-dev="0"></canvas><canvas data-film="img/neon.webp" data-dev="0"></canvas></div>
+    </div>
+
+    <div class="chapters" aria-live="off">
+      <article class="chapter" data-chapter="0">
+        <p class="chapter__time mono">00:04 am · 27 shots each</p>
+        <p class="chapter__line">Seven friends, one roll, and a rooftop that closes at two.</p>
+      </article>
+      <article class="chapter" data-chapter="1">
+        <p class="chapter__time mono">00:51 am · 19 left</p>
+        <p class="chapter__line">Somebody writes a heart with a sparkler. Nobody checks if it came out.</p>
+      </article>
+      <article class="chapter" data-chapter="2">
+        <p class="chapter__time mono">01:26 am · 12 left</p>
+        <p class="chapter__line">The fire gets low. So does the counter.</p>
+      </article>
+      <article class="chapter" data-chapter="3">
+        <p class="chapter__time mono">03:30 am · 5 left</p>
+        <p class="chapter__line">The drive back. Rohan swears he got the shot of the trip.</p>
+      </article>
+      <article class="chapter" data-chapter="4">
+        <p class="chapter__time mono">05:38 am · 2 left · sealed</p>
+        <p class="chapter__line">Blue hour. The roll is sealed. Everyone is finally asleep.</p>
+      </article>
+    </div>
+
+    <div class="layer layer--phone" data-depth="0.12">
+      <div class="phone" role="img" aria-label="The Overnight camera: roll called Goa, December, with the shot counter running down and the photos sealed until 9 a.m.">
         <div class="phone__screen">
-          <img class="vf" src="img/bonfire.webp" alt="" width="900" height="1125">
-          <div class="ui-top">
-            <div class="roll-chip"><span class="live"></span>Goa, December</div>
-            <div class="counter" aria-hidden="true"><span class="counter__num"><span class="counter__roll">15<br>14</span></span><span class="counter__lbl">left</span></div>
+          <div class="phone__vf">
+            <canvas data-film="img/rooftop.webp" data-dev="1" data-seed="3" data-vig="0.45" class="is-on"></canvas>
+            <canvas data-film="img/sparklers.webp" data-dev="1" data-seed="3" data-vig="0.45"></canvas>
+            <canvas data-film="img/bonfire.webp" data-dev="1" data-seed="3" data-vig="0.45"></canvas>
+            <canvas data-film="img/trails.webp" data-dev="1" data-seed="3" data-vig="0.45"></canvas>
+            <canvas data-film="img/bluehour.webp" data-dev="1" data-seed="3" data-vig="0.45"></canvas>
           </div>
-          <div class="vf-corners" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-          <div class="ui-bottom">
-            <div class="crew"><span style="--c:#FF9DB8">A</span><span style="--c:#9C95FF">R</span><span style="--c:#FFE04A">M</span><span style="--c:#F6F7FB">J</span><span class="crew__more">+3</span></div>
-            <button class="shutter" type="button" aria-label="Take a shot (demo)"><span></span></button>
-            <div class="dev-time"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10 5v5l3 2" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>9:00</div>
+          <div class="phone__top">
+            <span class="chip mono"><i class="live"></i>Goa, December</span>
+            <span class="count"><b class="mono" data-shots>27</b><small class="mono">left</small></span>
           </div>
-          <div class="flash-overlay" aria-hidden="true"></div>
+          <div class="phone__corners" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+          <div class="phone__toast mono">Shot saved · sealed until 9:00</div>
+          <div class="phone__bottom">
+            <span class="crew" aria-hidden="true"><i style="--c:#ff9a6b">A</i><i style="--c:#ffd36b">R</i><i style="--c:#9fe3e6">M</i><i style="--c:#f3e6d3">+4</i></span>
+            <span class="shutter" aria-hidden="true"><i></i></span>
+            <span class="devtime mono">9:00</span>
+          </div>
+          <div class="phone__flash"></div>
         </div>
         <span class="phone__island" aria-hidden="true"></span>
       </div>
     </div>
+
+    <div class="layer layer--polaroids" aria-hidden="true">
+      <figure class="polaroid" data-depth="0.55" data-rot="-8" style="--x:58%;--y:8%"><canvas data-film="img/rooftop-b.webp" data-dev="1"></canvas><i class="polaroid__seal"></i><figcaption>roof??</figcaption></figure>
+      <figure class="polaroid" data-depth="0.9" data-rot="6" style="--x:84%;--y:22%"><canvas data-film="img/ferris.webp" data-dev="1"></canvas><i class="polaroid__seal"></i><figcaption>wheel, 12:40</figcaption></figure>
+      <figure class="polaroid" data-depth="0.4" data-rot="9" style="--x:52%;--y:62%"><canvas data-film="img/bonfire-b.webp" data-dev="1"></canvas><i class="polaroid__seal"></i><figcaption>fire. M blinked</figcaption></figure>
+      <figure class="polaroid" data-depth="1.15" data-rot="-5" style="--x:88%;--y:70%"><canvas data-film="img/dance.webp" data-dev="1"></canvas><i class="polaroid__seal"></i><figcaption>basement set</figcaption></figure>
+    </div>
+    <div class="layer layer--bokeh" data-depth="1.6" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+
+    <div class="night__progress mono" aria-hidden="true"><span data-night-step>01</span> / 05</div>
   </div>
 </section>
 
-<!-- TICKER: film strip -->
-<section class="strip" aria-label="Frames from a sample roll">
-  <div class="strip__track">
-    <div class="strip__set">
-      <div class="frame"><img src="img/beach-dusk-sm.webp" alt=""><span>1</span></div>
-      <div class="frame"><img src="img/ferris-night-sm.webp" alt=""><span>2</span></div>
-      <div class="frame"><img src="img/pool-above-sm.webp" alt=""><span>3</span></div>
-      <div class="frame"><img src="img/bonfire-sm.webp" alt=""><span>4</span></div>
-      <div class="frame"><img src="img/lake-mist-sm.webp" alt=""><span>5</span></div>
-      <div class="frame"><img src="img/neon-street-sm.webp" alt=""><span>6</span></div>
-      <div class="frame"><img src="img/rooftop-blue-sm.webp" alt=""><span>7</span></div>
-      <div class="frame"><img src="img/ridge-dawn-sm.webp" alt=""><span>8</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- HOW IT WORKS: sticky phone + steps -->
-<section class="how" id="how">
-  <div class="wrap">
-    <div class="how__grid">
-      <div class="how__sticky">
-        <div class="phone phone--how" role="img" aria-label="Overnight app screens for each step">
-          <div class="phone__screen">
-            <!-- step 1: new roll -->
-            <div class="scr scr--1 is-on" data-screen="1">
-              <div class="scr__head"><span class="scr__back">Cancel</span><b>New roll</b><span></span></div>
-              <label class="field"><span>Name</span><b>Goa, December</b></label>
-              <div class="field field--row"><span>Shots each</span><div class="stepper"><i>−</i><b>27</b><i>+</i></div></div>
-              <div class="field field--row"><span>Develops</span><b>9:00 am, next morning</b></div>
-              <div class="field"><span>Film look</span>
-                <div class="looks"><em class="on" style="--a:#FF9DB8;--b:#9C95FF">Dusk</em><em style="--a:#8FF0FF;--b:#2A7FD9">Harbor</em><em style="--a:#F6F7FB;--b:#A6A3C9">Bleach</em></div>
-              </div>
-              <div class="field field--crew"><span>On this roll</span><div class="crew crew--lg"><span style="--c:#FF9DB8">A</span><span style="--c:#9C95FF">R</span><span style="--c:#FFE04A">M</span><span style="--c:#F6F7FB">J</span><span class="crew__more">+3</span></div><small>Ananya, Rohan, Meera, Jay and 3 more</small></div>
-              <div class="scr__cta">Share invite link</div>
-            </div>
-            <!-- step 2: shooting -->
-            <div class="scr scr--2" data-screen="2">
-              <img class="vf" src="img/neon-street.webp" alt="">
-              <div class="ui-top">
-                <div class="roll-chip"><span class="live"></span>Goa, December</div>
-                <div class="counter"><span class="counter__num">13</span><span class="counter__lbl">left</span></div>
-              </div>
-              <div class="toast">Shot saved. Sealed until 9:00.</div>
-              <div class="ui-bottom">
-                <div class="crew"><span style="--c:#FF9DB8">A</span><span style="--c:#9C95FF">R</span><span style="--c:#FFE04A">M</span><span class="crew__more">+4</span></div>
-                <div class="shutter"><span></span></div>
-                <div class="dev-time">9:00</div>
-              </div>
-            </div>
-            <!-- step 3: developed -->
-            <div class="scr scr--3" data-screen="3">
-              <div class="scr__head scr__head--light"><span></span><b>Goa, December</b><span></span></div>
-              <p class="scr__sub">Developed this morning</p>
-              <div class="grid9">
-                <img src="img/beach-dusk-sm.webp" alt=""><img src="img/ferris-night-sm.webp" alt=""><img src="img/pool-above-sm.webp" alt="">
-                <img src="img/bonfire-sm.webp" alt=""><img src="img/lake-mist-sm.webp" alt=""><img src="img/neon-street-sm.webp" alt="">
-                <img src="img/rooftop-blue-sm.webp" alt=""><img src="img/ridge-dawn-sm.webp" alt=""><img src="img/beach-dusk-sm.webp" alt="">
-              </div>
-              <p class="scr__meta">86 photos from 7 people</p>
-              <div class="contrib"><span style="--c:#FF9DB8">A<b>14</b></span><span style="--c:#9C95FF">R<b>12</b></span><span style="--c:#FFE04A">M<b>13</b></span><span style="--c:#1B1A4B">J<b>11</b></span><span style="--c:#D9D6FF">+3<b>36</b></span></div>
-              <div class="scr__cta scr__cta--night">Save the whole roll</div>
-            </div>
-          </div>
-          <span class="phone__island" aria-hidden="true"></span>
-        </div>
-      </div>
-
-      <div class="how__col">
-      <h2 class="h2 how__title">Three steps,<br>one roll.</h2>
-      <ol class="steps">
-        <li class="step" data-step="1">
-          <img class="step__shot" src="img/phone-step1.png" alt="" width="240" height="497">
-          <span class="step__n">1</span>
-          <h3 class="h3">Start a roll</h3>
-          <p>Name it, pick how many shots each person gets, and share the link. Friends join from the invite without making an account.</p>
-        </li>
-        <li class="step" data-step="2">
-          <img class="step__shot" src="img/phone-step2.png" alt="" width="240" height="497">
-          <span class="step__n">2</span>
-          <h3 class="h3">Shoot without looking</h3>
-          <p>There is no gallery and no preview. You take the shot, the counter drops by one, and you get back to the moment you were in.</p>
-        </li>
-        <li class="step" data-step="3">
-          <img class="step__shot" src="img/phone-step3.png" alt="" width="240" height="497">
-          <span class="step__n">3</span>
-          <h3 class="h3">Wake up to the roll</h3>
-          <p>At 9&nbsp;a.m. every photo develops for everyone at once, in the order it was taken. The whole night, from every angle, over breakfast.</p>
-        </li>
-      </ol>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- BENTO -->
-<section class="bento-sec" id="features">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 class="h2">Made for the trip,<br>not the feed.</h2>
-      <p class="sec-head__p">Everything in Overnight is built around one idea: take fewer photos, look at them later, and look at them together.</p>
-    </div>
-    <div class="bento">
-      <article class="tile tile--count" data-appear>
-        <div class="bigcount" aria-hidden="true"><span class="bigcount__roll"><span>27</span><span>26</span></span></div>
-        <div class="tile__txt">
-          <h3 class="h3">Every shot counts</h3>
-          <p>Each person gets a fixed number of shots. Fewer duplicates, more thought behind every frame. Hover to take one.</p>
-        </div>
-      </article>
-      <article class="tile tile--night" data-appear>
-        <div class="sky" aria-hidden="true"><span class="sky__moon"></span><span class="sky__sun"></span><span class="sky__line"></span></div>
-        <h3 class="h3">Develops while you sleep</h3>
-        <p>Choose the hour. Nine is the usual pick; some crews hold out until noon.</p>
-      </article>
-      <article class="tile tile--looks" data-appear>
-        <div class="looks-demo" aria-hidden="true">
-          <img src="img/lake-mist-sm.webp" alt="">
-          <div class="looks-demo__chips"><em data-look="dusk" class="on">Dusk</em><em data-look="harbor">Harbor</em><em data-look="bleach">Bleach</em></div>
-        </div>
-        <h3 class="h3">Three film looks</h3>
-        <p>Pick one look for the whole roll before the first shot, so every frame matches.</p>
-      </article>
-      <article class="tile tile--link" data-appear>
-        <div class="fan" aria-hidden="true"><span style="--c:#9C95FF">A</span><span style="--c:#FFE04A">R</span><span style="--c:#F6F7FB">M</span><span style="--c:#1B1A4B;color:#F6F7FB">J</span></div>
-        <h3 class="h3">Join with a link</h3>
-        <p>Up to 12 people per roll. Guests shoot from the invite link, no account needed.</p>
-      </article>
-      <article class="tile tile--private" data-appear>
-        <svg class="canister" viewBox="0 0 120 120" aria-hidden="true">
-          <rect x="30" y="22" width="60" height="84" rx="10" fill="#9C95FF"/>
-          <rect x="26" y="18" width="68" height="14" rx="5" fill="#F6F7FB"/>
-          <rect x="26" y="96" width="68" height="14" rx="5" fill="#F6F7FB"/>
-          <rect x="52" y="8" width="16" height="12" rx="3" fill="#F6F7FB"/>
-          <rect x="40" y="46" width="40" height="30" rx="5" fill="#1B1A4B"/>
-          <path d="M53 46v-6a7 7 0 0 1 14 0v6" fill="none" stroke="#1B1A4B" stroke-width="5"/>
-          <circle cx="60" cy="60" r="4" fill="#FFE04A"/>
-        </svg>
-        <h3 class="h3">Rolls stay private</h3>
-        <p>Only people on the roll see the photos. Nothing is posted anywhere unless you post it.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- INTERACTIVE: drag the stack -->
-<section class="roll" id="roll">
+<!-- 05 DEVELOP THE ROLL: gamified contact sheet ------------------------------------ -->
+<section class="roll" id="roll" data-time="05:40-06:40" data-frame="04" aria-labelledby="roll-title">
   <div class="wrap roll__grid">
     <div class="roll__copy">
-      <h2 class="h2">Flip through last night's roll.</h2>
-      <p>Drag a print off the top of the stack. This is what 9&nbsp;a.m. feels like on an Overnight trip: the whole night, in order, seen for the first time.</p>
-      <div class="roll__meta">
-        <p class="roll__count" aria-live="polite">Frame <b id="frameNo">1</b> of 8</p>
-        <button class="btn btn--night btn--sm" id="reshuffle" type="button">Start the roll again</button>
+      <p class="edge mono" aria-hidden="true">◂ 04 &nbsp;OVERNIGHT 400&nbsp; 04A ▸ &nbsp;darkroom</p>
+      <h2 class="h2" id="roll-title">Can't wait <em>till nine?</em></h2>
+      <p class="lede">In the app, you can't skip ahead. Here you can. Rub the sealed roll to push it through the developer, or hold the button and let the chemistry do it.</p>
+      <div class="roll__counter" aria-live="polite">
+        <b class="roll__num" data-roll-count>24</b>
+        <span class="roll__lbl"><span data-roll-label>shots still sealed</span><small class="mono" data-roll-sub>Goa, December · 7 people</small></span>
+      </div>
+      <div class="roll__actions">
+        <button class="btn btn--hold" type="button" data-hold data-shutter>
+          <svg class="hold__ring" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="19"/><circle class="hold__prog" cx="22" cy="22" r="19"/></svg>
+          <span class="hold__txt">Hold to develop</span>
+        </button>
+        <button class="btn btn--ghost btn--sm roll__reset" type="button" data-roll-reset data-shutter hidden>Seal it again</button>
+      </div>
+      <p class="roll__done" data-roll-done hidden>That rush, at breakfast, with your actual friends. <a href="#waitlist" class="ulink">Get on the first roll →</a></p>
+    </div>
+    <div class="sheet-wrap">
+      <div class="sheet" data-sheet tabindex="0" aria-label="Contact sheet with 24 sealed frames. Drag across it to develop frames, or use the Hold to develop button." role="application">
+        <div class="sheet__strips" data-sheet-strips></div>
+        <svg class="sheet__marks" aria-hidden="true" data-sheet-marks></svg>
+        <div class="sheet__stamp" aria-hidden="true"><span class="mono">Developed</span><b data-stamp-time>6:12 am</b><span class="mono" data-stamp-early>2 h 48 m early</span></div>
+      </div>
+      <p class="sheet__hint mono" aria-hidden="true">Rub here ↺ &nbsp;·&nbsp; each frame develops where you scrub</p>
+    </div>
+  </div>
+</section>
+
+<!-- 06 FILM LOOKS ------------------------------------------------------------------ -->
+<section class="looks" id="looks" data-time="06:40-08:20" data-frame="05" aria-labelledby="looks-title">
+  <div class="wrap">
+    <p class="edge mono" aria-hidden="true">◂ 05 &nbsp;OVERNIGHT 400&nbsp; 05A ▸</p>
+    <div class="looks__head">
+      <h2 class="h2" id="looks-title">Pick the film <em>before the first shot.</em></h2>
+      <p class="lede">One look for the whole roll, so every frame matches. Try them: the grade changes every photo on this page, live.</p>
+    </div>
+    <div class="looks__grid">
+      <div class="viewer" data-viewer>
+        <div class="viewer__frame">
+          <canvas class="viewer__img is-on" data-film="img/sunrise.webp" data-dev="1" data-seed="5" data-snap="06:31 am · sunrise, nobody slept" role="img" aria-label="Sunrise over the sea with a palm tree"></canvas>
+          <canvas class="viewer__img" data-film="img/neon.webp" data-dev="1" data-seed="5" data-snap="11:48 pm · Bar Lumen" role="img" aria-label="A neon bar sign reflected on a wet street"></canvas>
+          <canvas class="viewer__img" data-film="img/pool.webp" data-dev="1" data-seed="5" data-snap="09:05 am · pool after breakfast" role="img" aria-label="A swimming pool from above with a striped ring"></canvas>
+        </div>
+        <div class="viewer__bar mono">
+          <span data-viewer-cap>06:31 am · sunrise, nobody slept</span>
+          <span class="viewer__nav">
+            <button type="button" data-viewer-prev aria-label="Previous photo" data-shutter>←</button>
+            <button type="button" data-viewer-next aria-label="Next photo" data-shutter>→</button>
+          </span>
+        </div>
+      </div>
+      <div class="filmboxes" role="radiogroup" aria-label="Film look">
+        <button class="filmbox" type="button" role="radio" aria-checked="true" data-look-set="dusk" data-shutter>
+          <canvas class="filmbox__swatch" data-film="img/bonfire-b.webp" data-dev="1" data-look="dusk" aria-hidden="true"></canvas>
+          <span class="filmbox__body"><span class="filmbox__name">Dusk</span><span class="filmbox__spec mono">800 · warm · amber highs</span><span class="filmbox__desc">Lifted, plum-brown shadows and honey highlights. Made for bars, bonfires and the last hour of the party.</span></span>
+        </button>
+        <button class="filmbox" type="button" role="radio" aria-checked="false" data-look-set="harbor" data-shutter>
+          <canvas class="filmbox__swatch" data-film="img/moon-b.webp" data-dev="1" data-look="harbor" aria-hidden="true"></canvas>
+          <span class="filmbox__body"><span class="filmbox__name">Harbor</span><span class="filmbox__spec mono">400 · cool · teal lows</span><span class="filmbox__desc">Clean whites over sea-glass shadows. Water, blue hour and the walk home.</span></span>
+        </button>
+        <button class="filmbox" type="button" role="radio" aria-checked="false" data-look-set="bleach" data-shutter>
+          <canvas class="filmbox__swatch" data-film="img/trails-b.webp" data-dev="1" data-look="bleach" aria-hidden="true"></canvas>
+          <span class="filmbox__body"><span class="filmbox__name">Bleach</span><span class="filmbox__spec mono">1600 · bypass · silver</span><span class="filmbox__desc">Skipped-bleach silver: hard contrast, quiet colour. For the night you want to look like a film still.</span></span>
+        </button>
       </div>
     </div>
-    <div class="stack" id="stack" aria-label="Stack of prints. Drag the top print aside, or use the button below the stack.">
-      <figure class="card" data-cap="Frame 1, Anjuna beach"><img src="img/beach-dusk.webp" alt="Sunset over the sea with a palm tree silhouette" draggable="false"><figcaption>Frame 1, Anjuna beach</figcaption></figure>
-      <figure class="card" data-cap="Frame 2, the night market"><img src="img/ferris-night.webp" alt="Lit-up ferris wheel at night" draggable="false"><figcaption>Frame 2, the night market</figcaption></figure>
-      <figure class="card" data-cap="Frame 3, hotel pool"><img src="img/pool-above.webp" alt="Swimming pool from above with a pink float" draggable="false"><figcaption>Frame 3, hotel pool</figcaption></figure>
-      <figure class="card" data-cap="Frame 4, bonfire"><img src="img/bonfire.webp" alt="Friends around a beach bonfire" draggable="false"><figcaption>Frame 4, bonfire</figcaption></figure>
-      <figure class="card" data-cap="Frame 5, the lake"><img src="img/lake-mist.webp" alt="Rowing boat on a misty lake" draggable="false"><figcaption>Frame 5, the lake</figcaption></figure>
-      <figure class="card" data-cap="Frame 6, caught in the rain"><img src="img/neon-street.webp" alt="Person with umbrella under neon signs" draggable="false"><figcaption>Frame 6, caught in the rain</figcaption></figure>
-      <figure class="card" data-cap="Frame 7, rooftop"><img src="img/rooftop-blue.webp" alt="City skyline with string lights" draggable="false"><figcaption>Frame 7, rooftop</figcaption></figure>
-      <figure class="card" data-cap="Frame 8, the drive home"><img src="img/ridge-dawn.webp" alt="Mountain ridges at dawn" draggable="false"><figcaption>Frame 8, the drive home</figcaption></figure>
-    </div>
-    <button class="stack__next btn btn--ghost-ink btn--sm" id="nextCard" type="button">Next print</button>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="cta" id="waitlist">
-  <div class="cta__sun" aria-hidden="true"></div>
-  <div class="cta__horizon" aria-hidden="true"></div>
-  <div class="wrap cta__inner">
-    <h2 class="cta__title">Be on the<br>first roll.</h2>
-    <p class="cta__p">We're opening Overnight to small groups first. Leave your email and we'll send an invite before launch.</p>
-    <form class="form" id="form" novalidate>
-      <label class="sr" for="email">Email address</label>
-      <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
-      <button class="btn btn--night" type="submit">Join the waitlist</button>
+<!-- 07 WAITLIST: 9:00 am ----------------------------------------------------------- -->
+<section class="waitlist" id="waitlist" data-time="08:20-09:00" data-frame="06" aria-labelledby="wl-title">
+  <div class="prints" aria-hidden="true">
+    <figure class="print" data-depth="0.5" data-rot="-10" style="--x:6%;--y:16%"><canvas data-film="img/window.webp" data-dev="1"></canvas><figcaption>8:47, still in bed</figcaption></figure>
+    <figure class="print" data-depth="0.9" data-rot="7" style="--x:80%;--y:19%"><canvas data-film="img/sparklers.webp" data-dev="1"></canvas><figcaption>IT CAME OUT</figcaption></figure>
+    <figure class="print" data-depth="0.3" data-rot="12" style="--x:86%;--y:62%"><canvas data-film="img/trails.webp" data-dev="1"></canvas><figcaption>Rohan's "shot of the trip"</figcaption></figure>
+    <figure class="print" data-depth="0.7" data-rot="-6" style="--x:3%;--y:66%"><canvas data-film="img/pool-b.webp" data-dev="1"></canvas><figcaption>9:05</figcaption></figure>
+  </div>
+  <div class="wrap waitlist__inner">
+    <p class="edge mono" aria-hidden="true">◂ 06 &nbsp;OVERNIGHT 400&nbsp; 06A ▸</p>
+    <p class="waitlist__clock mono"><span class="dot"></span>9:00 a.m. · the roll develops</p>
+    <h2 class="display" id="wl-title">Be on the <em>first roll.</em></h2>
+    <p class="lede waitlist__lede">We're opening Overnight to small crews first, spring 2027 on iOS and Android. Leave an email and your invite arrives the morning it's ready.</p>
+
+    <form class="form" novalidate data-form>
+      <div class="form__row">
+        <label class="sr-only" for="wl-email">Email address</label>
+        <input class="form__input" id="wl-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@email.com" aria-describedby="wl-error wl-note" required>
+        <button class="btn btn--primary btn--flash" type="submit" data-shutter>Join the waitlist</button>
+      </div>
+      <p class="form__error mono" id="wl-error" role="alert" aria-live="assertive"></p>
+      <fieldset class="form__crew">
+        <legend class="mono">Your usual crew</legend>
+        <label><input type="radio" name="crew" value="2-4" checked><span>2–4</span></label>
+        <label><input type="radio" name="crew" value="5-8"><span>5–8</span></label>
+        <label><input type="radio" name="crew" value="9-12"><span>9–12</span></label>
+      </fieldset>
+      <p class="form__note" id="wl-note">One email when your invite is ready. No newsletter. Rolls up to 27 shots each stay free.</p>
     </form>
-    <p class="form__msg" id="formMsg" aria-live="polite">One email when your invite is ready. No newsletter.</p>
-  </div>
-</section>
 
-<!-- FAQ -->
-<section class="faq" id="faq">
-  <div class="wrap faq__grid">
-    <h2 class="h2 faq__title">Questions before the first roll</h2>
-    <div class="faq__list">
-      <details open><summary>Can I see my photos before they develop?</summary><p>No, and that's the point. You'll see the counter go down, but every photo stays sealed until the develop time the roll was set to.</p></details>
-      <details><summary>What if one of my shots is bad?</summary><p>For the first hour after the roll develops, you can hide any of your own shots before the rest of the crew saves the roll.</p></details>
-      <details><summary>How many people can join a roll?</summary><p>Up to 12. Everyone gets the same number of shots, set by the person who starts the roll.</p></details>
-      <details><summary>Does everyone need the app?</summary><p>No. Guests can shoot from the invite link in their phone's browser. The app adds film looks and lets you shoot offline.</p></details>
-      <details><summary>How much will it cost?</summary><p>Rolls of up to 27 shots each will be free. Longer rolls and extra film looks will be part of a paid plan, priced before launch.</p></details>
-      <details><summary>Who owns the photos?</summary><p>Whoever took them. Overnight stores the roll so your crew can save it, and the person who started a roll can delete it at any time.</p></details>
+    <div class="success" data-success hidden tabindex="-1" aria-live="polite">
+      <div class="success__print">
+        <canvas data-film="img/sunrise-b.webp" data-dev="1" data-seed="8"></canvas>
+        <p class="success__cap">frame <span data-frame-no>0413</span> · first roll</p>
+      </div>
+      <div class="success__copy">
+        <p class="mono success__kicker">Shot saved · sealed until launch</p>
+        <h3 class="h2">You're on <em>the roll.</em></h3>
+        <p>We'll send the invite to <b data-success-email>you</b> the morning it's ready, before spring 2027. Bring the crew.</p>
+        <button class="btn btn--ghost btn--sm" type="button" data-success-reset data-shutter>Add another email</button>
+      </div>
     </div>
   </div>
 </section>
+
+<!-- 08 FAQ ------------------------------------------------------------------------- -->
+<section class="faq" id="faq" data-time="09:00-09:10" data-frame="07" aria-labelledby="faq-title">
+  <div class="wrap faq__grid">
+    <div>
+      <p class="edge mono" aria-hidden="true">◂ 07 &nbsp;OVERNIGHT 400&nbsp; 07A ▸</p>
+      <h2 class="h2" id="faq-title">Questions before <em>the first roll.</em></h2>
+    </div>
+    <div class="faq__list">
+      <details class="qa"><summary><span>Can I see my photos before they develop?</span><i aria-hidden="true"></i></summary><p>No, and that's the point. You'll see the counter go down, but every photo stays sealed until the develop time the roll was set to.</p></details>
+      <details class="qa"><summary><span>What if one of my shots is bad?</span><i aria-hidden="true"></i></summary><p>For the first hour after the roll develops, you can hide any of your own shots before the rest of the crew saves the roll.</p></details>
+      <details class="qa"><summary><span>How many people can join a roll?</span><i aria-hidden="true"></i></summary><p>Up to 12. Everyone gets the same number of shots, set by the person who starts the roll.</p></details>
+      <details class="qa"><summary><span>Does everyone need the app?</span><i aria-hidden="true"></i></summary><p>No. Guests can shoot from the invite link in their phone's browser. The app adds film looks and lets you shoot offline.</p></details>
+      <details class="qa"><summary><span>How much will it cost?</span><i aria-hidden="true"></i></summary><p>Rolls of up to 27 shots each will be free. Longer rolls and extra film looks will be part of a paid plan, priced before launch.</p></details>
+      <details class="qa"><summary><span>Who owns the photos?</span><i aria-hidden="true"></i></summary><p>Whoever took them. Overnight stores the roll so your crew can save it, and the person who started a roll can delete it at any time.</p></details>
+    </div>
+  </div>
+</section>
+
 </main>
 
-<footer class="foot">
-  <div class="wrap foot__top">
-    <a class="brand brand--ink" href="#top"><svg class="brand__mark" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#1B1A4B"/><circle cx="27" cy="15" r="14" fill="#FFE04A"/></svg><span class="brand__word">Overnight</span></a>
-    <nav class="foot__links" aria-label="Footer">
-      <a href="#how">How it works</a><a href="#features">Features</a><a href="#faq">FAQ</a><a href="#waitlist">Waitlist</a>
-    </nav>
-    <p class="foot__note">Overnight is a concept app, designed as a portfolio sample. © 2026</p>
+<footer class="foot" data-time="09:10-09:15">
+  <div class="wrap">
+    <p class="foot__big">See you at <em>nine.</em></p>
+    <div class="foot__row">
+      <a class="brand" href="#top" data-snap><svg class="brand__mark" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="17" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M20 3a17 17 0 0 1 0 34z" fill="currentColor"/><circle cx="20" cy="20" r="5.5" fill="var(--bg-ink)" stroke="currentColor" stroke-width="2.4"/></svg><span class="brand__word">Overnight</span></a>
+      <nav class="foot__links" aria-label="Footer"><a href="#how">How it works</a><a href="#roll">Develop a roll</a><a href="#looks">Film looks</a><a href="#faq">Questions</a></nav>
+      <p class="foot__note mono">Overnight is an invented brand, designed and built as a portfolio piece. © 2026</p>
+    </div>
   </div>
-  <div class="foot__word" aria-hidden="true"><span>Overnight</span></div>
 </footer>
 
-<script src="vendor/gsap.min.js"></script>
-<script src="vendor/ScrollTrigger.min.js"></script>
-<script src="main.js"></script>
+<!-- Clock HUD -->
+<div class="hud" aria-hidden="true">
+  <svg class="hud__dial" viewBox="0 0 48 48"><circle cx="24" cy="24" r="21"/><g class="hud__ticks"></g><line class="hud__h" x1="24" y1="24" x2="24" y2="13"/><line class="hud__m" x1="24" y1="24" x2="24" y2="7"/><circle cx="24" cy="24" r="2.2" class="hud__pin"/></svg>
+  <span class="hud__txt"><b class="mono" data-clock>11:00 pm</b><small class="mono" data-clock-sub>Roll sealed · develops 9:00</small></span>
+</div>
+
+<script src="vendor/lenis.min.js"></script>
+<script src="js/film.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>

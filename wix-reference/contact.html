@@ -2,74 +2,94 @@
 <html lang="en-GB">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Contact | Ondé (design sample)</title>
-<meta name="description" content="Contact Ondé, a fictional colour and cut house in Stoke Newington. Placeholder details for a design sample.">
-<meta name="robots" content="noindex">
-<meta property="og:title" content="Contact | Ondé (design sample)">
-<meta property="og:description" content="Contact Ondé, a fictional colour and cut house in Stoke Newington. Placeholder details for a design sample.">
-<meta property="og:image" content="assets/social-share.png">
-<meta name="theme-color" content="#2A1730">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Contact | Ondé, Stoke Newington</title>
+<meta name="description" content="Questions about colour, a booking or an event date? Contact Ondé in Stoke Newington. We reply within one working day.">
+<meta property="og:title" content="Contact | Ondé, Stoke Newington">
+<meta property="og:description" content="Questions about colour, a booking or an event date? Contact Ondé in Stoke Newington. We reply within one working day.">
+<meta property="og:image" content="assets/social-share.jpg">
+<meta name="theme-color" content="#EFEAE2">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="icon" href="assets/favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="assets/favicon-180.png">
-<link rel="preload" href="fonts/BodoniModaDisplay-Regular.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="fonts/BodoniModaText-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/bodoni-moda.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/hanken-grotesk.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/site.css">
+<script>try{if(sessionStorage.getItem('onde-wash'))document.documentElement.classList.add('washing')}catch(e){}</script>
 </head>
 <body data-page="contact">
-<a class="sr" href="#main">Skip to content</a>
-<div class="demo">Design sample. Ondé is a fictional studio; names, prices, address and contact details are placeholders.</div>
-<header class="hdr">
-  <div class="wrap">
-    <a class="logo" href="index.html" aria-label="Ondé home"><b>Ondé</b><span>colour &amp; cut</span></a>
-    <nav class="nav" aria-label="Main">
-      <a href="services.html">Services</a>
-      <a href="index.html#visit">First visit</a>
-      <a href="index.html#team">Team</a>
-      <a href="contact.html" aria-current="page">Contact</a>
-    </nav>
-    <a class="btn btn-primary" href="book.html">Book a visit</a>
-    <button class="burger" aria-label="Menu" aria-expanded="false" aria-controls="mnav"><i></i><i></i></button>
-  </div>
+<a class="skip" href="#main">Skip to content</a>
+<header class="hdr" data-hdr>
+  <a class="logo" href="index.html" aria-label="Ondé, home">Ond<span>é</span></a>
+  <nav class="nav" aria-label="Main"><a href="services.html">Services</a><a href="index.html#consult">Colour route</a><a href="index.html#visit">First visit</a><a href="index.html#team">Team</a><a href="contact.html" aria-current="page">Contact</a></nav>
+  <a class="hdr-cta" href="book.html" data-cursor="book"><span>Book a visit</span></a>
+  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu"><span class="sr">Open menu</span><i></i><i></i></button>
 </header>
-<nav class="mnav" id="mnav" aria-label="Mobile">
-  <a href="index.html">Home</a><a href="services.html">Services</a><a href="index.html#visit">First visit</a><a href="index.html#team">Team</a><a href="contact.html">Contact</a>
-  <a class="btn btn-primary" href="book.html">Book a visit</a>
-</nav>
+<div class="menu" id="menu" hidden>
+  <nav aria-label="Mobile"><a href="index.html" style="--i:0"><small>01</small>Home</a><a href="services.html" style="--i:1"><small>02</small>Services</a><a href="index.html#consult" style="--i:2"><small>03</small>Colour route</a><a href="index.html#visit" style="--i:3"><small>04</small>First visit</a><a href="index.html#team" style="--i:4"><small>05</small>Team</a><a href="contact.html" style="--i:5"><small>06</small>Contact</a><a href="book.html" style="--i:6"><small>07</small>Book a visit</a></nav>
+  <p class="menu-foot">7 Lavell Yard, London N16 · Tue to Sat</p>
+</div>
+<div class="cur" aria-hidden="true"><span class="cur-ring"><b>Book</b></span><span class="cur-dot"></span></div>
+<div class="wash" aria-hidden="true"><div class="wash-fill"><i></i><i></i><i></i><i></i></div><p class="wash-label"></p></div>
 <main id="main">
-<section class="phero ink"><div class="strip" aria-hidden="true" data-parallax="-0.12"></div><div class="wrap"><h1 data-anim="up">Say hello</h1><p class="lead" data-anim="up" data-d=".12">Questions about colour, a booking or an event date. We reply within one working day.</p></div></section>
-<section class="sec"><div class="wrap contact-grid">
-  <div>
-    <form class="form" id="contact-form" novalidate>
-      <label>Name<input name="name" autocomplete="name" required></label>
-      <label>Email<input type="email" name="email" autocomplete="email" required></label>
-      <label class="full">Topic<select name="topic"><option>Colour question</option><option>Existing booking</option><option>Weddings and events</option><option>Something else</option></select></label>
-      <label class="full">Message<textarea name="message" required></textarea></label>
-      <div class="full"><button class="btn btn-primary" type="submit">Send message</button></div>
+<section class="ph" aria-labelledby="ph-h">
+  <canvas class="fluid" data-fluid="calm" data-palette="ash,rose" aria-hidden="true"></canvas>
+  <div class="ph-in">
+    <p class="eyebrow" data-intro>Contact</p>
+    <h1 id="ph-h" class="ph-h" data-kinetic><span class="l">Say</span><span class="l"><em>hello.</em></span></h1>
+    <p class="ph-lead" data-intro>Questions about colour, a booking or an event date. We reply within one working day.</p>
+  </div>
+</section>
+
+<section class="ct" aria-label="Contact form and studio details">
+  <div class="ct-form">
+    <form class="form" id="ct-form" novalidate>
+      <div class="f"><input id="c-name" name="name" autocomplete="name" required placeholder=" "><label for="c-name">Name</label><small class="err" id="ce-name"></small></div>
+      <div class="f"><input id="c-email" type="email" name="email" autocomplete="email" required placeholder=" "><label for="c-email">Email</label><small class="err" id="ce-email"></small></div>
+      <fieldset class="f-full ct-topics"><legend>About</legend>
+        <label class="chip"><input type="radio" name="topic" value="colour" checked><span>A colour question</span></label>
+        <label class="chip"><input type="radio" name="topic" value="booking"><span>An existing booking</span></label>
+        <label class="chip"><input type="radio" name="topic" value="event"><span>A wedding or event</span></label>
+        <label class="chip"><input type="radio" name="topic" value="other"><span>Something else</span></label>
+      </fieldset>
+      <div class="f f-full"><textarea id="c-msg" name="message" rows="5" required placeholder=" "></textarea><label for="c-msg">Your message</label><small class="err" id="ce-msg"></small></div>
+      <div class="f-full"><button class="btn btn-ink" type="submit"><span>Send message</span></button></div>
     </form>
-    <div id="contact-done" class="done-msg" hidden><div class="tick"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><h2>Message sent</h2><p class="lead">Thanks. This is a demo, so nothing was sent.</p></div>
+    <div class="ct-done" hidden tabindex="-1"><svg class="bk-tick" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="56"/><path d="M38 62l15 15 30-34"/></svg><h2>Thank you.</h2><p>This page is a preview, so your message wasn’t sent anywhere. On the live site it goes straight to the studio inbox.</p></div>
   </div>
-  <div class="det">
-    <div><h3>Studio</h3><p>00 Demo Row, Stoke Newington<br>London N16 0XX (placeholder)</p></div>
-    <div><h3>Phone and email</h3><p><a href="tel:+442079460321">020 7946 0321</a><br><a href="mailto:hello@onde.example">hello@onde.example</a></p><p class="small" style="margin-top:6px">Reserved demo number and domain.</p></div>
-    <div><h3>Hours</h3><p>Tuesday and Wednesday, 10:00 to 19:00<br>Thursday and Friday, 10:00 to 20:00<br>Saturday, 09:00 to 17:00</p></div>
-    <div class="mapf" data-anim="reveal"><img src="assets/map-illustration.webp" alt="Illustrated street map with a violet pin marking the studio" width="1200" height="900" loading="lazy"><span class="demo-tag">Illustrated map, not to scale</span></div>
+  <div class="ct-info">
+    <div><h2 class="eyebrow">Studio</h2><p class="ct-big">7 Lavell Yard<br>Stoke Newington<br>London N16</p></div>
+    <div><h2 class="eyebrow">Phone and email</h2><p><a class="link-u" href="tel:+442079460321">020 7946 0321</a><br><a class="link-u" href="mailto:hello@onde.example">hello@onde.example</a></p></div>
+    <div><h2 class="eyebrow">Hours</h2><p>Tuesday and Wednesday, 10:00 to 19:00<br>Thursday and Friday, 10:00 to 20:00<br>Saturday, 09:00 to 17:00<br>Sunday and Monday, closed</p></div>
+    <figure class="ct-map" data-cursor="lens" data-reveal="curtain"><svg class="map" viewBox="0 0 600 460" role="img" aria-labelledby="map-t"><title id="map-t">Illustrated map of the streets around the studio, not to scale</title>
+  <rect width="600" height="460" fill="var(--paper)"/>
+  <path d="M-10 120 C 120 110, 260 140, 610 96" class="rd big"/><path d="M180 -10 C 190 120, 170 300, 210 470" class="rd big"/>
+  <path d="M-10 300 C 150 290, 330 320, 610 280" class="rd"/><path d="M420 -10 C 410 140, 450 300, 430 470" class="rd"/>
+  <path d="M60 -10 L 80 470" class="rd thin"/><path d="M300 -10 C 310 160, 290 300, 320 470" class="rd thin"/><path d="M-10 210 L 610 196" class="rd thin"/><path d="M-10 390 C 200 380, 400 400, 610 372" class="rd thin"/><path d="M520 -10 L 540 470" class="rd thin"/>
+  <path d="M460 140 C 520 120, 590 150, 600 210 L 600 270 C 540 280, 470 250, 455 200 Z" class="park"/>
+  <text x="196" y="80" class="lbl" transform="rotate(-88 196 80)">Church Street</text><text x="60" y="112" class="lbl">High Street</text>
+  <g class="pin" transform="translate(300 206)"><circle r="26" class="pulse"/><circle r="8"/></g>
+  <text x="318" y="236" class="lbl strong">Ondé</text>
+</svg></figure>
   </div>
-</div></section>
+</section>
 </main>
-<footer class="ftr">
-  <div class="wrap">
-    <div class="ftr-grid">
-      <div><p style="max-width:34ch;font-size:17px;color:var(--pearl)">Colour that grows out beautifully. A colour-and-cut house in Stoke Newington, London.</p><p style="margin-top:22px"><a class="btn btn-primary" href="book.html">Book a visit</a></p></div>
-      <div><h4>Visit</h4><ul><li>00 Demo Row</li><li>London N16 0XX</li><li>(placeholder address)</li></ul></div>
-      <div><h4>Hours</h4><ul><li>Tue to Wed, 10 to 7</li><li>Thu to Fri, 10 to 8</li><li>Sat, 9 to 5</li><li>Sun and Mon, closed</li></ul></div>
-      <div><h4>Contact</h4><ul><li><a href="tel:+442079460321">020 7946 0321</a></li><li><a href="mailto:hello@onde.example">hello@onde.example</a></li><li>Instagram: @onde.demo</li></ul></div>
-    </div>
-    <div class="wordmark" aria-hidden="true" data-pan="-180">Ondé</div>
-    <div class="fine"><span>© 2026 Ondé. A fictional business made as a web design sample.</span><span><a href="contact.html">Contact</a> &nbsp; <a href="services.html">Services</a> &nbsp; <a href="book.html">Book</a></span></div>
+<footer class="ftr" data-theme="dark">
+  <div class="ftr-cta">
+    <p class="eyebrow">Stoke Newington, N16</p>
+    <h2 class="ftr-h" data-reveal="words">Book a chair. <em>Leave with a plan.</em></h2>
+    <a class="btn btn-light" href="book.html" data-cursor="book" data-magnetic><span>Book a visit</span></a>
   </div>
+  <div class="ftr-cols">
+    <div><h3>Visit</h3><p>7 Lavell Yard<br>Stoke Newington<br>London N16</p></div>
+    <div><h3>Hours</h3><p>Tue to Wed, 10:00 to 19:00<br>Thu to Fri, 10:00 to 20:00<br>Sat, 09:00 to 17:00<br>Sun and Mon, closed</p></div>
+    <div><h3>Contact</h3><p><a href="tel:+442079460321">020 7946 0321</a><br><a href="mailto:hello@onde.example">hello@onde.example</a><br>Instagram @onde.n16</p></div>
+    <div><h3>Pages</h3><p><a href="services.html">Services</a><br><a href="book.html">Book a visit</a><br><a href="contact.html">Contact</a></p></div>
+  </div>
+  <div class="ftr-word" aria-hidden="true" data-wordmark>Ondé</div>
+  <div class="ftr-base"><span>© 2026 Ondé</span><span class="ftr-note">Ondé is a brand created for this portfolio; names, prices and address are illustrative.</span></div>
 </footer>
+<script src="vendor/lenis.min.js"></script>
+<script src="js/fluid.js"></script>
 <script src="js/site.js"></script>
 </body>
 </html>
