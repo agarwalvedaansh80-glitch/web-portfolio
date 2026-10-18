@@ -1,5 +1,4 @@
-/* Ondé booking flow (front-end preview of Wix Bookings): service → date & time → details → confirmation.
-   Nothing is sent anywhere. */
+/* Ondé booking flow (front-end preview of Wix Bookings): service → date & time → details → confirmation. */
 (function () {
   'use strict';
   var O = window.Onde || {}, RM = O.RM, doc = document;

@@ -17,4 +17,4 @@ Sites I designed and built, one folder per site. Every site below is live.
 Calder & Rowe running inside real WordPress (opens WordPress in your browser):
 https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/agarwalvedaansh80-glitch/web-portfolio/main/calder-rowe-wp/wp-blueprint.json
 
-Brand names are original to these builds. The Halfstep 3D shoe model is © 2021 Shopify, CC BY 4.0 (Khronos glTF sample assets).
+The Halfstep 3D shoe model is © 2021 Shopify, CC BY 4.0 (Khronos glTF sample assets).

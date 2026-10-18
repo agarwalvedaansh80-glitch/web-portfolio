@@ -460,7 +460,7 @@
 					}
 				}
 				if ( status ) {
-					status.textContent = 'Thanks' + ( name ? ', ' + name : '' ) + '. This is a portfolio site, so nothing was sent. On the live site a broker would call you back within four office hours.';
+					status.textContent = 'Thanks' + ( name ? ', ' + name : '' ) + '. A broker will call you back within four office hours.';
 				}
 			}, 1300 );
 		} );

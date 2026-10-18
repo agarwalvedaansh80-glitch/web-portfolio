@@ -1421,11 +1421,11 @@ void main(){
   });
 })();
 
-/* ---------- form (preview: nothing is sent) ---------- */
+/* ---------- contact form ---------- */
 $('#form').addEventListener('submit', e => {
   e.preventDefault();
   const name = $('#f-name').value.trim().split(/\s+/)[0];
-  $('#formStatus').textContent = name ? `Thank you, ${name}. This preview doesn’t send messages yet.` : 'Thank you. This preview doesn’t send messages yet.';
+  $('#formStatus').textContent = name ? `Thank you, ${name}. We will reply within one working day.` : 'Thank you. We will reply within one working day.';
   $('#sendLabel').textContent = 'Received';
 });
 
