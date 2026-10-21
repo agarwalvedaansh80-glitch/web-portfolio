@@ -373,6 +373,19 @@
 		}
 		return v;
 	}
+	function sendEnquiry( form, subject, fromName, extra ) {
+	  var fd = new FormData( form );
+	  if ( fd.get( 'website' ) ) { return Promise.resolve( true ); }
+	  var data = {};
+	  fd.forEach( function ( v, k ) { if ( k !== 'website' ) { data[ k ] = data[ k ] !== undefined ? data[ k ] + ', ' + v : v; } } );
+	  Object.keys( extra || {} ).forEach( function ( k ) { data[ k ] = extra[ k ]; } );
+	  data.access_key = 'REPLACE_WITH_WEB3FORMS_KEY';
+	  data.subject = subject;
+	  data.from_name = fromName;
+	  return fetch( 'https://api.web3forms.com/submit', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify( data ) } )
+	    .then( function ( r ) { return r.json().then( function ( j ) { return !!( r.ok && j.success ); }, function () { return false; } ); } )
+	    .catch( function () { return false; } );
+	}
 	function enhanceForm( form ) {
 		if ( form._crForm ) {
 			return;
@@ -451,9 +464,21 @@
 					label.firstChild.textContent = 'Connecting';
 				}
 			}
-			setTimeout( function () {
+			sendEnquiry( form, form.classList.contains( 'cr-form--quote' ) ? 'New quote request from Calder & Rowe website' : 'New call-back request from Calder & Rowe website', 'Calder & Rowe website', {} ).then( function ( ok ) {
 				if ( btn ) {
 					btn.classList.remove( 'is-sending' );
+					btn.disabled = false;
+				}
+				if ( ! ok ) {
+					if ( label ) {
+						label.firstChild.textContent = 'Send again';
+					}
+					if ( status ) {
+						status.textContent = 'Something went wrong, please email us or call us directly.';
+					}
+					return;
+				}
+				if ( btn ) {
 					btn.classList.add( 'is-sent' );
 					if ( label ) {
 						label.firstChild.textContent = form.classList.contains( 'cr-form--quote' ) ? 'Request received' : 'Call booked';
@@ -462,7 +487,7 @@
 				if ( status ) {
 					status.textContent = 'Thanks' + ( name ? ', ' + name : '' ) + '. A broker will call you back within four office hours.';
 				}
-			}, 1300 );
+			} );
 		} );
 	}
 	CR.enhanceForm = enhanceForm;

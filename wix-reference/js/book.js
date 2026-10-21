@@ -158,6 +158,19 @@
   if (route) { var rp = route.split('-'); if (SHADE[rp[0]] && SHADE[rp[1]]) $('#f-notes').value = 'Colour route: ' + SHADE[rp[0]] + ' to ' + SHADE[rp[1]] + '.'; }
   renderCal(0);
 
+function sendEnquiry( form, subject, fromName, extra ) {
+  var fd = new FormData( form );
+  if ( fd.get( 'website' ) ) { return Promise.resolve( true ); }
+  var data = {};
+  fd.forEach( function ( v, k ) { if ( k !== 'website' ) { data[ k ] = data[ k ] !== undefined ? data[ k ] + ', ' + v : v; } } );
+  Object.keys( extra || {} ).forEach( function ( k ) { data[ k ] = extra[ k ]; } );
+  data.access_key = 'REPLACE_WITH_WEB3FORMS_KEY';
+  data.subject = subject;
+  data.from_name = fromName;
+  return fetch( 'https://api.web3forms.com/submit', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify( data ) } )
+    .then( function ( r ) { return r.json().then( function ( j ) { return !!( r.ok && j.success ); }, function () { return false; } ); } )
+    .catch( function () { return false; } );
+}
   /* step 3 + confirmation */
   form.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -165,7 +178,23 @@
     O.fieldErr(f, f.value.trim() ? '' : 'Please add your first name.'); if (!f.value.trim()) bad = f;
     var ok = O.EMAIL.test(em.value.trim()); O.fieldErr(em, ok ? '' : 'Please add an email address.'); if (!ok) bad = bad || em;
     if (bad) { bad.focus(); return; }
-    confirmVisit(e.submitter || $('button[type=submit]', form));
+    var sbtn = e.submitter || $('button[type=submit]', form);
+    var booking = {
+      service: S.svc.name,
+      date: nice(S.date),
+      time: S.time,
+      with: S.with !== 'any' ? WITH[S.with] : 'Any available'
+    };
+    if (sbtn) sbtn.disabled = true;
+    sendEnquiry(form, 'New booking request from Onde website', 'Onde website', booking).then(function (ok) {
+      if (sbtn) sbtn.disabled = false;
+      if (!ok) {
+        var be = form.querySelector('.bk-send-error') || form.appendChild(Object.assign(document.createElement('p'), { className: 'bk-send-error', role: 'status' }));
+        be.textContent = 'Something went wrong. Please email us directly.';
+        return;
+      }
+      confirmVisit(sbtn);
+    });
   });
   function confirmVisit(btn) {
     var bloom = $('.bloom'), r = btn.getBoundingClientRect(), cx = r.left + r.width / 2, cy = r.top + r.height / 2;
@@ -190,7 +219,7 @@
     if (!S.date || !S.time) return;
     var t = S.time.split(':'), st = new Date(S.date); st.setHours(+t[0], +t[1]); var en = new Date(st.getTime() + S.svc.min * 60000);
     var f = function (d) { return d.getFullYear() + ('0' + (d.getMonth() + 1)).slice(-2) + ('0' + d.getDate()).slice(-2) + 'T' + ('0' + d.getHours()).slice(-2) + ('0' + d.getMinutes()).slice(-2) + '00'; };
-    var ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Onde//Preview//EN', 'BEGIN:VEVENT', 'UID:' + Date.now() + '@onde.example', 'DTSTAMP:' + f(new Date()), 'DTSTART:' + f(st), 'DTEND:' + f(en), 'SUMMARY:Ondé: ' + S.svc.name, 'LOCATION:7 Lavell Yard\\, London N16', 'DESCRIPTION:Preview of the booking flow. No booking was sent.', 'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
+    var ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Onde//Preview//EN', 'BEGIN:VEVENT', 'UID:' + Date.now() + '@onde.example', 'DTSTAMP:' + f(new Date()), 'DTSTART:' + f(st), 'DTEND:' + f(en), 'SUMMARY:Ondé: ' + S.svc.name, 'LOCATION:7 Lavell Yard\\, London N16', 'DESCRIPTION:Booking request from the Ond\u00e9 website.', 'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
     var a = doc.createElement('a'); a.href = URL.createObjectURL(new Blob([ics], { type: 'text/calendar' })); a.download = 'onde-visit.ics'; doc.body.appendChild(a); a.click(); a.remove();
   });
 })();

@@ -462,6 +462,19 @@ if (document.body.dataset.page === 'home') {
   setInterval(tick, 1000);
   if (!reduce) gsap.fromTo('.drop-shoe', { xPercent: 14, rotate: -2 }, { xPercent: -4, rotate: -11, ease: 'none', scrollTrigger: { trigger: '.drop', start: 'top bottom', end: 'bottom top', scrub: true } });
 
+function sendEnquiry( form, subject, fromName, extra ) {
+  var fd = new FormData( form );
+  if ( fd.get( 'website' ) ) { return Promise.resolve( true ); }
+  var data = {};
+  fd.forEach( function ( v, k ) { if ( k !== 'website' ) { data[ k ] = data[ k ] !== undefined ? data[ k ] + ', ' + v : v; } } );
+  Object.keys( extra || {} ).forEach( function ( k ) { data[ k ] = extra[ k ]; } );
+  data.access_key = 'REPLACE_WITH_WEB3FORMS_KEY';
+  data.subject = subject;
+  data.from_name = fromName;
+  return fetch( 'https://api.web3forms.com/submit', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify( data ) } )
+    .then( function ( r ) { return r.json().then( function ( j ) { return !!( r.ok && j.success ); }, function () { return false; } ); } )
+    .catch( function () { return false; } );
+}
   const form = $('.notify'), msg = $('.notify-msg');
   form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -473,12 +486,15 @@ if (document.body.dataset.page === 'home') {
       return;
     }
     form.classList.remove('is-error'); msg.classList.remove('is-error');
-    msg.textContent = `You're on the list. One email to ${v}, ten minutes before Ember goes live.`;
-    const btn = $('button', form); btn.textContent = 'On the list';
-    const cr = $('.confetti').getBoundingClientRect(), br = btn.getBoundingClientRect();
-    confetti($('.confetti'), br.left - cr.left + br.width / 2, br.top - cr.top + br.height / 2, ['#000', '#fff', ...COLOURWAYS.map((c) => c.acid)]);
-    glitch(board);
-    input.value = '';
+    sendEnquiry(form, 'New Ember drop reminder signup for Halfstep', 'Halfstep website', {}).then((ok) => {
+      if (!ok) { form.classList.add('is-error'); msg.classList.add('is-error'); msg.textContent = 'Something went wrong. Please try again in a moment.'; return; }
+      msg.textContent = `You're on the list. One email to ${v}, ten minutes before Ember goes live.`;
+      const btn = $('button', form); btn.textContent = 'On the list';
+      const cr = $('.confetti').getBoundingClientRect(), br = btn.getBoundingClientRect();
+      confetti($('.confetti'), br.left - cr.left + br.width / 2, br.top - cr.top + br.height / 2, ['#000', '#fff', ...COLOURWAYS.map((c) => c.acid)]);
+      glitch(board);
+      input.value = '';
+    });
   });
   $('#notify-email').addEventListener('input', () => { form.classList.remove('is-error'); msg.classList.remove('is-error'); });
 }

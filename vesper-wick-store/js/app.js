@@ -613,3 +613,35 @@
     magnetic(document);
   }
 })();
+
+
+/* newsletter sign-up -> email */
+(function () {
+  function sendEnquiry( form, subject, fromName, extra ) {
+    var fd = new FormData( form );
+    if ( fd.get( 'website' ) ) { return Promise.resolve( true ); }
+    var data = {};
+    fd.forEach( function ( v, k ) { if ( k !== 'website' ) { data[ k ] = data[ k ] !== undefined ? data[ k ] + ', ' + v : v; } } );
+    Object.keys( extra || {} ).forEach( function ( k ) { data[ k ] = extra[ k ]; } );
+    data.access_key = 'REPLACE_WITH_WEB3FORMS_KEY';
+    data.subject = subject;
+    data.from_name = fromName;
+    return fetch( 'https://api.web3forms.com/submit', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify( data ) } )
+      .then( function ( r ) { return r.json().then( function ( j ) { return !!( r.ok && j.success ); }, function () { return false; } ); } )
+      .catch( function () { return false; } );
+  }
+
+  var f = document.querySelector('form.news');
+  if (!f) return;
+  f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var btn = f.querySelector('button');
+    btn.disabled = true;
+    sendEnquiry(f, 'New newsletter signup for Vesper Wick', 'Vesper Wick website', {}).then(function (ok) {
+      btn.disabled = false;
+      if (ok) { btn.textContent = 'Thank you'; return; }
+      var err = f.parentNode.querySelector('.news-error') || f.parentNode.appendChild(Object.assign(document.createElement('p'), { className: 'news-error', role: 'status' }));
+      err.textContent = 'Something went wrong. Please email us directly.';
+    });
+  });
+})();

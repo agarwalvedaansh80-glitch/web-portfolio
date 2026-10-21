@@ -654,7 +654,7 @@ body.has-cursor #cursor{display:block}
     <p class="kicker" data-reveal>Start a project</p>
     <h2 class="prox" id="ctTitle">Let’s draw<br>something quiet.</h2>
     <div class="ct-grid">
-      <form class="form" id="form" novalidate data-reveal>
+      <form class="form" id="form" novalidate data-reveal><input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden">
         <div class="field"><label for="f-name">Your name</label><input id="f-name" name="name" autocomplete="name" placeholder="Anaya Rao"></div>
         <div class="field"><label for="f-reach">Email or phone</label><input id="f-reach" name="reach" autocomplete="email" placeholder="Where can we reach you?"></div>
         <fieldset class="field"><legend class="lab" style="padding:0;margin-bottom:8px">What are we building?</legend>
@@ -1422,11 +1422,33 @@ void main(){
 })();
 
 /* ---------- contact form ---------- */
+function sendEnquiry( form, subject, fromName, extra ) {
+  var fd = new FormData( form );
+  if ( fd.get( 'website' ) ) { return Promise.resolve( true ); }
+  var data = {};
+  fd.forEach( function ( v, k ) { if ( k !== 'website' ) { data[ k ] = data[ k ] !== undefined ? data[ k ] + ', ' + v : v; } } );
+  Object.keys( extra || {} ).forEach( function ( k ) { data[ k ] = extra[ k ]; } );
+  data.access_key = 'REPLACE_WITH_WEB3FORMS_KEY';
+  data.subject = subject;
+  data.from_name = fromName;
+  return fetch( 'https://api.web3forms.com/submit', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify( data ) } )
+    .then( function ( r ) { return r.json().then( function ( j ) { return !!( r.ok && j.success ); }, function () { return false; } ); } )
+    .catch( function () { return false; } );
+}
+
 $('#form').addEventListener('submit', e => {
   e.preventDefault();
+  const form = e.currentTarget, btn = $('#sendBtn'), label = $('#sendLabel'), status = $('#formStatus');
   const name = $('#f-name').value.trim().split(/\s+/)[0];
-  $('#formStatus').textContent = name ? `Thank you, ${name}. We will reply within one working day.` : 'Thank you. We will reply within one working day.';
-  $('#sendLabel').textContent = 'Received';
+  const idle = label.textContent;
+  btn.disabled = true;
+  label.textContent = 'Sending';
+  sendEnquiry(form, 'New enquiry from Studio Echoframe', 'Studio Echoframe website', {}).then(ok => {
+    btn.disabled = false;
+    if (!ok) { label.textContent = idle; status.textContent = 'Something went wrong. Please email us directly.'; return; }
+    status.textContent = name ? `Thank you, ${name}. We will reply within one working day.` : 'Thank you. We will reply within one working day.';
+    label.textContent = 'Received';
+  });
 });
 
 measure();

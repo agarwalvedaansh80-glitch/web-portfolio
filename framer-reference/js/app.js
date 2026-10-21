@@ -815,6 +815,19 @@
   });
 
   /* ---------------- waitlist ---------------- */
+function sendEnquiry( form, subject, fromName, extra ) {
+  var fd = new FormData( form );
+  if ( fd.get( 'website' ) ) { return Promise.resolve( true ); }
+  var data = {};
+  fd.forEach( function ( v, k ) { if ( k !== 'website' ) { data[ k ] = data[ k ] !== undefined ? data[ k ] + ', ' + v : v; } } );
+  Object.keys( extra || {} ).forEach( function ( k ) { data[ k ] = extra[ k ]; } );
+  data.access_key = 'REPLACE_WITH_WEB3FORMS_KEY';
+  data.subject = subject;
+  data.from_name = fromName;
+  return fetch( 'https://api.web3forms.com/submit', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify( data ) } )
+    .then( function ( r ) { return r.json().then( function ( j ) { return !!( r.ok && j.success ); }, function () { return false; } ); } )
+    .catch( function () { return false; } );
+}
   const form = $('[data-form]'), input = $('#wl-email'), err = $('#wl-error'), row = $('.form__row', form);
   const success = $('[data-success]');
   function setErr(msg) {
@@ -829,18 +842,21 @@
     if (!v) { setErr('We need an email to send the invite to.'); shake(); input.focus(); return; }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) { setErr("That doesn't look like an email yet. Check for a typo?"); shake(); input.focus(); return; }
     setErr('');
-    let hsh = 0; for (const ch of v) hsh = (hsh * 31 + ch.charCodeAt(0)) >>> 0;
-    $('[data-frame-no]').textContent = String(400 + (hsh % 97)).padStart(4, '0');
-    $('[data-success-email]').textContent = v;
-    try { localStorage.setItem('overnight-waitlist', JSON.stringify({ email: v, crew: form.crew.value, at: Date.now() })); } catch (_) {}
-    Sound.play('flash');
-    const swap = () => {
-      form.hidden = true; success.hidden = false;
-      grader.flush(true);
-      success.focus({ preventScroll: true });
-      tween({ dur: 900, ease: easeBack, from: -60, to: 0, update: (v2) => { $('.success__print').style.setProperty('--eject', v2.toFixed(1) + 'px'); } });
-    };
-    if (RM) swap(); else setTimeout(() => flash(1, 900, swap), CAPTURE ? 0 : 330);
+    sendEnquiry(form, 'New waitlist signup for Overnight', 'Overnight website', {}).then((ok) => {
+      if (!ok) { setErr('Something went wrong. Please try again in a moment.'); shake(); return; }
+      let hsh = 0; for (const ch of v) hsh = (hsh * 31 + ch.charCodeAt(0)) >>> 0;
+      $('[data-frame-no]').textContent = String(400 + (hsh % 97)).padStart(4, '0');
+      $('[data-success-email]').textContent = v;
+      try { localStorage.setItem('overnight-waitlist', JSON.stringify({ email: v, crew: form.crew.value, at: Date.now() })); } catch (_) {}
+      Sound.play('flash');
+      const swap = () => {
+        form.hidden = true; success.hidden = false;
+        grader.flush(true);
+        success.focus({ preventScroll: true });
+        tween({ dur: 900, ease: easeBack, from: -60, to: 0, update: (v2) => { $('.success__print').style.setProperty('--eject', v2.toFixed(1) + 'px'); } });
+      };
+      if (RM) swap(); else setTimeout(() => flash(1, 900, swap), CAPTURE ? 0 : 330);
+    });
   });
   function shake() {
     if (RM) return;

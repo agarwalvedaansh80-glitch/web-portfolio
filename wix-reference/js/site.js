@@ -549,6 +549,19 @@
     var ok = e.target.type === 'email' ? EMAIL.test(e.target.value.trim()) : !!e.target.value.trim();
     if (ok) fieldErr(e.target, '');
   });
+function sendEnquiry( form, subject, fromName, extra ) {
+  var fd = new FormData( form );
+  if ( fd.get( 'website' ) ) { return Promise.resolve( true ); }
+  var data = {};
+  fd.forEach( function ( v, k ) { if ( k !== 'website' ) { data[ k ] = data[ k ] !== undefined ? data[ k ] + ', ' + v : v; } } );
+  Object.keys( extra || {} ).forEach( function ( k ) { data[ k ] = extra[ k ]; } );
+  data.access_key = 'REPLACE_WITH_WEB3FORMS_KEY';
+  data.subject = subject;
+  data.from_name = fromName;
+  return fetch( 'https://api.web3forms.com/submit', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify( data ) } )
+    .then( function ( r ) { return r.json().then( function ( j ) { return !!( r.ok && j.success ); }, function () { return false; } ); } )
+    .catch( function () { return false; } );
+}
   var ct = $('#ct-form');
   if (ct) ct.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -557,7 +570,12 @@
     fieldErr(em, EMAIL.test(em.value.trim()) ? '' : 'Please add an email we can reply to.'); if (!EMAIL.test(em.value.trim())) bad = bad || em;
     fieldErr(m, m.value.trim() ? '' : 'What would you like to ask?'); if (!m.value.trim()) bad = bad || m;
     if (bad) { bad.focus(); return; }
-    ct.hidden = true; var d = $('.ct-done'); d.hidden = false; d.focus();
+    var cbtn = ct.querySelector('button[type=submit]'); if (cbtn) cbtn.disabled = true;
+    sendEnquiry(ct, 'New message from Onde website', 'Onde website', {}).then(function (ok) {
+      if (cbtn) cbtn.disabled = false;
+      if (!ok) { var ce = ct.querySelector('.bk-send-error') || ct.appendChild(Object.assign(document.createElement('p'), { className: 'bk-send-error', role: 'status' })); ce.textContent = 'Something went wrong. Please email us directly.'; return; }
+      ct.hidden = true; var d = $('.ct-done'); d.hidden = false; d.focus();
+    });
   });
 
   window.Onde = { tween: tween, E: E, ticks: ticks, RM: RM, CAPTURE: CAPTURE, M: M, fieldErr: fieldErr, EMAIL: EMAIL, scrollToEl: scrollToEl, clamp: clamp };
