@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Chroma Developers · Websites people remember</title>
-<meta name="description" content="Chroma Developers designs and builds premium websites with 3D and motion: Shopify, WordPress, Webflow, Framer, Wix, or custom HTML with WebGL and Three.js. Landing pages from $250.">
+<meta name="description" content="Chroma Developers designs and builds premium websites with 3D and motion: Shopify, WordPress, Webflow, Framer, Wix or custom code (HTML, WebGL, Three.js). Landing pages from $250.">
 <meta property="og:title" content="Chroma Developers · Websites people remember">
-<meta property="og:description" content="Premium websites with 3D and motion. Shopify, WordPress, Webflow, Framer, Wix, or custom HTML with WebGL and Three.js.">
+<meta property="og:description" content="Premium websites with 3D and motion. Shopify, WordPress, Webflow, Framer, Wix or custom code (HTML, WebGL, Three.js).">
 <meta property="og:image" content="img/nimbus.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -114,7 +114,7 @@ footer{padding:30px clamp(90px,8vw,120px) 30px clamp(16px,4vw,56px);display:flex
   <div class="tag"><span class="dot"></span>Taking new projects this week</div>
   <h1><span class="w"><i>Websites</i></span> <span class="w"><i style="animation-delay:.08s">people</i></span><br><span class="w"><i style="animation-delay:.16s"><em>remember.</em></i></span></h1>
   <div class="herobot">
-    <p>We design and build premium websites with 3D, motion and real speed, on Shopify, WordPress, Webflow, Framer, Wix, or hand-written HTML with WebGL and Three.js when a brand needs real 3D. You see it come together page by page, and it goes live in days.</p>
+    <p>We design and build premium websites with 3D, motion and real speed, on Shopify, WordPress, Webflow, Framer, Wix or custom code (HTML, WebGL and Three.js) when a brand needs real 3D. You see it come together page by page, and it goes live in days.</p>
     <div class="ctas"><a class="btn" href="#contact">Start a project <span class="ar">→</span></a><a class="btn o" href="#work">See the work</a></div>
   </div>
 </header>
@@ -172,7 +172,7 @@ const W=[
  ["Ondé","Hair colour studio with fluid pigments and a three-step booking flow.","Wix Studio","onde","https://onde-wix.vercel.app"],
  ["Sandeep Organics","B2B chemical importer: 84 products, a 3D molecule and a quote builder.","Custom · 3D","sandeep","https://sandeep-organics-redesign.vercel.app"], ["Specials Board","Course launch page for café owners: a chalkboard hero, a live enrolment countdown and three-tier pricing.","Landing page · CRO","specials","https://specials-board.vercel.app"]];
 document.getElementById('rows').innerHTML=W.map((w,i)=>`<a class="row rv" href="${w[4]}" target="_blank" data-img="img/${w[3]}.jpg"><span class="n">${String(i+1).padStart(2,'0')}</span><h3>${w[0]}</h3><span class="d">${w[1]}</span><span class="p">${w[2]}</span><span class="thumbs"><img loading="lazy" src="img/${w[3]}.jpg" alt="${w[0]}"></span></a>`).join('');
-const P=["Shopify","WordPress","Webflow","Framer","Wix Studio","Three.js","WebGL","HTML · CSS · JS","WooCommerce","Squarespace","Figma"];
+const P=["Shopify","WordPress","Webflow","Framer","Wix Studio","Custom code","HTML","Three.js","WebGL","WooCommerce","Squarespace","Figma"];
 document.getElementById('strip').innerHTML=[...P,...P].map(t=>`<span>${t}</span>`).join('');
 document.getElementById('y').textContent=new Date().getFullYear();
 const io=new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&x.target.classList.add('in')),{threshold:.12});
