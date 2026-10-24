@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chroma Developers · Websites people remember</title>
+<meta name="description" content="Chroma Developers designs and builds premium websites: 3D, motion and fast, on Shopify, WordPress, Webflow, Framer, Wix or custom code. Landing pages from $250.">
+<meta property="og:title" content="Chroma Developers · Websites people remember">
+<meta property="og:description" content="Premium websites with 3D and motion. Shopify, WordPress, Webflow, Framer, Wix or custom code.">
+<meta property="og:image" content="img/nimbus.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07070b;--fg:#f4f2ee;--mute:#9a97a3;--line:rgba(255,255,255,.1);--card:rgba(255,255,255,.035);--c1:#ff4d6d;--c2:#7b5cff;--c3:#22d3ee;--c4:#ffd166}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font-family:Inter,system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;cursor:none}
+@media(hover:none){body{cursor:auto}.cur,.cur2{display:none}}
+a{color:inherit;text-decoration:none;cursor:none}
+.cur{position:fixed;left:0;top:0;width:8px;height:8px;border-radius:50%;background:var(--fg);z-index:99;pointer-events:none;transform:translate(-50%,-50%);mix-blend-mode:difference}
+.cur2{position:fixed;left:0;top:0;width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.5);z-index:98;pointer-events:none;transform:translate(-50%,-50%);transition:width .3s,height .3s,background .3s;mix-blend-mode:difference}
+.cur2.big{width:90px;height:90px;background:rgba(255,255,255,.9)}
+canvas#gl{position:fixed;inset:0;width:100vw;height:100vh;z-index:0}
+.grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.07;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+main{position:relative;z-index:2}
+nav{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:20px clamp(16px,4vw,56px);mix-blend-mode:difference}
+.logo{font-family:Fraunces,serif;font-size:22px;letter-spacing:-.02em}
+.logo span{font-style:italic}
+.links{display:flex;gap:30px;font-size:13px;letter-spacing:.14em;text-transform:uppercase}
+.links a{opacity:.8}.links a:hover{opacity:1}
+.hero{min-height:100vh;display:grid;align-content:end;padding:0 clamp(16px,4vw,56px) 9vh}
+.tag{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--mute);margin-bottom:28px;display:flex;gap:12px;align-items:center}
+.dot{width:8px;height:8px;border-radius:50%;background:#3ddc84;box-shadow:0 0 0 0 #3ddc84;animation:ping 2s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 10px transparent}}
+h1{font-family:Fraunces,serif;font-weight:300;font-size:clamp(56px,11.5vw,200px);line-height:.86;letter-spacing:-.045em}
+h1 .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+h1 .w i{display:inline-block;transform:translateY(105%);animation:rise 1.2s cubic-bezier(.16,1,.3,1) forwards;font-style:normal}
+h1 em{font-style:italic;background:linear-gradient(90deg,var(--c1),var(--c2),var(--c3),var(--c4),var(--c1));background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shift 8s linear infinite}
+@keyframes rise{to{transform:none}}
+@keyframes shift{to{background-position:300% 0}}
+.herobot{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-top:44px;flex-wrap:wrap}
+.herobot p{max-width:470px;color:var(--mute);font-size:17px;line-height:1.6}
+.btn{display:inline-flex;align-items:center;gap:12px;padding:16px 26px;border-radius:999px;background:var(--fg);color:var(--bg);font-weight:600;font-size:14px;letter-spacing:.02em;transition:transform .3s}
+.btn:hover{transform:scale(1.04)}
+.btn.o{background:transparent;color:var(--fg);border:1px solid var(--line)}
+.ctas{display:flex;gap:12px;flex-wrap:wrap}
+.strip{border-block:1px solid var(--line);overflow:hidden;white-space:nowrap;padding:26px 0;background:rgba(7,7,11,.55);backdrop-filter:blur(6px)}
+.strip .t{display:inline-flex;animation:mq 34s linear infinite}
+.strip span{font-family:Fraunces,serif;font-size:clamp(28px,4vw,56px);font-style:italic;padding:0 34px;opacity:.9}
+.strip span:nth-child(even){font-style:normal;-webkit-text-stroke:1px rgba(255,255,255,.6);color:transparent}
+@keyframes mq{to{transform:translateX(-50%)}}
+section{padding:140px clamp(16px,4vw,56px);background:rgba(7,7,11,.82);backdrop-filter:blur(2px)}
+.eyebrow{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--mute);margin-bottom:22px}
+h2{font-family:Fraunces,serif;font-weight:300;font-size:clamp(44px,7vw,112px);line-height:.92;letter-spacing:-.035em;margin-bottom:70px}
+h2 em{font-style:italic;color:var(--c3)}
+.work{border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:70px 1.4fr 1fr 120px;gap:20px;align-items:center;padding:30px 0;border-bottom:1px solid var(--line);position:relative;transition:padding .4s}
+.row:hover{padding-left:18px}
+.row .n{color:var(--mute);font-size:13px}
+.row h3{font-family:Fraunces,serif;font-weight:400;font-size:clamp(26px,3.4vw,48px);letter-spacing:-.02em}
+.row .d{color:var(--mute);font-size:15px;line-height:1.5}
+.row .p{justify-self:end;font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:8px 14px;border:1px solid var(--line);border-radius:999px}
+.peek{position:fixed;left:0;top:0;width:420px;aspect-ratio:16/10;border-radius:14px;overflow:hidden;pointer-events:none;z-index:30;opacity:0;transform:translate(-50%,-50%) scale(.8) rotate(-4deg);transition:opacity .3s,transform .4s cubic-bezier(.16,1,.3,1);box-shadow:0 40px 80px -20px rgba(0,0,0,.8)}
+.peek.on{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(-2deg)}
+.peek img{width:100%;height:100%;object-fit:cover;object-position:top}
+.thumbs{display:none}
+.price{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{padding:36px 30px;border:1px solid var(--line);border-radius:26px;background:var(--card);position:relative;overflow:hidden}
+.card:after{content:"";position:absolute;inset:-1px;border-radius:26px;padding:1px;background:linear-gradient(130deg,var(--c1),var(--c2),var(--c3));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .5s}
+.card:hover:after,.card.hot:after{opacity:1}
+.card h4{font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);margin-bottom:22px}
+.card .amt{font-family:Fraunces,serif;font-size:72px;font-weight:300;letter-spacing:-.04em;line-height:1}
+.card .amt small{font-size:20px;color:var(--mute);margin-left:6px}
+.card ul{list-style:none;margin:28px 0 30px;color:var(--mute);line-height:2;font-size:15px}
+.card li:before{content:"→ ";color:var(--c3)}
+.note{margin-top:30px;padding:22px 26px;border-radius:18px;border:1px dashed rgba(255,255,255,.2);color:var(--fg);font-size:16px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.note b{background:linear-gradient(90deg,var(--c1),var(--c4));-webkit-background-clip:text;background-clip:text;color:transparent}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;counter-reset:s}
+.step{padding-top:26px;border-top:1px solid var(--line)}
+.step:before{counter-increment:s;content:"0" counter(s);font-family:Fraunces,serif;font-size:48px;font-style:italic;color:var(--c2);display:block;margin-bottom:14px}
+.step h5{font-size:19px;font-weight:500;margin-bottom:10px}
+.step p{color:var(--mute);line-height:1.6;font-size:15px}
+.agency{display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:center}
+.agency p{color:var(--mute);font-size:18px;line-height:1.7;margin-bottom:26px}
+.agency .box{padding:34px;border-radius:26px;background:linear-gradient(140deg,rgba(123,92,255,.18),rgba(34,211,238,.08));border:1px solid var(--line)}
+.agency .box div{display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--line)}
+.agency .box div:last-child{border:0}
+.contact{text-align:center;padding:180px clamp(16px,4vw,56px)}
+.contact h2{margin-bottom:40px}
+.contact .ctas{justify-content:center}
+.mail{display:block;margin-top:34px;color:var(--mute);font-size:15px}
+footer{padding:30px clamp(90px,8vw,120px) 30px clamp(16px,4vw,56px);display:flex;justify-content:space-between;color:var(--mute);font-size:13px;border-top:1px solid var(--line);background:var(--bg);position:relative;z-index:2;flex-wrap:wrap;gap:10px}
+.rv{opacity:0;transform:translateY(50px);transition:opacity 1.1s,transform 1.1s cubic-bezier(.16,1,.3,1)}
+.rv.in{opacity:1;transform:none}
+.wa{position:fixed;right:22px;bottom:22px;z-index:40;width:58px;height:58px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 14px 34px -10px #25d366}
+.wa svg{width:28px;height:28px;fill:#fff}
+@media(max-width:900px){.links{display:none}.row{grid-template-columns:40px 1fr;row-gap:8px}.row .d{grid-column:2}.row .p{display:none}.price,.steps{grid-template-columns:1fr}.agency{grid-template-columns:1fr}.peek{display:none}.thumbs{display:block;grid-column:2;border-radius:12px;overflow:hidden;margin-top:10px}.thumbs img{width:100%;display:block}}
+</style>
+</head>
+<body>
+<div class="cur"></div><div class="cur2"></div>
+<canvas id="gl"></canvas><div class="grain"></div>
+<nav><a class="logo" href="#">Chroma <span>Developers</span></a><div class="links"><a href="#work">Work</a><a href="#pricing">Pricing</a><a href="#agencies">Agencies</a><a href="#contact">Contact</a></div></nav>
+<main>
+<header class="hero">
+  <div class="tag"><span class="dot"></span>Taking new projects this week</div>
+  <h1><span class="w"><i>Websites</i></span> <span class="w"><i style="animation-delay:.08s">people</i></span><br><span class="w"><i style="animation-delay:.16s"><em>remember.</em></i></span></h1>
+  <div class="herobot">
+    <p>We design and build premium websites with 3D, motion and real speed, on Shopify, WordPress, Webflow, Framer, Wix or custom code. You see it come together, page by page, and it goes live in days.</p>
+    <div class="ctas"><a class="btn" href="#contact">Start a project →</a><a class="btn o" href="#work">See the work</a></div>
+  </div>
+</header>
+<div class="strip"><div class="t" id="strip"></div></div>
+<section id="work">
+  <div class="eyebrow rv">Selected work</div>
+  <h2 class="rv">Built to make people <em>stop scrolling</em></h2>
+  <div class="work" id="rows"></div>
+</section>
+<section id="pricing">
+  <div class="eyebrow rv">Pricing</div>
+  <h2 class="rv">Clear prices. <em>No surprises.</em></h2>
+  <div class="price">
+    <div class="card rv"><h4>Landing page</h4><div class="amt">$250</div><ul><li>One long, animated page</li><li>WhatsApp, booking or contact built in</li><li>Mobile-first, fast, SEO-ready</li><li>Live in 3–5 days</li></ul><a class="btn o" href="#contact">Get started</a></div>
+    <div class="card hot rv"><h4>Business website</h4><div class="amt">$400</div><ul><li>Up to 5 pages, or more if you need them</li><li>Custom design, motion and 3D touches</li><li>Any platform you want to edit on</li><li>Live in 7–10 days</li></ul><a class="btn" href="#contact">Most popular →</a></div>
+    <div class="card rv"><h4>Online store</h4><div class="amt">$600</div><ul><li>Shopify or WooCommerce</li><li>Product pages that sell the feeling</li><li>Payments, shipping and checkout set up</li><li>Live in 10–14 days</li></ul><a class="btn o" href="#contact">Get started</a></div>
+  </div>
+  <div class="note rv">✦ <span><b>First project: 20% off.</b> And revisions until you're genuinely happy, not just "two rounds".</span></div>
+</section>
+<section>
+  <div class="eyebrow rv">How it works</div>
+  <h2 class="rv">From first message to <em>live</em></h2>
+  <div class="steps">
+    <div class="step rv"><h5>Tell us the idea</h5><p>A message on WhatsApp or email is enough. No long forms.</p></div>
+    <div class="step rv"><h5>See it first</h5><p>We design your homepage before you commit to the full build.</p></div>
+    <div class="step rv"><h5>Watch it come alive</h5><p>A short video at every stage, so you always know where things are.</p></div>
+    <div class="step rv"><h5>Launch</h5><p>Live on your domain, fast on every phone, and easy for you to edit.</p></div>
+  </div>
+</section>
+<section id="agencies">
+  <div class="agency">
+    <div class="rv"><div class="eyebrow">For agencies</div><h2 style="margin-bottom:30px">Your clients. <em>Our build.</em></h2><p>Sell the website, we build it under your name. Your client deals with you; we stay in the background. Perfect when a client asks "can you do our site too?" and your team is already full.</p><a class="btn" href="#contact">Talk partnership →</a></div>
+    <div class="box rv"><div><span>Landing page</span><b>$250</b></div><div><span>5-page website</span><b>$400</b></div><div><span>Shopify store</span><b>$600</b></div><div><span>Turnaround</span><b>3–14 days</b></div><div><span>Your brand on it</span><b>Always</b></div></div>
+  </div>
+</section>
+<section class="contact" id="contact">
+  <div class="eyebrow rv">Contact</div>
+  <h2 class="rv">Let's build something<br><em>worth remembering.</em></h2>
+  <div class="ctas rv"><a class="btn" href="https://wa.me/917700997132?text=Hi%20Chroma%20Developers%2C%20I%27d%20like%20a%20website" target="_blank">WhatsApp us →</a><a class="btn o" href="mailto:agarwalvedaansh80@gmail.com?subject=New%20website%20project">Email us</a></div>
+  <a class="mail rv" href="mailto:agarwalvedaansh80@gmail.com">agarwalvedaansh80@gmail.com · +91 77009 97132</a>
+</section>
+</main>
+<footer><span>© <span id="y"></span> Chroma Developers</span><span>Websites for businesses and agencies worldwide</span></footer>
+<div class="peek"><img alt=""></div>
+<a class="wa" href="https://wa.me/917700997132?text=Hi%20Chroma%20Developers%2C%20I%27d%20like%20a%20website" target="_blank" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.3c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg></a>
+<script>
+const W=[
+ ["Halcyon Nimbus","3D product launch. The earbud case opens in real time, then splits into seven parts as you scroll.","Three.js · WebGL","nimbus","https://halcyon-nimbus.vercel.app"],
+ ["Studio EchoFrame","Before & after redesign for an architecture studio. Drag the slider, watch 2016 become now.","Redesign","echoframe","https://studio-echoframe.vercel.app"],
+ ["Vesper & Wick","Shopify candle store. Smoke in the hero, a scent-finder quiz, shop by mood.","Shopify","vesper","https://vesper-wick-store.vercel.app"],
+ ["Halfstep","Neo-brutalist sneaker store with a 3D shoe and a fit finder.","Shopify · 3D","halfstep","https://halfstep-store.vercel.app"],
+ ["Calder & Rowe","WordPress for an insurance broker. A storm that turns calm as you scroll.","WordPress","calder","https://calder-rowe-wp.vercel.app"],
+ ["Overnight","App launch page. Hold to develop the film, dusk to morning in one scroll.","Framer","overnight","https://overnight-framer.vercel.app"],
+ ["Slotted","SaaS website with a live dispatch board and a scroll-drawn city map.","Webflow","slotted","https://slotted-webflow.vercel.app"],
+ ["Ondé","Hair colour studio with fluid pigments and a three-step booking flow.","Wix Studio","onde","https://onde-wix.vercel.app"],
+ ["Café Chantilly","Café website with a live, filterable menu you can almost taste.","Custom","chantilly","https://cafe-chantilly.vercel.app"],
+ ["Sandeep Organics","B2B chemical importer: 84 products, a 3D molecule and a quote builder.","Custom · 3D","sandeep","https://sandeep-organics-redesign.vercel.app"]];
+document.getElementById('rows').innerHTML=W.map((w,i)=>`<a class="row rv" href="${w[4]}" target="_blank" data-img="img/${w[3]}.jpg"><span class="n">${String(i+1).padStart(2,'0')}</span><h3>${w[0]}</h3><span class="d">${w[1]}</span><span class="p">${w[2]}</span><span class="thumbs"><img loading="lazy" src="img/${w[3]}.jpg" alt="${w[0]}"></span></a>`).join('');
+const P=["Shopify","WordPress","Webflow","Framer","Wix Studio","Squarespace","Custom code","Three.js","WooCommerce","Figma"];
+document.getElementById('strip').innerHTML=[...P,...P].map(t=>`<span>${t}</span>`).join('');
+document.getElementById('y').textContent=new Date().getFullYear();
+const io=new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&x.target.classList.add('in')),{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+// cursor + peek
+const c1=document.querySelector('.cur'),c2=document.querySelector('.cur2'),pk=document.querySelector('.peek'),pi=pk.querySelector('img');
+let mx=innerWidth/2,my=innerHeight/2,x2=mx,y2=my,px=mx,py=my;
+addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;c1.style.transform=`translate(${mx}px,${my}px) translate(-50%,-50%)`});
+document.querySelectorAll('a,.row').forEach(a=>{a.addEventListener('mouseenter',()=>c2.classList.add('big'));a.addEventListener('mouseleave',()=>c2.classList.remove('big'))});
+document.querySelectorAll('.row').forEach(r=>{r.addEventListener('mouseenter',()=>{pi.src=r.dataset.img;pk.classList.add('on')});r.addEventListener('mouseleave',()=>pk.classList.remove('on'))});
+(function loop(){x2+=(mx-x2)*.18;y2+=(my-y2)*.18;px+=(mx-px)*.1;py+=(my-py)*.1;c2.style.transform=`translate(${x2}px,${y2}px) translate(-50%,-50%)`;pk.style.left=px+'px';pk.style.top=py+'px';requestAnimationFrame(loop)})();
+// WebGL chroma field
+const cv=document.getElementById('gl'),gl=cv.getContext('webgl');
+if(gl){const vs=`attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}`;
+const fs=`precision highp float;uniform vec2 r;uniform float t;uniform vec2 m;uniform float s;
+float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
+float n(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(h(i),h(i+vec2(1,0)),f.x),mix(h(i+vec2(0,1)),h(i+vec2(1,1)),f.x),f.y);}
+float fbm(vec2 p){float v=0.,a=.5;for(int i=0;i<5;i++){v+=a*n(p);p*=2.02;a*=.5;}return v;}
+void main(){vec2 uv=gl_FragCoord.xy/r;vec2 p=uv*vec2(r.x/r.y,1.)*1.6;float tt=t*.06;
+vec2 q=vec2(fbm(p+tt),fbm(p+vec2(5.2,1.3)-tt));vec2 w=vec2(fbm(p+3.*q+vec2(1.7,9.2)+m*.6),fbm(p+3.*q+vec2(8.3,2.8)));float f=fbm(p+2.5*w);
+vec3 c1=vec3(1.,.30,.43),c2=vec3(.48,.36,1.),c3=vec3(.13,.83,.93),c4=vec3(1.,.82,.4);
+vec3 col=mix(c2,c1,smoothstep(.2,.8,f));col=mix(col,c3,smoothstep(.45,1.,w.x));col=mix(col,c4,smoothstep(.75,1.1,q.y)*.6);
+float band=smoothstep(.0,.9,f*f*1.6);col*=band;float fade=mix(1.,.15,clamp(s,0.,1.));
+col*=.55*fade;col+=vec3(.027,.027,.043);gl_FragColor=vec4(col,1.);}`;
+function sh(t,s){const o=gl.createShader(t);gl.shaderSource(o,s);gl.compileShader(o);return o}
+const pr=gl.createProgram();gl.attachShader(pr,sh(gl.VERTEX_SHADER,vs));gl.attachShader(pr,sh(gl.FRAGMENT_SHADER,fs));gl.linkProgram(pr);gl.useProgram(pr);
+const b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
+const l=gl.getAttribLocation(pr,'p');gl.enableVertexAttribArray(l);gl.vertexAttribPointer(l,2,gl.FLOAT,false,0,0);
+const U=k=>gl.getUniformLocation(pr,k),ur=U('r'),ut=U('t'),um=U('m'),us=U('s');
+const dpr=Math.min(devicePixelRatio,1.5);function rs(){cv.width=innerWidth*dpr*.5;cv.height=innerHeight*dpr*.5;gl.viewport(0,0,cv.width,cv.height)}rs();addEventListener('resize',rs);
+let sm=[0,0];(function f(T){sm[0]+=((mx/innerWidth-.5)-sm[0])*.03;sm[1]+=((my/innerHeight-.5)-sm[1])*.03;gl.uniform2f(ur,cv.width,cv.height);gl.uniform1f(ut,T/1000);gl.uniform2f(um,sm[0],-sm[1]);gl.uniform1f(us,scrollY/innerHeight);gl.drawArrays(gl.TRIANGLES,0,3);requestAnimationFrame(f)})(0);}
+</script>
+</body>
+</html>
