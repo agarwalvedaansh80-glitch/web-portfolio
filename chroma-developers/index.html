@@ -15,16 +15,11 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--fg);font-family:Inter,system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;cursor:none}
-@media(hover:none){body{cursor:auto}.blob{display:none}}
+@media(hover:none){body{cursor:auto}.cur,.cur2{display:none}}
 a{color:inherit;text-decoration:none;cursor:none}
-.blob{position:fixed;left:0;top:0;width:22px;height:22px;margin:-11px 0 0 -11px;z-index:99;pointer-events:none;will-change:transform}
-.blob i{position:absolute;inset:0;border-radius:50%;background:conic-gradient(from var(--a,0deg),var(--c1),var(--c4),var(--c3),var(--c2),var(--c1));filter:saturate(1.2);box-shadow:0 0 24px rgba(123,92,255,.55);transition:transform .45s cubic-bezier(.16,1,.3,1),opacity .3s;animation:spin 4s linear infinite}
-.blob b{position:absolute;inset:0;display:grid;place-items:center;font:600 11px Inter,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#07070b;opacity:0;transform:scale(.4);transition:opacity .3s,transform .45s cubic-bezier(.16,1,.3,1)}
-.blob.link i{transform:scale(2.1);opacity:.85}
-.blob.view i{transform:scale(4.4)}.blob.view b{opacity:1;transform:scale(1)}
-.blob.down i{transform:scale(.7)}
-@property --a{syntax:'<angle>';inherits:false;initial-value:0deg}
-@keyframes spin{to{--a:360deg}}
+.cur{position:fixed;left:0;top:0;width:8px;height:8px;border-radius:50%;background:var(--fg);z-index:99;pointer-events:none;transform:translate(-50%,-50%);mix-blend-mode:difference}
+.cur2{position:fixed;left:0;top:0;width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.5);z-index:98;pointer-events:none;transform:translate(-50%,-50%);transition:width .3s,height .3s,background .3s;mix-blend-mode:difference}
+.cur2.big{width:90px;height:90px;background:rgba(255,255,255,.9)}
 canvas#gl{position:fixed;inset:0;width:100vw;height:100vh;z-index:0}
 .grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.07;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
 main{position:relative;z-index:2}
@@ -111,7 +106,7 @@ footer{padding:30px clamp(90px,8vw,120px) 30px clamp(16px,4vw,56px);display:flex
 </style>
 </head>
 <body>
-<div class="blob"><i></i><b>View</b></div>
+<div class="cur"></div><div class="cur2"></div>
 <canvas id="gl"></canvas><div class="grain"></div>
 <nav><a class="logo" href="#">Chroma <span>Developers</span></a><div class="links"><a href="#work">Work</a><a href="#pricing">Pricing</a><a href="#agencies">Agencies</a><a href="#contact">Contact</a></div></nav>
 <main>
@@ -133,9 +128,9 @@ footer{padding:30px clamp(90px,8vw,120px) 30px clamp(16px,4vw,56px);display:flex
   <div class="eyebrow rv">Pricing</div>
   <h2 class="rv">Clear prices. <em>No surprises.</em></h2>
   <div class="price">
-    <div class="card rv"><h4>Landing page</h4><div class="amt">$250</div><ul><li>One long, animated page</li><li>WhatsApp, booking or contact built in</li><li>Mobile-first, fast, SEO-ready</li><li>Live in 3–5 days</li></ul><a class="btn o" href="https://wa.me/917700997132?text=Hi%20Chroma%20Developers%2C%20I%27d%20like%20the%20%24250%20landing%20page" target="_blank">Start a landing page <span class="ar">→</span></a></div>
-    <div class="card hot rv"><span class="badge">Most popular</span><h4>Business website</h4><div class="amt">$400</div><ul><li>Up to 5 pages, or more if you need them</li><li>Custom design, motion and 3D touches</li><li>Any platform you want to edit on</li><li>Live in 7–10 days</li></ul><a class="btn" href="https://wa.me/917700997132?text=Hi%20Chroma%20Developers%2C%20I%27d%20like%20the%20%24400%20business%20website" target="_blank">Start a business website <span class="ar">→</span></a></div>
-    <div class="card rv"><h4>Online store</h4><div class="amt">$600</div><ul><li>Shopify or WooCommerce</li><li>Product pages that sell the feeling</li><li>Payments, shipping and checkout set up</li><li>Live in 10–14 days</li></ul><a class="btn o" href="https://wa.me/917700997132?text=Hi%20Chroma%20Developers%2C%20I%27d%20like%20the%20%24600%20online%20store" target="_blank">Start an online store <span class="ar">→</span></a></div>
+    <div class="card rv"><h4>Landing page</h4><div class="amt">$250</div><ul><li>One long, animated page</li><li>WhatsApp, booking or contact built in</li><li>Mobile-first, fast, SEO-ready</li><li>Live in 3 to 5 days</li></ul><a class="btn o" href="https://wa.me/917700997132?text=Hi%20Chroma%20Developers%2C%20I%27d%20like%20the%20%24250%20landing%20page" target="_blank">Start a landing page <span class="ar">→</span></a></div>
+    <div class="card hot rv"><span class="badge">Most popular</span><h4>Business website</h4><div class="amt">$400</div><ul><li>Up to 5 pages, or more if you need them</li><li>Custom design, motion and 3D touches</li><li>Any platform you want to edit on</li><li>Live in 7 to 10 days</li></ul><a class="btn" href="https://wa.me/917700997132?text=Hi%20Chroma%20Developers%2C%20I%27d%20like%20the%20%24400%20business%20website" target="_blank">Start a business website <span class="ar">→</span></a></div>
+    <div class="card rv"><h4>Online store</h4><div class="amt">$600</div><ul><li>Shopify or WooCommerce</li><li>Product pages that sell the feeling</li><li>Payments, shipping and checkout set up</li><li>Live in 10 to 14 days</li></ul><a class="btn o" href="https://wa.me/917700997132?text=Hi%20Chroma%20Developers%2C%20I%27d%20like%20the%20%24600%20online%20store" target="_blank">Start an online store <span class="ar">→</span></a></div>
   </div>
   <div class="note rv">✦ <span><b>First project: 20% off.</b> Unlimited revisions within scope, until every detail is exactly right.</span></div>
 </section>
@@ -152,7 +147,7 @@ footer{padding:30px clamp(90px,8vw,120px) 30px clamp(16px,4vw,56px);display:flex
 <section id="agencies">
   <div class="agency">
     <div class="rv"><div class="eyebrow">For agencies</div><h2 style="margin-bottom:30px">Your clients. <em>Our build.</em></h2><p>Sell the website, we build it under your name. Your client deals with you; we stay in the background. Perfect when a client asks "can you do our site too?" and your team is already full.</p><a class="btn" href="#contact">Talk partnership <span class="ar">→</span></a></div>
-    <div class="box rv"><div><span>Landing page</span><b>$250</b></div><div><span>5-page website</span><b>$400</b></div><div><span>Shopify store</span><b>$600</b></div><div><span>Turnaround</span><b>3–14 days</b></div><div><span>Your brand on it</span><b>Always</b></div></div>
+    <div class="box rv"><div><span>Landing page</span><b>$250</b></div><div><span>5-page website</span><b>$400</b></div><div><span>Shopify store</span><b>$600</b></div><div><span>Turnaround</span><b>3 to 14 days</b></div><div><span>Your brand on it</span><b>Always</b></div></div>
   </div>
 </section>
 <section class="contact" id="contact">
@@ -183,15 +178,14 @@ document.getElementById('y').textContent=new Date().getFullYear();
 const io=new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&x.target.classList.add('in')),{threshold:.12});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 // cursor + peek
-const bl=document.querySelector('.blob'),pk=document.querySelector('.peek'),pi=pk.querySelector('img');
-let mx=innerWidth/2,my=innerHeight/2,bx=mx,by=my,px=mx,py=my;
-addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
-addEventListener('mousedown',()=>bl.classList.add('down'));addEventListener('mouseup',()=>bl.classList.remove('down'));
-document.querySelectorAll('a:not(.row)').forEach(a=>{a.addEventListener('mouseenter',()=>bl.classList.add('link'));a.addEventListener('mouseleave',()=>bl.classList.remove('link'))});
-document.querySelectorAll('.row').forEach(r=>{r.addEventListener('mouseenter',()=>{pi.src=r.dataset.img;pk.classList.add('on');bl.classList.add('view')});r.addEventListener('mouseleave',()=>{pk.classList.remove('on');bl.classList.remove('view')})});
+const c1=document.querySelector('.cur'),c2=document.querySelector('.cur2'),pk=document.querySelector('.peek'),pi=pk.querySelector('img');
+let mx=innerWidth/2,my=innerHeight/2,x2=mx,y2=my,px=mx,py=my;
+addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;c1.style.transform=`translate(${mx}px,${my}px) translate(-50%,-50%)`});
+document.querySelectorAll('a,.row').forEach(a=>{a.addEventListener('mouseenter',()=>c2.classList.add('big'));a.addEventListener('mouseleave',()=>c2.classList.remove('big'))});
+document.querySelectorAll('.row').forEach(r=>{r.addEventListener('mouseenter',()=>{pi.src=r.dataset.img;pk.classList.add('on')});r.addEventListener('mouseleave',()=>pk.classList.remove('on'))});
 // magnetic buttons
 document.querySelectorAll('.btn').forEach(b=>{b.addEventListener('mousemove',e=>{const r=b.getBoundingClientRect(),dx=e.clientX-r.left-r.width/2,dy=e.clientY-r.top-r.height/2;b.style.transform=`translate(${dx*.18}px,${dy*.28}px)`});b.addEventListener('mouseleave',()=>{b.style.transform=''})});
-(function loop(){const vx=mx-bx,vy=my-by;bx+=vx*.22;by+=vy*.22;px+=(mx-px)*.1;py+=(my-py)*.1;const sp=Math.min(Math.hypot(vx,vy)/60,.6),ang=Math.atan2(vy,vx);bl.style.transform=bl.classList.contains('view')?`translate(${bx}px,${by}px)`:`translate(${bx}px,${by}px) rotate(${ang}rad) scale(${1+sp},${1-sp*.5})`;pk.style.left=px+'px';pk.style.top=py+'px';requestAnimationFrame(loop)})();
+(function loop(){x2+=(mx-x2)*.18;y2+=(my-y2)*.18;px+=(mx-px)*.1;py+=(my-py)*.1;c2.style.transform=`translate(${x2}px,${y2}px) translate(-50%,-50%)`;pk.style.left=px+'px';pk.style.top=py+'px';requestAnimationFrame(loop)})();
 // WebGL chroma field
 const cv=document.getElementById('gl'),gl=cv.getContext('webgl');
 if(gl){const vs=`attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}`;
