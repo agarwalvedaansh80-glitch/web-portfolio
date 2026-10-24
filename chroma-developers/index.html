@@ -175,7 +175,7 @@ const W=[
  ["Overnight","App launch page. Hold to develop the film, dusk to morning in one scroll.","Framer","overnight","https://overnight-framer.vercel.app"],
  ["Slotted","SaaS website with a live dispatch board and a scroll-drawn city map.","Webflow","slotted","https://slotted-webflow.vercel.app"],
  ["Ondé","Hair colour studio with fluid pigments and a three-step booking flow.","Wix Studio","onde","https://onde-wix.vercel.app"],
- ["Sandeep Organics","B2B chemical importer: 84 products, a 3D molecule and a quote builder.","Custom · 3D","sandeep","https://sandeep-organics-redesign.vercel.app"]];
+ ["Sandeep Organics","B2B chemical importer: 84 products, a 3D molecule and a quote builder.","Custom · 3D","sandeep","https://sandeep-organics-redesign.vercel.app"], ["Specials Board","Course launch page for café owners: a chalkboard hero, a live enrolment countdown and three-tier pricing.","Landing page · CRO","specials","https://specials-board.vercel.app"]];
 document.getElementById('rows').innerHTML=W.map((w,i)=>`<a class="row rv" href="${w[4]}" target="_blank" data-img="img/${w[3]}.jpg"><span class="n">${String(i+1).padStart(2,'0')}</span><h3>${w[0]}</h3><span class="d">${w[1]}</span><span class="p">${w[2]}</span><span class="thumbs"><img loading="lazy" src="img/${w[3]}.jpg" alt="${w[0]}"></span></a>`).join('');
 const P=["Shopify","WordPress","Webflow","Framer","Wix Studio","Three.js","WebGL","HTML · CSS · JS","WooCommerce","Squarespace","Figma"];
 document.getElementById('strip').innerHTML=[...P,...P].map(t=>`<span>${t}</span>`).join('');
