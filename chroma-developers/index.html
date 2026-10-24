@@ -155,14 +155,13 @@ footer{padding:30px clamp(90px,8vw,120px) 30px clamp(16px,4vw,56px);display:flex
 <script>
 const W=[
  ["Halcyon Nimbus","3D product launch. The earbud case opens in real time, then splits into seven parts as you scroll.","Three.js · WebGL","nimbus","https://halcyon-nimbus.vercel.app"],
- ["Studio EchoFrame","Before & after redesign for an architecture studio. Drag the slider, watch 2016 become now.","Redesign","echoframe","https://studio-echoframe.vercel.app"],
+ ["Studio EchoFrame","Architecture studio website. A 3D house assembles itself and opens floor by floor as you scroll.","Custom · 3D","echoframe","https://studio-echoframe.vercel.app"],
  ["Vesper & Wick","Shopify candle store. Smoke in the hero, a scent-finder quiz, shop by mood.","Shopify","vesper","https://vesper-wick-store.vercel.app"],
  ["Halfstep","Neo-brutalist sneaker store with a 3D shoe and a fit finder.","Shopify · 3D","halfstep","https://halfstep-store.vercel.app"],
  ["Calder & Rowe","WordPress for an insurance broker. A storm that turns calm as you scroll.","WordPress","calder","https://calder-rowe-wp.vercel.app"],
  ["Overnight","App launch page. Hold to develop the film, dusk to morning in one scroll.","Framer","overnight","https://overnight-framer.vercel.app"],
  ["Slotted","SaaS website with a live dispatch board and a scroll-drawn city map.","Webflow","slotted","https://slotted-webflow.vercel.app"],
  ["Ondé","Hair colour studio with fluid pigments and a three-step booking flow.","Wix Studio","onde","https://onde-wix.vercel.app"],
- ["Café Chantilly","Café website with a live, filterable menu you can almost taste.","Custom","chantilly","https://cafe-chantilly.vercel.app"],
  ["Sandeep Organics","B2B chemical importer: 84 products, a 3D molecule and a quote builder.","Custom · 3D","sandeep","https://sandeep-organics-redesign.vercel.app"]];
 document.getElementById('rows').innerHTML=W.map((w,i)=>`<a class="row rv" href="${w[4]}" target="_blank" data-img="img/${w[3]}.jpg"><span class="n">${String(i+1).padStart(2,'0')}</span><h3>${w[0]}</h3><span class="d">${w[1]}</span><span class="p">${w[2]}</span><span class="thumbs"><img loading="lazy" src="img/${w[3]}.jpg" alt="${w[0]}"></span></a>`).join('');
 const P=["Shopify","WordPress","Webflow","Framer","Wix Studio","Squarespace","Custom code","Three.js","WooCommerce","Figma"];
