@@ -23,7 +23,7 @@ em{font-style:italic;color:var(--gold);font-weight:300}
 .loader-panels{position:absolute;inset:0;display:grid;grid-template-columns:repeat(4,1fr)}
 .loader-panels i{background:var(--bg2);transform-origin:top}
 .loader-inner{position:relative;width:min(460px,82vw)}
-.loader{background:#0a0a0a;color:#f4efe6}.loader-panels i{background:#0a0a0a}
+.loader{background:transparent;color:#f4efe6}.loader-panels i{background:#0a0a0a}
 .loader-mono{position:relative;width:96px;height:96px;margin:0 auto 34px;display:flex;align-items:center;justify-content:center;font-family:var(--royal);font-size:34px;letter-spacing:.04em;color:#f4efe6}
 .loader-mono svg{position:absolute;inset:0;fill:none;stroke:#c9a46a;stroke-width:.6;stroke-dasharray:302;stroke-dashoffset:302;animation:ring 2s cubic-bezier(.7,0,.2,1) forwards}
 .loader-mono .g{color:#c9a46a}
@@ -511,3 +511,5 @@ html,body,.services,.pricing,.faq,.foot,.hero,.scard,.calc-form,.tier,.why-card{
 
 /* keep sticky elements working */
 body{overflow-x:clip}
+
+.modal{transition:clip-path 1s var(--ease),visibility 0s linear 1s}.modal.open{transition:clip-path 1s var(--ease),visibility 0s}

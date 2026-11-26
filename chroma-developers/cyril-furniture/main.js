@@ -615,7 +615,7 @@ const modal = $('#modal'), ms = $('#modalScroll');
 function showModal(html) {
   ms.innerHTML = html; ms.scrollTop = 0;
   modal.classList.add('open'); modal.setAttribute('aria-hidden', 'false');
-  document.body.classList.add('modal-open'); lenis.stop();
+  document.body.classList.add('modal-open'); lenis.stop(); clearTimeout(window.__mf); window.__mf = setTimeout(() => document.body.classList.contains('modal-open') && document.body.classList.add('modal-full'), 1050);
   gsap.fromTo('.m-pic img', { scale: 1.12 }, { scale: 1, duration: 2, ease: 'power3.out' });
   gsap.fromTo('.m-title>*', { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 1.4, stagger: .1, delay: .45, ease: 'power3.out' });
 }
@@ -641,7 +641,7 @@ function openPiece(id) {
     (same.length > 1 ? `<div class="m-more"><div class="eyebrow">More from ${c.t}</div></div>` + galBlock(same.filter(x => x !== p)) : '') +
     `<div class="m-cta"><h3>Like this <em>piece?</em></h3><div class="m-cta-r"><a class="btn btn-brass" target="_blank" rel="noopener" href="${waLink(`Hello Cyril Furniture, I am interested in the ${p.t} (${c.t}) from your website and would like to discuss a commission.`)}">Ask on WhatsApp</a>${nx !== p ? `<a href="#" class="m-next" data-piece="${nx.id}">Next: ${nx.t} →</a>` : ''}</div></div>`);
 }
-function closeModal() { if (!modal.classList.contains('open')) return; modal.classList.remove('open'); modal.setAttribute('aria-hidden', 'true'); document.body.classList.remove('modal-open'); lenis.start(); }
+function closeModal() { if (!modal.classList.contains('open')) return; modal.classList.remove('open'); modal.setAttribute('aria-hidden', 'true'); document.body.classList.remove('modal-open', 'modal-full'); clearTimeout(window.__mf); lenis.start(); }
 document.addEventListener('click', e => {
   const p = e.target.closest('[data-piece]'); if (p) { e.preventDefault(); return openPiece(p.dataset.piece); }
   const c = e.target.closest('[data-cat]'); if (c && c.tagName === 'A') { e.preventDefault(); closeMenu(); return openCat(c.dataset.cat); }

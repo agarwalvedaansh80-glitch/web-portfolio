@@ -268,7 +268,7 @@ if (FINE && DESK()) {
   gsap.ticker.add(() => {
     if (!workOn) { if (gc.style.visibility !== 'hidden') gc.style.visibility = 'hidden'; return; }
     const t = clk.getElapsedTime(); sv += ((lenis.velocity || 0) - sv) * .15;
-    let any = false; const sy = scrollY, modalOpen = document.body.classList.contains('modal-open');
+    let any = false; const sy = scrollY, modalOpen = document.body.classList.contains('modal-full');
     items.forEach(it => {
       const top = it.y - sy;
       const vis = it.w > 0 && top + it.h > -60 && top < H + 60 && it.u.tex.value && !modalOpen;
@@ -302,7 +302,7 @@ function openProject(slug, fromImg) {
     const c = document.createElement('img'); c.src = `img/${p.img}.webp`; c.alt = ''; c.className = 'flip-clone';
     Object.assign(c.style, { left: fr.left + 'px', top: fr.top + 'px', width: fr.width + 'px', height: fr.height + 'px' });
     document.body.appendChild(c);
-    document.body.classList.add('modal-open'); lenis.stop();
+    document.body.classList.add('modal-open'); lenis.stop(); clearTimeout(window.__mf); window.__mf = setTimeout(() => document.body.classList.contains('modal-open') && document.body.classList.add('modal-full'), 1050);
     modal.classList.add('flip', 'open'); modal.setAttribute('aria-hidden', 'false'); gsap.set(modal, { opacity: 0 });
     gsap.set('.m-hero img', { scale: 1 });
     const hh = $('.m-hero', ms).offsetHeight || innerHeight * .9;
@@ -315,11 +315,11 @@ function openProject(slug, fromImg) {
   }
   modal.classList.remove('flip'); gsap.set(modal, { clearProps: 'opacity' });
   modal.classList.add('open'); modal.setAttribute('aria-hidden', 'false');
-  document.body.classList.add('modal-open'); lenis.stop();
+  document.body.classList.add('modal-open'); lenis.stop(); clearTimeout(window.__mf); window.__mf = setTimeout(() => document.body.classList.contains('modal-open') && document.body.classList.add('modal-full'), 1050);
   gsap.fromTo('.m-hero img', { scale: 1.25 }, { scale: 1, duration: 1.8, ease: 'power3.out' });
   gsap.fromTo('.m-title>*', { y: 70, opacity: 0 }, { y: 0, opacity: 1, duration: 1.2, stagger: .08, delay: .4, ease: 'power3.out' });
 }
-function closeProject() { modal.classList.remove('open', 'flip'); gsap.set(modal, { clearProps: 'opacity' }); modal.setAttribute('aria-hidden', 'true'); document.body.classList.remove('modal-open'); lenis.start(); }
+function closeProject() { modal.classList.remove('open', 'flip'); gsap.set(modal, { clearProps: 'opacity' }); modal.setAttribute('aria-hidden', 'true'); document.body.classList.remove('modal-open', 'modal-full'); clearTimeout(window.__mf); lenis.start(); }
 document.addEventListener('click', e => { const o = e.target.closest('[data-open]'); if (!o) return; e.preventDefault(); openProject(o.dataset.open, o.classList.contains('wcard') ? $('figure img', o) : null); });
 $('#modalX').addEventListener('click', closeProject);
 addEventListener('keydown', e => { if (e.key === 'Escape') closeProject(); });

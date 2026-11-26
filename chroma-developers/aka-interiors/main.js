@@ -305,13 +305,13 @@ function openProject(slug) {
    ${gal ? `<div class="m-gal">${gal}</div>` : ''}
    <div class="m-cta"><h3>Planning a <em>similar project?</em></h3><div style="display:flex;gap:22px;flex-wrap:wrap;align-items:center"><a class="btn btn-solid" target="_blank" rel="noopener" href="${WA}${encodeURIComponent('Hello, I saw the ' + p.t + ' project and would like to discuss a similar design.')}">Discuss your project</a><a href="#" class="m-next" data-open="${nx.slug}">Next: ${nx.t}</a></div></div>`;
   ms.scrollTop = 0; modal.classList.add('open'); modal.setAttribute('aria-hidden', 'false');
-  document.body.classList.add('modal-open'); lenis.stop(); paused = true;
+  document.body.classList.add('modal-open'); lenis.stop(); clearTimeout(window.__mf); window.__mf = setTimeout(() => document.body.classList.contains('modal-open') && document.body.classList.add('modal-full'), 1050); paused = true;
   gsap.fromTo('.m-hero img', { scale: 1.2 }, { scale: 1, duration: 1.8, ease: 'power3.out' });
   gsap.fromTo('.m-title>*', { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 1.2, stagger: .08, delay: .35, ease: 'power3.out' });
 }
 function closeProject() {
   if (!modal.classList.contains('open')) return;
-  modal.classList.remove('open'); modal.setAttribute('aria-hidden', 'true'); document.body.classList.remove('modal-open');
+  modal.classList.remove('open'); modal.setAttribute('aria-hidden', 'true'); document.body.classList.remove('modal-open', 'modal-full'); clearTimeout(window.__mf);
   paused = false; lenis.start();
 }
 document.addEventListener('click', e => { const o = e.target.closest('[data-open]'); if (!o) return; e.preventDefault(); openProject(o.dataset.open); });

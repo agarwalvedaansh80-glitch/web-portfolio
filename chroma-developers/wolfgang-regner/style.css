@@ -536,3 +536,5 @@ h1,h2,h3,.h2,.mega,.hero-title{font-optical-sizing:auto}
 
 /* keep sticky elements working */
 body{overflow-x:clip}
+
+.modal{transition:clip-path 1s var(--ease),visibility 0s linear 1s}.modal.open{transition:clip-path 1s var(--ease),visibility 0s}
