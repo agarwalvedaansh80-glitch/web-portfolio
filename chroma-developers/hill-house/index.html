@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<base href="/hill-house/">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Hill House Interiors | Luxury Interior Design in Dubai</title>
+<meta name="description" content="Award-winning British interior design and interior architecture in Dubai. Over 25 years creating luxury residences in London, Lake Como, the South of France and Palm Jumeirah.">
+<meta property="og:title" content="Hill House Interiors | Luxury Interior Design in Dubai">
+<meta property="og:description" content="Award-winning British interior design, now in the heart of Dubai.">
+<meta property="og:image" content="https://chroma-developers.vercel.app/hill-house/g/atlantis-01.webp">
+<meta name="theme-color" content="#0a0a0a">
+<script>try{if(localStorage.getItem('hh-theme')==='light')document.documentElement.dataset.theme='light'}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400;1,6..96,500&family=Cinzel:wght@400;500;600&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=1">
+</head>
+<body class="loading">
+
+<div class="loader" id="loader">
+  <div class="loader-panels"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="loader-inner">
+    <svg class="mono" viewBox="0 0 120 150" aria-hidden="true">
+      <path class="mono-arch" d="M10 145V60A50 50 0 0 1 110 60V145Z"/>
+      <path class="mono-arch2" d="M18 137V61A42 42 0 0 1 102 61V137Z"/>
+      <text x="60" y="108" text-anchor="middle">HH</text>
+    </svg>
+    <div class="loader-word" aria-label="Hill House"><span>H</span><span>I</span><span>L</span><span>L</span><span class="sp"></span><span>H</span><span>O</span><span>U</span><span>S</span><span>E</span></div>
+    <div class="loader-sub">Interiors</div>
+    <div class="loader-bar"><i id="loaderBar"></i></div>
+    <div class="loader-meta"><span>London &nbsp;·&nbsp; Dubai</span><span><b id="loaderNum">0</b>%</span></div>
+  </div>
+</div>
+
+<div class="cursor" id="cursor"><div class="c-ring"><span class="c-label" id="cLabel"></span></div><div class="c-dot"></div></div>
+<canvas id="gal" aria-hidden="true"></canvas>
+
+<header class="nav" id="nav">
+  <a href="#top" class="logo" aria-label="Hill House Interiors"><span class="logo-main">Hill House</span><span class="logo-sub">Interiors</span></a>
+  <nav class="nav-links">
+    <a href="#studio">Studio</a><a href="#work">Projects</a><a href="#services">Services</a><a href="#approach">Approach</a><a href="#dubai">Dubai</a><a href="#contact">Contact</a>
+  </nav>
+  <button class="theme" id="theme" aria-label="Switch day or night mode" data-cursor="Mode"><span>Day</span><i></i><span>Night</span></button>
+  <a href="#contact" class="btn btn-solid btn-sm nav-cta">Book a consultation</a>
+  <button class="burger" id="burger" aria-label="Menu"><i></i><i></i></button>
+</header>
+<div class="menu" id="menu">
+  <div class="menu-links"><a href="#studio"><small>01</small>Studio</a><a href="#work"><small>02</small>Projects</a><a href="#services"><small>03</small>Services</a><a href="#approach"><small>04</small>Approach</a><a href="#dubai"><small>05</small>Dubai</a><a href="#contact"><small>06</small>Contact</a></div>
+  <div class="menu-foot"><a href="https://wa.me/971529111273" target="_blank" rel="noopener">WhatsApp</a><a href="tel:+971529111273">+971 52 911 1273</a></div>
+</div>
+
+<main id="top">
+
+<!-- HERO: 3D ring of projects -->
+<section class="hero" id="hero">
+  <canvas id="ring"></canvas>
+  <div class="hero-top">
+    <div class="eyebrow h-in">Modern &nbsp;·&nbsp; Luxurious &nbsp;·&nbsp; Tailored</div>
+    <h1 class="hero-title split">The ultimate touch of <em>British class</em></h1>
+  </div>
+  <div class="ring-label" id="ringLabel"><small>Now viewing</small><span id="rlMeta">Palm Jumeirah, Dubai</span><b id="rlName">Atlantis The Royal Residences</b></div>
+  <div class="hero-bottom">
+    <div class="hero-left h-in">
+      <p class="hero-lead">Award-winning British interior design, now in the heart of Dubai. For over 25 years our team has created sophisticated residences in the UK and internationally, from world class villas on Lake Como to expansive residences in the South of France.</p>
+      <div class="hero-btns">
+        <a href="#work" class="btn btn-solid">View projects</a>
+        <a href="#contact" class="btn btn-line">Book a consultation</a>
+      </div>
+    </div>
+    <div class="hero-hint h-in"><span class="drag-ico"><i></i></span>Drag or scroll<br>to explore the work</div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true"><div class="marquee-track">
+  <span>London</span><b></b><span>Dubai</span><b></b><span>Lake Como</span><b></b><span>Antibes</span><b></b><span>Marbella</span><b></b><span>New York</span><b></b><span>The Bahamas</span><b></b><span>Ibiza</span><b></b><span>Los Angeles</span><b></b>
+  <span>London</span><b></b><span>Dubai</span><b></b><span>Lake Como</span><b></b><span>Antibes</span><b></b><span>Marbella</span><b></b><span>New York</span><b></b><span>The Bahamas</span><b></b><span>Ibiza</span><b></b><span>Los Angeles</span><b></b>
+</div></div>
+
+<!-- STUDIO -->
+<section class="intro" id="studio">
+  <div class="intro-img"><div class="arch"><img src="img/directors.webp" alt="Jenny Weiss and Helen Bygraves, founding directors of Hill House Interiors" class="par"></div><div class="arch-cap">Jenny Weiss &amp; Helen Bygraves, founding directors</div></div>
+  <div class="intro-text">
+    <div class="eyebrow">The studio</div>
+    <h2 class="h2 split">Elegant, timeless, <em>couture</em></h2>
+    <p class="scrub-text">Hill House Interiors is the fruit of a 25-year friendship between its founding partners, Jenny Weiss and Helen Bygraves, built on a shared belief that beautiful surroundings can transform people's lives.</p>
+    <p class="muted up">Their client-centred approach has garnered a multitude of awards, while the business has grown into one of Britain's leading interior design practices. Hill House operates from a creative studio and lifestyle showroom in the UK, and a luxurious office on Sheikh Zayed Road in Dubai.</p>
+    <div class="stats up">
+      <div class="stat"><div class="num"><span class="count" data-to="25">0</span><sup>+</sup></div><p>Years of award-winning interiors</p></div>
+      <div class="stat"><div class="num"><span class="count" data-to="30">0</span><sup>+</sup></div><p>Designers, architects and craftspeople</p></div>
+      <div class="stat"><div class="num"><span class="count" data-to="2">0</span></div><p>Studios, in Surrey and Dubai</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNATURE (pinned WebGL showcase) -->
+<section class="sig" id="signature">
+  <div class="sig-pin">
+    <canvas id="sigGL"></canvas>
+    <div class="sig-shade"></div>
+    <div class="sig-ui">
+      <div class="sig-top"><div class="eyebrow light">Signature projects</div><div class="sig-count"><b id="sigN">01</b> / 05</div></div>
+      <div class="sig-titles" id="sigTitles"></div>
+      <div class="sig-bottom"><a href="#" class="btn btn-brass" id="sigOpen" data-cursor="Open">Open project</a><div class="sig-bar"><i id="sigBar"></i></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="work" id="work">
+  <div class="work-head">
+    <div><div class="eyebrow">Portfolio</div><h2 class="h2 split">Residences of <em>distinction</em></h2>
+      <p class="muted up">A selection of our completed work for private clients, from a residence on Palm Jumeirah to award-winning family homes in London and Surrey.</p></div>
+    <div class="filters" id="filters"></div>
+  </div>
+  <div class="wgrid" id="wgrid"></div>
+</section>
+
+<!-- WINDOW ZOOM -->
+<section class="window">
+  <div class="window-pin">
+    <div class="window-frame" id="wFrame"><img src="img/window.webp" alt="Entrance hall and sweeping staircase designed by Hill House Interiors"></div>
+    <div class="window-veil" id="wVeil"></div>
+    <div class="window-txt" id="wTxt"><div class="eyebrow light">Vision &nbsp;·&nbsp; Trust &nbsp;·&nbsp; Integrity</div><h2 class="mega">One chance to make <em>a first impression</em></h2><p>We always strive to exceed our clients' expectations through vision, trust and integrity.</p></div>
+  </div>
+</section>
+
+<!-- SERVICES (stacking) -->
+<section class="services" id="services">
+  <div class="sec-head">
+    <div class="eyebrow">Services</div>
+    <h2 class="h2 split">From concept <em>to reality</em></h2>
+    <p class="muted up">Full interior design and interior architecture services for discerning clients globally, with a complete first-class service from the first idea to the final accessory.</p>
+  </div>
+  <div class="stack">
+    <article class="scard"><div class="scard-txt"><span class="sn">I</span><h3>Interior Design</h3><p class="sl">Personalised, elegant and infinitely varied in scope, resulting in environments that are truly unique to each client.</p><p>Rather than stamping a one-size-fits-all aesthetic onto every space, the Hill House signature is more discreet: a philosophy that considers all the senses, from movement through space to scale, light, materials, colours, texture and even sound.</p><ul><li>Exclusive penthouse apartments</li><li>Palatial homes and lakeside villa retreats</li><li>Beautifully engineered yachts</li></ul></div><div class="scard-img"><img src="img/svc-design.webp" alt="Drawing room designed by Hill House Interiors" loading="lazy"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">II</span><h3>Interior Architecture</h3><p class="sl">Architecture and interiors conceived as a single, cohesive vision, with our in-house architects or through creative collaboration.</p><p>Many of our projects require architectural expertise. From reconfigured layouts that maximise space and light to bespoke cornices, sculptural staircases and restored period features, every space is shaped around the way our clients live.</p><ul><li>Spatial planning and reconfiguration</li><li>Extensions and full refurbishments</li><li>Restoration of original period features</li></ul></div><div class="scard-img"><img src="img/svc-architecture.webp" alt="Indoor pool and skylight designed by Hill House Interiors" loading="lazy"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">III</span><h3>Project Management</h3><p class="sl">Our design and architecture team oversee the entire project from concept to installation, on time and on budget.</p><p>We attend regular site meetings to ensure our designs are achieved to the exact specifications. Effective management of the manufacture process and strong relationships with trusted suppliers result in a seamless transition through to installation.</p><ul><li>Regular site meetings</li><li>Manufacture and supplier management</li><li>Seamless installation</li></ul></div><div class="scard-img"><img src="img/svc-pm.webp" alt="Bespoke kitchen designed by Hill House Interiors" loading="lazy"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">IV</span><h3>Turn-key &amp; Styling</h3><p class="sl">We believe that home accessories are like the jewellery to an outfit.</p><p>We offer full turn-key and styling services. Our Lifestyle Showroom is a taste of Hill House luxury, with new products, accessories, beautiful objects, floristry and artworks, and a team who design individual bespoke pieces.</p><ul><li>Full turn-key delivery</li><li>Accessories, artworks and floristry</li><li>Individual bespoke pieces</li></ul></div><div class="scard-img"><img src="img/svc-styling.webp" alt="Cushions and soft furnishings styled by Hill House Interiors" loading="lazy"></div></article>
+  </div>
+</section>
+
+<!-- APPROACH: plan drawn by scroll -->
+<section class="process" id="approach">
+  <div class="process-wrap">
+    <div class="plan-sticky">
+      <div class="eyebrow light">Our approach</div>
+      <h2 class="h2">It all starts <em>with an idea</em></h2>
+      <svg class="plan" viewBox="0 0 520 380" fill="none" aria-hidden="true">
+        <g class="L1" stroke-width="3"><path d="M20 20H500V360H20Z"/><path d="M20 210H150"/><path d="M330 20V150"/></g>
+        <g class="L2" stroke-width="1.5"><path d="M150 210V360"/><path d="M150 20V160"/><path d="M330 150H500"/><path d="M330 240H500"/><path d="M380 240V360"/><path d="M150 160H230"/><path d="M270 160H330"/>
+          <path d="M230 160A40 40 0 0 1 270 160" stroke-dasharray="3 4"/><path d="M150 250A40 40 0 0 0 190 210" stroke-dasharray="3 4"/><path d="M330 190A40 40 0 0 0 370 150" stroke-dasharray="3 4"/></g>
+        <g class="L3" stroke-width="1.1"><rect x="185" y="230" width="110" height="46" rx="4"/><rect x="200" y="290" width="80" height="34" rx="2"/><circle cx="240" cy="90" r="34"/><circle cx="240" cy="90" r="20"/>
+          <rect x="365" y="45" width="100" height="80" rx="2"/><path d="M365 62H465"/><rect x="40" y="40" width="88" height="140" rx="2"/><path d="M50 60H118M50 80H118M50 100H118"/>
+          <rect x="398" y="262" width="80" height="80" rx="2"/><path d="M398 302H478"/><path d="M40 240H128V340H40Z"/><circle cx="84" cy="290" r="18"/></g>
+        <g class="L4" stroke-width="1"><path d="M20 8H500M20 3V13M500 3V13" /><path d="M512 20V360M507 20H517M507 360H517"/><path d="M330 30V140" stroke-dasharray="2 4"/></g>
+        <g class="labels"><text x="58" y="200">Library</text><text x="200" y="345">Drawing room</text><text x="214" y="140">Dining</text><text x="372" y="140">Principal suite</text><text x="404" y="225">Dressing</text><text x="56" y="360">Kitchen</text><text x="400" y="355">Terrace</text></g>
+      </svg>
+    </div>
+    <div class="steps">
+      <div class="step"><span>01</span><h3>The Brief</h3><p>From our initial meeting, we take time to learn about the client and their design ambitions, exploring the creative, financial and practical feasibility of the site or concept to achieve the finest outcome.</p></div>
+      <div class="step"><span>02</span><h3>Design Development</h3><p>With the brief at the forefront, our expertise in spatial planning and an understanding of both client and property, we refine the initial concepts, sourcing furniture and finishes with a trained eye and discoveries from international travel.</p></div>
+      <div class="step"><span>03</span><h3>Presentation</h3><p>We communicate our proposals through tactile mood boards, technical drawings and visualisations, so our clients can truly visualise the final outcome.</p></div>
+      <div class="step"><span>04</span><h3>Project Coordination</h3><p>Our team oversee the entire project from concept to installation, attending regular site meetings so every design is achieved to the exact specifications, on time and on budget.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="philo">
+  <div class="sec-head"><div class="eyebrow">Philosophy</div><h2 class="h2 split">A stage set and <em>a backdrop to life</em></h2></div>
+  <div class="philo-grid">
+    <figure class="pq up"><blockquote>A person's home reflects who they are, their values, beliefs and tastes. It is both a stage set and a backdrop to their life.</blockquote><figcaption><b>Jenny Weiss</b>Founding Director</figcaption></figure>
+    <figure class="pq up"><blockquote>Like choosing a hat for Ascot, an interior should reflect the personality of its owner. It should rise to the occasion and be willing to make a statement.</blockquote><figcaption><b>Helen Bygraves</b>Founding Director</figcaption></figure>
+  </div>
+  <p class="philo-note up">Central to the Hill House way of working is a seize-the-day ethos that celebrates living life to the full. We encourage clients to be surrounded by the things they cherish, and use these personal references as a point of departure for harmonious, uplifting and timeless environments.</p>
+</section>
+
+<!-- TUNNEL -->
+<section class="tunnel">
+  <div class="tunnel-pin">
+    <canvas id="tunGL"></canvas>
+    <div class="tunnel-txt" id="tunTxt"><div class="eyebrow light">Dubai &nbsp;·&nbsp; London &nbsp;·&nbsp; Surrey</div><h2 class="mega">Step inside <em>the work</em></h2><p>Scroll to walk through residences in Dubai, London and Surrey. Select any room to open the project.</p></div>
+    <div class="tunnel-name" id="tunName"></div>
+  </div>
+</section>
+
+<!-- DUBAI -->
+<section class="dubai" id="dubai">
+  <div class="dubai-img"><div class="frame"><img src="img/dubai-studio.webp" alt="A Dubai residence designed by Hill House Interiors" class="par" loading="lazy"></div></div>
+  <div class="dubai-text">
+    <div class="eyebrow">Dubai studio</div>
+    <h2 class="h2 split">A British design house <em>in Dubai</em></h2>
+    <p class="big up">Hill House Interiors has opened a global design consultancy with a prominent office in the heart of Dubai, bringing award-winning British design to homes and apartments across the UAE.</p>
+    <p class="up">Our directors have strong personal and professional connections to the Middle East, and an affinity with Dubai in particular. With a passion for the market and a strong understanding of the intricacies of high-end design, we design, plan, develop and manage luxury projects from initial conception through to completion.</p>
+    <p class="up">Our style reflects high-end, bespoke British design, blending the top-quality craftsmanship the UK is known for with a flair for the extravagant that is so fitting of the Dubai culture.</p>
+    <div class="dubai-card up">
+      <div><span>Studio</span><b>Signature Offices, 25th Floor, Burj al Salam, Trade Centre First, Sheikh Zayed Road, Dubai</b></div>
+      <div><span>Telephone &amp; WhatsApp</span><a href="tel:+971529111273">+971 52 911 1273</a></div>
+      <a href="#" class="link-arrow" data-open="atlantis">View Atlantis The Royal Residences <span>→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="quotes" id="clients">
+  <div class="quotes-in">
+    <div class="eyebrow">Client words</div>
+    <div class="q-stage" id="qStage"></div>
+    <div class="q-nav"><button id="qPrev" aria-label="Previous testimonial" data-cursor="Prev"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><span id="qNum">01 / 04</span><button id="qNext" aria-label="Next testimonial" data-cursor="Next"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button></div>
+  </div>
+</section>
+
+<!-- RECOGNITION -->
+<section class="awards" id="recognition">
+  <div class="sec-head"><div class="eyebrow">Recognition</div><h2 class="h2 split">Award-winning <em>designers</em></h2><p class="muted up">Our work has been recognised by some of the industry's leading awards, and featured in some of its finest publications, from print to podcasts.</p></div>
+  <div class="ledger" id="ledger">
+    <a href="#" class="lrow" data-open="atlantis" data-img="atlantis-01"><span class="ly">2025/26</span><span class="la">Best International Interior Residential Apartment<small>International Property Awards</small></span><span class="lp">Atlantis The Royal Residences</span></a>
+    <a href="#" class="lrow" data-open="north-london" data-img="north-london-01"><span class="ly">2026</span><span class="la">Luxury Residence, UK<small>Design et al 20th Anniversary Accolade Awards</small></span><span class="lp">North London Luxury Residence</span></a>
+    <a href="#" class="lrow" data-open="burwood-park" data-img="burwood-park-02"><span class="ly">2023/24</span><span class="la">Best Interior Design, Private Residence, Surrey and United Kingdom<small>International Property Awards</small></span><span class="lp">Burwood Park Residence</span></a>
+    <a href="#" class="lrow" data-open="burwood-park" data-img="burwood-park-03"><span class="ly">2023</span><span class="la">Best Interior Design Scheme, UK<small>International Design and Architecture Awards</small></span><span class="lp">Burwood Park Residence</span></a>
+    <div class="lrow"><span class="ly">5 Star</span><span class="la">Best Residential Interior, Private Residence, Spain<small>International Property Awards</small></span><span class="lp">Marbella Residence</span></div>
+    <div class="lrow"><span class="ly">2022</span><span class="la">Best Private Residence Interior Design, London<small>International Property Awards</small></span><span class="lp">Kensington Townhouse</span></div>
+  </div>
+  <div class="press up">
+    <div class="press-h">In the media</div>
+    <ul>
+      <li><b>Country &amp; Town House</b>Top 50 Finest Interior Designers 2026</li>
+      <li><b>Robb Report</b>Best of the Best: inside an award-winning home cinema</li>
+      <li><b>Interior Design Yearbook 2027</b>Assured Refinement</li>
+      <li><b>Lamasat</b>Redefining quiet luxury at Atlantis The Royal Residences</li>
+      <li><b>Robb Report Monaco</b>Home of the Week: the North London Residence</li>
+      <li><b>The English Home</b>Designer secrets with Jenny Weiss</li>
+    </ul>
+  </div>
+  <div class="lprev" id="lprev" aria-hidden="true"><img alt=""></div>
+</section>
+
+<!-- DIRECTORS -->
+<section class="about" id="directors">
+  <div class="about-img"><div class="arch"><img src="img/studio.webp" alt="Living room designed by Hill House Interiors" class="par" loading="lazy"></div><div class="about-tag">Interior Design &nbsp;·&nbsp; Interior Architecture &nbsp;·&nbsp; Project Management</div></div>
+  <div class="about-text">
+    <div class="eyebrow">Our directors</div>
+    <h2 class="h2 split">Jenny Weiss <em>&amp; Helen Bygraves</em></h2>
+    <h4>Founders, for over twenty five years</h4>
+    <p>Launching their multi-award-winning design practice over twenty five years ago, Jenny and Helen are the founders of Hill House Interiors. Having both worked within the property sector, their Surrey based design studio has flourished.</p>
+    <h4>A team of over thirty</h4>
+    <p>Today, with a team of over 30 designers, architects and craftspeople, their enthusiasm for high-end couture interiors coupled with their positive energy brings their diverse projects to life.</p>
+    <h4>Personally involved in every project</h4>
+    <p>We lead by example, personally and passionately involved in every project, inspiring each other and the talented design team to create exceptional interiors that surpass client expectations.</p>
+    <p>From exclusive penthouse apartments to palatial homes, lakeside villa retreats and beautifully engineered yachts, Hill House works on high-end residential projects in locations as diverse as London, New York, Lake Como, Antibes, the Bahamas, Ibiza, Los Angeles and Dubai.</p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-bg"><img src="g/atlantis-02.webp" alt="" class="par" loading="lazy"></div>
+  <div class="contact-in">
+    <div class="eyebrow light">Contact</div>
+    <h2 class="mega split">Ready to create <em>something stunning?</em></h2>
+    <p class="big up">Our British design consultancy is delighted to be part of the Dubai marketplace, and we look forward to getting to know you. To discuss a project or vision, please get in touch.</p>
+    <div class="contact-btns up">
+      <a class="btn btn-brass" href="https://wa.me/971529111273?text=Hello%2C%20I%20would%20like%20to%20discuss%20an%20interior%20design%20project." target="_blank" rel="noopener">Message on WhatsApp</a>
+      <a class="btn btn-line light" href="tel:+971529111273">Call +971 52 911 1273</a>
+    </div>
+    <div class="contact-cards up">
+      <div class="ccard"><h5>Dubai Studio</h5><p>Signature Offices, 25th Floor<br>Burj al Salam, Trade Centre First<br>Sheikh Zayed Road, Dubai</p><a href="tel:+971529111273">+971 52 911 1273</a><small>WhatsApp available on this number</small></div>
+      <div class="ccard"><h5>Design Studio, Surrey</h5><p>32-34 Baker Street<br>Weybridge, Surrey<br>KT13 8AU, United Kingdom</p><a href="tel:+441932858900">+44 1932 858 900</a><a href="mailto:newbusiness@hillhouseinteriors.com">newbusiness@hillhouseinteriors.com</a></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="foot-big"><span>Hill</span> <span>House</span></div>
+  <div class="foot-cols">
+    <div><h5>Studio</h5><a href="#studio">About</a><a href="#work">Projects</a><a href="#services">Services</a><a href="#approach">Approach</a><a href="#recognition">Recognition</a></div>
+    <div><h5>Studios</h5><span>Sheikh Zayed Road, Dubai</span><span>Baker Street, Weybridge, Surrey</span><span>Lifestyle Showroom, Waterloo Terrace, Weybridge</span></div>
+    <div><h5>Contact</h5><a href="https://wa.me/971529111273" target="_blank" rel="noopener">WhatsApp +971 52 911 1273</a><a href="mailto:newbusiness@hillhouseinteriors.com">newbusiness@hillhouseinteriors.com</a><a href="https://www.instagram.com/hillhouseinteriors/" target="_blank" rel="noopener">Instagram</a><a href="https://www.pinterest.co.uk/hillhouselondon/" target="_blank" rel="noopener">Pinterest</a></div>
+  </div>
+  <div class="foot-bot"><span>© <span id="yr"></span> Hill House Interiors. All rights reserved.</span><a href="#top">Back to top</a></div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/971529111273?text=Hello%2C%20I%20would%20like%20to%20discuss%20an%20interior%20design%20project." target="_blank" rel="noopener" aria-label="WhatsApp" data-cursor="WhatsApp">
+  <svg viewBox="0 0 32 32" width="24" height="24"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.7c-2 0-3.9-.5-5.6-1.5l-.4-.2-3.9 1 1-3.8-.3-.4A10.7 10.7 0 1 1 16 26.7zm5.9-8c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5 1-1.7.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4s-1.2 1.1-1.2 2.8 1.2 3.2 1.4 3.4 2.4 3.7 5.8 5.2c2.2.9 3 1 4.1.8.7-.1 1.9-.8 2.2-1.5s.3-1.3.2-1.5-.3-.2-.6-.4z"/></svg>
+</a>
+
+<div class="modal" id="modal" aria-hidden="true">
+  <button class="modal-x" id="modalX" aria-label="Close project" data-cursor="Close"></button>
+  <div class="modal-scroll" id="modalScroll" data-lenis-prevent></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="data.js?v=1"></script>
+<script type="module" src="main.js?v=1"></script>
+</body>
+</html>
