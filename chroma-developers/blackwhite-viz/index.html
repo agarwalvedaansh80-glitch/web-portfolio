@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<base href="/blackwhite-viz/">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3D Architectural Rendering Dubai | Blackwhite Viz</title>
+<meta name="description" content="Blackwhite Viz is the visualization studio of Lathief Productions in Deira, Dubai. Photoreal renders, interiors, 360 panoramas, walkthrough films and AR/VR for architects, developers and real estate brands.">
+<meta property="og:title" content="Blackwhite Viz | 3D Visualization in Dubai">
+<meta property="og:description" content="Photoreal renders for architects, developers, and real estate brands.">
+<meta property="og:image" content="https://chroma-developers.vercel.app/blackwhite-viz/img/og.jpg">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="icon" href="img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=1">
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+</head>
+<body class="loading">
+
+<div class="loader" id="loader">
+  <div class="loader-panels"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="loader-inner">
+    <img class="loader-mark" src="img/bw-mark.webp" alt="" width="240" height="155">
+    <div class="loader-word" aria-label="Blackwhite Viz"><span>B</span><span>L</span><span>A</span><span>C</span><span>K</span><span>W</span><span>H</span><span>I</span><span>T</span><span>E</span></div>
+    <div class="loader-bar"><i id="loaderBar"></i></div>
+    <div class="loader-meta"><span id="loaderPass">Clay pass</span><span><b id="loaderNum">0</b>%</span></div>
+  </div>
+</div>
+
+<div class="cursor" id="cursor"><div class="c-ring"><span class="c-label" id="cLabel"></span></div><div class="c-dot"></div></div>
+<canvas id="gal" aria-hidden="true"></canvas>
+
+<header class="nav" id="nav">
+  <a href="#top" class="logo" aria-label="Blackwhite Viz home"><img src="img/bw-mark.webp" alt="" width="240" height="155"><span>Blackwhite<em>Viz</em></span></a>
+  <nav class="nav-links">
+    <a href="#work">Work</a><a href="#services">Services</a><a href="#process">Process</a><a href="#studio">Studio</a><a href="#faq">FAQ</a><a href="#contact">Contact</a>
+  </nav>
+  <button class="theme" id="theme" aria-label="Switch day or night mode" data-cursor="Mode"><span>Day</span><i></i><span>Night</span></button>
+  <a href="#contact" class="btn btn-solid btn-sm nav-cta magnetic">Start a project</a>
+  <button class="burger" id="burger" aria-label="Menu"><i></i><i></i></button>
+</header>
+<div class="menu" id="menu">
+  <a href="#work"><small>01</small>Work</a><a href="#services"><small>02</small>Services</a><a href="#process"><small>03</small>Process</a><a href="#studio"><small>04</small>Studio</a><a href="#faq"><small>05</small>FAQ</a><a href="#contact"><small>06</small>Contact</a>
+  <div class="menu-foot"><a href="https://wa.me/971502148129" target="_blank" rel="noopener">WhatsApp</a><a href="tel:+971502148129">+971 50 214 8129</a><a href="mailto:hello@blackwhiteviz.com">hello@blackwhiteviz.com</a></div>
+</div>
+
+<main id="top">
+
+<!-- HERO: real-time sculpture -->
+<section class="hero" id="hero">
+  <canvas id="hero3d" aria-label="Interactive 3D sculpture"></canvas>
+  <div class="hero-vig"></div>
+  <div class="vf" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="hero-top">
+    <div class="eyebrow h-in">Blackwhite Viz · Lathief Productions</div>
+    <h1 class="hero-title split">3D Visualization <em>in Dubai</em></h1>
+    <p class="hero-lead h-in">Photoreal renders for architects, developers, and real estate brands.</p>
+    <div class="hero-btns h-in">
+      <a href="#work" class="btn btn-solid magnetic">View the work</a>
+      <a href="#contact" class="btn btn-line magnetic">Start a project</a>
+    </div>
+  </div>
+  <div class="hero-hud h-in" aria-hidden="true">
+    <span>Real time</span><b id="hudMat">Marble</b><span id="hudLight">Light 000°</span>
+  </div>
+  <div class="hero-bottom">
+    <p class="hero-note h-in">Light, material, and form captured before construction begins.</p>
+    <div class="mats h-in" id="mats" role="group" aria-label="Choose a material">
+      <div class="mats-label">Material<small>Move to light it · Drag to turn</small></div>
+      <div class="mats-row">
+        <button class="on" data-mat="marble" data-cursor="Marble"><i class="sw sw-marble"></i><span>Marble</span></button>
+        <button data-mat="metal" data-cursor="Metal"><i class="sw sw-metal"></i><span class="m-long">Brushed metal</span><span class="m-short">Metal</span></button>
+        <button data-mat="glass" data-cursor="Glass"><i class="sw sw-glass"></i><span>Glass</span></button>
+        <button data-mat="clay" data-cursor="Clay"><i class="sw sw-clay"></i><span class="m-long">Matte clay</span><span class="m-short">Clay</span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true"><div class="marquee-track">
+  <span>Architectural Rendering</span><b></b><span>Interior Renderings</span><b></b><span>360 Panorama</span><b></b><span>Walkthrough Films</span><b></b><span>AR / VR</span><b></b><span>Interior Design Support</span><b></b>
+  <span>Architectural Rendering</span><b></b><span>Interior Renderings</span><b></b><span>360 Panorama</span><b></b><span>Walkthrough Films</span><b></b><span>AR / VR</span><b></b><span>Interior Design Support</span><b></b>
+</div></div>
+
+<!-- INTRO + STATS -->
+<section class="intro" id="about">
+  <div class="intro-img"><div class="frame-reveal"><img src="m/tower-1-1.webp" alt="Tower One exterior view by Blackwhite Viz" class="par"></div><span class="intro-cap">Tower One · Dubai · 2025</span></div>
+  <div class="intro-text">
+    <div class="eyebrow">About Blackwhite Viz</div>
+    <h2 class="h2 split">Building spaces <em>before they exist</em></h2>
+    <p class="scrub-text">Blackwhite Viz is the visualization studio of Lathief Productions, a Dubai company making photographs, films, and brand work since 2005. Architectural rendering is the work we are known for.</p>
+    <p class="muted up">It sits beside interior design support, walkthrough films, photography, VFX, and the content a launch actually needs. Developers, architects, and companies come to one team for the still, the film, and the wider story.</p>
+    <a href="#studio" class="link-arrow up">Who we are <span>→</span></a>
+  </div>
+</section>
+<section class="stats">
+  <div class="stat"><div class="num"><span class="count" data-to="100">0</span><sup>+</sup></div><p>Projects completed</p></div>
+  <div class="stat"><div class="num"><span class="count" data-to="60">0</span><sup>+</sup></div><p>Clients served</p></div>
+  <div class="stat"><div class="num"><span class="count" data-to="5">0</span><sup>+</sup></div><p>Years of experience</p></div>
+  <div class="stat"><div class="num"><span class="count" data-to="4">0</span></div><p>Regions worldwide: UAE, Africa, Sri Lanka, India</p></div>
+</section>
+
+<!-- SHOWCASE (pinned WebGL) -->
+<section class="sig" id="signature">
+  <div class="sig-pin">
+    <canvas id="sigGL"></canvas>
+    <div class="sig-shade"></div>
+    <div class="sig-ui">
+      <div class="sig-top"><div class="eyebrow light">Featured projects</div><div class="sig-count"><b id="sigN">01</b> / <span id="sigT">06</span></div></div>
+      <div class="sig-titles" id="sigTitles"></div>
+      <div class="sig-bottom"><a href="#" class="btn btn-light magnetic" id="sigOpen" data-cursor="Open">Open project</a><div class="sig-bar"><i id="sigBar"></i></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="work" id="work">
+  <div class="work-head">
+    <div><div class="eyebrow">Our work</div><h2 class="h2 split">Selected <em>stills</em></h2>
+      <p class="muted up">A selection of photoreal stills made for architects, developers, and sales teams: waterfront villas, towers, interiors, heritage rooms, and landscape, for work across the UAE, Africa, Sri Lanka, and India.</p></div>
+    <div class="filters" id="filters"></div>
+  </div>
+  <div class="wgrid" id="wgrid"></div>
+</section>
+
+<!-- FRAME ZOOM -->
+<section class="window">
+  <div class="window-pin">
+    <div class="window-frame" id="wFrame"><img src="m/water-villa-1.webp" alt="Water Villa daylight still"></div>
+    <div class="vf vf-w" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    <div class="window-txt" id="wTxt"><div class="eyebrow light">Each project</div><h2 class="mega">A camera, a material pass, <em>and the hour</em></h2><p>Day, dusk, and night frames are finished for sales decks, websites, and launch campaigns, so a drawing can be read as a place before a wall is built.</p></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="sec-head">
+    <div class="eyebrow">Our services</div>
+    <h2 class="h2 split">From drawings <em>to decisions</em></h2>
+    <p class="muted up">From exterior and interior renders to walkthrough animations and 360 panoramas, our 3D rendering services help architects and developers in Dubai turn drawings into decisions. Each service can stand on its own or sit in one visual set for a launch.</p>
+  </div>
+  <div class="stack">
+    <article class="scard"><div class="scard-txt"><span class="sn">01</span><h3>3D Architectural Rendering</h3><p class="sl">Photoreal exterior stills for villas, towers, and masterplans before a wall is built.</p><p>Villas, towers, and masterplans are lit, materialled, and finished until glass, stone, planting, and sky read as a place, not a sketch on a white field. If a still cannot survive a client meeting, it is not finished.</p><ul><li>Photoreal exterior stills for villas, towers, and plots</li><li>Day, dusk, and night cameras from the same model</li><li>Wide site views and close facade crops</li><li>Files ready for print, web, and presentations</li></ul></div><div class="scard-img"><img loading="lazy" src="m/tower-2-3.webp" alt="Tower Two close up facade view"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">02</span><h3>360 Panorama</h3><p class="sl">Full surround stills so clients can look around a space, not only at a single camera.</p><p>The frame is equirectangular, but the standard is the same as a hero render: material, light, and a space that feels finished. Headsets, web players, and gallery screens can all take the same file.</p><ul><li>Equirectangular stills with photoreal material and light</li><li>Interior, amenity, and exterior cameras</li><li>Files for web tours, sales galleries, and headsets</li><li>The same finish as the hero stills in the set</li></ul></div><div class="scard-img"><img loading="lazy" src="m/kenya-villa-2.webp" alt="Kenya Villa landscape view"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">03</span><h3>3D Interior Renderings</h3><p class="sl">Interior stills with material, light, and atmosphere ready to approve.</p><p>Living rooms, lobbies, suites, and amenity interiors are furnished and lit so material, daylight, and atmosphere feel finished before production. Stakeholders read the space as a photograph, not as a drawing they have to imagine.</p><ul><li>Photoreal interiors for living rooms, lobbies, and suites</li><li>Furniture, material, and daylight finished for approval</li><li>Day and mood cameras for sales and design review</li><li>Stills formatted for decks, print, and the web</li></ul></div><div class="scard-img"><img loading="lazy" src="m/nshama-2.webp" alt="Nshama living room interior"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">04</span><h3>Interior Design Support</h3><p class="sl">Support for design teams testing layout, material, and lighting before production.</p><p>This is visualization as a design tool, not only as a marketing still. Two looks of the same volume can sit side by side until the room is signed off, so a fit out team is not guessing on site.</p><ul><li>Option stills for layout, material, and lighting</li><li>Variant rooms so a team can compare looks</li><li>Mood studies before procurement</li><li>Files that can move from design review into sales</li></ul></div><div class="scard-img"><img loading="lazy" src="m/interior-1.webp" alt="Interior study bedroom"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">05</span><h3>AR / VR Visualization</h3><p class="sl">Immersive AR and VR that let buyers step into a project before it is built.</p><p>The scenes are prepared for launches, sales galleries, and remote review so the unbuilt space can be walked, not only looked at. We keep the same model, light, and finish across the set.</p><ul><li>Interactive scenes from the same project model</li><li>Experiences for launches, galleries, and remote review</li><li>Interior and exterior environments with matching finish</li><li>A path from stills and panoramas into immersive view</li></ul></div><div class="scard-img"><img loading="lazy" src="m/concept-tower-1.webp" alt="Concept Tower detail still"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">06</span><h3>3D Walkthrough Videos</h3><p class="sl">Cinematic walkthroughs that show a project in motion.</p><p>We guide the viewer through approach, lobby, rooms, and amenity so the project is felt in time, not only in a still. Cameras, light, and cut are set with the same material standard as the stills.</p><ul><li>Cinematic walkthroughs for marketing and investor decks</li><li>A path through approach, lobby, rooms, and amenity</li><li>The same material finish as the stills in the set</li><li>Cuts ready for web, presentation, and launch screens</li></ul></div><div class="scard-img"><img loading="lazy" src="m/tower-3-6.webp" alt="Tower Three evening view"></div></article>
+  </div>
+</section>
+
+<!-- PROCESS: drawing to final still -->
+<section class="process" id="process">
+  <div class="process-wrap">
+    <div class="proc-sticky">
+      <div class="proc-head"><div class="eyebrow">Working with us</div>
+      <h2 class="h2">Drawings in. <em>A visual set out.</em></h2></div>
+      <div class="proc-view">
+        <canvas id="procGL"></canvas>
+        <div class="vf vf-p" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        <div class="proc-pass"><span id="passN">01</span><b id="passName">Drawing</b><small>/ 05</small></div>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step"><span>01</span><h3>Drawings in</h3><p>Send a model or a drawing set, a note on cameras and materials, and the date you need. CAD or BIM models, drawings, and a brief are enough to begin.</p></div>
+      <div class="step"><span>02</span><h3>Scope and cameras</h3><p>We confirm scope, views, and timeline. If the model is incomplete, we can rebuild or refine it before lighting.</p></div>
+      <div class="step"><span>03</span><h3>A first look</h3><p>We share a first look for direction before we finish the set, so the first delivery is already a decision, not a guess.</p></div>
+      <div class="step"><span>04</span><h3>Light and material</h3><p>Day, dusk, and night passes go through review. Every render pass is finished with care across glass, stone, landscape, and atmosphere.</p></div>
+      <div class="step"><span>05</span><h3>A visual set out</h3><p>Stills, panoramas, or film, ready for sales, the website, and the room where the project has to be approved.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- RING ARCHIVE -->
+<section class="archive" id="archive">
+  <canvas id="ring" aria-label="3D ring of project stills"></canvas>
+  <div class="arc-top">
+    <div class="eyebrow">The archive</div>
+    <h2 class="h2 split">Every frame, <em>one finish</em></h2>
+  </div>
+  <div class="ring-label" id="ringLabel"><span id="rlMeta">UAE</span><b id="rlName">Water Villa</b></div>
+  <div class="arc-hint"><span class="drag-ico"><i></i></span>Drag to turn · Tap a still to open</div>
+</section>
+
+<!-- STUDIO -->
+<section class="studio" id="studio">
+  <div class="quote">
+    <div class="eyebrow">The studio</div>
+    <blockquote class="split">The still has to hold the project as clearly as the drawing, and as confidently as the sale. <em>That is the work we ask of every frame.</em></blockquote>
+    <cite>Lathief, Chairman</cite>
+  </div>
+  <div class="team">
+    <div class="team-txt">
+      <h2 class="h2 split">The <em>team</em></h2>
+      <p class="muted up">Direction sits close to the frames. The chairman and creative directors work the brief in the same studio as the stills: light, material, and the look of the set, so the first delivery is already a decision, not a guess.</p>
+    </div>
+    <div class="team-grid">
+      <figure class="tm"><div class="tm-img"><img loading="lazy" src="img/lathief.webp" alt="Lathief, Chairman"></div><figcaption><b>Lathief</b><span>Chairman</span></figcaption></figure>
+      <figure class="tm"><div class="tm-img"><img loading="lazy" src="img/nitheesh.webp" alt="Nitheesh, Creative Director"></div><figcaption><b>Nitheesh</b><span>Creative Director</span></figcaption></figure>
+      <figure class="tm"><div class="tm-img"><img loading="lazy" src="img/ramesh.webp" alt="Ramesh, Creative Director"></div><figcaption><b>Ramesh</b><span>Creative Director</span></figcaption></figure>
+    </div>
+  </div>
+  <div class="pillars">
+    <div class="pillar"><span>01</span><h3>Clear storytelling</h3><p>Photoreal visuals that sell the project with accurate materials, believable light, and carefully composed frames that communicate the design intent without extra noise.</p></div>
+    <div class="pillar"><span>02</span><h3>Client focused delivery</h3><p>From concept launches to sales decks and marketing sets, we tailor interiors, exteriors, landscapes, and animation so your team can decide, present, and move forward.</p></div>
+    <div class="pillar"><span>03</span><h3>Precision and detail</h3><p>Every render pass is finished with care across glass, stone, landscape, and atmosphere, so stakeholders can trust what they see long before construction begins.</p></div>
+    <div class="pillar"><span>04</span><h3>Results that travel</h3><p>As part of Lathief Productions, we work across the UAE, Africa, Sri Lanka, and India, formatting visuals for marketing, sales, and client approvals around the world.</p></div>
+  </div>
+  <div class="mission">
+    <span>Mission</span>
+    <p>To help a project be understood before it is built, and clearly presented once it is ready to sell.</p>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section class="clients" aria-label="Trusted clients">
+  <div class="eyebrow center-eb">Trusted clients</div>
+  <div class="cl-marquee"><div class="cl-track">
+    <img src="img/clients/nshama.svg" alt="Nshama"><img src="img/clients/azizi.svg" alt="Azizi"><img src="img/clients/danube.svg" alt="Danube"><img src="img/clients/emarat.svg" alt="Emarat"><img src="img/clients/agthia.ae_big.svg" alt="Agthia"><img src="img/clients/coca-cola.svg" alt="Coca-Cola"><img src="img/clients/prestige_on.svg" alt="Prestige One"><img src="img/clients/deerfields.svg" alt="Deerfields"><img src="img/clients/fibrex.svg" alt="Fibrex"><img src="img/clients/sharjah_heritage_institute.svg" alt="Sharjah Heritage Institute"><img src="img/clients/fg.svg" alt="FG">
+    <img src="img/clients/nshama.svg" alt=""><img src="img/clients/azizi.svg" alt=""><img src="img/clients/danube.svg" alt=""><img src="img/clients/emarat.svg" alt=""><img src="img/clients/agthia.ae_big.svg" alt=""><img src="img/clients/coca-cola.svg" alt=""><img src="img/clients/prestige_on.svg" alt=""><img src="img/clients/deerfields.svg" alt=""><img src="img/clients/fibrex.svg" alt=""><img src="img/clients/sharjah_heritage_institute.svg" alt=""><img src="img/clients/fg.svg" alt="">
+  </div></div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="faq-wrap">
+    <div class="sec-head faq-head"><div class="eyebrow">FAQ</div><h2 class="h2 split">3D rendering, <em>answered</em></h2><p class="muted up">Have a project in mind? Send drawings or a model and we will confirm scope, views, and timeline.</p></div>
+    <div class="faq-list">
+      <details><summary>What 3D rendering services does Blackwhite Viz offer?</summary><p>We deliver exterior architectural rendering, interior stills, 360 panoramas, interior design support, walkthrough videos, and AR/VR visualization. Each service can be commissioned on its own or as a full visual set for a launch.</p></details>
+      <details><summary>What files do you need to start a rendering project?</summary><p>CAD or BIM models, drawings, and a brief on camera views, materials, and lighting are enough to begin. Mood references and brand guidelines help us match the look you need. If the model is incomplete, we can rebuild or refine it before lighting.</p></details>
+      <details><summary>How long do 3D rendering services take?</summary><p>A focused stills package often lands in days to a few weeks. Walkthroughs, large masterplans, and AR/VR take longer. After we review scope, we lock a schedule around your presentation or sales date.</p></details>
+      <details><summary>Do you work with architects and developers outside Dubai?</summary><p>Yes. We are based in Dubai and work with teams across the UAE, the Gulf, Africa, and South Asia. Remote reviews and shared folders keep the process clear wherever the site is.</p></details>
+      <details><summary>How does architectural visualization differ from traditional blueprints?</summary><p>Blueprints and CAD drawings are technical. Architectural visualization turns those plans into realistic images and animations so clients can experience scale, lighting, and atmosphere long before construction begins.</p></details>
+      <details><summary>Do you provide 3D interior rendering for apartments and villas?</summary><p>Yes. We produce interior renders for living rooms, bedrooms, kitchens, and amenity spaces, with material accuracy, furniture styling, and day, dusk, and night lighting options for developers and homeowners.</p></details>
+      <details><summary>Can you create 2D and 3D floor plans for a project?</summary><p>Yes. We deliver 2D plans for quick layout overviews and 3D floor plans that show furniture, circulation, and space flow, effective for brochures, websites, and sales galleries.</p></details>
+      <details><summary>What is the difference between exterior and interior rendering?</summary><p>Exterior rendering covers façades, podiums, street life, and how the building meets the site. Interior rendering focuses on rooms, materials, furniture, and daylight. Most sales and design decks need both so the project reads as a complete place.</p></details>
+      <details><summary>Can you create 3D walkthrough videos and AR/VR?</summary><p>Yes. Walkthroughs take viewers from approach through lobby, rooms, and amenities. AR/VR is used when a client needs to stand inside the design, not only watch it. We advise which format fits the launch.</p></details>
+      <details><summary>How do you use 3D rendering for real estate marketing?</summary><p>We create hero stills, detail crops, animations, and aerial views formatted for brochures, websites, social media, and presentations, so marketing teams have a consistent visual set for every channel.</p></details>
+      <details><summary>How do we start a service with Blackwhite Viz?</summary><p>Send drawings or a model through Contact, or request a price guideline. We confirm scope, views, and timeline, then share a first look for direction before we finish the set.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-bg"><img loading="lazy" src="m/tower-2-2.webp" alt="" class="par"></div>
+  <div class="contact-in">
+    <div class="contact-l">
+      <div class="eyebrow light">Contact</div>
+      <h2 class="mega split">Have a project <em>in mind?</em></h2>
+      <p class="big up">Ready to transform your vision into visuals that sell? Come and visit our visualization studio nestled in Deira, Dubai, or drop us a line.</p>
+      <div class="contact-btns up">
+        <a class="btn btn-light magnetic" href="https://wa.me/971502148129?text=Hello%20Blackwhite%20Viz%2C%20I%20would%20like%20to%20discuss%20a%20rendering%20project." target="_blank" rel="noopener">Message on WhatsApp</a>
+        <a class="btn btn-line light magnetic" href="tel:+971502148129">Call +971 50 214 8129</a>
+      </div>
+      <ul class="c-info up">
+        <li><span>Phone</span><div><a href="tel:+971502148129">+971 50 214 8129</a><a href="tel:+971502163873">+971 50 216 3873</a></div></li>
+        <li><span>Email</span><div><a href="mailto:hello@blackwhiteviz.com">hello@blackwhiteviz.com</a></div></li>
+        <li><span>Studio</span><div><a href="https://www.google.com/maps/search/?api=1&amp;query=BlackWhite%20Viz%20by%20Lathief%20Productions%2C%20112%20Al%20Bakhit%20Centre%2C%20Abu%20Baker%20Al%20Siddique%20Rd%2C%20Deira%2C%20Dubai%2C%20UAE" target="_blank" rel="noopener">112 Al Bakhit Centre, Abu Baker Al Siddique Rd, Deira, Dubai, UAE</a></div></li>
+      </ul>
+    </div>
+    <form class="c-form up" id="cForm" novalidate>
+      <h3>Drop us a line.</h3>
+      <label><span>Name</span><input name="name" autocomplete="name" required></label>
+      <label><span>Email</span><input name="email" type="email" autocomplete="email" required></label>
+      <div class="two"><label><span>Company name</span><input name="company" autocomplete="organization"></label>
+      <label><span>Phone number</span><input name="phone" type="tel" autocomplete="tel"></label></div>
+      <label><span>Company URL</span><input name="url" type="url" inputmode="url"></label>
+      <label><span>Project</span><select name="service"><option>3D Architectural Rendering</option><option>3D Interior Renderings</option><option>360 Panorama</option><option>3D Walkthrough Videos</option><option>AR / VR Visualization</option><option>Interior Design Support</option><option>A full visual set</option></select></label>
+      <button class="btn btn-light" type="submit">Send</button>
+      <p class="f-note" id="fNote">Your message opens in WhatsApp, ready to send to the studio.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="foot-big" aria-hidden="true"><span>Black</span><em>white</em></div>
+  <div class="foot-cols">
+    <div><h5>Studio</h5><p>Blackwhite Viz is the visualization studio of Lathief Productions. Architectural stills, films, interiors, and brand visuals for work across Dubai and beyond.</p></div>
+    <div><h5>Quick links</h5><a href="#work">Projects</a><a href="#services">Services</a><a href="#process">Process</a><a href="#studio">Studio</a><a href="#contact">Contact</a></div>
+    <div><h5>Visit us</h5><span>BlackWhite Viz by Lathief Productions</span><span>112 Al Bakhit Centre, Abu Baker Al Siddique Rd, Deira, Dubai, UAE</span><a href="tel:+971502148129">+971 50 214 8129</a><a href="tel:+971502163873">+971 50 216 3873</a></div>
+    <div><h5>Follow us</h5><a href="https://www.instagram.com/blackwhiteviz" target="_blank" rel="noopener">Instagram</a><a href="https://www.linkedin.com/company/blackwhiteviz/" target="_blank" rel="noopener">LinkedIn</a><a href="https://www.facebook.com/BlackWhiteViz" target="_blank" rel="noopener">Facebook</a><span class="regions">UAE · Africa · Sri Lanka · India</span></div>
+  </div>
+  <div class="foot-bot"><span>© <span id="yr">2026</span> BlackWhite Viz by Lathief Productions. All rights reserved.</span><a href="#top">Back to top ↑</a></div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/971502148129?text=Hello%20Blackwhite%20Viz%2C%20I%20would%20like%20to%20discuss%20a%20rendering%20project." target="_blank" rel="noopener" aria-label="WhatsApp" data-cursor="WhatsApp">
+  <svg viewBox="0 0 32 32" width="24" height="24"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.7c-2 0-3.9-.5-5.6-1.5l-.4-.2-3.9 1 1-3.8-.3-.4A10.7 10.7 0 1 1 16 26.7zm5.9-8c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5 1-1.7.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4s-1.2 1.1-1.2 2.8 1.2 3.2 1.4 3.4 2.4 3.7 5.8 5.2c2.2.9 3 1 4.1.8.7-.1 1.9-.8 2.2-1.5s.3-1.3.2-1.5-.3-.2-.6-.4z"/></svg>
+</a>
+
+<div class="modal" id="modal" aria-hidden="true">
+  <button class="modal-x" id="modalX" data-cursor="Close" aria-label="Close project"></button>
+  <div class="modal-scroll" id="modalScroll" data-lenis-prevent></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="data.js?v=1"></script>
+<script type="module" src="main.js?v=1"></script>
+</body>
+</html>
