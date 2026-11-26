@@ -326,7 +326,12 @@ $('#consultForm').addEventListener('submit', e => {
   $('#consultOk').classList.add('on');
   window.open('https://wa.me/971547985833?text=' + encodeURIComponent(msg), '_blank', 'noopener');
 });
-$('#heroClose').addEventListener('click', () => gsap.to('.hero-left', { autoAlpha: 0, y: 20, duration: .5, ease: 'power3.in' }));
+// on phones the name pill sits just above the info card, never over it
+const heroCard = $('.hero-left'), pill = $('#ringLabel');
+let cardOpen = true;
+function placePill() { pill.style.bottom = innerWidth <= 760 ? (cardOpen ? heroCard.offsetHeight + 18 + 16 : 24) + 'px' : ''; }
+placePill(); addEventListener('resize', placePill);
+$('#heroClose').addEventListener('click', () => { cardOpen = false; gsap.to('.hero-left', { autoAlpha: 0, y: 20, duration: .6, ease: 'power3.in', onComplete: () => { if (innerWidth <= 760) gsap.to(pill, { bottom: 24, duration: 1.2, ease: 'power3.inOut' }); } }); });
 
 /* =================================================================
    THEME (day / night)
