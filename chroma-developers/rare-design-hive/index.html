@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<base href="/rare-design-hive/">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RARE Design Hive | 3D Rendering &amp; Architectural Visualization, UAE</title>
+<meta name="description" content="Photorealistic 3D architectural and interior renderings, CGI walkthroughs, 360 VR tours, floor plans and BIM for developers, architects and designers in Dubai, the UAE and 27 countries.">
+<meta property="og:title" content="RARE Design Hive | 3D Rendering &amp; Architectural Visualization">
+<meta property="og:description" content="Photoreal renders, CGI films and 360 tours that help developers sell off-plan.">
+<meta property="og:image" content="https://chroma-developers.vercel.app/rare-design-hive/img/fala-01.webp">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="a/mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=1">
+</head>
+<body class="is-loading">
+
+<div class="loader" id="loader" aria-hidden="true">
+  <svg class="loader-hex" viewBox="0 0 100 100"><defs><linearGradient id="lg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#9b3cf5"/><stop offset="1" stop-color="#f2a2e2"/></linearGradient></defs><polygon points="50,3 91,26.5 91,73.5 50,97 9,73.5 9,26.5" pathLength="1"/></svg>
+  <div class="loader-word"><span>RARE</span><small>Design Hive</small></div>
+  <div class="loader-num"><b id="loaderNum">0</b></div>
+</div>
+
+<div class="cursor" id="cursor" aria-hidden="true"><i class="c-ring"></i><i class="c-dot"></i><span class="c-label" id="cLabel"></span></div>
+
+<header class="nav" id="nav">
+  <a href="#top" class="brand" aria-label="RARE Design Hive, home">
+    <img src="a/mark.png" alt="" width="240" height="144">
+    <span class="brand-word"><b>RARE</b><small>Design Hive</small></span>
+  </a>
+  <nav class="nav-links" aria-label="Main">
+    <a href="#studio">Studio</a><a href="#services">Services</a><a href="#work">Work</a><a href="#process">Process</a><a href="#contact">Contact</a>
+  </nav>
+  <button class="theme" id="theme" aria-label="Switch between night and day" data-cursor="Day / night">
+    <svg class="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+    <svg class="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
+  </button>
+  <a href="#consult" class="btn btn-line nav-cta">Book a consultation</a>
+  <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><i></i><i></i></button>
+</header>
+
+<div class="menu" id="menu" aria-hidden="true">
+  <nav>
+    <a href="#studio">Studio</a><a href="#services">Services</a><a href="#work">Work</a><a href="#film">Films</a><a href="#process">Process</a><a href="#consult">Consultation</a><a href="#contact">Contact</a>
+  </nav>
+  <div class="menu-foot"><a href="mailto:hello@raredesignhive.com">hello@raredesignhive.com</a><a href="https://wa.me/971526187022">WhatsApp +971 52 618 7022</a></div>
+</div>
+
+<main id="top">
+
+<!-- HERO: the honeycomb -->
+<section class="hero" id="hero">
+  <canvas id="hive" aria-label="Interactive honeycomb of project renders"></canvas>
+  <div class="hero-shade" aria-hidden="true"></div>
+  <div class="hero-copy">
+    <p class="hero-kicker h-in">3D rendering and architectural visualization studio in the UAE</p>
+    <h1 class="hero-title"><span class="ln"><span>Off-plan,</span></span><span class="ln"><span>made</span></span><span class="ln"><span>unforgettable.</span></span></h1>
+    <p class="hero-sub h-in">Photoreal exteriors, interiors, CGI films and 360 tours that let buyers walk into a building years before it rises.</p>
+    <div class="hero-ctas h-in">
+      <a href="#work" class="btn btn-fill">See the work</a>
+      <a href="#consult" class="btn btn-line">Book a consultation</a>
+    </div>
+  </div>
+  <div class="hero-foot">
+    <div class="cell-label" id="cellLabel" aria-live="polite"><span class="cl-k">In the hive</span><b id="clName">FALA by KASCO</b><span id="clPlace">Al Jaddaf Waterfront, Dubai</span></div>
+    <p class="hero-hint"><span class="hint-fine">Move across the hive, click a cell to open the project</span><span class="hint-touch">Tap a cell to open the project</span></p>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section class="clients" aria-label="Developers and brands we have worked with">
+  <div class="marquee"><div class="mq-track" id="mq">
+    <span>Prescott</span><span>BNW Developments</span><span>Majid Developments</span><span>KASCO</span><span>Samana Developers</span><span>Amer Al Ghurair</span><span>Nabni</span><span>Native Properties</span><span>Casa Vista</span><span>DIA Properties</span><span>Mandarin Oriental</span><span>Msheireb</span><span>Bloom Holding</span><span>AARK Developers</span><span>Zazen Properties</span><span>Maia Estates</span>
+  </div></div>
+</section>
+
+<!-- STUDIO -->
+<section class="studio" id="studio">
+  <div class="wrap studio-grid">
+    <div class="studio-lead">
+      <h2 class="sec-title">A studio for visual storytelling</h2>
+      <p class="scrub" id="scrub">We create photorealistic renders designed to sell, focusing on the details that matter: accurate materials, natural looking light, and visuals that clearly tell a project&rsquo;s story.</p>
+    </div>
+    <div class="studio-side">
+      <p>RARE Design Hive is a 3D rendering studio specialising in high end architectural and interior visualization. We support developers, architects and brands worldwide, whether you are planning a launch, putting together a sales deck or building a complete set of marketing assets.</p>
+      <p>Our team of interior designers, graphic artists and marketing specialists also designs brochures and websites, so every visual is ready for the campaign it is made for.</p>
+      <dl class="facts">
+        <div><dt>Years of experience</dt><dd><span class="count" data-to="15">0</span>+</dd></div>
+        <div><dt>Projects completed</dt><dd><span class="count" data-to="329">0</span></dd></div>
+        <div><dt>Countries served</dt><dd><span class="count" data-to="27">0</span></dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec-title">Every stage of a launch, visualised</h2>
+      <p class="sec-note">From the first pre-launch image to post launch campaigns, one studio for the visuals that move a project.</p>
+    </div>
+    <div class="svc-grid">
+      <article class="svc"><svg class="svc-i" viewBox="0 0 48 48"><path d="M10 40V18l14-8 14 8v22M18 40V26h12v14M6 40h36"/></svg><h3>3D architectural rendering</h3><p>Exterior renders that frame every structure in its true context, with the clarity and realism that speed up approvals and win first impressions.</p></article>
+      <article class="svc"><svg class="svc-i" viewBox="0 0 48 48"><path d="M8 38h32M12 38V26h24v12M16 26v-4a8 8 0 0 1 16 0v4M24 8v6"/></svg><h3>3D interior rendering</h3><p>Atmosphere, texture and flow, from surfaces to shadows, presented with true material accuracy and styling finesse.</p></article>
+      <article class="svc"><svg class="svc-i" viewBox="0 0 48 48"><path d="M6 14h28v20H6zM34 20l8-5v18l-8-5"/></svg><h3>CGI animation walkthroughs</h3><p>Cinematic, choreographed films that guide viewers through your space with rhythm, realism and narrative.</p></article>
+      <article class="svc"><svg class="svc-i" viewBox="0 0 48 48"><circle cx="24" cy="24" r="16"/><ellipse cx="24" cy="24" rx="16" ry="6"/><path d="M24 8v32"/></svg><h3>360&deg; VR tours</h3><p>Interactive, photoreal journeys buyers can explore on desktop, mobile or a headset, ideal for investors who cannot visit in person.</p></article>
+      <article class="svc"><svg class="svc-i" viewBox="0 0 48 48"><path d="M6 18h36v14H30l-6-5-6 5H6z"/><circle cx="16" cy="25" r="3"/><circle cx="32" cy="25" r="3"/></svg><h3>AR and VR experiences</h3><p>Interactive presentations where the real and the virtual meet, made for sales galleries and events.</p></article>
+      <article class="svc"><svg class="svc-i" viewBox="0 0 48 48"><path d="M8 8h32v32H8zM8 22h14V8M22 30v10M30 22h10"/></svg><h3>2D and 3D floor plans</h3><p>Clear overviews and detailed 3D plans that show layouts, furniture and flow for brochures and campaigns.</p></article>
+      <article class="svc"><svg class="svc-i" viewBox="0 0 48 48"><path d="M10 38l20-20 6 6-20 20H10zM30 18l4-4 6 6-4 4M8 10h14M8 16h8"/></svg><h3>Interior design support</h3><p>Strategic design support that bridges creative vision and precise 3D visualization.</p></article>
+      <article class="svc"><svg class="svc-i" viewBox="0 0 48 48"><path d="M24 6l16 9v18l-16 9-16-9V15zM24 24l16-9M24 24v18M24 24L8 15"/></svg><h3>BIM services</h3><p>Coordinated Revit models, MEP coordination, Scan to BIM and construction documentation for projects worldwide.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- SHOWCASE: hex mosaic transitions -->
+<section class="show" id="show">
+  <canvas id="mosaic" aria-hidden="true"></canvas>
+  <div class="show-ui">
+    <div class="show-count"><b id="shNum">01</b><span>of 05 featured launches</span></div>
+    <div class="show-info">
+      <p class="show-place" id="shPlace">Al Jaddaf Waterfront, Dubai</p>
+      <h2 class="show-name" id="shName">FALA by KASCO</h2>
+      <p class="show-client" id="shClient">For KASCO</p>
+      <button class="btn btn-line" id="shOpen" data-cursor="Open">Open the project</button>
+    </div>
+    <div class="show-dots" id="shDots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="work" id="work">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec-title">Selected projects</h2>
+      <div class="filters" role="group" aria-label="Filter projects">
+        <button class="on" data-f="all">All<sup>18</sup></button><button data-f="exterior">Exteriors<sup>15</sup></button><button data-f="interior">Interiors<sup>6</sup></button><button data-f="hospitality">Hospitality and retail<sup>2</sup></button>
+      </div>
+    </div>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<!-- FILMS -->
+<section class="film" id="film">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec-title">CGI films that move buyers</h2>
+      <p class="sec-note">Walkthroughs and animations choreographed like a camera crew on a finished building, for launches, portals and sales galleries.</p>
+    </div>
+    <div class="films">
+      <figure class="clip clip-a"><video muted loop playsinline preload="none" poster="v/cgi-1.webp" data-src="v/cgi-1.mp4"></video><figcaption>Exterior walkthrough</figcaption></figure>
+      <figure class="clip clip-b"><video muted loop playsinline preload="none" poster="v/cgi2.webp" data-src="v/cgi2.mp4"></video><figcaption>Lobby walkthrough</figcaption></figure>
+      <figure class="clip clip-c"><video muted loop playsinline preload="none" poster="v/cgi4.webp" data-src="v/cgi4.mp4"></video><figcaption>Residence walkthrough</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS: flight through the hive -->
+<section class="process" id="process">
+  <canvas id="tunnel" aria-hidden="true"></canvas>
+  <div class="proc-ui">
+    <h2 class="sec-title proc-title">From drawings to delivery</h2>
+    <ol class="steps" id="steps">
+      <li class="step"><span class="st-n">01</span><h3>Brief and drawings</h3><p>Share your CAD files, plans, elevations and references. We agree the views, deliverables and timeline together.</p></li>
+      <li class="step"><span class="st-n">02</span><h3>3D modelling</h3><p>Architecture, landscape and interiors are built accurately to your drawings, ready for every camera angle.</p></li>
+      <li class="step"><span class="st-n">03</span><h3>Materials and light</h3><p>Finishes, styling and natural light are tuned until every surface reads as real.</p></li>
+      <li class="step"><span class="st-n">04</span><h3>Review and refine</h3><p>Draft views come to you for comments and are refined until the images say exactly what the project needs.</p></li>
+      <li class="step"><span class="st-n">05</span><h3>Final delivery</h3><p>High resolution stills, CGI films, 360 tours and floor plans, ready for brochures, portals and billboards.</p></li>
+    </ol>
+    <div class="proc-bar" aria-hidden="true"><i id="procBar"></i></div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why" id="why">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec-title">Why developers choose RARE</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-item"><h3>Simplifying innovation</h3><p>Creativity, technology and marketing in one place, so renders, tours and campaign assets come from a single team.</p></div>
+      <div class="why-item"><h3>Client focused excellence</h3><p>Tailored services for new and established developers, from a single hero image to a full launch package.</p></div>
+      <div class="why-item"><h3>Precision and detail</h3><p>Every frame, floor plan and film is built with meticulous attention to detail and true photoreal quality.</p></div>
+      <div class="why-item"><h3>Results driven</h3><p>Visuals designed to drive measurable success, helping developers turn their vision into sales.</p></div>
+    </div>
+    <div class="reach">
+      <p class="reach-k">Recent work across</p>
+      <ul><li>Dubai</li><li>Ras Al Khaimah</li><li>Sharjah</li><li>Doha</li><li>Lusail</li><li>Riyadh</li><li>Oman</li><li>Bangalore</li><li>France</li><li>Spain</li><li>USA</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="wrap faq-grid">
+    <h2 class="sec-title">Questions developers ask</h2>
+    <div class="faq-list">
+      <details><summary>How does architectural visualization differ from blueprints?</summary><p>Blueprints and CAD drawings are technical. Architectural visualization turns those plans into realistic images and animations, so clients experience a building&rsquo;s scale, light and atmosphere long before construction begins.</p></details>
+      <details><summary>Do you render interiors for apartments and villas?</summary><p>Yes. Our interior renderings show living rooms, bedrooms, kitchens and more, with detailed textures, finishes and lighting options, so homeowners and developers can see different styles and layouts.</p></details>
+      <details><summary>Can you create 2D and 3D floor plans?</summary><p>Yes. We design 2D floor plans for quick overviews and detailed 3D floor plans that show furniture layouts and flow. They work especially well in sales brochures and digital campaigns.</p></details>
+      <details><summary>How do walkthrough films help a launch?</summary><p>A walkthrough is an animated tour through a property, highlighting interiors, exteriors and amenities. For developers it works like a cinematic preview, building excitement and pre-launch sales.</p></details>
+      <details><summary>Do you offer 360 virtual tours?</summary><p>Yes. Clients explore spaces interactively on desktop, mobile or VR headsets, which is ideal for international buyers who cannot visit in person.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- CONSULTATION -->
+<section class="consult" id="consult">
+  <div class="wrap consult-grid">
+    <div class="consult-copy">
+      <h2 class="sec-title">Book a creative consultation</h2>
+      <p>Tell us about your project and we will reply on WhatsApp with the right views, deliverables and a quote.</p>
+      <ul class="consult-points"><li>Exteriors, interiors and amenities</li><li>CGI films and 360 tours</li><li>Floor plans, brochures and BIM</li></ul>
+    </div>
+    <form class="form" id="form" novalidate>
+      <label class="fld"><span>Your name</span><input name="name" autocomplete="name" required></label>
+      <label class="fld"><span>Phone or WhatsApp</span><input name="phone" type="tel" autocomplete="tel" inputmode="tel" required></label>
+      <label class="fld"><span>Project type</span>
+        <select name="type" required>
+          <option value="" selected disabled>Choose one</option>
+          <option>Exterior rendering</option><option>Interior rendering</option><option>CGI animation walkthrough</option><option>360 VR tour</option><option>2D and 3D floor plans</option><option>Interior design support</option><option>BIM services</option><option>Full launch package</option>
+        </select>
+      </label>
+      <label class="fld"><span>Anything else (optional)</span><textarea name="msg" rows="3"></textarea></label>
+      <p class="form-err" id="formErr" role="alert"></p>
+      <button class="btn btn-fill btn-wide" type="submit">Send on WhatsApp</button>
+    </form>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <h2 class="contact-big">Let&rsquo;s visualise your next launch.</h2>
+    <div class="contact-grid">
+      <a class="ct" href="mailto:hello@raredesignhive.com"><span>Email</span><b>hello@raredesignhive.com</b></a>
+      <a class="ct" href="https://wa.me/971526187022"><span>WhatsApp and phone</span><b>+971 52 618 7022</b></a>
+      <div class="ct"><span>Studio</span><b>Sharjah, United Arab Emirates</b></div>
+    </div>
+    <ul class="social">
+      <li><a href="https://www.instagram.com/rdhagency/" target="_blank" rel="noopener">Instagram</a></li>
+      <li><a href="https://www.behance.net/raredesignhive" target="_blank" rel="noopener">Behance</a></li>
+      <li><a href="https://www.linkedin.com/company/rare-design-hive/" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a href="https://www.youtube.com/@RAREDESIGNHIVE" target="_blank" rel="noopener">YouTube</a></li>
+      <li><a href="https://x.com/raredesignhive" target="_blank" rel="noopener">X</a></li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <a href="#top" class="brand brand-foot"><img src="a/mark.png" alt="" width="240" height="144"><span class="brand-word"><b>RARE</b><small>Design Hive</small></span></a>
+    <p>&copy; <span id="yr">2026</span> RARE Design Hive. All rights reserved.</p>
+    <a href="#top" class="to-top">Back to top</a>
+  </div>
+</footer>
+
+<a class="wa" href="https://wa.me/971526187022" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" data-cursor="WhatsApp">
+  <svg viewBox="0 0 32 32"><path d="M16 3.5A12.4 12.4 0 0 0 5.3 22.2L3.5 28.5l6.5-1.7A12.4 12.4 0 1 0 16 3.5zm0 22.6c-1.9 0-3.8-.5-5.4-1.5l-.4-.2-3.9 1 1-3.8-.3-.4A10.2 10.2 0 1 1 16 26.1zm5.6-7.6c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2l-1 1.2c-.2.2-.4.2-.7.1a8.4 8.4 0 0 1-4.2-3.6c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5l-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.6.7.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4l-.2-.4z"/></svg>
+</a>
+
+<!-- PROJECT VIEW -->
+<div class="pv" id="pv" role="dialog" aria-modal="true" aria-labelledby="pvName" aria-hidden="true" data-lenis-prevent>
+  <button class="pv-close" id="pvClose" aria-label="Close project" data-cursor="Close">&#10005;</button>
+  <div class="pv-in">
+    <div class="pv-head">
+      <p class="pv-idx" id="pvIdx">01 of 18</p>
+      <h2 class="pv-name" id="pvName">Project</h2>
+      <dl class="pv-meta">
+        <div><dt>Client</dt><dd id="pvClient"></dd></div>
+        <div><dt>Location</dt><dd id="pvPlace"></dd></div>
+        <div><dt>Scope</dt><dd id="pvType"></dd></div>
+      </dl>
+      <p class="pv-text" id="pvText"></p>
+    </div>
+    <div class="pv-stage"><img id="pvMain" alt="" decoding="async"></div>
+    <div class="pv-thumbs" id="pvThumbs"></div>
+    <div class="pv-nav">
+      <button class="btn btn-line" id="pvPrev">Previous project</button>
+      <a class="btn btn-fill" href="#consult" id="pvCta">Discuss a similar project</a>
+      <button class="btn btn-line" id="pvNext">Next project</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="data.js?v=1"></script>
+<script type="module" src="main.js?v=1"></script>
+</body>
+</html>
