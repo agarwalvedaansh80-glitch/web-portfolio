@@ -167,8 +167,9 @@ function frontPanel() {
 ScrollTrigger.create({ trigger: '#hero', start: 'top top', end: 'bottom top', onToggle: s => heroOn = s.isActive, onUpdate: s => heroP = s.progress });
 document.body.classList.add('in-hero');
 ScrollTrigger.create({ trigger: '#hero', start: 'top top', end: '40% top', onToggle: s => document.body.classList.toggle('in-hero', s.isActive) });
+let ringVis = true; new IntersectionObserver(es => es.forEach(e => ringVis = e.isIntersecting)).observe(rc);
 gsap.ticker.add(() => {
-  if (!heroOn) return;
+  if (!heroOn || !ringVis) return;
   const v = lenis.velocity || 0;
   if (!dragging) { rot.t += .0007 + v * .00022 + rot.v; rot.v *= .95; }
   rot.a += (rot.t - rot.a) * .045;
@@ -518,7 +519,8 @@ const SIGVID = { mandarin: 'v/mandarin.mp4', redsea: 'v/redsea.mp4' };
   addEventListener('pointerup', () => drag = null); addEventListener('pointercancel', () => drag = null);
   const size = () => { r.setSize(cv.clientWidth, cv.clientHeight, false); cam.aspect = cv.clientWidth / cv.clientHeight; cam.fov = cam.aspect < 1 ? 82 : 68; cam.updateProjectionMatrix(); dirty = true; };
   size(); addEventListener('resize', size);
-  new IntersectionObserver(es => es.forEach(e => { vis = e.isIntersecting; if (vis && cur === null) go(50, true); }), { rootMargin: '400px' }).observe(cv);
+  new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting && cur === null) go(50, true); }), { rootMargin: '600px' }).observe(cv);
+  new IntersectionObserver(es => es.forEach(e => vis = e.isIntersecting)).observe(cv);
   ScrollTrigger.create({ trigger: '.pano-pin', start: 'top top', end: () => '+=' + innerHeight * 1.2, pin: true, refreshPriority: 4 });
   const v3 = new THREE.Vector3();
   gsap.ticker.add((time, dt) => {
