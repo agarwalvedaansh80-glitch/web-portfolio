@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<base href="/3md-studio/">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3MD Studio | 3D Visualization, Architecture &amp; Interior Design in Dubai</title>
+<meta name="description" content="3MD Studio is an architectural and interior design studio and a 3D visualization and virtual reality studio in Dubai, co-producing 3D imagery and animations with architects, real estate developers and marketing agencies.">
+<meta property="og:title" content="3MD Studio | Storytellers in every 3D image">
+<meta property="og:description" content="3D renders, 3D animations, 360 virtual tours, architecture and interior design. Dubai Production City.">
+<meta property="og:image" content="https://chroma-developers.vercel.app/3md-studio/s/sultan.webp">
+<meta name="theme-color" content="#050709">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23050709'/%3E%3Ctext x='32' y='41' font-family='Arial,sans-serif' font-weight='700' font-size='22' fill='%235fd0e6' text-anchor='middle'%3E3MD%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=1">
+<link rel="stylesheet" href="fx.css?v=1">
+</head>
+<body class="loading">
+
+<div class="loader" id="loader">
+  <div class="loader-panels"><i></i><i></i><i></i><i></i></div>
+  <div class="loader-inner">
+    <div class="loader-mono"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="48"/></svg><span>3</span><span class="g">MD</span></div>
+    <div class="loader-word"><span>3</span><span>M</span><span>D</span><span class="sp"></span><span class="g">S</span><span class="g">T</span><span class="g">U</span><span class="g">D</span><span class="g">I</span><span class="g">O</span></div>
+    <div class="loader-bar"><i id="loaderBar"></i></div>
+    <div class="loader-meta"><span>Dubai Production City</span><span><b id="loaderNum">0</b>%</span></div>
+  </div>
+</div>
+
+<div class="cursor" id="cursor"><div class="c-ring"><span class="c-label" id="cLabel"></span></div><div class="c-dot"></div></div>
+<canvas id="gal" aria-hidden="true"></canvas>
+
+<header class="nav" id="nav">
+  <a href="#top" class="logo">3MD<em>Studio</em></a>
+  <nav class="nav-links">
+    <a href="#work">Projects</a><a href="#services">Services</a><a href="#developers">Developers</a><a href="#studio">Studio</a><a href="#contact">Contact</a>
+  </nav>
+  <button class="theme" id="theme" aria-label="Switch day or night mode" data-cursor="Day / Night"><svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg></button>
+  <a href="#consultation" class="btn btn-gold btn-sm nav-cta magnetic">Plans &amp; pricing</a>
+  <button class="burger" id="burger" aria-label="Menu"><i></i><i></i></button>
+</header>
+<div class="menu" id="menu">
+  <a href="#work">Projects</a><a href="#services">Services</a><a href="#developers">Developers</a><a href="#studio">Studio</a><a href="#consultation">Plans &amp; pricing</a><a href="#contact">Contact</a>
+  <div class="menu-foot"><a href="https://wa.me/971526384746">WhatsApp</a><a href="mailto:info@3mdstudio.net">info@3mdstudio.net</a></div>
+</div>
+
+<main id="top">
+
+<!-- HERO: 3D ring of renders -->
+<section class="hero" id="hero">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <canvas id="ring"></canvas>
+  <div class="hero-top">
+    <div class="eyebrow h-in">3D Visualization · Architecture · Interiors</div>
+    <h1 class="hero-title split">Storytellers in <em>every 3D image.</em></h1>
+  </div>
+  <div class="ring-label" id="ringLabel"><span id="rlMeta">Nad Al Sheba, Dubai</span><b id="rlName">Private Villa</b></div>
+  <div class="hero-bottom">
+    <div class="hero-left h-in">
+      <button class="hero-close" id="heroClose" aria-label="Close" data-cursor="Close"></button>
+      <div class="hero-sig"><span class="hero-mono">3MD</span><div><strong>3D Renders · Animations · VR</strong><small>Dubai Production City</small></div></div>
+      <p class="hero-lead">Not only an architectural and interior design studio, but also a 3D visualization and virtual reality studio, co-producing imagery and animations with architects, developers and marketing agencies.</p>
+      <div class="hero-btns">
+        <a href="#work" class="btn btn-dark magnetic">View projects</a>
+        <a href="#consultation" class="btn btn-line magnetic">Plans &amp; pricing</a>
+      </div>
+    </div>
+    <div class="hero-hint h-in">Drag to explore<br>the projects</div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true"><div class="marquee-track">
+  <span>3D Renders</span><b>✦</b><span>3D Animations</span><b>✦</b><span>360 Virtual Tours</span><b>✦</b><span>Architecture</span><b>✦</b><span>Interior Design</span><b>✦</b><span>Product Visualization</span><b>✦</b>
+  <span>3D Renders</span><b>✦</b><span>3D Animations</span><b>✦</b><span>360 Virtual Tours</span><b>✦</b><span>Architecture</span><b>✦</b><span>Interior Design</span><b>✦</b><span>Product Visualization</span><b>✦</b>
+</div></div>
+
+<!-- INTRO -->
+<section class="intro" id="studio">
+  <div class="intro-img"><div class="arch"><img src="xl/majles-01.webp" alt="Farm house majles interior rendered by 3MD Studio" class="par"></div></div>
+  <div class="intro-text">
+    <div class="eyebrow">A bit about the studio</div>
+    <h2 class="h2 split">Designers who <em>render</em></h2>
+    <p class="intro-fill" data-fx="fill">As architects and interior designers, and as 3D artists, we collaborate with architects, real estate developers and marketing agencies, crafting their imagery in the most impressive way.</p>
+    <p class="muted up">Our team is a group of innovative and open minded professionals with a diverse skill set. Combining expertise in architecture, engineering, software development, media production and management, we are able to fulfil every aspect of a given project.</p>
+    <a href="#work" class="link-arrow up">Explore the projects <span>→</span></a>
+  </div>
+</section>
+
+<!-- SIGNATURE (pinned showcase: sharp image at rest, liquid dissolve between) -->
+<section class="sig" id="signature">
+  <div class="sig-pin">
+    <img class="sig-still" id="sigStill" alt="" decoding="async">
+    <video class="sig-vid" id="sigVid" muted loop playsinline preload="none" aria-hidden="true"></video>
+    <canvas id="sigGL"></canvas>
+    <div class="sig-shade"></div>
+    <div class="sig-ui">
+      <div class="sig-top"><div class="eyebrow light">Signature projects</div><div class="sig-count"><b id="sigN">01</b> / <span id="sigTot">06</span></div></div>
+      <div class="sig-titles" id="sigTitles"></div>
+      <div class="sig-bottom"><a href="#" class="btn btn-gold magnetic" id="sigOpen" data-cursor="Open">Open project</a><div class="sig-bar"><i id="sigBar"></i></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="work" id="work">
+  <div class="work-head">
+    <div><div class="eyebrow">Projects</div><h2 class="h2 split">Every project, <em>every detail</em></h2>
+      <p class="muted up">Every project is accomplished with great passion and attention to every detail. A selection of villas, interiors and hospitality projects across the UAE, Qatar and Lebanon.</p></div>
+    <div class="filters" id="filters"></div>
+  </div>
+  <div class="wgrid" id="wgrid"></div>
+</section>
+
+<!-- WIREFRAME: architecture built floor by floor -->
+<section class="wire" id="wire">
+  <div class="wire-pin">
+    <canvas id="wireGL" aria-hidden="true"></canvas>
+    <div class="wire-ui">
+      <div class="eyebrow light">Architecture first</div>
+      <h2 class="h2">Built from the <em>structure up</em></h2>
+      <p>As architects and 3D artists, we model every building the way it will be built, before light and materials bring it to life.</p>
+      <ol class="wire-steps"><li class="on"><span>01</span>Massing</li><li><span>02</span>Structure &amp; façade</li><li><span>03</span>Materials &amp; light</li></ol>
+    </div>
+  </div>
+</section>
+
+<!-- DEVELOPERS: horizontal gallery -->
+<section class="fx-h devs" id="developers" data-fx="hscroll">
+  <div class="fx-h-track">
+    <div class="devs-head"><div class="eyebrow">Real estate visualization</div><h2 class="h2">Imagery that <em>sells off plan</em></h2><p class="muted">Exterior, aerial and amenity renders for developers and their marketing agencies, from towers on the water to resort pools.</p></div>
+    <figure class="fx-h-item"><div class="fx-h-img"><img src="d/dev-01.webp" alt="Residential tower at dusk rendered by 3MD Studio" loading="lazy"></div></figure>
+    <figure class="fx-h-item"><div class="fx-h-img"><img src="d/dev-02.webp" alt="Balcony view over Palm Jumeirah rendered by 3MD Studio" loading="lazy"></div></figure>
+    <figure class="fx-h-item"><div class="fx-h-img"><img src="d/dev-03.webp" alt="Waterfront towers rendered by 3MD Studio" loading="lazy"></div></figure>
+    <figure class="fx-h-item"><div class="fx-h-img"><img src="d/dev-05.webp" alt="Aerial view of a tower at night rendered by 3MD Studio" loading="lazy"></div></figure>
+    <figure class="fx-h-item"><div class="fx-h-img"><img src="d/dev-06.webp" alt="Rooftop pool cabanas rendered by 3MD Studio" loading="lazy"></div></figure>
+    <figure class="fx-h-item"><div class="fx-h-img"><img src="d/dev-07.webp" alt="Tower crown over Dubai Marina rendered by 3MD Studio" loading="lazy"></div></figure>
+    <figure class="fx-h-item"><div class="fx-h-img"><img src="d/dev-08.webp" alt="Waterfront tower rendered by 3MD Studio" loading="lazy"></div></figure>
+  </div>
+</section>
+
+<!-- SERVICES (stacking) -->
+<section class="services" id="services">
+  <div class="sec-head">
+    <div class="eyebrow">Services</div>
+    <h2 class="h2 split">Renders, animations, tours <em>and design</em></h2>
+    <p class="muted up">We work closely with architects, interior designers, real estate developers and marketing agencies to achieve their vision with great attention to detail.</p>
+  </div>
+  <div class="stack">
+    <article class="scard"><div class="scard-txt"><span class="sn">01</span><h3>3D Renders</h3><p class="sl">As 3D artists and experts in architectural visualization, we craft imagery in the most impressive way.</p><p>We own a high end render farm to speed up all 3D visualization tasks, for architects, developers and marketing agencies.</p><ul><li>Exterior and aerial renders</li><li>Interior renders</li><li>Amenity and lifestyle views</li></ul></div><div class="scard-img" data-fx-reveal="blinds"><img loading="lazy" src="img/sultan-02.webp" alt="Villa exterior render"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">02</span><h3>3D Animations</h3><p class="sl">We are storytellers. When a project needs to go the extra mile, we produce high quality video animations.</p><p>Animations that stand out across many mediums and platforms, for developer launches across Dubai and Abu Dhabi.</p><ul><li>Project launch films</li><li>Exterior and interior walkthroughs</li><li>Visualization and animation of residential compounds</li></ul></div><div class="scard-img" data-fx-reveal="blinds"><img loading="lazy" src="d/dev-07.webp" alt="Tower animation still"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">03</span><h3>Architecture &amp; Interior Design</h3><p class="sl">As architects and interior designers we have designed projects across diverse programmes and sectors.</p><p>Villas, apartments, majlis, offices, restaurants and clubs, from the design phase through to execution.</p><ul><li>Villa architecture and façades</li><li>Residential interiors</li><li>Hospitality and retail interiors</li></ul></div><div class="scard-img" data-fx-reveal="blinds"><img loading="lazy" src="img/abudhabi-02.webp" alt="Villa interior design"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">04</span><h3>360 Virtual Tours</h3><p class="sl">Interactive 360 virtual tours that increase engagement and the sense of scale for every end user.</p><p>Tours that can be hosted on your website or social media, and standalone interactive players for screen based presentations.</p><ul><li>Interactive tours for real estate</li><li>Standalone presentation players</li><li>Web and social ready</li></ul></div><div class="scard-img" data-fx-reveal="blinds"><img loading="lazy" src="img/marina-02.webp" alt="Apartment interior for a virtual tour"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">05</span><h3>Product Visualization</h3><p class="sl">Astounding product visualization, with motion designers, compositors, post FX artists and 3D artists at your disposal.</p><p>From particle simulation and fluid simulation to pyro and rigid body physics, working closely with creative directors and marketing managers.</p><ul><li>Product films</li><li>Simulation and motion design</li><li>Post production</li></ul></div><div class="scard-img" data-fx-reveal="blinds"><img loading="lazy" src="img/padel-01.webp" alt="Padel club render"></div></article>
+  </div>
+</section>
+
+<!-- LENS: inspect the detail -->
+<section class="lensx">
+  <div class="sec-head"><div class="eyebrow">In the detail</div><h2 class="h2">Look <em>closer</em></h2><p class="muted lens-hint">Move across a render to inspect every material, reflection and joint.</p></div>
+  <div class="lens-grid">
+    <figure data-fx="lens"><img src="d/lens-1.webp" alt="Pool terrace with skyline view rendered by 3MD Studio" loading="lazy"></figure>
+    <figure data-fx="lens"><img src="d/lens-2.webp" alt="Sky lounge kitchen and dining rendered by 3MD Studio" loading="lazy"></figure>
+  </div>
+</section>
+
+<!-- MODEL TO RENDER: scroll reveal -->
+<section class="reveal" id="reveal">
+  <div class="reveal-pin">
+    <img class="reveal-img" id="revImg" src="xl/sultan-01.webp" alt="Private villa in Nad Al Sheba, final render" decoding="async">
+    <canvas id="revGL" aria-hidden="true"></canvas>
+    <div class="reveal-ui">
+      <div class="reveal-head"><div class="eyebrow light">From model to render</div><h2 class="h2">Every frame begins <em>as a drawing</em></h2></div>
+      <ol class="reveal-steps" id="revSteps">
+        <li class="on"><span>01</span><b>Model</b><small>Architecture modelled to the drawings</small></li>
+        <li><span>02</span><b>Light</b><small>Light and shadow within a space</small></li>
+        <li><span>03</span><b>Render</b><small>The final, photo realistic frame</small></li>
+      </ol>
+      <p class="reveal-cap">Private Villa · Nad Al Sheba</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS: drawing drawn by scroll -->
+<section class="process" id="process">
+  <div class="process-wrap">
+    <div class="plan-sticky">
+      <div class="eyebrow light">How we work</div>
+      <h2 class="h2">From your brief to <em>evocative visuals</em></h2>
+      <svg class="plan" viewBox="0 0 520 380" fill="none" aria-hidden="true">
+        <g class="L1" stroke-width="3.2"><path d="M20 20H500V360H20Z"/><path d="M20 210H150"/><path d="M330 20V150"/></g>
+        <g class="L2" stroke-width="1.6"><path d="M150 210V360"/><path d="M150 20V160"/><path d="M330 150H500"/><path d="M330 240H500"/><path d="M380 240V360"/><path d="M150 160H230"/><path d="M270 160H330"/>
+          <path d="M230 160A40 40 0 0 1 270 160" stroke-dasharray="3 4"/><path d="M150 250A40 40 0 0 0 190 210" stroke-dasharray="3 4"/><path d="M330 190A40 40 0 0 0 370 150" stroke-dasharray="3 4"/></g>
+        <g class="L3" stroke-width="1.2"><rect x="185" y="230" width="110" height="46" rx="10"/><rect x="200" y="290" width="80" height="34" rx="4"/><circle cx="240" cy="90" r="34"/><circle cx="240" cy="90" r="20"/>
+          <rect x="365" y="45" width="100" height="80" rx="4"/><path d="M365 62H465"/><rect x="40" y="40" width="88" height="140" rx="6"/><path d="M50 60H118M50 80H118M50 100H118"/>
+          <rect x="398" y="262" width="80" height="80" rx="3"/><path d="M398 302H478"/><path d="M40 240H128V340H40Z"/><circle cx="84" cy="290" r="18"/></g>
+        <g class="L4" stroke-width="1"><path d="M20 8H500M20 3V13M500 3V13" /><path d="M512 20V360M507 20H517M507 360H517"/><path d="M330 30V140" stroke-dasharray="2 4"/></g>
+        <g class="labels"><text x="70" y="200">Lobby</text><text x="214" y="345">Lounge</text><text x="210" y="140">Dining</text><text x="388" y="140">Suite</text><text x="412" y="225">Spa</text><text x="56" y="360">Terrace</text><text x="410" y="355">Pool</text></g>
+      </svg>
+    </div>
+    <div class="steps">
+      <div class="step"><span>01</span><h3>Your brief</h3><p>We work closely with architects, interior designers, developers and agencies to understand the vision behind the project.</p></div>
+      <div class="step"><span>02</span><h3>Design &amp; modelling</h3><p>As architects and interior designers, we model the spaces with the attention to detail of a project that will be built.</p></div>
+      <div class="step"><span>03</span><h3>Light &amp; materials</h3><p>Every image is composed as a story, with light, materials and life that bring the design to its best.</p></div>
+      <div class="step"><span>04</span><h3>Renders, films &amp; tours</h3><p>Our own high end render farm speeds up delivery of stills, animations and interactive 360 tours.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TUNNEL -->
+<section class="tunnel">
+  <div class="tunnel-pin">
+    <canvas id="tunGL"></canvas>
+    <div class="tunnel-txt" id="tunTxt"><div class="eyebrow light">UAE · Qatar · Lebanon</div><h2 class="mega">Step inside <em>the work</em></h2><p>Scroll to walk through villas, majlis, apartments and clubs designed and rendered by the studio.</p></div>
+    <div class="tunnel-name" id="tunName"></div>
+  </div>
+</section>
+
+<!-- PROJECT INDEX -->
+<section class="pindex" id="index">
+  <div class="sec-head"><div class="eyebrow">Project index</div><h2 class="h2 split">Selected <em>projects</em></h2></div>
+  <ol class="plist" id="plist"></ol>
+  <canvas id="pprev" aria-hidden="true"></canvas>
+</section>
+
+<!-- WHY -->
+<section class="why">
+  <div class="sec-head">
+    <div class="eyebrow">Why 3MD Studio</div>
+    <h2 class="h2 split">Architects, engineers <em>and artists</em></h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-card"><span>01</span><h3>Designers first</h3><p>As architects and interior designers, we understand the design intent behind every image we create.</p></div>
+    <div class="why-card"><span>02</span><h3>Storytelling</h3><p>We are storytellers in every 3D image we create, so a project reads as a place to live, not just a model.</p></div>
+    <div class="why-card"><span>03</span><h3>Our own render farm</h3><p>We own a high end render farm to speed up all 3D visualization tasks.</p></div>
+    <div class="why-card"><span>04</span><h3>One team, every skill</h3><p>Architecture, engineering, software development, media production and management under one roof.</p></div>
+    <div class="why-card"><span>05</span><h3>Stills to VR</h3><p>Renders, animations, 360 virtual tours and standalone interactive players for presentations.</p></div>
+    <div class="why-card"><span>06</span><h3>Across the region</h3><p>Projects delivered for clients in the UAE, Qatar, Saudi Arabia, Lebanon, Africa and the United States.</p></div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section class="clients" aria-label="Clients">
+  <div class="sec-head"><div class="eyebrow">Our collaborations</div><h2 class="h2 split">A client family of <em>developers and architects</em></h2></div>
+  <div class="cl-marq" aria-label="Sobha Realty, Atkins, Kora Properties, IMTIAZ Developments, SAAS Properties, VOXA, Remax, Builders Design Consultants, Najd Madi Real Estate and Development, A Team Padel Club, Meroni Colzani, Venture Group MEA"><div class="cl-row"><div class="cl-track"><span>Sobha Realty</span><b>✦</b><span>Atkins</span><b>✦</b><span>Kora Properties</span><b>✦</b><span>IMTIAZ Developments</span><b>✦</b><span>SAAS Properties</span><b>✦</b><span>VOXA</span><b>✦</b><span>Sobha Realty</span><b>✦</b><span>Atkins</span><b>✦</b><span>Kora Properties</span><b>✦</b><span>IMTIAZ Developments</span><b>✦</b><span>SAAS Properties</span><b>✦</b><span>VOXA</span><b>✦</b></div></div><div class="cl-row rev"><div class="cl-track"><span>Remax</span><b>✦</b><span>Builders Design Consultants</span><b>✦</b><span>Najd Madi Real Estate</span><b>✦</b><span>A Team Padel Club</span><b>✦</b><span>Meroni Colzani</span><b>✦</b><span>Venture Group MEA</span><b>✦</b><span>Remax</span><b>✦</b><span>Builders Design Consultants</span><b>✦</b><span>Najd Madi Real Estate</span><b>✦</b><span>A Team Padel Club</span><b>✦</b><span>Meroni Colzani</span><b>✦</b><span>Venture Group MEA</span><b>✦</b></div></div></div>
+  <p class="cl-note up">We are proud of our client family, and with each member we share a unique journey.</p>
+</section>
+
+<!-- CONSULTATION -->
+<section class="consult" id="consultation">
+  <div class="consult-in">
+    <div class="consult-txt">
+      <div class="eyebrow">Let's collaborate</div>
+      <h2 class="h2 split">Ask for plans <em>&amp; pricing</em></h2>
+      <p class="muted up">Let us help you tell your story in the most creative and elegant way. Share your project and our team will reply on WhatsApp.</p>
+      <ol class="consult-steps up"><li><span>1</span>You share your project</li><li><span>2</span>We reply on WhatsApp</li><li><span>3</span>We send plans and pricing</li></ol>
+    </div>
+    <form class="consult-form" id="consultForm">
+      <h3>Start with a short request</h3>
+      <p class="muted small">Leave your name and number and we will reply personally.</p>
+      <label><span>Your name</span><input name="name" required autocomplete="name"></label>
+      <label><span>Phone or WhatsApp</span><input name="phone" required inputmode="tel" autocomplete="tel"></label>
+      <label><span>Project type</span><select name="type"><option>3D renders</option><option>3D animation</option><option>360 virtual tour</option><option>Architecture and interior design</option><option>Product visualization</option></select></label>
+      <button class="btn btn-gold" type="submit">Send on WhatsApp</button>
+      <p class="consult-ok" id="consultOk">Thank you. Your request is ready to send on WhatsApp.</p>
+      <p class="small muted">Prefer email? <a class="link" href="mailto:info@3mdstudio.net">info@3mdstudio.net</a></p>
+    </form>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-bg"><img src="xl/family-01.webp" alt="" class="par"></div>
+  <div class="contact-in">
+    <div class="eyebrow light">Contact</div>
+    <h2 class="mega split">Let's tell <em>your story</em></h2>
+    <p class="big up">Architects, developers, designers and agencies: send us your drawings and we will bring them to life.</p>
+    <div class="contact-btns up">
+      <a class="btn btn-gold magnetic" href="https://wa.me/971526384746?text=Hello%203MD%20Studio%2C%20I%20would%20like%20to%20discuss%20a%20visualization%20project." target="_blank" rel="noopener">Message on WhatsApp</a>
+      <a class="btn btn-line light magnetic" href="mailto:info@3mdstudio.net">info@3mdstudio.net</a>
+    </div>
+    <div class="offices up">
+      <div class="office"><span>Studio</span><p>Publishing Pavilion, Office 216, Dubai Production City, Dubai, United Arab Emirates</p><a href="tel:+971526384746">+971 52 638 4746</a></div>
+      <div class="office"><span>Phone</span><p>Call the studio directly on either line.</p><a href="tel:+971524849862">+971 52 484 9862</a></div>
+      <div class="office"><span>Phone</span><p>Or reach us on WhatsApp for plans and pricing.</p><a href="tel:+971502141182">+971 50 214 1182</a></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="foot-big"><span>3MD</span> <em>Studio</em></div>
+  <div class="foot-cols">
+    <div><h5>Studio</h5><p class="foot-p">An architectural and interior design studio, and a 3D visualization and virtual reality studio, in Dubai Production City.</p></div>
+    <div><h5>Services</h5><span>3D Renders</span><span>3D Animations</span><span>360 Virtual Tours</span><span>Architecture &amp; Interior Design</span><span>Product Visualization</span></div>
+    <div><h5>Contact</h5><a href="https://wa.me/971526384746">WhatsApp +971 52 638 4746</a><a href="mailto:info@3mdstudio.net">info@3mdstudio.net</a><a href="https://www.instagram.com/3mdstudio/" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/3MDSTUDIO" target="_blank" rel="noopener">Facebook</a><span>Dubai Production City, UAE</span></div>
+  </div>
+  <div class="foot-bot"><span>© <span id="yr"></span> 3MD Studio. All rights reserved.</span><a href="#top">Back to top ↑</a></div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/971526384746?text=Hello%203MD%20Studio%2C%20I%20would%20like%20to%20discuss%20a%20visualization%20project." target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 32 32" width="26" height="26"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.7c-2 0-3.9-.5-5.6-1.5l-.4-.2-3.9 1 1-3.8-.3-.4A10.7 10.7 0 1 1 16 26.7zm5.9-8c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5 1-1.7.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4s-1.2 1.1-1.2 2.8 1.2 3.2 1.4 3.4 2.4 3.7 5.8 5.2c2.2.9 3 1 4.1.8.7-.1 1.9-.8 2.2-1.5s.3-1.3.2-1.5-.3-.2-.6-.4z"/></svg>
+</a>
+
+<div class="modal" id="modal" aria-hidden="true">
+  <button class="modal-x" id="modalX" data-cursor="Close">Close</button>
+  <div class="modal-scroll" id="modalScroll" data-lenis-prevent></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="data.js?v=1"></script>
+<script type="module" src="main.js?v=1"></script>
+<script type="module" src="wire.js?v=1"></script>
+<script src="fx.js?v=1"></script>
+</body>
+</html>
