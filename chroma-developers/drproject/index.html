@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<base href="/drproject/">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DRProject | Villa Architecture &amp; Interior Design in Dubai</title>
+<meta name="description" content="DRProject is a Dubai based architecture and interior design studio for contemporary luxury villas, premium apartments, bespoke furniture and renovation. Led by architect Yurii Svyripa.">
+<meta property="og:title" content="DRProject | Villa Architecture &amp; Interior Design in Dubai">
+<meta property="og:description" content="Architecture and interiors for villas in Dubai. One author from plan to furniture, with contractors overseen on site.">
+<meta property="og:image" content="https://chroma-developers.vercel.app/drproject/img/p01.webp">
+<meta name="theme-color" content="#070707">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Tenor+Sans&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=1">
+</head>
+<body class="loading">
+
+<div class="loader" id="loader">
+  <div class="loader-panels"><i></i><i></i><i></i><i></i></div>
+  <div class="loader-inner">
+    <div class="loader-mono"><svg viewBox="0 0 100 100"><path d="M18 84V16h40l24 24v44Z"/><path d="M58 16v24h24"/></svg><span>D</span><span class="g">R</span></div>
+    <div class="loader-word"><span>D</span><span>R</span><span class="g">P</span><span class="g">R</span><span class="g">O</span><span class="g">J</span><span class="g">E</span><span class="g">C</span><span class="g">T</span></div>
+    <div class="loader-bar"><i id="loaderBar"></i></div>
+    <div class="loader-meta"><span>Architectural workshop</span><span><b id="loaderNum">0</b>%</span></div>
+  </div>
+</div>
+
+<div class="cursor" id="cursor"><div class="c-ring"><span class="c-label" id="cLabel"></span></div><div class="c-dot"></div></div>
+<canvas id="gal" aria-hidden="true"></canvas>
+
+<header class="nav" id="nav">
+  <a href="#top" class="logo">DR<em>Project</em></a>
+  <nav class="nav-links">
+    <a href="#work">Projects</a><a href="#services">Services</a><a href="#realised">Realised</a><a href="#process">Process</a><a href="#about">Studio</a><a href="#contact">Contact</a>
+  </nav>
+  <button class="theme" id="theme" aria-label="Switch day or night mode" data-cursor="Day / Night"><svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg></button>
+  <a href="#consultation" class="btn btn-gold btn-sm nav-cta magnetic">Free brief</a>
+  <button class="burger" id="burger" aria-label="Menu"><i></i><i></i></button>
+</header>
+<div class="menu" id="menu">
+  <a href="#work">Projects</a><a href="#services">Services</a><a href="#realised">Realised</a><a href="#process">Process</a><a href="#about">Studio</a><a href="#consultation">Free brief</a><a href="#contact">Contact</a>
+  <div class="menu-foot"><a href="https://wa.me/971528526760">WhatsApp</a><a href="tel:+971528526760">+971 52 852 6760</a></div>
+</div>
+
+<main id="top">
+
+<!-- HERO: 3D ring of villas -->
+<section class="hero" id="hero">
+  <canvas id="ring"></canvas>
+  <div class="hero-top">
+    <div class="eyebrow h-in">Architecture · Interiors · Furniture</div>
+    <h1 class="hero-title split">Architecture &amp; interiors for <em>villas</em> in Dubai</h1>
+  </div>
+  <div class="ring-label" id="ringLabel"><span id="rlMeta">Al Wasl, Dubai</span><b id="rlName">Al Wasl Villa</b></div>
+  <div class="hero-bottom">
+    <div class="hero-left h-in">
+      <button class="hero-close" id="heroClose" aria-label="Close" data-cursor="Close"></button>
+      <div class="hero-sig"><img src="img/portrait.webp" alt="Yurii Svyripa"><div><strong>Yurii Svyripa</strong><small>Architect, head of the studio</small></div></div>
+      <p class="hero-lead">Contemporary luxury villas, premium apartments, bespoke furniture and renovation. We design your home, then oversee the contractors on site.</p>
+      <div class="hero-btns">
+        <a href="#work" class="btn btn-dark magnetic">View projects</a>
+        <a href="#consultation" class="btn btn-line magnetic">Get a free brief</a>
+      </div>
+    </div>
+    <div class="hero-hint h-in">Drag to explore<br>the villas</div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true"><div class="marquee-track">
+  <span>Villas</span><b>◇</b><span>Apartments</span><b>◇</b><span>Bespoke furniture</span><b>◇</b><span>Renovation</span><b>◇</b><span>Fit out</span><b>◇</b><span>Landscape</span><b>◇</b><span>Contractor supervision</span><b>◇</b>
+  <span>Villas</span><b>◇</b><span>Apartments</span><b>◇</b><span>Bespoke furniture</span><b>◇</b><span>Renovation</span><b>◇</b><span>Fit out</span><b>◇</b><span>Landscape</span><b>◇</b><span>Contractor supervision</span><b>◇</b>
+</div></div>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="stat"><div class="num"><span class="count" data-to="60">0</span><sup>+</sup></div><p>Projects designed: villas, houses, apartments and commercial spaces</p></div>
+  <div class="stat"><div class="num"><span class="count" data-to="8">0</span></div><p>Years of practice in architecture and interior design</p></div>
+  <div class="stat"><div class="num"><span class="count" data-to="6">0</span></div><p>Clear stages, from a free brief to realisation on site</p></div>
+  <div class="stat"><div class="num"><span class="count" data-to="3">0</span></div><p>Countries in the portfolio: the UAE, Thailand and Ukraine</p></div>
+</section>
+
+<!-- INTRO -->
+<section class="intro">
+  <div class="intro-img"><div class="blinds" data-blinds><img src="img/intro.webp" alt="Entrance of Al Wasl Villa, Dubai" class="par"><span class="bl"><i></i><i></i><i></i><i></i><i></i><i></i></span></div></div>
+  <div class="intro-text">
+    <div class="eyebrow">The studio</div>
+    <h2 class="h2 split">Architects, <em>not contractors</em></h2>
+    <p class="scrub-text">DRProject is a Dubai based architecture and interior design studio for contemporary luxury villas, premium apartments, bespoke furniture and renovation. One team designs the architecture, the interiors and the furniture.</p>
+    <p class="muted up">Want to see how it comes together? Open the <a href="#" data-open="al-wasl-villa-dubai" class="link">Al Wasl Villa</a>, a 512 sq.m. home now under construction.</p>
+    <a href="#about" class="link-arrow up">Meet the architect <span>→</span></a>
+  </div>
+</section>
+
+<!-- MANIFESTO (gradient fill on scroll) -->
+<section class="manifesto">
+  <p class="fill-text" id="fillText">We don't build. We make sure it's built right.</p>
+  <p class="manifesto-sub up">DRProject designs your villa, then oversees the contractors on site. Contractors can be hired by us or directly by you.</p>
+</section>
+
+<!-- SIGNATURE (pinned WebGL showcase) -->
+<section class="sig" id="signature">
+  <div class="sig-pin">
+    <canvas id="sigGL"></canvas>
+    <div class="sig-shade"></div>
+    <div class="sig-ui">
+      <div class="sig-top"><div class="eyebrow light">Signature villas</div><div class="sig-count"><b id="sigN">01</b> / 05</div></div>
+      <div class="sig-titles" id="sigTitles"></div>
+      <div class="sig-bottom"><a href="#" class="btn btn-gold magnetic" id="sigOpen" data-cursor="Open">Open project</a><div class="sig-bar"><i id="sigBar"></i></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="work" id="work">
+  <div class="work-head">
+    <div><div class="eyebrow">Projects</div><h2 class="h2 split">Selected <em>villas</em></h2>
+      <p class="muted up">Villas and houses in Dubai, Thailand and Ukraine: architecture, interiors, landscape and one home taken all the way to completion.</p></div>
+    <div class="filters" id="filters"></div>
+  </div>
+  <div class="wgrid" id="wgrid"></div>
+</section>
+
+<!-- WINDOW ZOOM -->
+<section class="window">
+  <div class="window-pin">
+    <div class="window-frame" id="wFrame"><img src="img/window.webp" alt="Living room of Al Wasl Villa, Dubai"></div>
+    <div class="window-txt" id="wTxt"><div class="eyebrow light">Photorealistic views</div><h2 class="mega">See your home <em>before it's built</em></h2><p>Photorealistic views let you change decisions before construction starts.</p></div>
+  </div>
+</section>
+
+<!-- LENS: inspect a render -->
+<section class="lens-sec">
+  <div class="lens-head">
+    <div class="eyebrow">Every detail, decided early</div>
+    <h2 class="h2 split">Look <em>closer</em></h2>
+    <p class="muted up">Layouts, materials, lighting and custom details for each room are resolved in the views, down to the veins of the stone. <span class="only-fine">Move across the image to inspect it.</span><span class="only-touch">Touch and drag across the image to inspect it.</span></p>
+  </div>
+  <div class="lens-stage" id="lensStage" data-cursor="Inspect">
+    <img src="img/lens.webp" alt="Kitchen island in veined stone, The MAN villa, Thailand" id="lensImg">
+    <div class="lens" id="lens"></div>
+    <div class="lens-cap"><span>The MAN</span>Villa, Thailand</div>
+  </div>
+</section>
+
+<!-- SERVICES (stacking) -->
+<section class="services" id="services">
+  <div class="sec-head">
+    <div class="eyebrow">What we do</div>
+    <h2 class="h2 split">One author from <em>plan to furniture</em></h2>
+    <p class="muted up">Architecture, interiors and furniture designed by one team, so the house you approve is the house you live in.</p>
+  </div>
+  <div class="stack">
+    <article class="scard"><div class="scard-txt"><span class="sn">01</span><h3>Architectural project of a villa</h3><p class="sl">Sketches, plans and photorealistic views of the house.</p><p>The architecture of your villa from the first sketch: plans, facades and photorealistic views of the house and its garden.</p><ul><li>Planning options and first sketches</li><li>Plans and facades</li><li>Photorealistic views</li></ul></div><div class="scard-img"><img src="img/s-architecture.webp" alt="Architectural project of a villa in Dubai"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">02</span><h3>Interior design</h3><p class="sl">Layouts, materials, lighting and custom details for each room.</p><p>Interiors for villas and premium apartments, designed room by room and documented for the contractors who build them.</p><ul><li>Layouts and zoning</li><li>Materials and lighting</li><li>Custom details for each room</li></ul></div><div class="scard-img"><img src="img/s-interior.webp" alt="Interior design of a villa in Dubai"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">03</span><h3>Design and manufacture of furniture</h3><p class="sl">Created and controlled by us, manufactured by our partners.</p><p>Bespoke furniture designed as part of the interior, produced by partner workshops under the studio's control.</p><ul><li>Bespoke furniture design</li><li>Production with partner workshops</li><li>Control of quality and finish</li></ul></div><div class="scard-img"><img src="img/s-furniture.webp" alt="Bespoke kitchen furniture"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">04</span><h3>Renovation</h3><p class="sl">Redesign of an existing home, with the contractors overseen.</p><p>A new plan and a new interior for the home you already own. We prepare the project and oversee the contractors.</p><ul><li>Replanning and redesign</li><li>Project documentation</li><li>Contractor supervision</li></ul></div><div class="scard-img"><img src="img/s-renovation.webp" alt="Villa renovation in Dubai Hills"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">05</span><h3>Fit out</h3><p class="sl">Finishing work carried out by contractors under our supervision.</p><p>Finishing works delivered by contractors under the studio's supervision, checked against the design at every stage.</p><ul><li>Supervision at every stage</li><li>Contractors hired by us or by you</li></ul></div><div class="scard-img"><img src="img/s-fitout.webp" alt="Realised kitchen with island"></div></article>
+  </div>
+</section>
+
+<!-- REALISED: horizontal pinned gallery -->
+<section class="realised" id="realised">
+  <div class="hz-pin">
+    <div class="hz-track" id="hzTrack">
+      <div class="hz-head">
+        <div class="eyebrow light">Realised project</div>
+        <h2 class="h2">From drawing <em>to daylight</em></h2>
+        <p>A 156 sq.m. private villa in Ukraine, designed from zero with its interior and taken through to completion.</p>
+        <a href="#" class="link-arrow light" data-open="private-villa-ukraine">Open the project <span>→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS: floor plan drawn by scroll -->
+<section class="process" id="process">
+  <div class="process-wrap">
+    <div class="plan-sticky">
+      <div class="eyebrow light">How a project runs</div>
+      <h2 class="h2">Six clear steps, <em>one author</em></h2>
+      <svg class="plan" viewBox="0 0 520 380" fill="none" aria-hidden="true">
+        <g class="L1" stroke-width="3.2"><path d="M20 20H500V360H20Z"/><path d="M20 210H150"/><path d="M330 20V150"/></g>
+        <g class="L2" stroke-width="1.6"><path d="M150 210V360"/><path d="M150 20V160"/><path d="M330 150H500"/><path d="M330 240H500"/><path d="M380 240V360"/><path d="M150 160H230"/><path d="M270 160H330"/>
+          <path d="M230 160A40 40 0 0 1 270 160" stroke-dasharray="3 4"/><path d="M150 250A40 40 0 0 0 190 210" stroke-dasharray="3 4"/><path d="M330 190A40 40 0 0 0 370 150" stroke-dasharray="3 4"/></g>
+        <g class="L3" stroke-width="1.2"><rect x="185" y="230" width="110" height="46" rx="10"/><rect x="200" y="290" width="80" height="34" rx="4"/><circle cx="240" cy="90" r="34"/><circle cx="240" cy="90" r="20"/>
+          <rect x="365" y="45" width="100" height="80" rx="4"/><path d="M365 62H465"/><rect x="40" y="40" width="88" height="140" rx="6"/><path d="M50 60H118M50 80H118M50 100H118"/>
+          <rect x="398" y="262" width="80" height="80" rx="3"/><path d="M398 302H478"/><path d="M40 240H128V340H40Z"/><circle cx="84" cy="290" r="18"/></g>
+        <g class="L4" stroke-width="1"><path d="M20 8H500M20 3V13M500 3V13" /><path d="M512 20V360M507 20H517M507 360H517"/><path d="M330 30V140" stroke-dasharray="2 4"/></g>
+        <g class="labels"><text x="62" y="200">Entrance</text><text x="214" y="345">Living</text><text x="210" y="140">Dining</text><text x="388" y="140">Master</text><text x="412" y="225">Bath</text><text x="56" y="360">Kitchen</text><text x="410" y="355">Pool</text></g>
+      </svg>
+    </div>
+    <div class="steps">
+      <div class="step"><span>01</span><h3>Free brief</h3><p>We talk through the site, how you want to live there, the budget and the timing. This step is free.</p></div>
+      <div class="step"><span>02</span><h3>Design direction</h3><p>Planning options and a presentation with references that show the direction of the design.</p></div>
+      <div class="step"><span>03</span><h3>Agreement</h3><p>You confirm the direction and we sign the contract.</p></div>
+      <div class="step"><span>04</span><h3>Visual design</h3><p>The design itself, shown in photorealistic visualisations.</p></div>
+      <div class="step"><span>05</span><h3>Project</h3><p>We prepare the drawings and specifications that contractors build from.</p></div>
+      <div class="step"><span>06</span><h3>Realisation</h3><p>We work with the contractors and oversee each stage of construction.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TUNNEL -->
+<section class="tunnel">
+  <div class="tunnel-pin">
+    <canvas id="tunGL"></canvas>
+    <div class="tunnel-txt" id="tunTxt"><div class="eyebrow light">60+ projects designed</div><h2 class="mega">Walk through <em>the villas</em></h2><p>Scroll to move through living rooms, kitchens, terraces and pools from Dubai, Thailand and Ukraine.</p></div>
+    <div class="tunnel-name" id="tunName"></div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why">
+  <div class="sec-head">
+    <div class="eyebrow">Why DRProject</div>
+    <h2 class="h2 split">Designed by architects, <em>built right</em></h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-card"><span>01</span><h3>Architects, not contractors</h3><p>A master's degree in architecture and membership of the Society of Engineers in Dubai. We design and supervise; we do not carry out the works ourselves.</p></div>
+    <div class="why-card"><span>02</span><h3>One author from plan to furniture</h3><p>Architecture, interiors and furniture designed by one team, so nothing is lost between disciplines.</p></div>
+    <div class="why-card"><span>03</span><h3>See your home before it's built</h3><p>Photorealistic views let you change decisions before construction starts.</p></div>
+    <div class="why-card"><span>04</span><h3>Contractors under control</h3><p>We oversee contractors at every stage. They can be hired by us or directly by you.</p></div>
+    <div class="why-card"><span>05</span><h3>Direct line to the architect</h3><p>You work with Yurii directly, from the first message to the finished project, with no managers in between.</p></div>
+    <div class="why-card"><span>06</span><h3>The first step is free</h3><p>The brief, where we talk through the site, your way of living, the budget and the timing, costs nothing.</p></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-img"><div class="blinds" data-blinds><img src="img/portrait.webp" alt="Yurii Svyripa, architect and head of DRProject" class="par"><span class="bl"><i></i><i></i><i></i><i></i><i></i><i></i></span></div><div class="about-tag">Architect · Head of the studio · Member of the Society of Engineers in Dubai</div></div>
+  <div class="about-text">
+    <div class="eyebrow">The architect</div>
+    <h2 class="h2 split">Yurii <em>Svyripa</em></h2>
+    <h4>You work with me directly</h4>
+    <p>From the first message to the finished project. Write to me or call me, with no managers in between.</p>
+    <h4>Architecture at the core</h4>
+    <p>I hold a master's degree in architecture and am a proud member of the Society of Engineers in Dubai. With a passion for contemporary design, I bring extensive experience in project design and implementation.</p>
+    <h4>From the plan to the last detail</h4>
+    <p>I manage the design studio and oversee the furniture made by our partners. Close collaboration with clients and contractors, together with meticulous design, is what makes our projects succeed.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="sec-head"><div class="eyebrow">Questions</div><h2 class="h2 split">Good to <em>know</em></h2></div>
+  <div class="faq-list">
+    <details><summary>Do you carry out the construction?</summary><p>No. DRProject designs your villa, then oversees the contractors on site. We do not carry out the works ourselves, which keeps the supervision independent.</p></details>
+    <details><summary>Who hires the contractors?</summary><p>Contractors can be hired by us or directly by you. Either way, we oversee them at every stage.</p></details>
+    <details><summary>What does the free brief include?</summary><p>We talk through the site, how you want to live there, the budget and the timing. This first step is free.</p></details>
+    <details><summary>Can you design the furniture too?</summary><p>Yes. Furniture is designed and controlled by the studio and manufactured by our partners, so it matches the interior exactly.</p></details>
+    <details><summary>Do you work on apartments and commercial projects?</summary><p>Yes. Alongside villas, the studio designs premium apartments and commercial spaces.</p></details>
+    <details><summary>Will I see the design before construction?</summary><p>Yes. The visual design stage includes photorealistic visualisations, so you can change decisions before construction starts.</p></details>
+  </div>
+</section>
+
+<!-- CONSULTATION -->
+<section class="consult" id="consultation">
+  <div class="consult-in">
+    <div class="consult-txt">
+      <div class="eyebrow">Free brief</div>
+      <h2 class="h2 split">Tell us about <em>your villa</em></h2>
+      <p class="muted up">A few short answers about your project. Yurii reads every request himself and replies on WhatsApp.</p>
+      <ol class="consult-steps up"><li><span>1</span>You send the brief</li><li><span>2</span>Yurii replies on WhatsApp</li><li><span>3</span>We talk through the site, budget and timing</li></ol>
+    </div>
+    <form class="consult-form" id="consultForm">
+      <h3>Get a free brief</h3>
+      <label><span>Your name</span><input name="name" required autocomplete="name"></label>
+      <label><span>WhatsApp number</span><input name="phone" required inputmode="tel" autocomplete="tel"></label>
+      <div class="two-col">
+        <label><span>The project</span><select name="type"><option>Villa</option><option>Apartment</option><option>Commercial</option></select></label>
+        <label><span>What you need</span><select name="need"><option>Architecture</option><option>Interior design</option><option>Furniture</option><option>Contractor supervision</option></select></label>
+      </div>
+      <label><span>Area and district</span><input name="area" placeholder="e.g. 450 sq.m., Dubai Hills"></label>
+      <button class="btn btn-gold" type="submit">Send on WhatsApp</button>
+      <p class="consult-ok" id="consultOk">Thank you. Your brief is ready to send on WhatsApp.</p>
+      <p class="small muted">Prefer to talk? <a class="link" href="tel:+971528526760">Call +971 52 852 6760</a>. Your details are used only to reply to your request.</p>
+    </form>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-bg"><img src="img/contact.webp" alt="" class="par"><i class="sweep"></i></div>
+  <div class="contact-in">
+    <div class="eyebrow light">Contact</div>
+    <h2 class="mega split">Let's design <em>your villa</em></h2>
+    <p class="big up">Planning a villa, an apartment or a renovation in Dubai? Send a message and Yurii will reply personally.</p>
+    <div class="contact-btns up">
+      <a class="btn btn-gold magnetic" href="https://wa.me/971528526760?text=Hello%20Yurii%2C%20I%20would%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener">Message on WhatsApp</a>
+      <a class="btn btn-line light magnetic" href="tel:+971528526760">Call +971 52 852 6760</a>
+    </div>
+    <div class="contact-card up">
+      <img src="img/portrait.webp" alt="Yurii Svyripa">
+      <div><strong>Yurii Svyripa</strong><small>Architect, head of the studio</small></div>
+      <ul>
+        <li><span>WhatsApp</span><a href="https://wa.me/971528526760">+971 52 852 6760</a></li>
+        <li><span>Email</span><a href="mailto:info@drproject.pro">info@drproject.pro</a></li>
+        <li><span>Telegram</span><a href="https://t.me/Yurii_Svyripa" target="_blank" rel="noopener">@Yurii_Svyripa</a></li>
+        <li><span>Studio</span><b>Dubai, UAE</b></li>
+      </ul>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="foot-big"><span>DR</span><em>Project</em></div>
+  <div class="foot-cols">
+    <div><h5>Studio</h5><a href="#work">Projects</a><a href="#services">Services</a><a href="#realised">Realised</a><a href="#about">Studio</a><a href="#contact">Contact</a></div>
+    <div><h5>Expertise</h5><span>Villa architecture, Dubai</span><span>Villa interior design, Dubai</span><span>Bespoke furniture</span><span>Renovation and fit out</span><span>Contractor supervision</span></div>
+    <div><h5>Contact</h5><a href="https://wa.me/971528526760">WhatsApp +971 52 852 6760</a><a href="mailto:info@drproject.pro">info@drproject.pro</a><a href="https://www.instagram.com/drproject.pro/" target="_blank" rel="noopener">Instagram @drproject.pro</a><span>Dubai, UAE</span></div>
+  </div>
+  <div class="foot-bot"><span>© <span id="yr"></span> DRProject Decoration Design &amp; Fit-out CO. L.L.C S.O.C</span><a href="#top">Back to top ↑</a></div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/971528526760?text=Hello%20Yurii%2C%20I%20would%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 32 32" width="26" height="26"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.7c-2 0-3.9-.5-5.6-1.5l-.4-.2-3.9 1 1-3.8-.3-.4A10.7 10.7 0 1 1 16 26.7zm5.9-8c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5 1-1.7.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4s-1.2 1.1-1.2 2.8 1.2 3.2 1.4 3.4 2.4 3.7 5.8 5.2c2.2.9 3 1 4.1.8.7-.1 1.9-.8 2.2-1.5s.3-1.3.2-1.5-.3-.2-.6-.4z"/></svg>
+</a>
+
+<div class="modal" id="modal" aria-hidden="true">
+  <button class="modal-x" id="modalX" data-cursor="Close" aria-label="Close"></button>
+  <div class="modal-scroll" id="modalScroll" data-lenis-prevent></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="data.js?v=1"></script>
+<script type="module" src="main.js?v=1"></script>
+</body>
+</html>
