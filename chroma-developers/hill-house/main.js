@@ -401,7 +401,7 @@ const SIG = window.SIG.map(([s, k]) => ({ p: BYSLUG[s], img: `m/${imgName(BYSLUG
 gsap.timeline({ scrollTrigger: { trigger: '.window-pin', start: 'top top', end: '+=150%', pin: true, scrub: 1, refreshPriority: 2 } })
   .fromTo('#wFrame', { clipPath: DESK() ? 'inset(20% 37% 20% 37% round 999px 999px 0px 0px)' : 'inset(26% 16% 26% 16% round 999px 999px 0px 0px)' }, { clipPath: 'inset(0% 0% 0% 0% round 0px 0px 0px 0px)', ease: 'none', duration: 1 })
   .fromTo('#wFrame img', { scale: 1.3 }, { scale: 1, ease: 'none', duration: 1 }, 0)
-  .fromTo('#wVeil', { opacity: 0 }, { opacity: 1, ease: 'none', duration: .6 }, .4)
+  .fromTo('#wVeil', { opacity: .75 }, { opacity: 1, ease: 'none', duration: .6 }, .4)
   .fromTo('#wTxt', { y: 0 }, { y: -40, ease: 'none', duration: 1 }, 0);
 
 /* =================================================================
@@ -440,7 +440,7 @@ gsap.timeline({ scrollTrigger: { trigger: '.window-pin', start: 'top top', end: 
   ScrollTrigger.create({ trigger: '.tunnel-pin', start: 'top top', end: () => '+=' + innerHeight * 3, pin: true, scrub: 1, refreshPriority: 1, onUpdate: s => prog = s.progress });
   gsap.ticker.add(() => {
     if (!vis || paused) return;
-    const cz = 4 - prog * (LEN + .4);
+    const cz = 4 - prog * (LEN - 2.5);
     cam.position.z += (cz - cam.position.z) * .12;
     const mx = FINE ? mouse.x / VW - .5 : 0, my = FINE ? mouse.y / VH - .5 : 0;
     cam.position.x += (mx * .6 - cam.position.x) * .05; cam.position.y += (-my * .6 - cam.position.y) * .05;
