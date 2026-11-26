@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<base href="/vurto-studio/">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VURTO | Interior Design &amp; 3D Rendering Studio in Dubai</title>
+<meta name="description" content="VURTO is a Dubai interior design and 3D visualization studio founded by three sisters. Bold, minimal luxury interiors, photoreal 3D rendering and cinematic animation.">
+<meta property="og:title" content="VURTO | We compose living art">
+<meta property="og:description" content="Interior design, 3D rendering and animation from Dubai.">
+<meta property="og:image" content="https://chroma-developers.vercel.app/vurto-studio/g/stone-1.webp">
+<meta name="theme-color" content="#070606">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23070606'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='36' fill='%23d76a4e' text-anchor='middle'%3EV%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=1">
+<link rel="stylesheet" href="fx.css?v=1">
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+</head>
+<body class="loading">
+
+<div class="loader" id="loader">
+  <div class="loader-panels"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="loader-inner">
+    <div class="loader-word" aria-label="VURTO"><span>V</span><span>U</span><span>R</span><span>T</span><span>O</span></div>
+    <div class="loader-bar"><i id="loaderBar"></i></div>
+    <div class="loader-meta"><span id="loaderPass">Clay pass</span><span><b id="loaderNum">0</b>%</span></div>
+  </div>
+</div>
+
+<div class="cursor" id="cursor"><div class="c-ring"><span class="c-label" id="cLabel"></span></div><div class="c-dot"></div></div>
+<canvas id="gal" aria-hidden="true"></canvas>
+
+<header class="nav" id="nav">
+  <a href="#top" class="logo" aria-label="VURTO home"><span class="vlogo">VURTO</span></a>
+  <nav class="nav-links">
+    <a href="#work">Works</a><a href="#services">Services</a><a href="#pricing">Pricing</a><a href="#studio">Studio</a><a href="#faq">FAQ</a><a href="#contact">Contact</a>
+  </nav>
+  <button class="theme" id="theme" aria-label="Switch day or night mode" data-cursor="Mode"><span>Day</span><i></i><span>Night</span></button>
+  <a href="#contact" class="btn btn-solid btn-sm nav-cta magnetic">Start a project</a>
+  <button class="burger" id="burger" aria-label="Menu"><i></i><i></i></button>
+</header>
+<div class="menu" id="menu">
+  <a href="#work"><small>01</small>Works</a><a href="#services"><small>02</small>Services</a><a href="#pricing"><small>03</small>Pricing</a><a href="#studio"><small>04</small>Studio</a><a href="#faq"><small>05</small>FAQ</a><a href="#contact"><small>06</small>Contact</a>
+  <div class="menu-foot"><a href="https://wa.me/971553551946" target="_blank" rel="noopener">WhatsApp</a><a href="tel:+971553551946">+971 55 355 1946</a><a href="mailto:info@vurto.studio">info@vurto.studio</a></div>
+</div>
+
+<main id="top">
+
+<!-- HERO: real-time sculpture -->
+<section class="hero" id="hero">
+  <canvas id="hero3d" aria-label="Interactive 3D sculpture"></canvas>
+  <div class="hero-vig"></div>
+  <div class="vf" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="hero-top">
+    <div class="eyebrow h-in">Interior design · 3D visualization · Dubai</div>
+    <h1 class="hero-title split">We compose <em>living art.</em></h1>
+    <p class="hero-lead h-in">Bold, minimal luxury interiors and high-end 3D visualization, so you can see and feel a space before it exists.</p>
+    <div class="hero-btns h-in">
+      <a href="#work" class="btn btn-solid magnetic">View the works</a>
+      <a href="#contact" class="btn btn-line magnetic">Start a project</a>
+    </div>
+  </div>
+  <div class="hero-hud h-in" aria-hidden="true">
+    <span>Real time</span><b id="hudMat">Marble</b><span id="hudLight">Light 000°</span>
+  </div>
+  <div class="hero-bottom">
+    <p class="hero-note h-in">Before architecture, we painted and sculpted. Choose a material and light the form.</p>
+    <div class="mats h-in" id="mats" role="group" aria-label="Choose a material">
+      <button class="mats-x" id="matsX" aria-label="Close" data-cursor="Close"></button>
+      <div class="mats-label">Material<small>Move to light it · Drag to turn</small></div>
+      <div class="mats-row">
+        <button class="on" data-mat="marble" data-cursor="Marble"><i class="sw sw-marble"></i><span>Marble</span></button>
+        <button data-mat="metal" data-cursor="Metal"><i class="sw sw-metal"></i><span class="m-long">Brushed metal</span><span class="m-short">Metal</span></button>
+        <button data-mat="glass" data-cursor="Glass"><i class="sw sw-glass"></i><span>Glass</span></button>
+        <button data-mat="clay" data-cursor="Clay"><i class="sw sw-clay"></i><span class="m-long">Matte clay</span><span class="m-short">Clay</span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true"><div class="marquee-track">
+  <span>Interior Design</span><b></b><span>3D Rendering</span><b></b><span>Animation</span><b></b><span>Night &amp; Day</span><b></b><span>Post-production</span><b></b><span>Cinematic Film</span><b></b>
+  <span>Interior Design</span><b></b><span>3D Rendering</span><b></b><span>Animation</span><b></b><span>Night &amp; Day</span><b></b><span>Post-production</span><b></b><span>Cinematic Film</span><b></b>
+</div></div>
+
+<!-- INTRO + STATS -->
+<section class="intro" id="about">
+  <div class="intro-img"><div class="frame-reveal"><img src="m/eterna-7.webp" srcset="m/eterna-7.webp 1000w, g/eterna-7.webp 1600w" sizes="(max-width:900px) 92vw, 36vw" alt="A circular window framing a blossoming branch, rendered by VURTO" class="par"></div><span class="intro-cap">The Eterna Hotel · Barcelona</span></div>
+  <div class="intro-text">
+    <div class="eyebrow">About VURTO</div>
+    <h2 class="h2 split">Creativity is our <em>foundation</em></h2>
+    <p class="scrub-text">VURTO is a Dubai based interior design and 3D visualization studio founded by three sisters with ten years of experience and a lifelong passion for art.</p>
+    <p class="muted up">Before architecture, we painted and sculpted. Storytelling is our craft. We specialise in bold, minimal luxury interiors and high-end 3D visualization, and every project balances emotion and precision to reflect identity, ambition and atmosphere.</p>
+    <a href="#studio" class="link-arrow up">The studio <span>→</span></a>
+  </div>
+</section>
+<section class="stats">
+  <div class="stat"><div class="num"><span class="count" data-to="3">0</span></div><p>Sisters who founded the studio</p></div>
+  <div class="stat"><div class="num"><span class="count" data-to="10">0</span></div><p>Years of experience</p></div>
+  <div class="stat"><div class="num"><span class="count" data-to="2">0</span><sup>+</sup></div><p>Free revisions at every stage</p></div>
+  <div class="stat"><div class="num"><span class="count" data-to="4">0</span><sup>K</sup></div><p>Films delivered in HD or 4K</p></div>
+</section>
+
+<!-- DEPTH: Stone + Shadow -->
+<section class="depthx" data-fx="depth" data-depth=".05">
+  <img src="d/depth.webp" alt="Stone + Shadow Villa at golden hour, rendered by VURTO">
+  <div class="depth-shade"></div>
+  <div class="depth-txt">
+    <div class="eyebrow light">Stone + Shadow Villa</div>
+    <h2 class="mega">Where the forest <em>meets the sea</em></h2>
+    <p>A villa crafted for a sculptor, in raw concrete and green stone.</p>
+    <a href="#" class="btn btn-light magnetic" data-open="stone" data-cursor="Open">Open project</a>
+  </div>
+</section>
+
+<!-- SHOWCASE (pinned WebGL) -->
+<section class="sig" id="signature">
+  <div class="sig-pin">
+    <div class="sig-imgs" id="sigImgs"></div>
+    <canvas id="sigGL"></canvas>
+    <div class="sig-shade"></div>
+    <div class="sig-ui">
+      <div class="sig-top"><div class="eyebrow light">Featured projects</div><div class="sig-count"><b id="sigN">01</b> / <span id="sigT">06</span></div></div>
+      <div class="sig-titles" id="sigTitles"></div>
+      <div class="sig-bottom"><a href="#" class="btn btn-light magnetic" id="sigOpen" data-cursor="Open">Open project</a><div class="sig-bar"><i id="sigBar"></i></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="work" id="work">
+  <div class="work-head">
+    <div><div class="eyebrow">Our works</div><h2 class="h2 split">Selected <em>works</em></h2>
+      <p class="muted up">Villas, hotels, spas and homes, rendered with the light of the hour and the depth of a photograph.</p></div>
+    <div class="filters" id="filters"></div>
+  </div>
+  <div class="wgrid" id="wgrid"></div>
+</section>
+
+<!-- FRAME ZOOM -->
+<section class="window">
+  <div class="window-pin">
+    <div class="window-frame" id="wFrame"><img src="g/spa-4.webp" srcset="m/spa-4.webp 1000w, g/spa-4.webp 1600w" sizes="(max-aspect-ratio: 16/9) 230vh, 130vw" alt="Round skylight above a wellness lounge"></div>
+    <div class="vf vf-w" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    <div class="window-txt" id="wTxt"><div class="eyebrow light">Night &amp; day</div><h2 class="mega">Light is the <em>first material</em></h2><p>From soft daylight to composed evening scenes, lighting captures the true character of every interior and exterior.</p></div>
+  </div>
+</section>
+
+<!-- STUDIO STORY: mesh gradient -->
+<section class="sisters" data-fx="mesh" data-mesh="#070606,#3a1410,#123029,#1c0d0b">
+  <div class="sis-in">
+    <div class="sis-txt">
+      <div class="eyebrow light">The studio</div>
+      <h2 class="h2">Three sisters, <em>one eye</em></h2>
+      <p>Before architecture, we painted and sculpted. That way of seeing is still how we work: every space begins as a composition of light, material and story.</p>
+      <p class="sis-sub">At VURTO, we compose living art.</p>
+    </div>
+    <div class="sis-imgs">
+      <div class="sis-a" data-fx-reveal="arch"><img src="m/stone-9.webp" alt="Sculpture gallery in the Stone + Shadow Villa" loading="lazy"></div>
+      <div class="sis-b" data-fx-reveal="circle"><img src="m/spa-4.webp" alt="Lounge under a round skylight" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="sec-head">
+    <div class="eyebrow">Services</div>
+    <h2 class="h2 split">Design, render, <em>film</em></h2>
+    <p class="muted up">Three disciplines from one studio: interiors designed with soul, photoreal images built for impact, and films that let a project be felt before it is built.</p>
+  </div>
+  <div class="stack">
+    <article class="scard"><div class="scard-txt"><span class="sn">01</span><h3>Interior Design</h3><p class="sl">Designs with soul, where story meets refined style to create interiors that feel intentional, elevated and personal.</p><p>Each project begins with a clear vision, translated into refined, functional interiors shaped by individuality and character, ending with a complete, execution ready design package.</p><ul><li>Concept development and moodboards</li><li>Space planning for Dubai's modern luxury lifestyle</li><li>Materials and FF&amp;E curated with character</li><li>High-end visualization before execution</li></ul></div><div class="scard-img"><img loading="lazy" src="m/residence-1.webp" srcset="m/residence-1.webp 1000w, g/residence-1.webp 1600w" sizes="(max-width:900px) 92vw, 45vw" alt="Living room with skyline view"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">02</span><h3>3D Rendering</h3><p class="sl">Refined, photorealistic renderings of luxury interiors and architecture, designed for impact.</p><p>Every image is built from your drawings, references and design intent. Proportions, surfaces and finishes are represented faithfully, and advanced post-production gives each image the depth and realism of a photograph.</p><ul><li>Interior and exterior rendering</li><li>Night and day scenes</li><li>Clear review stages and revisions</li><li>High resolution for marketing, tenders and launches</li></ul></div><div class="scard-img"><img loading="lazy" src="m/stone-2.webp" srcset="m/stone-2.webp 1000w, g/stone-2.webp 1600w" sizes="(max-width:900px) 92vw, 45vw" alt="Cliffside villa exterior rendering"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">03</span><h3>Animation</h3><p class="sl">Architectural concepts turned into cinematic journeys, revealing atmosphere, scale and character before a project is built.</p><p>Storyboarding and creative direction shape the story, pacing and key moments. Realistic camera movement, sound design and editing turn raw animation into a finished film.</p><ul><li>Storyboarding and camera planning</li><li>Realistic environment, lighting and sound</li><li>Short teasers to full walkthroughs</li><li>HD or 4K delivery</li></ul></div><div class="scard-img"><img loading="lazy" src="m/eterna-3.webp" srcset="m/eterna-3.webp 1000w, g/eterna-3.webp 1600w" sizes="(max-width:900px) 92vw, 45vw" alt="Hotel bar beneath an arch of light"></div></article>
+  </div>
+</section>
+
+<!-- PRICING + WORKS INDEX (image trail) -->
+<section class="pricing" id="pricing">
+  <div class="sec-head">
+    <div class="eyebrow">Pricing</div>
+    <h2 class="h2 split">Clear from <em>the first conversation</em></h2>
+    <p class="muted up">Published guide prices. Prices may vary with the scale of the project and any add-ons.</p>
+  </div>
+  <div class="price-grid">
+    <a class="pcard" href="#contact" data-fx="kb"><img src="m/residence-2.webp" alt="" loading="lazy"><div class="pc-in"><span>Interior design</span><b>AED 125 <small>to 350 per m²</small></b><p>Basic, standard and premium packages, from moodboard and layout to full setting out, finish and ceiling plans.</p></div></a>
+    <a class="pcard" href="#contact" data-fx="kb"><img src="m/salon-1.webp" alt="" loading="lazy"><div class="pc-in"><span>Interior rendering</span><b>AED 3,500 <small>to 9,500 per image</small></b><p>From small apartments to luxury interiors with high detail and custom artistic direction. Two free revisions per stage.</p></div></a>
+    <a class="pcard" href="#contact" data-fx="kb"><img src="m/stone-3.webp" alt="" loading="lazy"><div class="pc-in"><span>Exterior rendering</span><b>AED 4,500 <small>per image and up</small></b><p>Single villas to large scale luxury exteriors with advanced detailing and context.</p></div></a>
+    <a class="pcard" href="#contact" data-fx="kb"><img src="m/eterna-1.webp" alt="" loading="lazy"><div class="pc-in"><span>Animation</span><b>AED 9,000 <small>to 55,000 per film</small></b><p>From a 15 second base animation to a full project film of up to two minutes.</p></div></a>
+  </div>
+  <p class="price-note">A package of 3 to 5 renders receives a 10% discount, and 6 or more renders receive 15%.</p>
+  <div class="windex" data-fx="trail" data-trail="t/stone-1.webp,t/eterna-1.webp,t/spa-2.webp,t/residence-3.webp,t/salon-3.webp,t/stone-4.webp,t/eterna-4.webp,t/spa-6.webp">
+    <div class="eyebrow">Works index</div>
+    <a href="#" class="wrow" data-open="stone" data-cursor="Open"><span>01</span><b>Stone + Shadow Villa</b><i>Architecture · Interiors</i></a>
+    <a href="#" class="wrow" data-open="eterna" data-cursor="Open"><span>02</span><b>The Eterna Hotel</b><i>Hospitality · Barcelona</i></a>
+    <a href="#" class="wrow" data-open="spa" data-cursor="Open"><span>03</span><b>Spa &amp; Wellness</b><i>Interiors</i></a>
+    <a href="#" class="wrow" data-open="residence" data-cursor="Open"><span>04</span><b>Kitchen &amp; Living</b><i>Residential</i></a>
+    <a href="#" class="wrow" data-open="salon" data-cursor="Open"><span>05</span><b>Dining &amp; Lounge</b><i>Residential</i></a>
+  </div>
+</section>
+
+<!-- PROCESS: drawing to final still -->
+<section class="process" id="process">
+  <div class="process-wrap">
+    <div class="proc-sticky">
+      <div class="proc-head"><div class="eyebrow">Working with us</div>
+      <h2 class="h2">Your drawings. <em>Our story.</em></h2></div>
+      <div class="proc-view">
+        <canvas id="procGL"></canvas>
+        <div class="vf vf-p" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        <div class="proc-pass"><span id="passN">01</span><b id="passName">Drawing</b><small>/ 05</small></div>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step"><span>01</span><h3>Guided by the design</h3><p>Every image is built from your drawings, references and design intent, so it stays consistent with the project.</p></div>
+      <div class="step"><span>02</span><h3>True to the vision</h3><p>Proportions, surfaces and finishes are represented faithfully, giving a convincing impression of the finished space.</p></div>
+      <div class="step"><span>03</span><h3>Night &amp; day</h3><p>From soft daylight to composed evening scenes, lighting captures the true character of every space.</p></div>
+      <div class="step"><span>04</span><h3>Advanced post-production</h3><p>Refined colour, reflections and texture give each image the depth and realism of a photograph.</p></div>
+      <div class="step"><span>05</span><h3>Delivered for impact</h3><p>High resolution visuals for marketing, tenders and approvals, client presentations and property launches.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- RING ARCHIVE -->
+<section class="archive" id="archive">
+  <canvas id="ring" aria-label="3D ring of project stills"></canvas>
+  <div class="arc-top">
+    <div class="eyebrow">The archive</div>
+    <h2 class="h2 split">Every frame, <em>one finish</em></h2>
+  </div>
+  <div class="ring-label" id="ringLabel"><span id="rlMeta">Architecture · Interiors</span><b id="rlName">Stone + Shadow Villa</b></div>
+  <div class="arc-hint"><span class="drag-ico"><i></i></span>Drag to turn · Tap a still to open</div>
+</section>
+
+<!-- STUDIO -->
+<section class="studio" id="studio">
+  <div class="quote">
+    <div class="eyebrow">The studio</div>
+    <blockquote class="split">Every project balances emotion and precision to reflect identity, ambition and atmosphere. <em>At VURTO, we compose living art.</em></blockquote>
+    <cite>VURTO, founded by three sisters</cite>
+  </div>
+  <div class="pillars">
+    <div class="pillar"><span>01</span><h3>The idea</h3><p>Every project starts with a conversation. Concept development and moodboards turn your vision into a clear design direction.</p></div>
+    <div class="pillar"><span>02</span><h3>Space, composed</h3><p>Space planning balances function, comfort and harmony, shaping interiors that suit Dubai's modern luxury lifestyle.</p></div>
+    <div class="pillar"><span>03</span><h3>Materials with character</h3><p>From natural textures to refined finishes, each material and piece of FF&amp;E is curated to complement the design.</p></div>
+    <div class="pillar"><span>04</span><h3>The right details</h3><p>An art led, concept driven approach gives each interior a character of its own, down to the final detail.</p></div>
+  </div>
+  <div class="mission">
+    <span>Our promise</span>
+    <p>A collaborative process that keeps you informed at every stage, and ends with a complete, execution ready design.</p>
+  </div>
+</section>
+
+<!-- CLIENTS (words) -->
+<section class="clients" aria-label="Disciplines">
+  <div class="eyebrow center-eb">Interior design · 3D rendering · Animation</div>
+  <div class="cl-marquee"><div class="cl-track cl-words">
+    <span>Storytelling</span><b></b><span>Bold minimalism</span><b></b><span>Night &amp; day</span><b></b><span>Photoreal</span><b></b><span>Cinematic</span><b></b><span>Living art</span><b></b>
+    <span>Storytelling</span><b></b><span>Bold minimalism</span><b></b><span>Night &amp; day</span><b></b><span>Photoreal</span><b></b><span>Cinematic</span><b></b><span>Living art</span><b></b>
+  </div></div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="faq-wrap">
+    <div class="sec-head faq-head"><div class="eyebrow">FAQ</div><h2 class="h2 split">Frequently <em>asked</em></h2><p class="muted up">Have a project in mind? Send your drawings and references and we will shape the vision with you.</p></div>
+    <div class="faq-list">
+      <details><summary>What services do you provide?</summary><p>We specialise in interior design, custom 3D renders and animations. Whether you need a realistic interior render or an animation showcasing your design, we deliver tailored solutions for your project.</p></details>
+      <details><summary>Can you create 3D visualizations for exterior designs as well?</summary><p>Yes. We provide 3D visualizations not only for interiors but also for exterior designs, including architectural facades, landscapes and more.</p></details>
+      <details><summary>How do you ensure the quality of your work?</summary><p>Our artists use 3ds Max and other industry standard software, and every image goes through clear review stages. Every render includes free revisions at each stage, so the final result meets your expectations.</p></details>
+      <details><summary>How much does a render cost?</summary><p>Interior renders are guided at AED 3,500 to 9,500 per image and exterior renders from AED 4,500 per image, depending on scale and detail. Packages of 3 to 5 renders receive 10% off, and 6 or more receive 15% off.</p></details>
+      <details><summary>How long can an animation be?</summary><p>From a 15 to 30 second base animation to a full project film of 60 to 120 seconds, delivered in HD or 4K.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-bg"><img loading="lazy" src="g/stone-3.webp" srcset="m/stone-3.webp 1000w, g/stone-3.webp 1600w" sizes="(max-aspect-ratio: 16/9) 200vh, 100vw" alt="" class="par"></div>
+  <div class="contact-in">
+    <div class="contact-l">
+      <div class="eyebrow light">Contact</div>
+      <h2 class="mega split">Let's shape your vision <em>into reality</em></h2>
+      <p class="big up">Tell us about your space or your project. 10% off on your first project with the studio.</p>
+      <div class="contact-btns up">
+        <a class="btn btn-light magnetic" href="https://wa.me/971553551946?text=Hello%20VURTO%2C%20I%20would%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener">Message on WhatsApp</a>
+        <a class="btn btn-line light magnetic" href="tel:+971553551946">Call +971 55 355 1946</a>
+      </div>
+      <ul class="c-info up">
+        <li><span>Phone</span><div><a href="tel:+971553551946">+971 55 355 1946</a></div></li>
+        <li><span>Email</span><div><a href="mailto:info@vurto.studio">info@vurto.studio</a></div></li>
+        <li><span>Instagram</span><div><a href="https://www.instagram.com/vurtostudio/" target="_blank" rel="noopener">@vurtostudio</a></div></li>
+        <li><span>Studio</span><div><span>Dubai, United Arab Emirates</span></div></li>
+      </ul>
+    </div>
+    <form class="c-form up" id="cForm" novalidate>
+      <h3>Start a project.</h3>
+      <label><span>Name</span><input name="name" autocomplete="name" required></label>
+      <label><span>Email</span><input name="email" type="email" autocomplete="email" required></label>
+      <div class="two"><label><span>Company</span><input name="company" autocomplete="organization"></label>
+      <label><span>Phone number</span><input name="phone" type="tel" autocomplete="tel"></label></div>
+      <label><span>Website</span><input name="url" type="url" inputmode="url"></label>
+      <label><span>Project</span><select name="service"><option>Interior design</option><option>Interior rendering</option><option>Exterior rendering</option><option>Animation</option></select></label>
+      <button class="btn btn-light" type="submit">Send</button>
+      <p class="f-note" id="fNote">Your message opens in WhatsApp, ready to send to the studio.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="foot-big" aria-hidden="true"><span>VUR</span><em>TO</em></div>
+  <div class="foot-cols">
+    <div><h5>Studio</h5><p>VURTO is a Dubai interior design and 3D visualization studio founded by three sisters. We compose living art.</p></div>
+    <div><h5>Quick links</h5><a href="#work">Works</a><a href="#services">Services</a><a href="#pricing">Pricing</a><a href="#studio">Studio</a><a href="#contact">Contact</a></div>
+    <div><h5>Contact</h5><a href="tel:+971553551946">+971 55 355 1946</a><a href="mailto:info@vurto.studio">info@vurto.studio</a><span>Dubai, United Arab Emirates</span></div>
+    <div><h5>Follow us</h5><a href="https://www.instagram.com/vurtostudio/" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/people/VURTO/61576558635437/" target="_blank" rel="noopener">Facebook</a></div>
+  </div>
+  <div class="foot-bot"><span>© <span id="yr">2026</span> VURTO. All rights reserved.</span><a href="#top">Back to top ↑</a></div>
+</footer>
+<a class="wa-float" href="https://wa.me/971553551946?text=Hello%20VURTO%2C%20I%20would%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener" aria-label="WhatsApp" data-cursor="WhatsApp">
+  <svg viewBox="0 0 32 32" width="24" height="24"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.7c-2 0-3.9-.5-5.6-1.5l-.4-.2-3.9 1 1-3.8-.3-.4A10.7 10.7 0 1 1 16 26.7zm5.9-8c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5 1-1.7.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4s-1.2 1.1-1.2 2.8 1.2 3.2 1.4 3.4 2.4 3.7 5.8 5.2c2.2.9 3 1 4.1.8.7-.1 1.9-.8 2.2-1.5s.3-1.3.2-1.5-.3-.2-.6-.4z"/></svg>
+</a>
+
+<div class="modal" id="modal" aria-hidden="true">
+  <button class="modal-x" id="modalX" data-cursor="Close" aria-label="Close project"></button>
+  <div class="modal-scroll" id="modalScroll" data-lenis-prevent></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="data.js?v=1"></script>
+<script type="module" src="main.js?v=1"></script>
+<script src="fx.js?v=1"></script>
+<script>document.getElementById('matsX').addEventListener('click',function(){document.getElementById('mats').classList.add('closed')});</script>
+</body>
+</html>

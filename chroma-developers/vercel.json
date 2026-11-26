@@ -84,6 +84,11 @@
       "source": "/mdo",
       "destination": "/mdo/",
       "permanent": false
+    },
+    {
+      "source": "/vurto-studio",
+      "destination": "/vurto-studio/",
+      "permanent": false
     }
   ]
 }
