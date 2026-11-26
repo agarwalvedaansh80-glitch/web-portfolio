@@ -47,7 +47,7 @@ $$('.fx-hgal').forEach(sec => {
   const items = $$('.fx-hitem', track);
   const dist = () => Math.max(0, track.scrollWidth - innerWidth + (innerWidth > 900 ? 80 : 32));
   let skew = 0, last = 0, lt = performance.now();
-  const tw = G.to(track, { x: () => -dist(), ease: 'none', scrollTrigger: { trigger: sec, start: 'top top', end: () => '+=' + dist(), pin: true, scrub: 1.1, invalidateOnRefresh: true, anticipatePin: 1,
+  const tw = G.to(track, { x: () => -dist(), ease: 'none', scrollTrigger: { trigger: sec, start: 'top top', end: () => '+=' + dist(), pin: true, scrub: 1.1, invalidateOnRefresh: true, anticipatePin: 1, refreshPriority: +(sec.dataset.prio || 0),
     onUpdate: s => { const now = performance.now(); const v = (s.progress - last) / Math.max(16, now - lt) * 1000; last = s.progress; lt = now; skew = clamp(v * -6, -5, 5); } } });
   const setS = G.quickTo(items, 'skewX', { duration: 1.2, ease: 'power3.out' });
   G.ticker.add(() => { setS(skew); skew *= .9; });
@@ -166,7 +166,7 @@ $$('.fx-kb').forEach(k => {
 /* ---------- 15. zoom-through: .fx-zoom (image grows to full screen while pinned) ---------- */
 $$('.fx-zoom').forEach(z => {
   if (!G) return; const box = $('.fx-zoom-box', z), txt = $('.fx-zoom-txt', z);
-  const tl = G.timeline({ scrollTrigger: { trigger: z, start: 'top top', end: '+=120%', pin: true, scrub: 1.3, anticipatePin: 1 } });
+  const tl = G.timeline({ scrollTrigger: { trigger: z, start: 'top top', end: '+=120%', pin: true, scrub: 1.3, anticipatePin: 1, refreshPriority: +(z.dataset.prio || 0) } });
   tl.fromTo(box, { clipPath: 'inset(28% 32% 28% 32% round 200px)' }, { clipPath: 'inset(0% 0% 0% 0% round 0px)', ease: 'power2.inOut' }, 0)
     .fromTo($('img', box), { scale: 1.35 }, { scale: 1, ease: 'power2.inOut' }, 0);
   if (txt) tl.fromTo(txt, { opacity: 0, y: 40 }, { opacity: 1, y: 0, ease: 'power2.out', duration: .35 }, .62);
