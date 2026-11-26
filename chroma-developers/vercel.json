@@ -74,6 +74,11 @@
       "source": "/3md-studio",
       "destination": "/3md-studio/",
       "permanent": false
+    },
+    {
+      "source": "/the-design-house",
+      "destination": "/the-design-house/",
+      "permanent": false
     }
   ]
 }
