@@ -275,6 +275,9 @@
   });
 
   FX.init = () => { ['blurchars', 'fill', 'count', 'scramble', 'reveal', 'sweep', 'kb', 'lens', 'trail', 'coverflow', 'hscroll', 'stack', 'draw', 'dust', 'mesh', 'depth', 'bgshift', 'zoom', 'sheen'].forEach(k => { try { FX[k](); } catch (e) { console.warn('fx', k, e); } }); ScrollTrigger.refresh(); };
+
+  /* hide the floating contact button over the hero on phones */
+  (function(){ const h = document.getElementById('hero'); if (!h) return; new IntersectionObserver(e => document.body.classList.toggle('fx-hero-on', e[0].intersectionRatio > .35), { threshold: [0, .35, .7, 1] }).observe(h); })();
   const go = () => setTimeout(FX.init, 400);
   if (document.readyState === 'complete') go(); else addEventListener('load', go);
 })();

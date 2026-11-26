@@ -36,3 +36,4 @@
 [data-fx="sheen"]{position:relative;transform-style:preserve-3d}
 .fx-sheen{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .8s ease;border-radius:inherit;z-index:3;background:radial-gradient(420px circle at var(--sx,50%) var(--sy,50%),rgba(255,250,235,.16),transparent 60%);mix-blend-mode:screen}
 @media (prefers-reduced-motion:reduce){.fx-beam,.fx-dust{display:none}}
+@media (max-width:760px){body.fx-hero-on .wa-float{opacity:0!important;pointer-events:none;transform:translateY(110px)!important}.wa-float{transition:opacity .8s ease,transform .8s ease}}
