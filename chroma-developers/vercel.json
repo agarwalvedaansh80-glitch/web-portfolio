@@ -1,5 +1,8 @@
 {
   "redirects": [
-    { "source": "/ashraf-design", "destination": "/ashraf-design/", "permanent": false }
+    { "source": "/ashraf-design", "destination": "/ashraf-design/", "permanent": false },
+    { "source": "/hill-house", "destination": "/hill-house/", "permanent": false },
+    { "source": "/blackwhite-viz", "destination": "/blackwhite-viz/", "permanent": false },
+    { "source": "/villa-furniture-studio", "destination": "/villa-furniture-studio/", "permanent": false }
   ]
 }
