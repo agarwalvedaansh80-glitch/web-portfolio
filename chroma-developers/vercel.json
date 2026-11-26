@@ -12,6 +12,7 @@
     { "source": "/cyril-furniture", "destination": "/cyril-furniture/", "permanent": false },
     { "source": "/shaped-ae", "destination": "/shaped-ae/", "permanent": false },
     { "source": "/homefigures", "destination": "/homefigures/", "permanent": false },
-    { "source": "/catch-design", "destination": "/catch-design/", "permanent": false }
+    { "source": "/catch-design", "destination": "/catch-design/", "permanent": false },
+    { "source": "/md-fitout", "destination": "/md-fitout/", "permanent": false }
   ]
 }
