@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<base href="/soul-space/">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Soul Space Design Studio | Bespoke Luxury Interiors, Dubai</title>
+<meta name="description" content="Soul Space is a boutique interior design studio in Dubai founded by Sunayana. Turnkey luxury interiors for villas and homes in Dubai and India, featured in Architectural Digest and Living Etc.">
+<meta property="og:title" content="Soul Space Design Studio | Dubai">
+<meta property="og:description" content="Quiet, intuitive and deeply personal interiors, from concept to completion.">
+<meta property="og:image" content="https://chroma-developers.vercel.app/soul-space/g/amba-house-02.webp">
+<meta name="theme-color" content="#0b0d0a">
+<script>try{if(localStorage.getItem('ss-theme')==='light')document.documentElement.dataset.theme='light'}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Mulish:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=1">
+<link rel="stylesheet" href="fx.css?v=1">
+</head>
+<body class="loading">
+
+<div class="loader" id="loader">
+  <div class="loader-panels"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="loader-inner">
+    <svg class="mono" viewBox="0 0 120 150" aria-hidden="true">
+      <path class="mono-arch" d="M10 145V60A50 50 0 0 1 110 60V145Z"/>
+      <path class="mono-arch2" d="M18 137V61A42 42 0 0 1 102 61V137Z"/>
+      <text x="60" y="108" text-anchor="middle">SS</text>
+    </svg>
+    <div class="loader-word" aria-label="Soul Space"><span>S</span><span>O</span><span>U</span><span>L</span><span class="sp"></span><span>S</span><span>P</span><span>A</span><span>C</span><span>E</span></div>
+    <div class="loader-sub">Design Studio</div>
+    <div class="loader-bar"><i id="loaderBar"></i></div>
+    <div class="loader-meta"><span>Dubai &nbsp;·&nbsp; India</span><span><b id="loaderNum">0</b>%</span></div>
+  </div>
+</div>
+
+<div class="cursor" id="cursor"><div class="c-ring"><span class="c-label" id="cLabel"></span></div><div class="c-dot"></div></div>
+<canvas id="gal" aria-hidden="true"></canvas>
+
+<header class="nav" id="nav">
+  <a href="#top" class="logo" aria-label="Soul Space Design Studio"><span class="logo-main">Soul Space</span><span class="logo-sub">Design Studio</span></a>
+  <nav class="nav-links">
+    <a href="#studio">Studio</a><a href="#work">Projects</a><a href="#gallery">Gallery</a><a href="#services">Services</a><a href="#founder">Founder</a><a href="#contact">Contact</a>
+  </nav>
+  <button class="theme" id="theme" aria-label="Switch day or night mode" data-cursor="Mode"><span>Day</span><i></i><span>Night</span></button>
+  <a href="#contact" class="btn btn-solid btn-sm nav-cta">Send enquiry</a>
+  <button class="burger" id="burger" aria-label="Menu"><i></i><i></i></button>
+</header>
+<div class="menu" id="menu">
+  <div class="menu-links"><a href="#studio"><small>01</small>Studio</a><a href="#work"><small>02</small>Projects</a><a href="#gallery"><small>03</small>Gallery</a><a href="#services"><small>04</small>Services</a><a href="#founder"><small>05</small>Founder</a><a href="#contact"><small>06</small>Contact</a></div>
+  <div class="menu-foot"><a href="https://wa.me/971522731166" target="_blank" rel="noopener">WhatsApp</a><a href="tel:+971522731166">+971 52 273 1166</a></div>
+</div>
+
+<main id="top">
+
+<!-- HERO: 3D ring of projects -->
+<section class="hero" id="hero">
+  <canvas id="ring"></canvas>
+  <div class="hero-top">
+    <div class="eyebrow h-in">Boutique interior design &nbsp;·&nbsp; Dubai &amp; India</div>
+    <h1 class="hero-title split">Quiet, intuitive, <em>deeply personal</em></h1>
+  </div>
+  <div class="ring-label" id="ringLabel"><small>Now viewing</small><span id="rlMeta">Dubai</span><b id="rlName">The AMBA House</b></div>
+  <div class="hero-bottom">
+    <div class="hero-left h-in">
+      <button class="hero-close" id="heroClose" aria-label="Close" data-cursor="Close"></button>
+      <p class="hero-lead">A full service interior design studio designing homes from concept to completion in Dubai and India, with projects featured in Architectural Digest and Living Etc.</p>
+      <div class="hero-btns">
+        <a href="#work" class="btn btn-solid">View projects</a>
+        <a href="#contact" class="btn btn-line">Send enquiry</a>
+      </div>
+    </div>
+    <div class="hero-hint h-in"><span class="drag-ico"><i></i></span>Drag or scroll<br>to explore the work</div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true"><div class="marquee-track">
+  <span>Turnkey</span><b></b><span>Quick Fix</span><b></b><span>Bespoke Furniture</span><b></b><span>Vastu</span><b></b><span>Remote Delivery</span><b></b><span>Dubai</span><b></b><span>India</span><b></b>
+  <span>Turnkey</span><b></b><span>Quick Fix</span><b></b><span>Bespoke Furniture</span><b></b><span>Vastu</span><b></b><span>Remote Delivery</span><b></b><span>Dubai</span><b></b><span>India</span><b></b>
+</div></div>
+
+<!-- STUDIO -->
+<section class="intro" id="studio">
+  <div class="intro-img"><div class="arch" data-fx-reveal="diagonal"><img src="d/about-1.webp" alt="In a Soul Space interior" class="par"></div><div class="arch-cap">From concept to completion</div></div>
+  <div class="intro-text">
+    <div class="eyebrow">The studio</div>
+    <h2 class="h2 split">A house becomes <em>a home</em></h2>
+    <p class="scrub-text">Soul Space is a full service interior design studio that designs spaces from concept to completion in Dubai and India, for new builds and renovations.</p>
+    <p class="muted up">Our strength is remote project management: we take full responsibility for executing a project, even for clients in other cities or countries, with minimal input needed from them.</p>
+    <div class="stats up">
+      <div class="stat"><div class="num"><span class="count" data-to="80">0</span><sup>%</sup></div><p>Custom furniture, Arabian Ranches</p></div>
+      <div class="stat"><div class="num"><span class="count" data-to="4">0</span></div><p>Months to transform the AMBA House</p></div>
+      <div class="stat"><div class="num"><span class="count" data-to="2">0</span></div><p>Countries: Dubai and India</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNATURE (pinned WebGL showcase) -->
+<section class="sig" id="signature">
+  <div class="sig-pin">
+    <canvas id="sigGL"></canvas>
+    <img class="sig-still" id="sigStill" alt="" decoding="async">
+    <div class="sig-shade"></div>
+    <div class="sig-ui">
+      <div class="sig-top"><div class="eyebrow light">Signature projects</div><div class="sig-count"><b id="sigN">01</b> / 04</div></div>
+      <div class="sig-titles" id="sigTitles"></div>
+      <ol class="sig-list" id="sigList"></ol>
+      <div class="sig-bottom"><a href="#" class="btn btn-brass" id="sigOpen" data-cursor="Open">Open project</a><div class="sig-bar"><i id="sigBar"></i></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="work" id="work">
+  <div class="work-head">
+    <div><div class="eyebrow">Projects</div><h2 class="h2 split">Homes with <em>a soul</em></h2>
+      <p class="muted up">Villas and apartments across Dubai, from a 10,000 sq ft turnkey home to a Marina apartment designed entirely remotely.</p></div>
+    <div class="filters" id="filters"></div>
+  </div>
+  <div class="wgrid" id="wgrid"></div>
+</section>
+
+<!-- WINDOW ZOOM -->
+<section class="window">
+  <div class="window-pin">
+    <div class="window-frame" id="wFrame"><img src="x/arabian-ranches-01.webp" alt="Arabian Ranches living room"></div>
+    <div class="window-grad" id="wGrad"></div>
+    <div class="window-eye" id="wEye"><div class="eyebrow light">Restraint &nbsp;·&nbsp; Materiality &nbsp;·&nbsp; Precision</div></div>
+    <div class="window-txt" id="wTxt"><h2 class="mega">Luxury in <em>the detail</em></h2><p>Luxury expressed through craftsmanship and detail rather than bold statements.</p></div>
+  </div>
+</section>
+
+<!-- CURVED GALLERY -->
+<section class="curvex" id="gallery">
+  <div class="sec-head"><div class="eyebrow">Gallery</div><h2 class="h2 split">Drag through <em>the rooms</em></h2></div>
+  <div class="fx-cv" data-fx="curve">
+    <div class="fx-cv-track">
+      <div class="fx-cv-item" data-cap="The AMBA House, living room"><img src="m/amba-house-02.webp" alt="AMBA House living room" loading="lazy"></div>
+      <div class="fx-cv-item" data-cap="Arabian Ranches, master bedroom"><img src="m/arabian-ranches-03.webp" alt="Arabian Ranches bedroom" loading="lazy"></div>
+      <div class="fx-cv-item" data-cap="Museum of Memories, dining"><img src="m/museum-of-memories-06.webp" alt="Museum of Memories dining" loading="lazy"></div>
+      <div class="fx-cv-item" data-cap="House of Angles, lounge"><img src="m/house-of-angles-02.webp" alt="House of Angles lounge" loading="lazy"></div>
+      <div class="fx-cv-item" data-cap="The AMBA House, powder room"><img src="m/amba-house-06.webp" alt="AMBA House powder room" loading="lazy"></div>
+      <div class="fx-cv-item" data-cap="Arabian Ranches, kitchen"><img src="m/arabian-ranches-05.webp" alt="Arabian Ranches kitchen" loading="lazy"></div>
+      <div class="fx-cv-item" data-cap="Calmness in the Creek, living"><img src="m/calmness-in-the-creek-01.webp" alt="Calmness in the Creek living" loading="lazy"></div>
+      <div class="fx-cv-item" data-cap="Museum of Memories, bedroom"><img src="m/museum-of-memories-04.webp" alt="Museum of Memories bedroom" loading="lazy"></div>
+    </div>
+  </div>
+  <div class="cv-ctl"><button data-cv="-1" aria-label="Previous" data-cursor="Prev">←</button><p class="fx-cv-cap"></p><button data-cv="1" aria-label="Next" data-cursor="Next">→</button></div>
+</section>
+
+<!-- SERVICES (stacking) -->
+<section class="services" id="services">
+  <div class="sec-head">
+    <div class="eyebrow">Services</div>
+    <h2 class="h2 split">Turnkey, quick fix <em>and remote</em></h2>
+    <p class="muted up">From a full turnkey home to a fast refresh of a rental, delivered in Dubai, in India or remotely.</p>
+  </div>
+  <div class="stack">
+    <article class="scard"><div class="scard-txt"><span class="sn">I</span><h3>End to End, Turnkey</h3><p class="sl">A hassle free solution for transforming your space, from concept to completion.</p><p>We take care of everything to the T, so you can sit back and relax while your space becomes a beautiful and functional home.</p><ul><li>Concept and space planning</li><li>Furniture, lighting and styling</li><li>Execution and handover</li></ul></div><div class="scard-img" data-fx-reveal="diagonal"><img src="m/amba-house-07.webp" alt="AMBA House dining" loading="lazy"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">II</span><h3>Quick Fix</h3><p class="sl">A quick and easy way to refresh a space.</p><p>For rentals and tight timelines: expert guidance on furniture placement, lighting and new accessories that transform a room without a full renovation.</p><ul><li>Furniture placement</li><li>Lighting design</li><li>Accessories and styling</li></ul></div><div class="scard-img" data-fx-reveal="diagonal"><img src="m/calmness-in-the-creek-02.webp" alt="Calmness in the Creek bedroom" loading="lazy"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">III</span><h3>Remote Project Management</h3><p class="sl">Full responsibility for your project, wherever you are.</p><p>Our USP is remote project management for clients in other regions or countries. House of Angles was designed and executed in three months without a single physical meeting.</p><ul><li>One point of contact</li><li>Sourcing across Dubai and India</li><li>Execution with minimal input from you</li></ul></div><div class="scard-img" data-fx-reveal="diagonal"><img src="m/house-of-angles-03.webp" alt="House of Angles kitchen" loading="lazy"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">IV</span><h3>Bespoke &amp; Vastu</h3><p class="sl">Custom furniture and homes designed around Vastu principles.</p><p>Nearly 80 percent of the furniture in the Arabian Ranches residence was custom designed, and homes like the AMBA House follow Vastu principles from plan to detail.</p><ul><li>Custom furniture and cabinetry</li><li>Vastu compliant planning</li><li>Tailored drapery and hardware</li></ul></div><div class="scard-img" data-fx-reveal="diagonal"><img src="m/arabian-ranches-04.webp" alt="Arabian Ranches bedroom" loading="lazy"></div></article>
+  </div>
+</section>
+
+<!-- APPROACH: plan drawn by scroll -->
+<section class="process" id="approach">
+  <div class="process-wrap">
+    <div class="plan-sticky">
+      <div class="eyebrow light">Our approach</div>
+      <h2 class="h2">Concept <em>to completion</em></h2>
+      <svg class="plan" viewBox="0 0 520 380" fill="none" aria-hidden="true">
+        <g class="L1" stroke-width="3"><path d="M20 20H500V360H20Z"/><path d="M20 210H150"/><path d="M330 20V150"/></g>
+        <g class="L2" stroke-width="1.5"><path d="M150 210V360"/><path d="M150 20V160"/><path d="M330 150H500"/><path d="M330 240H500"/><path d="M380 240V360"/><path d="M150 160H230"/><path d="M270 160H330"/>
+          <path d="M230 160A40 40 0 0 1 270 160" stroke-dasharray="3 4"/><path d="M150 250A40 40 0 0 0 190 210" stroke-dasharray="3 4"/><path d="M330 190A40 40 0 0 0 370 150" stroke-dasharray="3 4"/></g>
+        <g class="L3" stroke-width="1.1"><rect x="185" y="230" width="110" height="46" rx="4"/><rect x="200" y="290" width="80" height="34" rx="2"/><circle cx="240" cy="90" r="34"/><circle cx="240" cy="90" r="20"/>
+          <rect x="365" y="45" width="100" height="80" rx="2"/><path d="M365 62H465"/><rect x="40" y="40" width="88" height="140" rx="2"/><path d="M50 60H118M50 80H118M50 100H118"/>
+          <rect x="398" y="262" width="80" height="80" rx="2"/><path d="M398 302H478"/><path d="M40 240H128V340H40Z"/><circle cx="84" cy="290" r="18"/></g>
+        <g class="L4" stroke-width="1"><path d="M20 8H500M20 3V13M500 3V13" /><path d="M512 20V360M507 20H517M507 360H517"/><path d="M330 30V140" stroke-dasharray="2 4"/></g>
+        <g class="labels"><text x="58" y="200">Study</text><text x="214" y="345">Living</text><text x="214" y="140">Dining</text><text x="372" y="140">Master suite</text><text x="404" y="225">Dressing</text><text x="56" y="360">Kitchen</text><text x="400" y="355">Garden</text></g>
+      </svg>
+    </div>
+    <div class="steps">
+      <div class="step"><span>01</span><h3>Listen</h3><p>We start with how you live, your story and the spaces you love, in person or remotely.</p></div>
+      <div class="step"><span>02</span><h3>Design</h3><p>Clean lines, earthy palettes and contemporary aesthetics, with a touch of unique artistic elements.</p></div>
+      <div class="step"><span>03</span><h3>Source</h3><p>Furniture, fabrics and lighting sourced across Dubai and India, and custom pieces made for the home.</p></div>
+      <div class="step"><span>04</span><h3>Deliver</h3><p>We take full responsibility for execution, on tight timelines, so you return to a finished home.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY (scroll Ken Burns with parallax layers) -->
+<section class="kbx" data-fx="kbscroll">
+  <img class="fx-kb-bg" src="g/amba-house-01.webp" alt="" loading="lazy">
+  <div class="kbx-shade"></div>
+  <div class="fx-kb-mid kbx-card"><img src="m/amba-house-05.webp" alt="AMBA House garden terrace" loading="lazy"></div>
+  <div class="fx-kb-fg kbx-txt"><div class="eyebrow light">Philosophy</div><h2 class="mega">Clean lines, <em>earthy palettes</em></h2><p>Contemporary aesthetics with a touch of unique artistic elements and decor.</p></div>
+</section>
+
+<!-- TUNNEL -->
+<section class="tunnel">
+  <div class="tunnel-pin">
+    <canvas id="tunGL"></canvas>
+    <div class="tunnel-txt" id="tunTxt"><div class="eyebrow light">Dubai</div><h2 class="mega">Step inside <em>the work</em></h2><p>Scroll to walk through villas and apartments across Dubai. Select any room to open the project.</p></div>
+    <div class="tunnel-name" id="tunName"></div>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section class="dubai" id="founder">
+  <div class="dubai-img"><div class="frame" data-fx-reveal="diagonal"><img src="d/about-0.webp" alt="A Soul Space interior" loading="lazy"></div></div>
+  <div class="dubai-text">
+    <div class="eyebrow">Founder &amp; creative head</div>
+    <h2 class="h2 split">Sunayana</h2>
+    <p class="big up">Born and raised in India, Sunayana's passion for interior design began right after school, before a degree in finance and an eight year career in Dubai.</p>
+    <p class="up">During the pandemic she remodelled her own apartment and shared the journey on Instagram. Requests to design other homes followed, and in 2022 she left her corporate job to pursue design full time.</p>
+    <p class="up">Today the studio is immersed in projects across Dubai and India, crafting spaces tailored to the needs of each client.</p>
+    <div class="dubai-card up">
+      <div><span>Studio</span><b>Dubai, United Arab Emirates</b></div>
+      <div><span>WhatsApp</span><a href="https://wa.me/971522731166" target="_blank" rel="noopener">+971 52 273 1166</a></div>
+      <a href="#" class="link-arrow" data-open="amba-house">View the AMBA House <span>→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="quotes" id="clients">
+  <div class="quotes-in">
+    <div class="eyebrow">In our words</div>
+    <div class="q-stage" id="qStage"></div>
+    <div class="q-nav"><button id="qPrev" aria-label="Previous testimonial" data-cursor="Prev"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><span id="qNum">01 / 03</span><button id="qNext" aria-label="Next testimonial" data-cursor="Next"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button></div>
+  </div>
+</section>
+
+<!-- RECOGNITION -->
+<section class="awards" id="recognition">
+  <div class="sec-head"><div class="eyebrow">Press</div><h2 class="h2 split">Featured <em>in print</em></h2><p class="muted up">Projects by the studio have been featured in international design magazines.</p></div>
+  <div class="ledger" id="ledger">
+    <a href="#" class="lrow" data-open="amba-house" data-img="amba-house-02"><span class="ly">AD</span><span class="la">The AMBA House<small>Architectural Digest</small></span><span class="lp">Dubai</span></a>
+    <a href="#" class="lrow" data-open="museum-of-memories" data-img="museum-of-memories-02"><span class="ly">2024</span><span class="la">Museum of Memories<small>Living Etc, print edition, November</small></span><span class="lp">Dubai</span></a>
+  </div>
+  <div class="lprev" id="lprev" aria-hidden="true"><img alt=""></div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-bg"><img src="g/arabian-ranches-02.webp" alt="" class="par" loading="lazy"></div>
+  <div class="contact-in">
+    <div class="eyebrow light">Contact</div>
+    <h2 class="mega split">Let's design <em>your soul space</em></h2>
+    <p class="big up">Tell us about your home, your timeline and where you are. We work in Dubai, in India and remotely.</p>
+    <div class="contact-btns up">
+      <a class="btn btn-brass" href="https://wa.me/971522731166?text=Hello%20Soul%20Space%2C%20I%20would%20like%20to%20discuss%20an%20interior%20design%20project." target="_blank" rel="noopener">Message on WhatsApp</a>
+      <a class="btn btn-line light" href="tel:+971522731166">Call +971 52 273 1166</a>
+    </div>
+    <div class="contact-grid2 up">
+      <form class="nform" id="nform">
+        <h5>Send an enquiry</h5>
+        <label><span>Name</span><input name="n" required autocomplete="name"></label>
+        <label><span>Home</span><select name="t"><option>Villa</option><option>Apartment</option><option>Quick fix refresh</option><option>Project in India</option></select></label>
+        <label><span>Community and timeline</span><input name="l" placeholder="e.g. Arabian Ranches, start in 2 months"></label>
+        <button class="btn btn-brass" type="submit">Send on WhatsApp</button>
+      </form>
+      <div class="ccard"><h5>Soul Space Design Studio</h5><p>Dubai, United Arab Emirates<br>Projects in Dubai and India</p><a href="tel:+971522731166">+971 52 273 1166</a><a href="mailto:info@soulspacedesignstudio.com">info@soulspacedesignstudio.com</a><a href="https://www.instagram.com/soulspace_designstudio/" target="_blank" rel="noopener">Instagram</a></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="foot-big"><span>Soul</span> <span>Space</span></div>
+  <div class="foot-cols">
+    <div><h5>Studio</h5><a href="#studio">About</a><a href="#work">Projects</a><a href="#gallery">Gallery</a><a href="#services">Services</a><a href="#founder">Founder</a></div>
+    <div><h5>Services</h5><span>Turnkey interiors</span><span>Quick fix</span><span>Remote project management</span><span>Bespoke furniture</span><span>Vastu compliant homes</span></div>
+    <div><h5>Contact</h5><a href="https://wa.me/971522731166" target="_blank" rel="noopener">WhatsApp +971 52 273 1166</a><a href="mailto:info@soulspacedesignstudio.com">info@soulspacedesignstudio.com</a><a href="https://www.instagram.com/soulspace_designstudio/" target="_blank" rel="noopener">Instagram</a></div>
+  </div>
+  <div class="foot-bot"><span>© <span id="yr"></span> Soul Space Design Studio. Dubai · India.</span><a href="#top">Back to top</a></div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/971522731166?text=Hello%20Soul%20Space%2C%20I%20would%20like%20to%20discuss%20an%20interior%20design%20project." target="_blank" rel="noopener" aria-label="WhatsApp" data-cursor="WhatsApp">
+  <svg viewBox="0 0 32 32" width="24" height="24"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.7c-2 0-3.9-.5-5.6-1.5l-.4-.2-3.9 1 1-3.8-.3-.4A10.7 10.7 0 1 1 16 26.7zm5.9-8c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5 1-1.7.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4s-1.2 1.1-1.2 2.8 1.2 3.2 1.4 3.4 2.4 3.7 5.8 5.2c2.2.9 3 1 4.1.8.7-.1 1.9-.8 2.2-1.5s.3-1.3.2-1.5-.3-.2-.6-.4z"/></svg>
+</a>
+
+<div class="modal" id="modal" aria-hidden="true">
+  <button class="modal-x" id="modalX" aria-label="Close project" data-cursor="Close"></button>
+  <div class="modal-scroll" id="modalScroll" data-lenis-prevent></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="data.js?v=1"></script>
+<script type="module" src="main.js?v=1"></script>
+<script src="fx.js?v=1"></script>
+<script>
+document.getElementById('nform').addEventListener('submit',function(e){e.preventDefault();var d=new FormData(this);
+var t='Hello Soul Space, my name is '+d.get('n')+'.\nHome: '+d.get('t')+'\nCommunity and timeline: '+(d.get('l')||'');
+window.open('https://wa.me/971522731166?text='+encodeURIComponent(t),'_blank','noopener');});
+</script>
+</body>
+</html>
