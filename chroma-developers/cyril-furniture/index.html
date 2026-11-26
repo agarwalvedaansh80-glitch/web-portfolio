@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<base href="/cyril-furniture/">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cyril Furniture | Bespoke Furniture, Joinery &amp; Drapery in Dubai</title>
+<meta name="description" content="Bespoke furniture, joinery and drapery crafted in house in Dubai since 2009. Founded by French master craftsman Cyril Barret, trained with the Compagnons du Devoir.">
+<meta property="og:title" content="Cyril Furniture | Comfort. Luxury. Art.">
+<meta property="og:description" content="Dubai's trusted partner in bespoke furniture and joinery for interior designers, project teams and private clients.">
+<meta property="og:image" content="https://chroma-developers.vercel.app/cyril-furniture/img/din1.webp">
+<meta name="theme-color" content="#07080b">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Italiana&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=1">
+<link rel="stylesheet" href="fx.css?v=1">
+<script>try{if(localStorage.getItem('cy-theme')==='light')document.documentElement.dataset.theme='light'}catch(e){}</script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+</head>
+<body class="loading in-hero">
+
+<div class="loader" id="loader">
+  <div class="loader-panels"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="loader-inner">
+    <img class="loader-mark" src="img/logo.webp" alt="" width="120" height="93">
+    <div class="loader-word" aria-label="Cyril"><span>C</span><span>Y</span><span>R</span><span>I</span><span>L</span></div>
+    <div class="loader-sub">Furniture</div>
+    <div class="loader-bar"><i id="loaderBar"></i></div>
+    <div class="loader-meta"><span>Dubai · Since 2009</span><span><b id="loaderNum">0</b>%</span></div>
+  </div>
+</div>
+
+<div class="cursor" id="cursor"><div class="c-ring"><span class="c-label" id="cLabel"></span></div><div class="c-dot"></div></div>
+<canvas id="gal" aria-hidden="true"></canvas>
+
+<header class="nav" id="nav">
+  <a href="#top" class="logo" aria-label="Cyril Furniture"><b>CYRIL</b><small>Furniture</small></a>
+  <nav class="nav-links">
+    <a href="#collection">Work</a><a href="#atelier">Atelier</a><a href="#services">Services</a><a href="#process">Process</a><a href="#founder">Founder</a><a href="#contact">Contact</a>
+  </nav>
+  <button class="theme" id="theme" aria-label="Switch day or night mode" data-cursor="Mode"><span>Day</span><i></i><span>Night</span></button>
+  <a href="#contact" class="btn btn-brass btn-sm nav-cta magnetic">Start a commission</a>
+  <button class="burger" id="burger" aria-label="Menu"><i></i><i></i></button>
+</header>
+<div class="menu" id="menu">
+  <a href="#collection">Work</a><a href="#atelier">Atelier</a><a href="#services">Services</a><a href="#process">Process</a><a href="#founder">Founder</a><a href="#contact">Contact</a>
+  <div class="menu-foot"><a href="https://wa.me/971507252202" target="_blank" rel="noopener">WhatsApp</a><a href="tel:+97143387744">+971 4 338 7744</a></div>
+</div>
+
+<main id="top">
+
+<!-- HERO: live furniture configurator -->
+<section class="hero" id="hero">
+  <div class="hero-pin">
+    <canvas id="cfgGL" aria-label="Interactive 3D sofa"></canvas>
+    <div class="hero-top" id="heroTop">
+      <div class="eyebrow h-in">Bespoke furniture &amp; joinery · Dubai</div>
+      <h1 class="hero-title split">Comfort. Luxury. <em>Art.</em></h1>
+      <p class="hero-lead h-in">French savoir faire, crafted in house in Dubai since 2009 for interior designers, project teams and private clients.</p>
+    </div>
+    <div class="xp" id="xp" aria-hidden="true">
+      <div class="eyebrow">Full in-house control</div>
+      <h2 class="xp-title">Built piece by piece, <em>by hand</em></h2>
+      <p>Upholstery, assembly, finishing and detailing, all executed in our own workshop.</p>
+    </div>
+    <div class="tags" id="tags">
+      <div class="tag" data-k="back"><i></i><span>Hand upholstered back</span></div>
+      <div class="tag" data-k="seat"><i></i><span>Seat cushions</span></div>
+      <div class="tag" data-k="arm"><i></i><span>Arm with <b class="finName">walnut</b> tray</span></div>
+      <div class="tag" data-k="frame"><i></i><span>Upholstered frame</span></div>
+      <div class="tag" data-k="base"><i></i><span>Base in <b class="finName">walnut</b></span></div>
+      <div class="tag" data-k="table"><i></i><span>Table in <b class="finName">walnut</b></span></div>
+    </div>
+    <div class="cfg h-in" id="cfg">
+      <button class="cfg-x" id="cfgX" aria-label="Close" data-cursor="Close"></button>
+      <div class="cfg-head"><span>Compose a piece</span><b id="cfgSel">Bouclé Ivory · Walnut</b></div>
+      <div class="cfg-row"><label>Upholstery</label>
+        <div class="sw" id="swFab">
+          <button class="on" data-k="boucle" data-n="Bouclé Ivory" data-cursor="Bouclé" style="--sw:radial-gradient(circle at 35% 30%,#fbf7f0,#ddd4c6 70%)" aria-label="Bouclé Ivory"></button>
+          <button data-k="linen" data-n="Linen Stone" data-cursor="Linen" style="--sw:repeating-linear-gradient(90deg,#b7ad9f 0 2px,#a39888 2px 4px)" aria-label="Linen Stone"></button>
+          <button data-k="velvet" data-n="Velvet Mocha" data-cursor="Velvet" style="--sw:radial-gradient(circle at 35% 30%,#8a6a52,#3f2c20 72%)" aria-label="Velvet Mocha"></button>
+          <button data-k="charcoal" data-n="Velvet Charcoal" data-cursor="Charcoal" style="--sw:radial-gradient(circle at 35% 30%,#5a5856,#1c1c1c 72%)" aria-label="Velvet Charcoal"></button>
+          <button data-k="leather" data-n="Leather Cognac" data-cursor="Leather" style="--sw:radial-gradient(circle at 35% 30%,#b0703f,#5e3219 75%)" aria-label="Leather Cognac"></button>
+        </div>
+      </div>
+      <div class="cfg-row"><label>Base finish</label>
+        <div class="sw" id="swFin">
+          <button class="on" data-k="walnut" data-n="Walnut" data-cursor="Walnut" style="--sw:repeating-linear-gradient(100deg,#5a3a25 0 3px,#6e4a30 3px 5px,#4a2f1e 5px 8px)" aria-label="Walnut"></button>
+          <button data-k="oak" data-n="Oak" data-cursor="Oak" style="--sw:repeating-linear-gradient(100deg,#c49a68 0 3px,#b08458 3px 5px,#d2ab7b 5px 8px)" aria-label="Oak"></button>
+          <button data-k="marble" data-n="Marble" data-cursor="Marble" style="--sw:linear-gradient(135deg,#f1ede6 40%,#a59d92 44%,#f1ede6 47%,#e6e0d6 70%,#bdb4a6 72%,#f1ede6 74%)" aria-label="Marble"></button>
+          <button data-k="brass" data-n="Brushed Brass" data-cursor="Brass" style="--sw:linear-gradient(135deg,#8c6a39,#e2c58f 45%,#a98447 60%,#d9b97f)" aria-label="Brushed Brass"></button>
+        </div>
+      </div>
+      <a class="btn btn-brass btn-sm cfg-send magnetic" id="cfgSend" href="https://wa.me/971507252202" target="_blank" rel="noopener">Discuss this piece</a>
+    </div>
+    <div class="hero-hint h-in"><span class="drag-ico"><i></i></span><span>Drag to rotate<br>Scroll to see it built</span></div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true"><div class="marquee-track">
+  <span>Furniture</span><b></b><span>Joinery</span><b></b><span>Drapery</span><b></b><span>Upholstery</span><b></b><span>Finishing</span><b></b><span>Installation</span><b></b>
+  <span>Furniture</span><b></b><span>Joinery</span><b></b><span>Drapery</span><b></b><span>Upholstery</span><b></b><span>Finishing</span><b></b><span>Installation</span><b></b>
+</div></div>
+
+<!-- INTRO -->
+<section class="intro" id="studio">
+  <div class="intro-img"><div class="arch"><img src="img/joi1.webp" alt="Marble vanity joinery by Cyril Furniture" class="par"></div></div>
+  <div class="intro-text">
+    <div class="eyebrow">Dubai's trusted partner</div>
+    <h2 class="h2" data-fx="blurchars">Bespoke furniture <em>&amp; joinery</em></h2>
+    <p class="scrub-text">We partner with interior designers, project management teams and private clients delivering high end residential and commercial spaces.</p>
+    <p class="muted up">Every piece is crafted with precision, discipline and full in-house control. From design intent to final installation, we ensure refined execution, consistency and reliability at every stage.</p>
+    <a href="#services" class="link-arrow up">What we make <span>→</span></a>
+  </div>
+</section>
+
+<!-- FOUNDER (light sweep + counters) -->
+<section class="founder" id="founder">
+  <div class="founder-img" data-fx="sweep"><img src="img/founder.webp" alt="Cyril Barret, founder of Cyril Furniture" loading="lazy"></div>
+  <div class="founder-txt">
+    <div class="eyebrow">The founder</div>
+    <h2 class="h2" data-fx="blurchars">Cyril <em>Barret</em></h2>
+    <p class="lead-p">A French master craftsman trained with the Compagnons du Devoir, Cyril built the company on a deep respect for traditional craftsmanship and hands-on expertise.</p>
+    <p class="muted long">Our team is composed of highly qualified craftsmen, fully trained in their respective disciplines, working under the direct guidance of the founder. Every piece is produced in house using hand crafting techniques carefully adapted to the demands of modern, large scale projects.</p>
+    <div class="counts">
+      <div><b data-fx-count="2009" data-fx-from="1990">2009</b><span>Operating in Dubai since</span></div>
+      <div><b><i data-fx-count="3">3</i></b><span>Decades of experience</span></div>
+      <div><b><i data-fx-count="3">3</i></b><span>Disciplines under one roof</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- RING GALLERY -->
+<section class="ring-sec" id="collection">
+  <div class="ring-head">
+    <div class="eyebrow">Past projects</div>
+    <h2 class="h2 split">Work trusted by <em>discerning clients</em></h2>
+  </div>
+  <canvas id="ring" aria-label="3D ring of projects"></canvas>
+  <div class="ring-label" id="ringLabel"><span id="rlMeta">Rooms</span><b id="rlName">Tufted Salon</b></div>
+  <div class="ring-hint"><span class="drag-ico"><i></i></span><span>Drag to turn<br>Tap a piece to open</span></div>
+</section>
+
+<!-- SHOWCASE (pinned, liquid WebGL) -->
+<section class="show" id="collections">
+  <div class="show-pin">
+    <div class="show-num" id="showNum" aria-hidden="true">01</div>
+    <div class="show-left">
+      <div class="eyebrow light">Spaces we furnish</div>
+      <div class="show-titles" id="showTitles"></div>
+      <div class="show-ctl"><a href="#" class="btn btn-brass magnetic" id="showOpen" data-cursor="Open">View the work</a><div class="show-count"><b id="showN">01</b> / 05</div></div>
+    </div>
+    <div class="show-frame" id="showFrame"><div class="show-imgs" id="showImgs"></div><canvas id="showGL"></canvas></div>
+    <ul class="show-list" id="showList"></ul>
+    <div class="show-bar"><i id="showBar"></i></div>
+  </div>
+</section>
+
+<!-- ATELIER COVER FLOW -->
+<section class="cflow" id="atelier">
+  <div class="sec-head">
+    <div class="eyebrow">From the atelier</div>
+    <h2 class="h2" data-fx="blurchars">Pieces with <em>presence</em></h2>
+  </div>
+  <div class="fx-cf" data-fx="coverflow">
+    <div class="fx-cf-item" data-cap="Bouclé Lounge Chair"><img src="img/liv3.webp" alt="Bouclé lounge chair with bronze legs" loading="lazy"></div>
+    <div class="fx-cf-item" data-cap="Marble and Bronze Side Table"><img src="img/tab2.webp" alt="Marble and bronze side table" loading="lazy"></div>
+    <div class="fx-cf-item" data-cap="Velvet Chaise Longue"><img src="img/liv4.webp" alt="Velvet chaise longue" loading="lazy"></div>
+    <div class="fx-cf-item" data-cap="Twin Cube Side Tables"><img src="img/tab1.webp" alt="Twin cube side tables in timber and bronze" loading="lazy"></div>
+    <div class="fx-cf-item" data-cap="Capitonné Sectional"><img src="img/liv2.webp" alt="Capitonné sectional sofa" loading="lazy"></div>
+    <div class="fx-cf-item" data-cap="Walk-in Wardrobe"><img src="img/joi5.webp" alt="Walk-in wardrobe joinery" loading="lazy"></div>
+  </div>
+  <div class="cf-ctl"><button data-cf="-1" aria-label="Previous" data-cursor="Prev">←</button><p class="fx-cf-cap"></p><button data-cf="1" aria-label="Next" data-cursor="Next">→</button></div>
+</section>
+
+<!-- GALLERY GRID -->
+<section class="work" id="work">
+  <div class="work-head">
+    <div><div class="eyebrow">Selected work</div><h2 class="h2 split">Made in house, <em>made to last</em></h2>
+      <p class="muted up">Our portfolio reflects years of collaboration on high profile residential, commercial and institutional projects, defined by repeat partnerships and dependable delivery.</p></div>
+  </div>
+  <div class="filters" id="filters" data-lenis-prevent></div>
+  <div class="wgrid" id="wgrid"></div>
+</section>
+
+<!-- WINDOW ZOOM -->
+<section class="window">
+  <div class="window-pin">
+    <div class="window-frame" id="wFrame"><img src="img/win.webp" alt="Staircase hall with timber treads"></div>
+    <div class="window-txt" id="wTxt"><div class="eyebrow light">Design intent · Installation</div><h2 class="mega">Crafted for <em>the whole project</em></h2><p>From fitted furniture to architectural elements, every piece is produced to integrate with the interior scheme.</p></div>
+  </div>
+</section>
+
+<!-- SERVICES (stacking) -->
+<section class="services" id="services">
+  <div class="sec-head">
+    <div class="eyebrow">Services</div>
+    <h2 class="h2 split">Furniture, joinery <em>and drapery</em></h2>
+    <p class="muted up">Three disciplines under one roof, so the proportions, finishes and timing of every element stay in our hands.</p>
+  </div>
+  <div class="stack">
+    <article class="scard"><div class="scard-txt"><span class="sn">01</span><h3>Furniture</h3><p class="sl">Bespoke furniture tailored to each project, from loose pieces to fully integrated custom items.</p><ul><li>Upholstery and assembly in house</li><li>Finishing and detailing in house</li><li>Complete control over quality and proportion</li></ul><a href="#" class="link-arrow" data-cat="living">View seating <span>→</span></a></div><div class="scard-img"><img src="img/liv1.webp" alt="Tufted salon furniture" loading="lazy"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">02</span><h3>Joinery</h3><p class="sl">Custom joinery designed to integrate seamlessly within the overall interior scheme.</p><ul><li>Fitted furniture</li><li>Libraries, studies and wardrobes</li><li>Architectural elements</li></ul><a href="#" class="link-arrow" data-cat="joinery">View joinery <span>→</span></a></div><div class="scard-img"><img src="img/joi2.webp" alt="Study shelving joinery" loading="lazy"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">03</span><h3>Drapery</h3><p class="sl">Made to measure drapery that enhances both the architectural and aesthetic intent of a space.</p><ul><li>Premium fabrics</li><li>Hand finishing techniques</li><li>Precision in proportion, movement and installation</li></ul><a href="#" class="link-arrow" data-cat="drapery">View drapery <span>→</span></a></div><div class="scard-img"><img src="img/bed1.webp" alt="Bedroom suite with drapery" loading="lazy"></div></article>
+  </div>
+</section>
+
+<!-- WORKSHOP (dust particles) -->
+<section class="workshop" data-fx="dust" data-dust="#dfe3ea">
+  <div class="workshop-bg"><img src="img/work2.webp" alt="The Cyril Furniture team reviewing fabrics and finishes" loading="lazy"></div>
+  <div class="workshop-txt">
+    <div class="eyebrow light">The team</div>
+    <h2 class="mega" data-fx="blurchars">Made in Dubai, <em>by hand</em></h2>
+    <p>Hand crafting techniques, carefully adapted to the demands of modern, large scale projects, ensure precision, consistency and enduring quality.</p>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="process-wrap">
+    <div class="plan-sticky">
+      <div class="eyebrow light">Process</div>
+      <h2 class="h2">From design intent <em>to installation</em></h2>
+      <svg class="plan" viewBox="0 0 560 360" fill="none" aria-hidden="true">
+        <g class="L1" stroke-width="2.4"><path d="M20 318H540"/><rect x="60" y="282" width="440" height="20" rx="3"/><rect x="50" y="250" width="460" height="32" rx="7"/></g>
+        <g class="L2" stroke-width="1.6"><rect x="88" y="128" width="384" height="122" rx="12"/><rect x="50" y="176" width="38" height="74" rx="10"/><rect x="472" y="176" width="38" height="74" rx="10"/><path d="M44 174H94M466 174H516"/></g>
+        <g class="L3" stroke-width="1.2"><rect x="96" y="140" width="118" height="80" rx="18"/><rect x="221" y="140" width="118" height="80" rx="18"/><rect x="346" y="140" width="118" height="80" rx="18"/><rect x="94" y="220" width="122" height="30" rx="10"/><rect x="219" y="220" width="122" height="30" rx="10"/><rect x="344" y="220" width="122" height="30" rx="10"/><path d="M110 302V316M450 302V316"/></g>
+        <g class="L4" stroke-width="1"><path d="M50 96H510M50 90V102M510 90V102"/><path d="M534 128V302M528 128H540M528 302H540"/><path d="M24 220V250M18 220H30M18 250H30" /><path d="M280 96V128" stroke-dasharray="2 4"/></g>
+        <g class="labels"><text x="232" y="84">Width</text><text x="546" y="220" transform="rotate(90 546 220)">Height</text><text x="6" y="268" >Seat</text><text x="206" y="340">Made to the drawing</text></g>
+      </svg>
+    </div>
+    <div class="steps">
+      <div class="step"><span>01</span><h3>Design intent</h3><p>We start from the designer's drawings and the client's brief, understanding detailed specifications before anything is made.</p></div>
+      <div class="step"><span>02</span><h3>Production planning</h3><p>Materials, finishes and timelines are planned with precision and foresight, coordinated with the wider project schedule.</p></div>
+      <div class="step"><span>03</span><h3>Crafted in house</h3><p>Our craftsmen produce every piece in our own workshop, under the direct guidance of the founder.</p></div>
+      <div class="step"><span>04</span><h3>Finishing &amp; detailing</h3><p>Upholstery, assembly, finishing and detailing are executed in house for complete control over the final result.</p></div>
+      <div class="step"><span>05</span><h3>Delivery &amp; installation</h3><p>Logistics are managed for timely execution and smooth integration on site, through to final installation.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROMISES -->
+<section class="why">
+  <div class="sec-head">
+    <div class="eyebrow">Why Cyril Furniture</div>
+    <h2 class="h2 split">Disciplined workmanship, <em>respect for the craft</em></h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-card"><span>01</span><h3>Craftsmanship</h3><p>The result of formal training, decades of experience and a culture of precision, led by a master craftsman.</p></div>
+    <div class="why-card"><span>02</span><h3>Experience</h3><p>We understand detailed specifications, tight timelines and coordinated delivery on complex, high end projects.</p></div>
+    <div class="why-card"><span>03</span><h3>Logistics</h3><p>From production planning to delivery and installation, logistics are managed with precision and foresight.</p></div>
+    <div class="why-card"><span>04</span><h3>Durability</h3><p>Each piece is built for long term use, with considered construction and premium materials that keep their structure and finish.</p></div>
+    <div class="why-card"><span>05</span><h3>Full in-house control</h3><p>Furniture, joinery and drapery produced under one roof, so what is approved is what is installed.</p></div>
+    <div class="why-card"><span>06</span><h3>Repeat partnerships</h3><p>Trusted by established studios and discerning clients who return to us project after project.</p></div>
+  </div>
+</section>
+
+<!-- PRESS -->
+<section class="faq" id="press">
+  <div class="sec-head"><div class="eyebrow">Featured in</div><h2 class="h2 split">In the <em>press</em></h2></div>
+  <div class="press-list">
+    <a href="https://gulfnews.com/friday/art-people/meet-the-man-who-furnishes-the-uaes-royal-palaces-1.2175777" target="_blank" rel="noopener" data-cursor="Read"><span data-fx="scramble">Gulf News</span><b>Meet the man who furnishes the UAE's royal palaces</b><i>→</i></a>
+    <a href="https://identity.ae/dubai-hills-villa/" target="_blank" rel="noopener" data-cursor="Read"><span data-fx="scramble">Identity</span><b>A Dubai Hills villa where elegance meets modernity</b><i>→</i></a>
+    <a href="https://identity.ae/third-culture-crafts/" target="_blank" rel="noopener" data-cursor="Read"><span data-fx="scramble">Identity</span><b>Third culture crafts</b><i>→</i></a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-bg"><img src="img/din1.webp" alt="" class="par"></div>
+  <div class="contact-in">
+    <div class="eyebrow light">Contact</div>
+    <h2 class="mega split">Begin a <em>commission</em></h2>
+    <p class="big up">Share your drawings, references or design intent. Our team will reply on WhatsApp to take the conversation forward.</p>
+    <div class="contact-grid">
+      <form class="cform up" id="cform">
+        <h3>Project enquiry</h3>
+        <label><span>Name</span><input name="n" required autocomplete="name"></label>
+        <label><span>I am</span><select name="r"><option>An interior designer</option><option>A project manager</option><option>A private client</option><option>A developer or hospitality group</option></select></label>
+        <label><span>Scope</span><select name="s"><option>Furniture</option><option>Joinery</option><option>Drapery</option><option>A complete project</option></select></label>
+        <label><span>Project details</span><textarea name="m" rows="3" placeholder="Location, timeline, quantities"></textarea></label>
+        <button class="btn btn-brass magnetic" type="submit">Send on WhatsApp</button>
+      </form>
+      <div class="contact-card up">
+        <div class="mono"><img src="img/logo.webp" alt="" width="44" height="34"></div>
+        <div><strong>Cyril Furniture</strong><small>Bespoke furniture, joinery and drapery</small></div>
+        <ul>
+          <li><span>Inquiries</span><a href="https://wa.me/971507252202" target="_blank" rel="noopener">+971 50 725 2202</a></li>
+          <li><span>Office</span><a href="tel:+97143387744">+971 4 338 7744</a></li>
+          <li><span>Email</span><a href="mailto:daphne@ateliercyrilbarret.com">daphne@ateliercyrilbarret.com</a></li>
+          <li><span>Instagram</span><a href="https://www.instagram.com/cyrilfurniture/" target="_blank" rel="noopener">@cyrilfurniture</a></li>
+          <li><span>Workshop</span><b>Al Quoz Industrial 1, Dubai</b></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="foot-big"><span>CYRIL</span></div>
+  <div class="foot-cols">
+    <div><h5>Studio</h5><a href="#collection">Work</a><a href="#atelier">Atelier</a><a href="#services">Services</a><a href="#process">Process</a><a href="#founder">Founder</a></div>
+    <div><h5>Disciplines</h5><a href="#" data-cat="living">Seating &amp; Upholstery</a><a href="#" data-cat="rooms">Complete Rooms</a><a href="#" data-cat="joinery">Joinery</a><a href="#" data-cat="tables">Tables</a><a href="#" data-cat="drapery">Drapery</a></div>
+    <div><h5>Contact</h5><a href="https://wa.me/971507252202" target="_blank" rel="noopener">WhatsApp +971 50 725 2202</a><a href="tel:+97143387744">Office +971 4 338 7744</a><a href="mailto:daphne@ateliercyrilbarret.com">daphne@ateliercyrilbarret.com</a><a href="https://www.instagram.com/cyrilfurniture/" target="_blank" rel="noopener">Instagram</a><a href="https://www.linkedin.com/company/cyril-furniture/" target="_blank" rel="noopener">LinkedIn</a><span>Al Quoz, Dubai, United Arab Emirates</span></div>
+  </div>
+  <div class="foot-bot"><span>© <span id="yr"></span> Cyril Furniture. Comfort. Luxury. Art.</span><a href="#top">Back to top ↑</a></div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/971507252202?text=Hello%20Cyril%20Furniture%2C%20I%20would%20like%20to%20discuss%20a%20bespoke%20commission." target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 32 32" width="26" height="26"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.7c-2 0-3.9-.5-5.6-1.5l-.4-.2-3.9 1 1-3.8-.3-.4A10.7 10.7 0 1 1 16 26.7zm5.9-8c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5 1-1.7.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4s-1.2 1.1-1.2 2.8 1.2 3.2 1.4 3.4 2.4 3.7 5.8 5.2c2.2.9 3 1 4.1.8.7-.1 1.9-.8 2.2-1.5s.3-1.3.2-1.5-.3-.2-.6-.4z"/></svg>
+</a>
+
+<div class="modal" id="modal" aria-hidden="true" role="dialog">
+  <button class="modal-x" id="modalX" data-cursor="Close" aria-label="Close"></button>
+  <div class="modal-scroll" id="modalScroll" data-lenis-prevent></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="data.js?v=1"></script>
+<script type="module" src="main.js?v=1"></script>
+<script src="fx.js?v=1"></script>
+<script>
+(function(){
+  var f=document.getElementById('cform');
+  f.addEventListener('submit',function(e){e.preventDefault();var d=new FormData(f);
+    var t='Hello Cyril Furniture, my name is '+d.get('n')+'. I am '+d.get('r').toLowerCase()+'.\nScope: '+d.get('s')+'\n'+(d.get('m')||'');
+    window.open('https://wa.me/971507252202?text='+encodeURIComponent(t),'_blank','noopener');});
+  var x=document.getElementById('cfgX'),c=document.getElementById('cfg');
+  x.addEventListener('click',function(){c.classList.add('closed');});
+})();
+</script>
+</body>
+</html>
