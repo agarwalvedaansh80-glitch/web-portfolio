@@ -72,7 +72,8 @@ if (FINE) $$('.magnetic').forEach(b => {
 /* ---------------- textures ---------------- */
 const TL = new THREE.TextureLoader(), cache = {};
 function tex(name) {
-  return cache[name] || (cache[name] = new Promise(res => TL.load(`img/${name}.webp`, t => {
+  const url = name.includes('/') ? name : `img/${name}.webp`;
+  return cache[name] || (cache[name] = new Promise(res => TL.load(url, t => {
     t.colorSpace = THREE.SRGBColorSpace; t.minFilter = THREE.LinearFilter; t.generateMipmaps = false;
     t.userData.size = new THREE.Vector2(t.image.width, t.image.height); res(t);
   }, undefined, () => res(null))));
@@ -121,7 +122,7 @@ const panels = RING.map((p, i) => {
   mesh.rotation.y = th; mesh.position.set(Math.sin(th) * R, 0, Math.cos(th) * R);
   mesh.userData = { p, u, th };
   group.add(mesh);
-  tex(p.img).then(t => { if (t) { u.tex.value = t; u.isz.value.copy(t.userData.size); } });
+  tex(`t/${p.img}.webp`).then(t => { if (t) { u.tex.value = t; u.isz.value.copy(t.userData.size); } });
   return mesh;
 });
 function rSize() {
@@ -143,13 +144,19 @@ function setHover(m) {
   if (m === hovered) return;
   if (hovered) gsap.to(hovered.userData.u.hov, { value: 0, duration: .6, ease: 'power3.out' });
   hovered = m;
-  if (m) {
-    gsap.to(m.userData.u.hov, { value: 1, duration: .6, ease: 'power3.out' });
-    $('#rlName').textContent = m.userData.p.t; $('#rlMeta').textContent = m.userData.p.m;
-  }
-  $('#ringLabel').classList.toggle('on', !!m);
+  if (m) { gsap.to(m.userData.u.hov, { value: 1, duration: .6, ease: 'power3.out' }); showLabel(m.userData.p); }
   if (FINE) { if (m) setCursor(null, 'Open'); else setCursor(null); }
   rc.style.cursor = m && !FINE ? 'pointer' : '';
+}
+let labelP = null, labelT = 0;
+function showLabel(p) {
+  if (p === labelP) return; labelP = p; const el = $('#ringLabel'); el.classList.add('swap'); clearTimeout(labelT);
+  labelT = setTimeout(() => { $('#rlName').textContent = p.t; $('#rlMeta').textContent = p.m; el.classList.remove('swap'); }, 260);
+}
+function frontPanel() {
+  let best = null, bd = 9;
+  panels.forEach(pm => { let d = ((pm.userData.th - rot.a) % (Math.PI * 2) + Math.PI * 3) % (Math.PI * 2) - Math.PI; if (Math.abs(d) < bd) { bd = Math.abs(d); best = pm; } });
+  return best;
 }
 ScrollTrigger.create({ trigger: '#hero', start: 'top top', end: 'bottom top', onToggle: s => heroOn = s.isActive, onUpdate: s => heroP = s.progress });
 gsap.ticker.add(() => {
@@ -173,6 +180,7 @@ gsap.ticker.add(() => {
     const overUI = document.elementFromPoint(mouse.x, mouse.y);
     setHover(hit && overUI === rc ? hit.object : null);
   }
+  if (!hovered) { const f = frontPanel(); if (f) showLabel(f.userData.p); }
   rr.render(rScene, rCam);
 });
 /* touch tap to open on phones */
@@ -271,9 +279,9 @@ function openProject(slug) {
   const p = P[i], nx = P[(i + 1) % P.length];
   const secs = (p.d || []).map(([h, t]) => `<div class="m-sec"><h4>${h}</h4><p>${t}</p></div>`).join('') ||
     `<div class="m-sec"><h4>Planning a similar project?</h4><p>Tell me about your space, and I will suggest how to approach the design.</p></div>`;
-  const gal = (p.g || []).slice(1).map(g => `<img loading="lazy" src="img/${g}.webp" alt="${p.t}">`).join('');
+  const gal = (p.g || []).slice(1).map(g => `<img loading="lazy" src="${g}" alt="${p.t}">`).join('');
   ms.innerHTML = `<div class="m-hero"><img src="img/${p.img}.webp" alt="${p.t}"><div class="m-title"><span>${p.m}</span><h2>${p.t}</h2></div></div>
-   <div class="m-body"><div><p class="lead">${p.s}</p><div class="m-tags">${p.r.map(r => `<i>${LBL[r] || r}</i>`).join('')}</div></div><div>${secs}</div></div>
+   <div class="m-body"><div><p class="lead">${p.s}</p><div class="m-tags">${p.k ? `<i>${p.k}</i>` : ''}${p.y ? `<i>${p.y}</i>` : ''}${p.r.map(r => `<i>${LBL[r] || r}</i>`).join('')}</div></div><div>${secs}</div></div>
    ${gal ? `<div class="m-gal">${gal}</div>` : ''}
    <div class="m-cta"><h3>Planning a <em>similar project?</em></h3><div style="display:flex;gap:18px;flex-wrap:wrap;align-items:center"><a class="btn btn-dark" target="_blank" rel="noopener" href="https://wa.me/971588874003?text=${encodeURIComponent('Hello, I saw the ' + p.t + ' project and would like to discuss a similar design.')}">Get a consultation</a><a href="#" class="m-next" data-open="${nx.slug}">Next: ${nx.t} →</a></div></div>`;
   ms.scrollTop = 0; modal.classList.add('open'); modal.setAttribute('aria-hidden', 'false');
@@ -325,6 +333,123 @@ function calc() {
 calc();
 
 /* =================================================================
+   THEME (day / night)
+   ================================================================= */
+function applyTheme(t) {
+  document.documentElement.dataset.theme = t;
+  const bg = getComputedStyle(document.documentElement).getPropertyValue('--bg').trim() || '#f3eee6';
+  panels.forEach(pm => pm.userData.u.bg.value.set(bg));
+  try { localStorage.setItem('ad-theme', t); } catch (e) {}
+}
+try { if (localStorage.getItem('ad-theme') === 'dark') applyTheme('dark'); } catch (e) {}
+$('#theme').addEventListener('click', () => applyTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'));
+
+/* =================================================================
+   SIGNATURE: pinned full-screen WebGL showcase
+   ================================================================= */
+const SIG = ['fire-and-water-villa-dubai', 'villa-aurora', 'grand-majlis', 'open-sky-suite-saadiyat-island', 'pine-crown-residence-rublyovka'].map(s => BYSLUG[s]);
+{
+  const cv = $('#sigGL');
+  const r = new THREE.WebGLRenderer({ canvas: cv, antialias: false });
+  r.setPixelRatio(Math.min(devicePixelRatio, 1.5));
+  const sc = new THREE.Scene(), cam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+  const U = { t1: { value: null }, t2: { value: null }, s1: { value: new THREE.Vector2(1, 1) }, s2: { value: new THREE.Vector2(1, 1) }, prog: { value: 0 }, time: { value: 0 }, res: { value: new THREE.Vector2(1, 1) }, mouse: { value: new THREE.Vector2(.5, .5) } };
+  sc.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), new THREE.ShaderMaterial({
+    uniforms: U, vertexShader: `varying vec2 vUv;void main(){vUv=uv;gl_Position=vec4(position,1.);}`,
+    fragmentShader: GLSL + `precision highp float;varying vec2 vUv;uniform sampler2D t1,t2;uniform vec2 s1,s2,res,mouse;uniform float prog,time;
+      void main(){vec2 uv=vUv;float asp=res.x/res.y;vec2 d=(uv-mouse)*vec2(asp,1.);float l=length(d);
+        uv+=normalize(d+1e-4)/vec2(asp,1.)*sin(l*30.-time*3.)*.003*smoothstep(.35,0.,l);
+        float n=fbm(uv*2.6+time*.03);float m=smoothstep(n-.2,n+.2,prog*1.4-.2);
+        vec2 dir=vec2(.25,.08)*(n-.5);
+        vec2 u1=cover((uv-.5)*(1.-.08*prog)+.5+dir*prog,res,s1);
+        vec2 u2=cover((uv-.5)*(1.+.1*(1.-prog))+.5-dir*(1.-prog),res,s2);
+        vec3 c=mix(texture2D(t1,u1).rgb,texture2D(t2,u2).rgb,m);
+        c+=vec3(.95,.75,.45)*(1.-smoothstep(0.,.07,abs(m-.5)))*.28*step(.02,prog)*step(prog,.98);
+        gl_FragColor=vec4(c,1.);}`
+  })));
+  const T = [];
+  SIG.forEach((p, i) => tex(p.img).then(t => { T[i] = t; if (i === 0 && t) { U.t1.value = t; U.s1.value.copy(t.userData.size); U.t2.value = t; U.s2.value.copy(t.userData.size); } }));
+  const titles = $('#sigTitles');
+  SIG.forEach((p, i) => { const d = document.createElement('div'); d.className = 'sig-t'; d.innerHTML = `<span>${p.m}</span><h3>${p.t.split(' ').map(w => `<i>${w}</i>`).join(' ')}</h3><p>${p.s}</p>`; if (i) gsap.set(d, { autoAlpha: 0 }); titles.appendChild(d); });
+  const tEls = $$('.sig-t', titles);
+  let cur = 0, on = false;
+  const size = () => { r.setSize(cv.clientWidth, cv.clientHeight, false); U.res.value.set(cv.clientWidth, cv.clientHeight); };
+  size(); addEventListener('resize', size);
+  function setIdx(i) {
+    if (i === cur) return; const prev = cur; cur = i;
+    $('#sigN').textContent = String(i + 1).padStart(2, '0');
+    gsap.to(tEls[prev], { autoAlpha: 0, y: -30, duration: .5, ease: 'power2.in' });
+    gsap.fromTo(tEls[i], { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: .8, ease: 'power3.out', delay: .15 });
+    gsap.fromTo($$('h3 i', tEls[i]), { yPercent: 110 }, { yPercent: 0, duration: 1, stagger: .05, ease: 'power4.out', delay: .15 });
+  }
+  $('#sigOpen').addEventListener('click', e => { e.preventDefault(); openProject(SIG[cur].slug); });
+  ScrollTrigger.create({
+    trigger: '.sig-pin', start: 'top top', end: () => '+=' + innerHeight * 4, pin: true, scrub: true, refreshPriority: 3,
+    onToggle: s => on = s.isActive,
+    onUpdate: s => {
+      const x = s.progress * (SIG.length - 1), a = Math.min(Math.floor(x), SIG.length - 2), f = x - a;
+      if (T[a] && T[a + 1]) { U.t1.value = T[a]; U.s1.value.copy(T[a].userData.size); U.t2.value = T[a + 1]; U.s2.value.copy(T[a + 1].userData.size); }
+      U.prog.value = gsap.utils.clamp(0, 1, (f - .2) / .6);
+      setIdx(Math.round(x)); $('#sigBar').style.width = s.progress * 100 + '%';
+    }
+  });
+  const clk = new THREE.Clock(), sm = { x: .5, y: .5 };
+  cv.parentElement.addEventListener('pointermove', e => { const b = cv.getBoundingClientRect(); sm.x = (e.clientX - b.left) / b.width; sm.y = 1 - (e.clientY - b.top) / b.height; });
+  gsap.ticker.add(() => {
+    const b = cv.getBoundingClientRect(); if (b.bottom < 0 || b.top > innerHeight) return;
+    U.time.value = clk.getElapsedTime(); U.mouse.value.lerp(new THREE.Vector2(sm.x, sm.y), .08);
+    r.render(sc, cam);
+  });
+}
+
+/* =================================================================
+   WINDOW: arch opens to full screen
+   ================================================================= */
+gsap.timeline({ scrollTrigger: { trigger: '.window-pin', start: 'top top', end: '+=150%', pin: true, scrub: 1, refreshPriority: 2 } })
+  .to('#wFrame', { clipPath: 'inset(0% 0% 0% 0% round 0px 0px 0px 0px)', ease: 'none', duration: 1 })
+  .to('#wFrame img', { scale: 1, ease: 'none', duration: 1 }, 0)
+  .fromTo('#wTxt', { y: 0 }, { y: -40, ease: 'none', duration: 1 }, 0);
+
+/* =================================================================
+   TUNNEL: walk through the work
+   ================================================================= */
+{
+  const cv = $('#tunGL');
+  const r = new THREE.WebGLRenderer({ canvas: cv, antialias: true });
+  r.setPixelRatio(Math.min(devicePixelRatio, 1.5)); r.setClearColor('#17130f');
+  const sc = new THREE.Scene(), cam = new THREE.PerspectiveCamera(70, 1, .1, 60);
+  const tg = new THREE.Group(); sc.add(tg);
+  const list = []; P.forEach(p => (p.g || []).slice(0, 2).forEach(g => list.push({ p, src: 't/' + g.split('/').pop() })));
+  const RAD = 2.4, STEP = 1.6, meshes = [];
+  list.forEach((it, i) => {
+    const a = i * 2.4, z = -i * STEP;
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(1.7, 1.15), new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, side: THREE.DoubleSide }));
+    m.position.set(Math.cos(a) * RAD * (innerWidth < 700 ? .7 : 1.25), Math.sin(a) * RAD * .8, z); m.rotation.set((Math.random() - .5) * .25, -Math.cos(a) * .35, (Math.random() - .5) * .12); m.userData = it; tg.add(m); meshes.push(m);
+    tex(it.src).then(t => { if (!t) return; m.material.map = t; m.material.needsUpdate = true; const ar = t.userData.size.x / t.userData.size.y; m.scale.set(ar >= 1.48 ? 1 : ar / 1.48, ar >= 1.48 ? 1.48 / ar : 1, 1); });
+  });
+  const LEN = list.length * STEP;
+  let prog = 0, on = false, last = null;
+  const size = () => { r.setSize(cv.clientWidth, cv.clientHeight, false); cam.aspect = cv.clientWidth / cv.clientHeight; cam.updateProjectionMatrix(); };
+  size(); addEventListener('resize', size);
+  ScrollTrigger.create({ trigger: '.tunnel-pin', start: 'top top', end: () => '+=' + innerHeight * 3, pin: true, scrub: 1, refreshPriority: 1, onToggle: s => on = s.isActive, onUpdate: s => prog = s.progress });
+  gsap.ticker.add(() => {
+    const b = cv.getBoundingClientRect(); if (b.bottom < 0 || b.top > innerHeight) return;
+    const cz = 4 - prog * (LEN + 2);
+    cam.position.z += (cz - cam.position.z) * .12;
+    const mx = mouse.x / innerWidth - .5, my = mouse.y / innerHeight - .5;
+    cam.position.x += (mx * .6 - cam.position.x) * .05; cam.position.y += (-my * .6 - cam.position.y) * .05;
+    cam.lookAt(cam.position.x * .3, cam.position.y * .3, cam.position.z - 6);
+    tg.rotation.z = prog * .5;
+    let near = null, nd = 99;
+    meshes.forEach(m => { const d = cam.position.z - m.position.z; m.material.opacity = gsap.utils.clamp(0, 1, (12 - d) / 6) * gsap.utils.clamp(0, 1, (d + .3) / 1.2); if (d > .8 && d < nd) { nd = d; near = m; } });
+    $('#tunTxt').style.opacity = gsap.utils.clamp(0, 1, 1 - prog * 9);
+    if (near && near.userData.p !== last && prog > .08) { last = near.userData.p; $('#tunName').innerHTML = `<small>${last.m}</small>${last.t}`; }
+    if (prog <= .08 && last) { last = null; $('#tunName').innerHTML = ''; }
+    r.render(sc, cam);
+  });
+}
+
+/* =================================================================
    SCROLL ANIMATIONS
    ================================================================= */
 function scrollAnims() {
@@ -369,7 +494,7 @@ function scrollAnims() {
   const prog = { v: 0 };
   const upd = () => { $('#loaderNum').textContent = Math.round(prog.v); $('#loaderBar').style.width = prog.v + '%'; };
   const tw = gsap.to(prog, { v: 88, duration: 2.4, ease: 'power2.out', onUpdate: upd });
-  const need = RING.slice(0, 6).map(p => tex(p.img));
+  const need = RING.slice(0, 6).map(p => tex(`t/${p.img}.webp`));
   await Promise.race([Promise.all([...need, document.fonts ? document.fonts.ready : 0]), new Promise(r => setTimeout(r, 6000))]);
   tw.kill();
   await gsap.to(prog, { v: 100, duration: .5, ease: 'power2.inOut', onUpdate: upd });
@@ -382,6 +507,6 @@ function scrollAnims() {
     .to('.hero-title .w>span', { y: 0, duration: 1.5, stagger: .08, ease: 'power4.out' }, '-=2.4')
     .fromTo('.h-in', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 1.2, stagger: .12, ease: 'power3.out' }, '-=1.4')
     .fromTo('.nav', { y: -30, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'power3.out' }, '-=1.2');
-  tl.add(() => { document.body.classList.remove('loading'); lenis.start(); scrollAnims(); ScrollTrigger.refresh(); }, '-=1.4');
+  tl.add(() => { document.body.classList.remove('loading'); lenis.start(); scrollAnims(); ScrollTrigger.sort(); ScrollTrigger.refresh(); }, '-=1.4');
   P.forEach(p => tex(p.img));
 })();
