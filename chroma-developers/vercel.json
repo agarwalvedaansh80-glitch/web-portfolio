@@ -109,6 +109,11 @@
       "source": "/sfd",
       "destination": "/sfd/",
       "permanent": false
+    },
+    {
+      "source": "/dimora",
+      "destination": "/dimora/",
+      "permanent": false
     }
   ]
 }

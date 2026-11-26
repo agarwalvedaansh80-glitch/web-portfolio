@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<base href="/dimora/">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dimora Interiors | Interior Design Studio, Dubai</title>
+<meta name="description" content="Dimora Interiors is a founder-led Dubai interior design studio led by Deman Sabah, designing complete apartments, penthouses and villas from the first site visit to the final styling.">
+<meta property="og:title" content="Dimora Interiors | Dubai">
+<meta property="og:description" content="Residential interior design in Dubai, from first plan to final detail.">
+<meta property="og:image" content="https://chroma-developers.vercel.app/dimora/img/p01.webp">
+<meta name="theme-color" content="#0d0b0a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Outfit:wght@300;400;500;600&family=Italiana&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=1">
+<link rel="stylesheet" href="fx.css?v=1">
+<link rel="stylesheet" href="site.css?v=1">
+<script>try{if(localStorage.getItem('dimora-theme')==='light')document.documentElement.dataset.theme='light'}catch(e){}</script>
+</head>
+<body class="loading">
+
+<div class="loader" id="loader">
+  <div class="loader-panels"><i></i><i></i><i></i><i></i></div>
+  <div class="loader-inner">
+    <div class="loader-mono"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="48"/></svg><span>D</span><span class="g">I</span></div>
+    <div class="loader-word"><span>D</span><span>I</span><span>M</span><span>O</span><span>R</span><span>A</span><span class="sp"></span><span class="g">I</span><span class="g">N</span><span class="g">T</span><span class="g">E</span><span class="g">R</span><span class="g">I</span><span class="g">O</span><span class="g">R</span><span class="g">S</span></div>
+    <div class="loader-bar"><i id="loaderBar"></i></div>
+    <div class="loader-meta"><span>Business Bay · Dubai</span><span><b id="loaderNum">0</b>%</span></div>
+  </div>
+</div>
+
+<div class="cursor" id="cursor"><div class="c-ring"><span class="c-label" id="cLabel"></span></div><div class="c-dot"></div></div>
+<canvas id="gal" aria-hidden="true"></canvas>
+
+<header class="nav" id="nav">
+  <a href="#top" class="logo">Dimora<em>Interiors</em></a>
+  <nav class="nav-links">
+    <a href="#work">Projects</a><a href="#services">Services</a><a href="#process">Process</a><a href="#about">Founder</a><a href="#contact">Contact</a>
+  </nav>
+  <button class="theme" id="theme" aria-label="Switch day or night mode" data-cursor="Day / Night"><svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg></button>
+  <a href="#consultation" class="btn btn-gold btn-sm nav-cta magnetic">Start your project</a>
+  <button class="burger" id="burger" aria-label="Menu"><i></i><i></i></button>
+</header>
+<div class="menu" id="menu">
+  <a href="#work">Projects</a><a href="#services">Services</a><a href="#process">Process</a><a href="#about">Founder</a><a href="#consultation">Start your project</a><a href="#contact">Contact</a>
+  <div class="menu-foot"><a href="https://wa.me/971504200423">WhatsApp</a><a href="tel:+971504200423">+971 50 420 0423</a></div>
+</div>
+
+<main id="top">
+
+<section class="hero" id="hero">
+  <canvas id="ring"></canvas>
+  <div class="hero-top">
+    <div class="eyebrow h-in">Residential interior design · Dubai</div>
+    <h1 class="hero-title split">From first plan <em>to final detail</em></h1>
+  </div>
+  <div class="ring-label" id="ringLabel"><span id="rlMeta">Emaar Beachfront, Dubai</span><b id="rlName">Grand Bleu Apartment</b></div>
+  <div class="hero-bottom">
+    <div class="hero-left h-in">
+      <button class="hero-close" id="heroClose" aria-label="Close" data-cursor="Close"></button>
+      <div class="hero-sig"><img src="img/portrait.webp" alt="Deman Sabah, founder of Dimora Interiors"><div><strong>Deman Sabah</strong><small>Founder and lead designer</small></div></div>
+      <p class="hero-lead">A founder-led studio designing apartments, penthouses and villas across Dubai: the layout, materials, joinery, lighting and furniture that make a home feel resolved.</p>
+      <div class="hero-btns">
+        <a href="#work" class="btn btn-dark magnetic">View projects</a>
+        <a href="#consultation" class="btn btn-line magnetic">Start your project</a>
+      </div>
+    </div>
+    <div class="hero-hint h-in">Drag to explore<br>the homes</div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true"><div class="marquee-track">
+  <span>Apartments</span><b>✦</b><span>Penthouses</span><b>✦</b><span>Villas</span><b>✦</b><span>Custom Joinery</span><b>✦</b><span>Layered Lighting</span><b>✦</b><span>Styling</span><b>✦</b><span>Workplaces</span><b>✦</b>
+  <span>Apartments</span><b>✦</b><span>Penthouses</span><b>✦</b><span>Villas</span><b>✦</b><span>Custom Joinery</span><b>✦</b><span>Layered Lighting</span><b>✦</b><span>Styling</span><b>✦</b><span>Workplaces</span><b>✦</b>
+</div></div>
+
+<section class="intro">
+  <div class="intro-img"><div class="arch"><img src="g/grand-bleu-02.webp" alt="Living room at Grand Bleu, Emaar Beachfront, by Dimora Interiors" class="par"></div></div>
+  <div class="intro-text">
+    <div class="eyebrow">The studio</div>
+    <h2 class="h2 split">A home that feels <em>resolved</em></h2>
+    <p class="scrub-text">A home works when the layout, materials, light and furniture are decided together. We start with how you live, set the plan and the palette, then design the joinery, lighting and furniture to belong to one idea.</p>
+    <p class="muted up">The result is a home that feels calm, warm and comfortable, with classic and contemporary pieces that sit naturally together. See the award-winning <a href="#" data-open="grand-bleu" class="link">Grand Bleu apartment</a>.</p>
+    <a href="#about" class="link-arrow up">Meet the founder <span>→</span></a>
+  </div>
+</section>
+
+<section class="sig" id="signature">
+  <div class="sig-pin">
+    <canvas id="sigGL"></canvas>
+    <div class="sig-shade"></div>
+    <div class="sig-ui">
+      <div class="sig-top"><div class="eyebrow light">Signature homes</div><div class="sig-count"><b id="sigN">01</b> / 05</div></div>
+      <div class="sig-titles" id="sigTitles"></div>
+      <div class="sig-bottom"><a href="#" class="btn btn-gold magnetic" id="sigOpen" data-cursor="Open">Open project</a><div class="sig-bar"><i id="sigBar"></i></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- NEW: depth parallax photo, award -->
+<section class="depth-sec">
+  <canvas class="depth-gl" data-fx-depth="img/p01.webp" data-k=".03" aria-hidden="true"></canvas>
+  <img class="depth-still" src="img/p01.webp" alt="Grand Bleu apartment dining and living space facing the sea, Emaar Beachfront">
+  <div class="depth-txt">
+    <div class="eyebrow light">Luxury Lifestyle Awards 2025</div>
+    <h2 class="mega">Best Luxury Contemporary <em>Apartment Interior Design</em></h2>
+    <p>Grand Bleu, Emaar Beachfront, Dubai.</p>
+    <a href="#" class="btn btn-line light magnetic" data-open="grand-bleu">Open the project</a>
+  </div>
+</section>
+
+<section class="work" id="work">
+  <div class="work-head">
+    <div><div class="eyebrow">Projects</div><h2 class="h2 split">Selected <em>homes</em></h2>
+      <p class="muted up">Apartments, villas and a small number of workplaces in Dubai, plus selected projects abroad.</p></div>
+    <div class="filters" id="filters"></div>
+  </div>
+  <div class="wgrid" id="wgrid"></div>
+</section>
+
+<!-- NEW: curtain wipe and clip reveals -->
+<section class="details">
+  <div class="sec-head"><div class="eyebrow">In the details</div><h2 class="h2 split">Proportion, material, <em>light and detail</em></h2><p class="muted up">Good interiors are not about trends. They come from decisions made together.</p></div>
+  <div class="det-grid">
+    <figure class="det det-a" data-fx-wipe><img src="g/elie-saab-beachfront-02.webp" alt="Bronze-finish media joinery, Elie Saab Beachfront" loading="lazy"><figcaption><b>Custom joinery</b>Wardrobes, media walls, kitchens and storage</figcaption></figure>
+    <figure class="det det-b" data-fx-clip="blinds"><img src="g/jumeirah-park-villa-04.webp" alt="Bathroom in the Jumeirah Park villa" loading="lazy"><figcaption><b>Materials</b>Finishes and a palette that carries room to room</figcaption></figure>
+    <figure class="det det-c" data-fx-clip="diag"><img src="g/elie-saab-beachfront-01.webp" alt="Kitchen and living with crystal lighting, Elie Saab Beachfront" loading="lazy"><figcaption><b>Layered lighting</b>Concealed and decorative light that changes the mood from day to evening</figcaption></figure>
+    <figure class="det det-d" data-fx-wipe><img src="g/jumeirah-park-villa-02.webp" alt="Olive trees in the garden of the Jumeirah Park villa" loading="lazy"><figcaption><b>Inside and out</b>One design language from the interior to the garden</figcaption></figure>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="sec-head">
+    <div class="eyebrow">Services</div>
+    <h2 class="h2 split">A complete interior, <em>not a room at a time</em></h2>
+    <p class="muted up">Every project is led personally by Deman Sabah, from the first site visit to the final styling.</p>
+  </div>
+  <div class="stack">
+    <article class="scard"><div class="scard-txt"><span class="sn">01</span><h3>Residential Interior Design</h3><p class="sl">Complete interiors for apartments, penthouses and family homes.</p><ul><li>Space planning and furniture layouts</li><li>Concept, mood boards and material palette</li><li>Custom joinery, lighting and 3D visualisation</li></ul></div><div class="scard-img"><img src="g/grand-bleu-04.webp" alt="Grand Bleu living room" loading="lazy"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">02</span><h3>Villa Renovation</h3><p class="sl">Rethinking an existing villa so it works as a calm, connected home.</p><ul><li>Re-planning living areas, bedrooms and circulation</li><li>Kitchen and bathroom redesign</li><li>Exterior and garden areas in the same language</li></ul></div><div class="scard-img"><img src="g/jumeirah-park-villa-01.webp" alt="Jumeirah Park villa living room" loading="lazy"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">03</span><h3>Commercial Interior Design</h3><p class="sl">Workplaces that feel professional, functional and aligned with the brand.</p><ul><li>Office space planning</li><li>Reception and client-facing spaces</li><li>Meeting rooms and executive offices</li></ul></div><div class="scard-img"><img src="g/genesis-office-01.webp" alt="Genesis Real Estate office" loading="lazy"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">04</span><h3>Furnishing &amp; Styling</h3><p class="sl">Furniture, rugs, art and accessories, installed and styled by the founder.</p><ul><li>Furniture and art selection</li><li>Procurement support where agreed</li><li>Final installation and styling</li></ul></div><div class="scard-img"><img src="g/dubai-creek-apartment-01.webp" alt="Dubai Creek apartment bedroom" loading="lazy"></div></article>
+  </div>
+</section>
+
+<section class="process" id="process">
+  <div class="process-wrap">
+    <div class="plan-sticky">
+      <div class="eyebrow light">How a project works</div>
+      <h2 class="h2">From enquiry <em>to final styling</em></h2>
+      <svg class="plan" viewBox="0 0 520 380" fill="none" aria-hidden="true">
+        <g class="L1" stroke-width="3.2"><path d="M20 20H500V360H20Z"/><path d="M20 210H150"/><path d="M330 20V150"/></g>
+        <g class="L2" stroke-width="1.6"><path d="M150 210V360"/><path d="M150 20V160"/><path d="M330 150H500"/><path d="M330 240H500"/><path d="M380 240V360"/><path d="M150 160H230"/><path d="M270 160H330"/>
+          <path d="M230 160A40 40 0 0 1 270 160" stroke-dasharray="3 4"/><path d="M150 250A40 40 0 0 0 190 210" stroke-dasharray="3 4"/><path d="M330 190A40 40 0 0 0 370 150" stroke-dasharray="3 4"/></g>
+        <g class="L3" stroke-width="1.2"><rect x="185" y="230" width="110" height="46" rx="10"/><rect x="200" y="290" width="80" height="34" rx="4"/><circle cx="240" cy="90" r="34"/><circle cx="240" cy="90" r="20"/>
+          <rect x="365" y="45" width="100" height="80" rx="4"/><path d="M365 62H465"/><rect x="40" y="40" width="88" height="140" rx="6"/><path d="M50 60H118M50 80H118M50 100H118"/>
+          <rect x="398" y="262" width="80" height="80" rx="3"/><path d="M398 302H478"/><path d="M40 240H128V340H40Z"/><circle cx="84" cy="290" r="18"/></g>
+        <g class="L4" stroke-width="1"><path d="M20 8H500M20 3V13M500 3V13" /><path d="M512 20V360M507 20H517M507 360H517"/><path d="M330 30V140" stroke-dasharray="2 4"/></g>
+        <g class="labels"><text x="70" y="200">Majlis</text><text x="214" y="345">Living</text><text x="210" y="140">Dining</text><text x="388" y="140">Master</text><text x="412" y="225">Dressing</text><text x="56" y="360">Kitchen</text><text x="410" y="355">Terrace</text></g>
+      </svg>
+    </div>
+    <div class="steps">
+      <div class="step"><span>01</span><h3>Your enquiry</h3><p>Tell us about the property, the scope and your timing. We reply within one working day.</p></div>
+      <div class="step"><span>02</span><h3>Site visit and brief</h3><p>A paid visit at your property to understand the space, how you live and what you need.</p></div>
+      <div class="step"><span>03</span><h3>Concept and detailed design</h3><p>Layout options, the design concept, then finishes, joinery, lighting and furniture.</p></div>
+      <div class="step"><span>04</span><h3>Coordination and styling</h3><p>Coordination with contractors and suppliers protects the design, then furnishing, installation and final styling.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="tunnel">
+  <div class="tunnel-pin">
+    <canvas id="tunGL"></canvas>
+    <div class="tunnel-txt" id="tunTxt"><div class="eyebrow light">Dubai · Abroad</div><h2 class="mega">Step inside <em>the homes</em></h2><p>Scroll to walk through apartments, villas and workplaces.</p></div>
+    <div class="tunnel-name" id="tunName"></div>
+  </div>
+</section>
+
+<section class="why">
+  <div class="sec-head">
+    <div class="eyebrow">What clients say</div>
+    <h2 class="h2 split">Founder led, <em>by design</em></h2>
+  </div>
+  <div class="why-grid quotes2">
+    <div class="why-card"><span>“</span><h3>She goes deeper into the real details</h3><p>What we appreciated most is that she does not focus only on producing attractive renderings. She goes deeper into the real details that matter: materials, fabric textures, finishes, functionality, and how the space reflects who we are as a company.</p><p class="qa">Shehab Almuslehi, Al Naji Group</p></div>
+    <div class="why-card"><span>“</span><h3>A stunning and comfortable home</h3><p>My villa was transformed into a stunning and comfortable home, with a living room that feels both elegant and inviting. Always on time, very easy to communicate with, and the whole design process was smooth, clear, and stress free.</p><p class="qa">Zhwan Aziz, villa client</p></div>
+    <div class="why-card"><span>01</span><h3>One designer, start to finish</h3><p>Clients work with Deman directly, not with a junior designer after the first meeting.</p></div>
+    <div class="why-card"><span>02</span><h3>Engineering and design</h3><p>Design decisions are made with the building in mind, so the design that is approved is the design that gets built.</p></div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="about-img"><div class="arch"><img src="img/portrait.webp" alt="Deman Sabah, founder of Dimora Interiors" class="par"></div><div class="about-tag">Founded 2021 · Business Bay, Dubai</div></div>
+  <div class="about-text">
+    <div class="eyebrow">The founder</div>
+    <h2 class="h2 split">Deman <em>Sabah</em></h2>
+    <h4>Every project, personally</h4>
+    <p>Dimora Interiors was founded in 2021 and is led by Deman Sabah. She meets each client, visits each property, develops the design, directs the 3D visualisation and joinery details, coordinates suppliers and contractors on site, and styles the finished home herself.</p>
+    <h4>Engineering and interior design</h4>
+    <p>Deman's background brings engineering and interior design together: what can move, what can open up and what will last are decided with the building in mind.</p>
+    <h4>The right specialists</h4>
+    <p>For each project she brings in the specialists it needs, from visualisers and joinery fabricators to contractors and suppliers she knows and trusts.</p>
+    <h4>Where we work</h4>
+    <p>Our studio is at Upside by SRG, Business Bay. Most of our work is in Dubai and the UAE, with selected projects abroad, including corporate offices in Baghdad.</p>
+  </div>
+</section>
+
+<section class="consult" id="consultation">
+  <div class="consult-in">
+    <div class="consult-txt">
+      <div class="eyebrow">Start your project</div>
+      <h2 class="h2 split">Tell us about <em>your home</em></h2>
+      <p class="muted up">A few details about your property and your timing. We reply within one working day.</p>
+      <ol class="consult-steps up"><li><span>1</span>You send the request</li><li><span>2</span>We reply within one working day</li><li><span>3</span>A site visit at your property</li></ol>
+    </div>
+    <form class="consult-form" id="consultForm">
+      <h3>Start your project</h3>
+      <p class="muted small">Your request opens on WhatsApp, ready to send.</p>
+      <label><span>Your name</span><input name="name" required autocomplete="name"></label>
+      <label><span>Phone or WhatsApp</span><input name="phone" required inputmode="tel" autocomplete="tel"></label>
+      <label><span>Property type</span><select name="type"><option>Apartment</option><option>Penthouse</option><option>Villa</option><option>Villa renovation</option><option>Office or workplace</option></select></label>
+      <button class="btn btn-gold" type="submit">Send on WhatsApp</button>
+      <p class="consult-ok" id="consultOk">Thank you. Your request is ready to send on WhatsApp.</p>
+      <p class="small muted">Prefer email? <a class="link" href="mailto:info@designdimora.com">info@designdimora.com</a></p>
+    </form>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="contact-bg"><img src="img/p02.webp" alt="" class="par"></div>
+  <div class="contact-in">
+    <div class="eyebrow light">Contact</div>
+    <h2 class="mega split">Let's design <em>your home</em></h2>
+    <p class="big up">Apartments, penthouses and villas across Dubai, designed and styled by Deman Sabah.</p>
+    <div class="contact-btns up">
+      <a class="btn btn-gold magnetic" href="https://wa.me/971504200423?text=Hello%20Dimora%2C%20I%20would%20like%20to%20start%20a%20project." target="_blank" rel="noopener">Message on WhatsApp</a>
+      <a class="btn btn-line light magnetic" href="tel:+971504200423">Call +971 50 420 0423</a>
+    </div>
+    <div class="contact-card up">
+      <img src="img/portrait.webp" alt="Deman Sabah">
+      <div><strong>Dimora Interiors</strong><small>Led by Deman Sabah</small></div>
+      <ul>
+        <li><span>WhatsApp</span><a href="https://wa.me/971504200423">+971 50 420 0423</a></li>
+        <li><span>Email</span><a href="mailto:info@designdimora.com">info@designdimora.com</a></li>
+        <li><span>Instagram</span><a href="https://www.instagram.com/dimora.interiors/" target="_blank" rel="noopener">@dimora.interiors</a></li>
+        <li><span>Studio</span><b>Upside by SRG, Business Bay, Dubai</b></li>
+      </ul>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="foot-big"><span>Dimora</span> <em>Interiors</em></div>
+  <div class="foot-cols">
+    <div><h5>Studio</h5><a href="#work">Projects</a><a href="#services">Services</a><a href="#process">Process</a><a href="#about">Founder</a><a href="#contact">Contact</a></div>
+    <div><h5>Homes</h5><a href="#" data-open="grand-bleu">Grand Bleu Apartment</a><a href="#" data-open="jumeirah-park-villa">Jumeirah Park Villa</a><a href="#" data-open="elie-saab-beachfront">Elie Saab Beachfront</a><a href="#" data-open="al-nakheel-villa">Al Nakheel Villa</a></div>
+    <div><h5>Contact</h5><a href="https://wa.me/971504200423">WhatsApp +971 50 420 0423</a><a href="mailto:info@designdimora.com">info@designdimora.com</a><span>Upside by SRG, Business Bay, Dubai</span></div>
+  </div>
+  <div class="foot-bot"><span>© <span id="yr"></span> Dimora Interior Designs. All rights reserved.</span><a href="#top">Back to top ↑</a></div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/971504200423?text=Hello%20Dimora%2C%20I%20would%20like%20to%20start%20a%20project." target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 32 32" width="26" height="26"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.7c-2 0-3.9-.5-5.6-1.5l-.4-.2-3.9 1 1-3.8-.3-.4A10.7 10.7 0 1 1 16 26.7zm5.9-8c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5 1-1.7.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4s-1.2 1.1-1.2 2.8 1.2 3.2 1.4 3.4 2.4 3.7 5.8 5.2c2.2.9 3 1 4.1.8.7-.1 1.9-.8 2.2-1.5s.3-1.3.2-1.5-.3-.2-.6-.4z"/></svg>
+</a>
+
+<div class="modal" id="modal" aria-hidden="true">
+  <button class="modal-x" id="modalX" data-cursor="Close" aria-label="Close"></button>
+  <div class="modal-scroll" id="modalScroll" data-lenis-prevent></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="data.js?v=1"></script>
+<script type="module" src="main.js?v=1"></script>
+<script src="fx.js?v=1"></script>
+</body>
+</html>
