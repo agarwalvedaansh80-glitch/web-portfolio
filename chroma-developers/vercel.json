@@ -95,6 +95,15 @@
       "destination": "/nikki-bisiker/",
       "permanent": false
     },
-    { "source": "/tag-interiors", "destination": "/tag-interiors/", "permanent": false }
+    {
+      "source": "/tag-interiors",
+      "destination": "/tag-interiors/",
+      "permanent": false
+    },
+    {
+      "source": "/shawa",
+      "destination": "/shawa/",
+      "permanent": false
+    }
   ]
 }

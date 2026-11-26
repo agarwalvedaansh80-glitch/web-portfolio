@@ -1,0 +1,25 @@
+/* Shawa palette: midnight, ice blue and silver */
+:root{--serif:"Syne",system-ui,sans-serif;--royal:"Syne",system-ui,sans-serif;--sans:"Inter Tight",system-ui,sans-serif;--fx-a:#9fb4ff}
+html[data-theme=dark]{--bg:#06070a;--bg2:#0b0d12;--card:#0f1218;--ink:#eaeef6;--ink2:#c2c9d6;--mute:#838c9c;--line:rgba(234,238,246,.11);--gold:#7e9cff;--gold2:#b9ccff}
+.h2,.mega,.hero-title{font-weight:500;letter-spacing:-.035em}
+.h2 em,.mega em,.hero-title em{font-family:"Playfair Display",Georgia,serif;font-style:italic;font-weight:400;letter-spacing:-.01em}
+.logo{font-family:"Syne",sans-serif;font-weight:700;letter-spacing:.24em}
+/* wireframe */
+.wire-sec{position:relative;min-height:100vh;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:30px;padding:90px var(--pad);background:radial-gradient(ellipse at 30% 50%,#10162a,#06070a 70%);overflow:hidden}
+.wire-gl{width:100%;height:min(78vh,720px);display:block}
+.wire-txt{color:#eaeef6;max-width:520px}
+.wire-txt p{color:#b6bfd0;margin-top:18px}
+@media (max-width:900px){.wire-sec{grid-template-columns:1fr;min-height:auto;padding:80px var(--pad)}.wire-gl{height:52vh}.wire-txt{order:-1}}
+/* lens */
+.lens-sec{padding:clamp(80px,12vh,140px) var(--pad);background:#06070a;color:#eaeef6}
+.lens-head{max-width:760px;margin-bottom:34px}.lens-head p{color:#b6bfd0;margin-top:14px;max-width:560px}
+.lens-frame{position:relative;border-radius:6px;overflow:hidden;aspect-ratio:3/2;max-height:82vh}
+.lens-frame img{width:100%;height:100%;object-fit:cover;display:block}
+.lens-hint{position:absolute;left:16px;bottom:14px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#fff;background:rgba(0,0,0,.4);padding:7px 12px;border-radius:40px;backdrop-filter:blur(6px)}
+@media (hover:none){.lens-hint{display:none}.lens-frame{aspect-ratio:4/5}}
+.fx-lens{border-color:rgba(185,204,255,.85)}
+/* mesh behind consultation */
+.consult{position:relative;overflow:hidden}
+.consult-mesh{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.9}
+.consult-in{position:relative;z-index:1}
+html[data-theme=light] .consult-mesh{opacity:.12}

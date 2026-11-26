@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<base href="/shawa/">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shawa Architecture | Architecture and Interior Design, Dubai</title>
+<meta name="description" content="Shawa Architecture, founded by Amer Shawa, is a Dubai office for modern engineering, architecture and interior design: villas, residential towers, public buildings and futuristic designs.">
+<meta property="og:title" content="Shawa Architecture | Dubai">
+<meta property="og:description" content="Architecture inspired by nature, given a futuristic edge by architectural technology.">
+<meta property="og:image" content="https://chroma-developers.vercel.app/shawa/s/dubai-hills-villa.webp">
+<meta name="theme-color" content="#06070a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=Inter+Tight:wght@300;400;500;600&family=Playfair+Display:ital,wght@1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=1">
+<link rel="stylesheet" href="fx.css?v=1">
+<link rel="stylesheet" href="site.css?v=1">
+<script>try{if(localStorage.getItem('shawa-theme')==='light')document.documentElement.dataset.theme='light'}catch(e){}</script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"}}</script>
+</head>
+<body class="loading">
+
+<div class="loader" id="loader">
+  <div class="loader-panels"><i></i><i></i><i></i><i></i></div>
+  <div class="loader-inner">
+    <div class="loader-mono"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="48"/></svg><span>S</span><span class="g">A</span></div>
+    <div class="loader-word"><span>S</span><span>H</span><span>A</span><span>W</span><span>A</span><span class="sp"></span><span class="g">A</span><span class="g">R</span><span class="g">C</span><span class="g">H</span><span class="g">I</span><span class="g">T</span><span class="g">E</span><span class="g">C</span><span class="g">T</span><span class="g">U</span><span class="g">R</span><span class="g">E</span></div>
+    <div class="loader-bar"><i id="loaderBar"></i></div>
+    <div class="loader-meta"><span>Dubai · UAE</span><span><b id="loaderNum">0</b>%</span></div>
+  </div>
+</div>
+
+<div class="cursor" id="cursor"><div class="c-ring"><span class="c-label" id="cLabel"></span></div><div class="c-dot"></div></div>
+<canvas id="gal" aria-hidden="true"></canvas>
+
+<header class="nav" id="nav">
+  <a href="#top" class="logo">Shawa<em>Architecture</em></a>
+  <nav class="nav-links">
+    <a href="#work">Projects</a><a href="#services">Services</a><a href="#process">Process</a><a href="#studio">Studio</a><a href="#contact">Contact</a>
+  </nav>
+  <button class="theme" id="theme" aria-label="Switch day or night mode" data-cursor="Day / Night"><svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg></button>
+  <a href="#consultation" class="btn btn-gold btn-sm nav-cta magnetic">Start a project</a>
+  <button class="burger" id="burger" aria-label="Menu"><i></i><i></i></button>
+</header>
+<div class="menu" id="menu">
+  <a href="#work">Projects</a><a href="#services">Services</a><a href="#process">Process</a><a href="#studio">Studio</a><a href="#consultation">Start a project</a><a href="#contact">Contact</a>
+  <div class="menu-foot"><a href="https://wa.me/971508974414">WhatsApp</a><a href="mailto:Contact@Shawa-Architecture.com">Contact@Shawa-Architecture.com</a></div>
+</div>
+
+<main id="top">
+
+<section class="hero" id="hero">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <canvas id="ring"></canvas>
+  <div class="hero-top">
+    <div class="eyebrow h-in">Architecture · Engineering · Interior Design</div>
+    <h1 class="hero-title split">Inspired by nature, <em>built for tomorrow</em></h1>
+  </div>
+  <div class="ring-label" id="ringLabel"><span id="rlMeta">Dubai Hills, Dubai</span><b id="rlName">Dubai Hills Villa</b></div>
+  <div class="hero-bottom">
+    <div class="hero-left h-in">
+      <button class="hero-close" id="heroClose" aria-label="Close" data-cursor="Close"></button>
+      <div class="hero-sig"><span class="hero-mono">SA</span><div><strong>Shawa Architecture</strong><small>Founded by Amer Shawa · Dubai</small></div></div>
+      <p class="hero-lead">A Dubai office specialising in modern engineering, architecture and interior design. Our designs speak through the beauty of natural elements, with a futuristic edge from architectural technology.</p>
+      <div class="hero-btns">
+        <a href="#work" class="btn btn-dark magnetic">View projects</a>
+        <a href="#consultation" class="btn btn-line magnetic">Start a project</a>
+      </div>
+    </div>
+    <div class="hero-hint h-in">Drag to explore<br>the projects</div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true"><div class="marquee-track">
+  <span>Villas</span><b>✦</b><span>Residential Towers</span><b>✦</b><span>Interior Design</span><b>✦</b><span>Public Buildings</span><b>✦</b><span>Futuristic Designs</span><b>✦</b><span>Furniture Design</span><b>✦</b>
+  <span>Villas</span><b>✦</b><span>Residential Towers</span><b>✦</b><span>Interior Design</span><b>✦</b><span>Public Buildings</span><b>✦</b><span>Futuristic Designs</span><b>✦</b><span>Furniture Design</span><b>✦</b>
+</div></div>
+
+<section class="stats">
+  <div class="stat"><div class="num"><span class="count" data-to="489">0</span><sup>+</sup></div><p>Completed projects</p></div>
+  <div class="stat"><div class="num"><span class="count" data-to="3">0</span></div><p>Countries of work: the UAE, Saudi Arabia and Qatar</p></div>
+  <div class="stat"><div class="num"><span class="count" data-to="110">0</span></div><p>Architecture entries at the Sheikha Manal Young Artist Award, where our museum design was shortlisted</p></div>
+  <div class="stat"><div class="num"><span class="count" data-to="36">0</span></div><p>Floors above the podium at Seslia Tower</p></div>
+</section>
+
+<section class="intro" id="studio">
+  <div class="intro-img"><div class="arch"><img src="xl/dubai-hills-villa-03.webp" alt="Parametric screen and spiral stair, Dubai Hills Villa by Shawa Architecture" class="par"></div></div>
+  <div class="intro-text">
+    <div class="eyebrow">The studio</div>
+    <h2 class="h2 split">Architecture closer <em>to everyone</em></h2>
+    <p class="scrub-text">Shawa Architecture, founded by Amer Shawa, specialises in architecture, engineering and design. We believe great design is planned strategically for maximum function while staying focused on aesthetic value.</p>
+    <p class="muted up">Our vision is to bring life to our clients' aspirations, and our mission is to guide them through the creative journey with our expertise, delivering every project to the highest standards. See the <a href="#" data-open="dubai-hills-villa" class="link">Dubai Hills Villa</a>, built in 2022.</p>
+    <a href="#work" class="link-arrow up">Explore the projects <span>→</span></a>
+  </div>
+</section>
+
+<section class="sig" id="signature">
+  <div class="sig-pin">
+    <img class="sig-still" id="sigStill" alt="" decoding="async">
+    <video class="sig-vid" id="sigVid" muted loop playsinline preload="none" aria-hidden="true"></video>
+    <canvas id="sigGL"></canvas>
+    <div class="sig-shade"></div>
+    <div class="sig-ui">
+      <div class="sig-top"><div class="eyebrow light">Signature projects</div><div class="sig-count"><b id="sigN">01</b> / <span id="sigTot">06</span></div></div>
+      <div class="sig-titles" id="sigTitles"></div>
+      <div class="sig-bottom"><a href="#" class="btn btn-gold magnetic" id="sigOpen" data-cursor="Open">Open project</a><div class="sig-bar"><i id="sigBar"></i></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- NEW: architectural wireframe that solidifies -->
+<section class="wire-sec">
+  <canvas class="wire-gl" data-fx-wire='[[4.2,1.3,3,0,0,0],[2.6,1.1,2.2,-0.4,1.3,0.2],[1.2,0.9,1.4,1.8,1.3,-0.6],[5.6,0.12,3.8,0.1,2.4,0.1],[1.6,0.05,2.6,-3.2,0,0.6]]' data-color="#9fb4ff" data-solid="#1b1e27" aria-hidden="true"></canvas>
+  <div class="wire-txt">
+    <div class="eyebrow light">Architectural technology</div>
+    <h2 class="mega" data-fx-chars>From line <em>to form</em></h2>
+    <p>Our creativity thrives with ever evolving technology. We apply state of the art tools to take every design from its first lines to a complete, buildable form.</p>
+  </div>
+</section>
+
+<section class="work" id="work">
+  <div class="work-head">
+    <div><div class="eyebrow">Projects</div><h2 class="h2 split">Selected <em>work</em></h2>
+      <p class="muted up">Villas, towers, interiors and public buildings across the UAE and the region, each designed, modeled and visualized in house.</p></div>
+    <div class="filters" id="filters"></div>
+  </div>
+  <div class="wgrid" id="wgrid"></div>
+</section>
+
+<!-- NEW: lens over a render -->
+<section class="lens-sec">
+  <div class="lens-head"><div class="eyebrow light">Serina Building · Lobby</div><h2 class="h2">Look closer at <em>the detail</em></h2><p>The lobby wall follows the stripes of a zebra, and the reception table, inspired by African masks, is finished in polished metal for a liquid look.</p></div>
+  <div class="lens-frame" data-fx-lens="2.4"><img src="xl/serina-lobby-04.webp" data-big="xl/serina-lobby-04.webp" alt="Serina Building lobby with zebra-stripe wall and metal reception table" loading="lazy"><span class="lens-hint">Hover to magnify</span></div>
+</section>
+
+<section class="services" id="services">
+  <div class="sec-head">
+    <div class="eyebrow">Services</div>
+    <h2 class="h2 split">Design, engineering <em>and visualization</em></h2>
+    <p class="muted up">A studio for innovative and sustainable engineering and design, where our people are central to our growth and success.</p>
+  </div>
+  <div class="stack">
+    <article class="scard"><div class="scard-txt"><span class="sn">01</span><h3>Architecture</h3><p class="sl">Villas, residential towers and public buildings, from concept to construction drawings.</p><ul><li>Private villas</li><li>Residential and mixed use towers</li><li>Public and commercial buildings</li></ul></div><div class="scard-img"><img src="img/private-villas-02.webp" alt="Contemporary villa by Shawa Architecture" loading="lazy"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">02</span><h3>Interior Design</h3><p class="sl">Lobbies, lounges, offices, gyms and residences with a sculptural, art led character.</p><ul><li>Residential interiors</li><li>Building lobbies and amenities</li><li>Offices and hospitality</li></ul></div><div class="scard-img"><img src="img/interior-design-01.webp" alt="Lounge interior by Shawa Architecture" loading="lazy"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">03</span><h3>Modeling, Rendering and Supervision</h3><p class="sl">Every design is modeled and visualized in house, then supervised on site.</p><ul><li>3D modeling and visualization</li><li>Physical scale models</li><li>Design supervision</li></ul></div><div class="scard-img"><img src="img/seslia-tower-03.webp" alt="Scale model of Seslia Tower" loading="lazy"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">04</span><h3>Sustainability</h3><p class="sl">Sustainability is at the heart of our design approach.</p><ul><li>Global standards and local regulations</li><li>Our own innovative ideas</li><li>Daylight and climate led design</li></ul></div><div class="scard-img"><img src="img/dubai-hills-villa-01.webp" alt="Dubai Hills Villa parametric facade" loading="lazy"></div></article>
+  </div>
+</section>
+
+<section class="reveal" id="reveal">
+  <div class="reveal-pin">
+    <img class="reveal-img" id="revImg" src="xl/private-villas-01.webp" alt="Contemporary villa by Shawa Architecture, final visualization" decoding="async">
+    <canvas id="revGL" aria-hidden="true"></canvas>
+    <div class="reveal-ui">
+      <div class="reveal-head"><div class="eyebrow light">From model to image</div><h2 class="h2">Every project begins <em>as a drawing</em></h2></div>
+      <ol class="reveal-steps" id="revSteps">
+        <li class="on"><span>01</span><b>Model</b><small>Architecture built to the drawings</small></li>
+        <li><span>02</span><b>Light</b><small>Light and shadow within the space</small></li>
+        <li><span>03</span><b>Image</b><small>The final, photo realistic frame</small></li>
+      </ol>
+      <p class="reveal-cap">Private Villas · Shawa Architecture</p>
+    </div>
+  </div>
+</section>
+
+<section class="process" id="process">
+  <div class="process-wrap">
+    <div class="plan-sticky">
+      <div class="eyebrow light">How we work</div>
+      <h2 class="h2">A creative journey, <em>guided</em></h2>
+      <svg class="plan" viewBox="0 0 520 380" fill="none" aria-hidden="true">
+        <g class="L1" stroke-width="3.2"><path d="M20 20H500V360H20Z"/><path d="M20 210H150"/><path d="M330 20V150"/></g>
+        <g class="L2" stroke-width="1.6"><path d="M150 210V360"/><path d="M150 20V160"/><path d="M330 150H500"/><path d="M330 240H500"/><path d="M380 240V360"/><path d="M150 160H230"/><path d="M270 160H330"/>
+          <path d="M230 160A40 40 0 0 1 270 160" stroke-dasharray="3 4"/><path d="M150 250A40 40 0 0 0 190 210" stroke-dasharray="3 4"/><path d="M330 190A40 40 0 0 0 370 150" stroke-dasharray="3 4"/></g>
+        <g class="L3" stroke-width="1.2"><rect x="185" y="230" width="110" height="46" rx="10"/><rect x="200" y="290" width="80" height="34" rx="4"/><circle cx="240" cy="90" r="34"/><circle cx="240" cy="90" r="20"/>
+          <rect x="365" y="45" width="100" height="80" rx="4"/><path d="M365 62H465"/><rect x="40" y="40" width="88" height="140" rx="6"/><path d="M50 60H118M50 80H118M50 100H118"/>
+          <rect x="398" y="262" width="80" height="80" rx="3"/><path d="M398 302H478"/><path d="M40 240H128V340H40Z"/><circle cx="84" cy="290" r="18"/></g>
+        <g class="L4" stroke-width="1"><path d="M20 8H500M20 3V13M500 3V13" /><path d="M512 20V360M507 20H517M507 360H517"/><path d="M330 30V140" stroke-dasharray="2 4"/></g>
+        <g class="labels"><text x="70" y="200">Majlis</text><text x="214" y="345">Living</text><text x="210" y="140">Atrium</text><text x="388" y="140">Master</text><text x="412" y="225">Terrace</text><text x="56" y="360">Kitchen</text><text x="410" y="355">Pool</text></g>
+      </svg>
+    </div>
+    <div class="steps">
+      <div class="step"><span>01</span><h3>Your aspirations</h3><p>We start by understanding your vision, your plot and how the building will be used.</p></div>
+      <div class="step"><span>02</span><h3>Architectural design</h3><p>Design planned strategically for maximum functionality, while staying focused on aesthetic value.</p></div>
+      <div class="step"><span>03</span><h3>Modeling and rendering</h3><p>Every space is modeled and visualized in house, so you see the result before construction.</p></div>
+      <div class="step"><span>04</span><h3>Supervision</h3><p>We follow the project on site, delivering the final result to the highest standards.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="tunnel">
+  <div class="tunnel-pin">
+    <canvas id="tunGL"></canvas>
+    <div class="tunnel-txt" id="tunTxt"><div class="eyebrow light">Dubai · Abu Dhabi · Mecca · Doha</div><h2 class="mega">Step inside <em>the work</em></h2><p>Scroll to move through villas, towers, lobbies and visionary designs.</p></div>
+    <div class="tunnel-name" id="tunName"></div>
+  </div>
+</section>
+
+<section class="pindex" id="index">
+  <div class="sec-head"><div class="eyebrow">Project index</div><h2 class="h2 split">Selected <em>projects</em></h2></div>
+  <ol class="plist" id="plist"></ol>
+  <canvas id="pprev" aria-hidden="true"></canvas>
+</section>
+
+<section class="why">
+  <div class="sec-head">
+    <div class="eyebrow">Why Shawa Architecture</div>
+    <h2 class="h2 split">Nature, technology <em>and craft</em></h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-card"><span>01</span><h3>Inspired by nature</h3><p>Our designs are inspired by nature and speak through the beauty of its elements.</p></div>
+    <div class="why-card"><span>02</span><h3>A futuristic edge</h3><p>Architectural technology gives our designs their impressive, future facing character.</p></div>
+    <div class="why-card"><span>03</span><h3>Function and beauty</h3><p>Great design is planned strategically for maximum functionality, without losing aesthetic value.</p></div>
+    <div class="why-card"><span>04</span><h3>Sustainable by default</h3><p>Global standards and local regulations, taken a step further with our own innovative ideas.</p></div>
+    <div class="why-card"><span>05</span><h3>Diverse by design</h3><p>We pride ourselves on cultural and ethnic diversity, reflected in our range of projects.</p></div>
+    <div class="why-card"><span>06</span><h3>In house, end to end</h3><p>Architecture, interiors, modeling, rendering and supervision under one roof.</p></div>
+  </div>
+</section>
+
+<section class="clients" aria-label="Selected commissions">
+  <div class="sec-head"><div class="eyebrow">Selected commissions</div><h2 class="h2 split">Designed by <em>Shawa Architecture</em></h2></div>
+  <div class="cl-marq" aria-label="Dubai Police Analysis Building, The Oasis Iconic Mosque, DEWA Head Office, Falcon Head Shopping Mall, The Story of UAE Museum, Etisalat Head Office, National Search and Rescue Center, Dubai Hills Villa, Seslia Tower, Serina Building, Lotus Towers, Amico Clinic Center, MOT Museum, Doha, Mecca Future Extension 2050"><div class="cl-row"><div class="cl-track"><span>Dubai Police Analysis Building</span><b>✦</b><span>The Oasis Iconic Mosque</span><b>✦</b><span>DEWA Head Office</span><b>✦</b><span>Falcon Head Shopping Mall</span><b>✦</b><span>The Story of UAE Museum</span><b>✦</b><span>Etisalat Head Office</span><b>✦</b><span>National Search and Rescue Center</span><b>✦</b><span>Dubai Police Analysis Building</span><b>✦</b><span>The Oasis Iconic Mosque</span><b>✦</b><span>DEWA Head Office</span><b>✦</b><span>Falcon Head Shopping Mall</span><b>✦</b><span>The Story of UAE Museum</span><b>✦</b><span>Etisalat Head Office</span><b>✦</b><span>National Search and Rescue Center</span><b>✦</b></div></div><div class="cl-row rev"><div class="cl-track"><span>Dubai Hills Villa</span><b>✦</b><span>Seslia Tower</span><b>✦</b><span>Serina Building</span><b>✦</b><span>Lotus Towers</span><b>✦</b><span>Amico Clinic Center</span><b>✦</b><span>MOT Museum, Doha</span><b>✦</b><span>Mecca Future Extension 2050</span><b>✦</b><span>Dubai Hills Villa</span><b>✦</b><span>Seslia Tower</span><b>✦</b><span>Serina Building</span><b>✦</b><span>Lotus Towers</span><b>✦</b><span>Amico Clinic Center</span><b>✦</b><span>MOT Museum, Doha</span><b>✦</b><span>Mecca Future Extension 2050</span><b>✦</b></div></div></div>
+  <p class="cl-note up">More than 489 completed projects across villas, towers, interiors and public buildings.</p>
+</section>
+
+<section class="consult" id="consultation">
+  <canvas class="consult-mesh" data-fx-mesh="#07080d,#1a2140,#3a2c5c,#0e1a2a" aria-hidden="true"></canvas>
+  <div class="consult-in">
+    <div class="consult-txt">
+      <div class="eyebrow">Start a project</div>
+      <h2 class="h2 split">Tell us about <em>your project</em></h2>
+      <p class="muted up">A villa, a tower, an interior or something no one has built yet. Share a few details and our team will reply on WhatsApp.</p>
+      <ol class="consult-steps up"><li><span>1</span>You share your project</li><li><span>2</span>We reply on WhatsApp</li><li><span>3</span>We meet at our DWTC office</li></ol>
+    </div>
+    <form class="consult-form" id="consultForm">
+      <h3>Start with a short request</h3>
+      <p class="muted small">Your request opens on WhatsApp, ready to send.</p>
+      <label><span>Your name</span><input name="name" required autocomplete="name"></label>
+      <label><span>Phone or WhatsApp</span><input name="phone" required inputmode="tel" autocomplete="tel"></label>
+      <label><span>Project type</span><select name="type"><option>Villa</option><option>Residential building</option><option>Interior design</option><option>Public or commercial building</option><option>Furniture design</option></select></label>
+      <button class="btn btn-gold" type="submit">Send on WhatsApp</button>
+      <p class="consult-ok" id="consultOk">Thank you. Your request is ready to send on WhatsApp.</p>
+      <p class="small muted">Prefer email? <a class="link" href="mailto:Contact@Shawa-Architecture.com">Contact@Shawa-Architecture.com</a></p>
+    </form>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="contact-bg"><img src="xl/residential-towers-01.webp" alt="" class="par"></div>
+  <div class="contact-in">
+    <div class="eyebrow light">Contact</div>
+    <h2 class="mega split">Let's <em>connect</em></h2>
+    <p class="big up">Visit us at Dubai World Trade Centre, or call and message our team.</p>
+    <div class="contact-btns up">
+      <a class="btn btn-gold magnetic" href="https://wa.me/971508974414?text=Hello%20Shawa%20Architecture%2C%20I%20would%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener">Message on WhatsApp</a>
+      <a class="btn btn-line light magnetic" href="tel:+97145264988">Call +971 4 526 4988</a>
+    </div>
+    <div class="contact-card up">
+      <span class="hero-mono">SA</span>
+      <div><strong>Shawa Architecture</strong><small>Architecture · Engineering · Interior Design</small></div>
+      <ul>
+        <li><span>WhatsApp</span><a href="https://wa.me/971508974414">+971 50 897 4414</a></li>
+        <li><span>Office</span><a href="tel:+97145264988">+971 4 526 4988</a></li>
+        <li><span>Email</span><a href="mailto:Contact@Shawa-Architecture.com">Contact@Shawa-Architecture.com</a></li>
+        <li><span>Address</span><b>Level 3, Building C3, DWTC, Sheikh Zayed Road, Dubai</b></li>
+      </ul>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="foot-big"><span>Shawa</span> <em>Architecture</em></div>
+  <div class="foot-cols">
+    <div><h5>Studio</h5><a href="#work">Projects</a><a href="#services">Services</a><a href="#process">Process</a><a href="#studio">Studio</a><a href="#contact">Contact</a></div>
+    <div><h5>Projects</h5><a href="#" data-open="dubai-hills-villa">Dubai Hills Villa</a><a href="#" data-open="seslia-tower">Seslia Tower</a><a href="#" data-open="serina-lobby">Serina Building</a><a href="#" data-open="futuristic-designs">Futuristic Designs</a></div>
+    <div><h5>Contact</h5><a href="https://wa.me/971508974414">WhatsApp +971 50 897 4414</a><a href="mailto:Contact@Shawa-Architecture.com">Contact@Shawa-Architecture.com</a><span>P.O. Box 9573, DWTC, Dubai</span></div>
+  </div>
+  <div class="foot-bot"><span>© <span id="yr"></span> Shawa Architecture. All rights reserved.</span><a href="#top">Back to top ↑</a></div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/971508974414?text=Hello%20Shawa%20Architecture%2C%20I%20would%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 32 32" width="26" height="26"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.7c-2 0-3.9-.5-5.6-1.5l-.4-.2-3.9 1 1-3.8-.3-.4A10.7 10.7 0 1 1 16 26.7zm5.9-8c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5 1-1.7.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4s-1.2 1.1-1.2 2.8 1.2 3.2 1.4 3.4 2.4 3.7 5.8 5.2c2.2.9 3 1 4.1.8.7-.1 1.9-.8 2.2-1.5s.3-1.3.2-1.5-.3-.2-.6-.4z"/></svg>
+</a>
+
+<div class="modal" id="modal" aria-hidden="true">
+  <button class="modal-x" id="modalX" data-cursor="Close" aria-label="Close"></button>
+  <div class="modal-scroll" id="modalScroll" data-lenis-prevent></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="data.js?v=1"></script>
+<script type="module" src="main.js?v=1"></script>
+<script src="fx.js?v=1"></script>
+</body>
+</html>
