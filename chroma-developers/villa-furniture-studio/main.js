@@ -724,5 +724,10 @@ function scrollAnims() {
     .fromTo('.hero-title .w>span', { y: '110%' }, { y: '0%', duration: 1.5, stagger: .08, ease: 'power4.out' }, '-=2.3')
     .fromTo('.h-in', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 1.2, stagger: .12, ease: 'power3.out' }, '-=1.4')
     .fromTo('.nav', { y: -30, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'power3.out' }, '-=1.2');
-  tl.add(() => { document.body.classList.remove('loading'); lenis.start(); scrollAnims(); ScrollTrigger.sort(); ScrollTrigger.refresh(); }, '-=1.4');
+  tl.add(() => {
+    document.body.classList.remove('loading'); lenis.start(); scrollAnims(); ScrollTrigger.sort(); ScrollTrigger.refresh();
+    // safety net: if content height changes later (fonts, lazy media), re-measure once it settles
+    let h = document.body.scrollHeight, rt = 0;
+    new ResizeObserver(() => { clearTimeout(rt); rt = setTimeout(() => { const n = document.body.scrollHeight; if (Math.abs(n - h) > 2) { h = n; ScrollTrigger.refresh(); h = document.body.scrollHeight; } }, 250); }).observe($('main'));
+  }, '-=1.4');
 })();
