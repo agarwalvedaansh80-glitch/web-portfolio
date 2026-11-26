@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<base href="/wolfgang-regner/">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Wolfgang Regner Architects | Luxury Villa Architecture in Dubai</title>
+<meta name="description" content="Wolfgang Regner Architects is a boutique architecture, interior, landscape, furniture and engineering design studio in City Walk, Dubai, specialised in private luxury villas for an international clientele.">
+<meta property="og:title" content="Wolfgang Regner Architects | Clarity, restraint, purpose">
+<meta property="og:description" content="Private luxury villas in Dubai, Abu Dhabi and abroad, where architecture, interiors and landscape are conceived together.">
+<meta property="og:image" content="https://chroma-developers.vercel.app/wolfgang-regner/img/p01.webp">
+<meta name="theme-color" content="#070b14">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..600&family=Archivo:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=1">
+</head>
+<body class="loading">
+
+<div class="loader" id="loader">
+  <div class="loader-panels"><i></i><i></i><i></i><i></i></div>
+  <div class="loader-inner">
+    <div class="loader-mono"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="48"/></svg><span>W</span><span class="g">R</span></div>
+    <div class="loader-word"><span>W</span><span>O</span><span>L</span><span>F</span><span>G</span><span>A</span><span>N</span><span>G</span><span class="sp"></span><span class="g">R</span><span class="g">E</span><span class="g">G</span><span class="g">N</span><span class="g">E</span><span class="g">R</span></div>
+    <div class="loader-bar"><i id="loaderBar"></i></div>
+    <div class="loader-meta"><span>City Walk · Dubai</span><span><b id="loaderNum">0</b>%</span></div>
+  </div>
+</div>
+
+<div class="cursor" id="cursor"><div class="c-ring"><span class="c-label" id="cLabel"></span></div><div class="c-dot"></div></div>
+<canvas id="gal" aria-hidden="true"></canvas>
+
+<header class="nav" id="nav">
+  <a href="#top" class="logo">Wolfgang <em>Regner</em></a>
+  <nav class="nav-links">
+    <a href="#work">Projects</a><a href="#drawn">Approach</a><a href="#services">Services</a><a href="#story">Founder</a><a href="#about">Studio</a><a href="#contact">Contact</a>
+  </nav>
+  <button class="theme" id="theme" aria-label="Switch day or night mode" data-cursor="Day / Night"><svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg></button>
+  <a href="#consultation" class="btn btn-gold btn-sm nav-cta magnetic">Discuss a villa</a>
+  <button class="burger" id="burger" aria-label="Menu"><i></i><i></i></button>
+</header>
+<div class="menu" id="menu">
+  <a href="#work">Projects</a><a href="#drawn">Approach</a><a href="#services">Services</a><a href="#story">Founder</a><a href="#about">Studio</a><a href="#consultation">Discuss a villa</a><a href="#contact">Contact</a>
+  <div class="menu-foot"><a href="https://wa.me/971585913119">WhatsApp</a><a href="tel:+971585913119">+971 58 591 3119</a></div>
+</div>
+
+<main id="top">
+
+<!-- HERO: 3D ring of villas -->
+<section class="hero" id="hero">
+  <canvas id="ring"></canvas>
+  <div class="hero-top">
+    <div class="eyebrow h-in">Architecture · Interiors · Landscape · Engineering</div>
+    <h1 class="hero-title split">Clarity, restraint, <em>purpose</em></h1>
+  </div>
+  <div class="ring-label" id="ringLabel"><span id="rlMeta">Dubai</span><b id="rlName">Villa Thani</b></div>
+  <div class="hero-bottom">
+    <div class="hero-left h-in">
+      <button class="hero-close" id="heroClose" aria-label="Close" data-cursor="Close"></button>
+      <div class="hero-sig"><span class="mono" aria-hidden="true">WR</span><div><strong>Wolfgang Regner Architects</strong><small>Boutique architecture studio, City Walk Dubai</small></div></div>
+      <p class="hero-lead">Private luxury villas for an international clientele, where architecture, interiors and landscape are conceived together.</p>
+      <div class="hero-btns">
+        <a href="#work" class="btn btn-dark magnetic">View projects</a>
+        <a href="#consultation" class="btn btn-line magnetic">Discuss a villa</a>
+      </div>
+    </div>
+    <div class="hero-hint h-in">Drag to explore<br>the villas</div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true"><div class="marquee-track">
+  <span>Architecture</span><b>✦</b><span>Interior Design</span><b>✦</b><span>Landscape</span><b>✦</b><span>Lighting</span><b>✦</b><span>Furniture</span><b>✦</b><span>Engineering</span><b>✦</b><span>3D Visualisation</span><b>✦</b>
+  <span>Architecture</span><b>✦</b><span>Interior Design</span><b>✦</b><span>Landscape</span><b>✦</b><span>Lighting</span><b>✦</b><span>Furniture</span><b>✦</b><span>Engineering</span><b>✦</b><span>3D Visualisation</span><b>✦</b>
+</div></div>
+
+<!-- INTRO -->
+<section class="intro" id="studio">
+  <div class="intro-img"><div class="arch"><img src="img/studio.webp" alt="Light falling into an arched passage" class="par"></div></div>
+  <div class="intro-text">
+    <div class="eyebrow">The studio</div>
+    <h2 class="h2 split">One unified <em>discipline</em></h2>
+    <p class="scrub-text">We approach architecture and interior design as one discipline, where space, form and material are conceived together to create a cohesive spatial experience.</p>
+    <p class="muted up">A boutique design studio in City Walk, Dubai, specialised in medium to large scale private luxury villas, with customised solutions built to the highest international standards.</p>
+    <a href="#story" class="link-arrow up">The founder <span>→</span></a>
+  </div>
+</section>
+
+<!-- SIGNATURE (pinned WebGL showcase) -->
+<section class="sig" id="signature">
+  <div class="sig-pin">
+    <canvas id="sigGL"></canvas>
+    <div class="sig-shade"></div>
+    <div class="sig-ui">
+      <div class="sig-top"><div class="eyebrow light">Signature projects</div><div class="sig-count"><b id="sigN">01</b> / 05</div></div>
+      <div class="sig-titles" id="sigTitles"></div>
+      <div class="sig-bottom"><a href="#" class="btn btn-gold magnetic" id="sigOpen" data-cursor="Open">Open project</a><div class="sig-bar"><i id="sigBar"></i></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="work" id="work">
+  <div class="work-head">
+    <div><div class="eyebrow">Projects</div><h2 class="h2 split">Private homes, <em>made to measure</em></h2>
+      <p class="muted up">Villas, a majlis and a private club in Dubai, Abu Dhabi and Ajman, and residences abroad.</p></div>
+    <div class="filters" id="filters"></div>
+  </div>
+  <div class="wgrid" id="wgrid"></div>
+</section>
+
+<!-- X-RAY: drawing to render -->
+<section class="xray" id="drawn">
+  <div class="xr-pin" id="xrPin">
+    <img class="xr-lines" src="img/xray-lines.webp" alt="Line drawing of Villa W, Dubai Hills">
+    <img class="xr-photo" id="xrPhoto" src="img/xray-photo.webp" alt="Villa W, Dubai Hills">
+    <div class="xr-ring" id="xrRing" aria-hidden="true"></div>
+    <div class="xr-txt"><div class="eyebrow light">Drawn, then built</div><h2 class="h2">Every line <em>has a reason</em></h2><p>Move across the drawing to reveal the render of Villa W in Dubai Hills.</p></div>
+    <div class="xr-tag"><span>Villa W</span>Dubai Hills</div>
+  </div>
+</section>
+
+<!-- SERVICES (stacking) -->
+<section class="services" id="services">
+  <div class="sec-head">
+    <div class="eyebrow">Services</div>
+    <h2 class="h2 split">Every discipline, <em>one studio</em></h2>
+    <p class="muted up">An architectural, interior, landscape, furniture and engineering design consultancy under one roof.</p>
+  </div>
+  <div class="stack">
+    <article class="scard"><div class="scard-txt"><span class="sn">01</span><h3>Architectural Design</h3><p class="sl">Villas shaped by context, lifestyle and environment.</p><p>From first sketch to detailed design for private luxury villas, from the massing and the plan to the facade and its materials.</p><ul><li>Architectural design</li><li>3D visualisation</li><li>Structural design</li></ul></div><div class="scard-img"><img src="g/villa-thani-02.webp" alt="Villa Thani by night"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">02</span><h3>Interior Design &amp; Furniture</h3><p class="sl">Interiors conceived together with the architecture.</p><p>Space, form and material designed as one, down to bespoke furniture for the rooms they belong to.</p><ul><li>Interior design</li><li>Furniture design</li><li>Lighting design</li></ul></div><div class="scard-img"><img src="g/villa-palm-jumeirah-03.webp" alt="Villa Palm Jumeirah interior"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">03</span><h3>Landscape &amp; Outdoor Living</h3><p class="sl">Gardens, courtyards, water and shade.</p><p>Landscape design that brings cross ventilation, natural light and calm outdoor rooms to every villa.</p><ul><li>Landscape design</li><li>Pools and water features</li><li>Courtyards and terraces</li></ul></div><div class="scard-img"><img src="g/villa-ubud-03.webp" alt="Villa Ubud garden pool"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">04</span><h3>Engineering &amp; Supervision</h3><p class="sl">State of the art technical solutions, delivered on site.</p><p>MEP and structural coordination, site supervision and project management until the villa is complete.</p><ul><li>MEP design</li><li>Site supervision</li><li>Project management</li></ul></div><div class="scard-img"><img src="g/sportclub-ajman-02.webp" alt="Sportclub Ajman"></div></article>
+  </div>
+</section>
+
+<!-- PROCESS: floor plan drawn by scroll -->
+<section class="process" id="process">
+  <div class="process-wrap">
+    <div class="plan-sticky">
+      <div class="eyebrow light">Process</div>
+      <h2 class="h2">From context <em>to completion</em></h2>
+      <svg class="plan" viewBox="0 0 520 380" fill="none" aria-hidden="true">
+        <g class="L1" stroke-width="3.2"><path d="M20 20H500V360H20Z"/><path d="M20 210H150"/><path d="M330 20V150"/></g>
+        <g class="L2" stroke-width="1.6"><path d="M150 210V360"/><path d="M150 20V160"/><path d="M330 150H500"/><path d="M330 240H500"/><path d="M380 240V360"/><path d="M150 160H230"/><path d="M270 160H330"/>
+          <path d="M230 160A40 40 0 0 1 270 160" stroke-dasharray="3 4"/><path d="M150 250A40 40 0 0 0 190 210" stroke-dasharray="3 4"/><path d="M330 190A40 40 0 0 0 370 150" stroke-dasharray="3 4"/></g>
+        <g class="L3" stroke-width="1.2"><rect x="185" y="230" width="110" height="46" rx="10"/><rect x="200" y="290" width="80" height="34" rx="4"/><circle cx="240" cy="90" r="34"/><circle cx="240" cy="90" r="20"/>
+          <rect x="365" y="45" width="100" height="80" rx="4"/><path d="M365 62H465"/><rect x="40" y="40" width="88" height="140" rx="6"/><path d="M50 60H118M50 80H118M50 100H118"/>
+          <rect x="398" y="262" width="80" height="80" rx="3"/><path d="M398 302H478"/><path d="M40 240H128V340H40Z"/><circle cx="84" cy="290" r="18"/></g>
+        <g class="L4" stroke-width="1"><path d="M20 8H500M20 3V13M500 3V13" /><path d="M512 20V360M507 20H517M507 360H517"/><path d="M330 30V140" stroke-dasharray="2 4"/></g>
+        <g class="labels"><text x="62" y="200">Majlis</text><text x="214" y="345">Living</text><text x="210" y="140">Dining</text><text x="388" y="140">Master</text><text x="412" y="225">Bath</text><text x="56" y="360">Kitchen</text><text x="410" y="355">Pool</text></g>
+      </svg>
+    </div>
+    <div class="steps">
+      <div class="step"><span>01</span><h3>Context and lifestyle</h3><p>Every project begins with a deep understanding of the plot, the climate and the way the family wants to live.</p></div>
+      <div class="step"><span>02</span><h3>Massing and architecture</h3><p>Massing, plan and privacy are resolved first, so views, light and shade are right before any finish is chosen.</p></div>
+      <div class="step"><span>03</span><h3>Interiors, landscape, light</h3><p>Space, form and material are designed together, with interiors, gardens and lighting as one experience.</p></div>
+      <div class="step"><span>04</span><h3>Engineering and site</h3><p>Structure and MEP are coordinated, then the studio supervises the site and manages the project to completion.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- WATER: pool ripple -->
+<section class="water" id="water">
+  <canvas class="wt-gl" id="wtGL"></canvas>
+  <img class="wt-img" id="wtImg" src="img/water.webp" alt="Infinity pool and terraces facing the sea">
+  <div class="wt-shade"></div>
+  <div class="wt-txt"><div class="eyebrow light">Light, water, shade</div><h2 class="mega">Spaces that <em>breathe</em></h2><p>Lighting and landscape are designed with the architecture, so terraces, water and shade read as one.</p></div>
+</section>
+
+<!-- TUNNEL -->
+<section class="tunnel">
+  <div class="tunnel-pin">
+    <canvas id="tunGL"></canvas>
+    <div class="tunnel-txt" id="tunTxt"><div class="eyebrow light">Dubai · Abu Dhabi · Ajman · Bali</div><h2 class="mega">Walk through <em>the work</em></h2><p>Scroll to move between villas, a majlis and a private club.</p></div>
+    <div class="tunnel-name" id="tunName"></div>
+  </div>
+</section>
+
+<!-- FOUNDER PATH: split flap board -->
+<section class="flap" id="story">
+  <div class="fl-pin">
+    <div class="fl-head"><div class="eyebrow light">The founder's path</div><h2 class="h2">Wolfgang <em>Regner</em></h2></div>
+    <div class="fl-board" aria-hidden="true"><div class="fl-row" id="flYear"></div><div class="fl-row fl-city" id="flCity"></div></div>
+    <p class="fl-line" id="flLine" aria-live="polite"></p>
+    <div class="fl-dots" id="flDots"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-img"><div class="arch"><img src="img/about.webp" alt="Living room opening to the dunes" class="par"></div><div class="about-tag">Architecture · Interiors · Landscape · Furniture · Engineering</div></div>
+  <div class="about-text">
+    <div class="eyebrow">About</div>
+    <h2 class="h2 split">German precision, <em>Dubai living</em></h2>
+    <h4>The founder</h4>
+    <p>Wolfgang Regner is a German architect and designer, born in London and raised between Bombay, Srinagar, Paris and Hamburg. He studied architecture and design in Germany and has worked on private homes in Dubai since 2010.</p>
+    <h4>The studio</h4>
+    <p>Wolfgang Regner Architects is an award winning consultancy in City Walk, Dubai, for architectural, interior, landscape, furniture and engineering design, adhering to the highest international standards.</p>
+    <h4>The approach</h4>
+    <p>Clarity, restraint and purpose: timeless architecture that answers contemporary living and enduring design values, shaped by passion, curiosity, innovation and individuality.</p>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why">
+  <div class="sec-head">
+    <div class="eyebrow">Why the studio</div>
+    <h2 class="h2 split">Boutique by <em>choice</em></h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-card"><span>01</span><h3>Founder led</h3><p>A boutique studio led by its founder, the architect and designer Wolfgang Regner.</p></div>
+    <div class="why-card"><span>02</span><h3>Since 2004 in Dubai</h3><p>He opened a Dubai branch in 2004 and, as managing director, oversaw high rise buildings on Sheikh Zayed Road and in Business Bay.</p></div>
+    <div class="why-card"><span>03</span><h3>One discipline</h3><p>Architecture, interiors, landscape and furniture are conceived together, in one studio.</p></div>
+    <div class="why-card"><span>04</span><h3>Private villas</h3><p>Specialised in medium to large scale private luxury residences for an international clientele.</p></div>
+    <div class="why-card"><span>05</span><h3>International</h3><p>Work in the UAE and abroad, from Bali and Thailand to Spain and California.</p></div>
+    <div class="why-card"><span>06</span><h3>State of the art</h3><p>Advanced technical solutions that evolve with technology, materials and culture.</p></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="sec-head"><div class="eyebrow">FAQ</div><h2 class="h2 split">Before we <em>begin</em></h2></div>
+  <div class="faq-list">
+    <details><summary>What kind of projects does the studio take on?</summary><p>Mainly medium to large scale private luxury villas, as well as private majlis and clubs, in Dubai, Abu Dhabi, Ajman and abroad.</p></details>
+    <details><summary>Can you design the interiors and landscape too?</summary><p>Yes. The studio is an architectural, interior, landscape, furniture and engineering design consultancy, so the whole villa is designed as one.</p></details>
+    <details><summary>Do you supervise construction?</summary><p>Yes. Site supervision and project management are part of the services, alongside structural and MEP design.</p></details>
+    <details><summary>How do we start?</summary><p>Send a short message with your plot location, the size of the villa and your timeline. The studio will reply to arrange a first meeting at City Walk or on site.</p></details>
+  </div>
+</section>
+
+<!-- CONSULTATION -->
+<section class="consult" id="consultation">
+  <div class="consult-in">
+    <div class="consult-txt">
+      <div class="eyebrow">Discuss a villa</div>
+      <h2 class="h2 split">Tell us about <em>your plot</em></h2>
+      <p class="muted up">A few details are enough to begin. The studio will reply on WhatsApp.</p>
+      <ol class="consult-steps up"><li><span>1</span>You share your project</li><li><span>2</span>We reply on WhatsApp</li><li><span>3</span>We meet at City Walk or on site</li></ol>
+    </div>
+    <form class="consult-form" id="consultForm">
+      <h3>Project enquiry</h3>
+      <p class="muted small">Leave your name and number and the studio will reply personally.</p>
+      <label><span>Your name</span><input name="name" required autocomplete="name"></label>
+      <label><span>Phone or WhatsApp</span><input name="phone" required inputmode="tel" autocomplete="tel"></label>
+      <label><span>Your project</span><select name="type"><option>New villa</option><option>Villa renovation</option><option>Interior design</option><option>Landscape</option><option>Majlis or private club</option><option>Project abroad</option></select></label>
+      <button class="btn btn-gold" type="submit">Send on WhatsApp</button>
+      <p class="consult-ok" id="consultOk">Thank you. Your request is ready to send on WhatsApp.</p>
+      <p class="small muted">Prefer email? <a class="link" href="mailto:office@wolfgangregnerarchitects.com">office@wolfgangregnerarchitects.com</a></p>
+    </form>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-bg"><img src="g/villa-jumeirah-park-01.webp" alt="" class="par"></div>
+  <div class="contact-in">
+    <div class="eyebrow light">Contact</div>
+    <h2 class="mega split">Building your vision, <em>creating reality</em></h2>
+    <p class="big up">Visit the studio in City Walk or send a message about your villa.</p>
+    <div class="contact-btns up">
+      <a class="btn btn-gold magnetic" href="https://wa.me/971585913119?text=Hello%20Wolfgang%20Regner%20Architects%2C%20I%20would%20like%20to%20discuss%20a%20villa." target="_blank" rel="noopener">Message on WhatsApp</a>
+      <a class="btn btn-line light magnetic" href="tel:+971585913119">Call +971 58 591 3119</a>
+    </div>
+    <div class="contact-card up">
+      <span class="mono" aria-hidden="true">WR</span>
+      <div><strong>Wolfgang Regner Architects</strong><small>City Walk, Dubai, United Arab Emirates</small></div>
+      <ul>
+        <li><span>Phone</span><a href="tel:+971585913119">+971 58 591 3119</a></li>
+        <li><span>WhatsApp</span><a href="https://wa.me/971585913119" target="_blank" rel="noopener">+971 58 591 3119</a></li>
+        <li><span>Email</span><a href="mailto:office@wolfgangregnerarchitects.com">office@wolfgangregnerarchitects.com</a></li>
+        <li><span>Instagram</span><a href="https://www.instagram.com/wolfgang_regner_architecture/" target="_blank" rel="noopener">@wolfgang_regner_architecture</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="foot-big"><span>Wolfgang</span> <em>Regner</em></div>
+  <div class="foot-cols">
+    <div><h5>Studio</h5><a href="#work">Projects</a><a href="#services">Services</a><a href="#story">Founder</a><a href="#about">About</a><a href="#contact">Contact</a></div>
+    <div><h5>Expertise</h5><span>Luxury villa architecture</span><span>Interior design</span><span>Landscape design</span><span>Furniture design</span><span>Engineering and supervision</span></div>
+    <div><h5>Contact</h5><a href="https://wa.me/971585913119">WhatsApp +971 58 591 3119</a><a href="mailto:office@wolfgangregnerarchitects.com">office@wolfgangregnerarchitects.com</a><span>City Walk, Dubai</span></div>
+  </div>
+  <div class="foot-bot"><span>© <span id="yr"></span> Wolfgang Regner Architectural Services LLC. All rights reserved.</span><a href="#top">Back to top ↑</a></div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/971585913119?text=Hello%20Wolfgang%20Regner%20Architects%2C%20I%20would%20like%20to%20discuss%20a%20villa." target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 32 32" width="26" height="26"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.7c-2 0-3.9-.5-5.6-1.5l-.4-.2-3.9 1 1-3.8-.3-.4A10.7 10.7 0 1 1 16 26.7zm5.9-8c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5 1-1.7.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4s-1.2 1.1-1.2 2.8 1.2 3.2 1.4 3.4 2.4 3.7 5.8 5.2c2.2.9 3 1 4.1.8.7-.1 1.9-.8 2.2-1.5s.3-1.3.2-1.5-.3-.2-.6-.4z"/></svg>
+</a>
+
+<div class="modal" id="modal" aria-hidden="true">
+  <button class="modal-x" id="modalX" data-cursor="Close" aria-label="Close">Close</button>
+  <div class="modal-scroll" id="modalScroll" data-lenis-prevent></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="data.js?v=1"></script>
+<script type="module" src="main.js?v=1"></script>
+</body>
+</html>
