@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=1">
+<link rel="stylesheet" href="style.css?v=2">
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 </head>
 <body class="loading">
@@ -86,7 +86,7 @@
 
 <!-- INTRO + STATS -->
 <section class="intro" id="about">
-  <div class="intro-img"><div class="frame-reveal"><img src="m/tower-1-1.webp" alt="Tower One exterior view by Blackwhite Viz" class="par"></div><span class="intro-cap">Tower One · Dubai · 2025</span></div>
+  <div class="intro-img"><div class="frame-reveal"><img src="m/tower-1-1.webp" srcset="m/tower-1-1.webp 1280w, g/tower-1-1.webp 1920w" sizes="(max-width:900px) 92vw, 36vw" alt="Tower One exterior view by Blackwhite Viz" class="par"></div><span class="intro-cap">Tower One · Dubai · 2025</span></div>
   <div class="intro-text">
     <div class="eyebrow">About Blackwhite Viz</div>
     <h2 class="h2 split">Building spaces <em>before they exist</em></h2>
@@ -105,6 +105,7 @@
 <!-- SHOWCASE (pinned WebGL) -->
 <section class="sig" id="signature">
   <div class="sig-pin">
+    <div class="sig-imgs" id="sigImgs"></div>
     <canvas id="sigGL"></canvas>
     <div class="sig-shade"></div>
     <div class="sig-ui">
@@ -128,7 +129,7 @@
 <!-- FRAME ZOOM -->
 <section class="window">
   <div class="window-pin">
-    <div class="window-frame" id="wFrame"><img src="m/water-villa-1.webp" alt="Water Villa daylight still"></div>
+    <div class="window-frame" id="wFrame"><img src="g/water-villa-1.webp" srcset="m/water-villa-1.webp 1280w, g/water-villa-1.webp 1920w, x/water-villa-1.webp 3840w" sizes="(max-aspect-ratio: 16/9) 230vh, 130vw" alt="Water Villa daylight still"></div>
     <div class="vf vf-w" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
     <div class="window-txt" id="wTxt"><div class="eyebrow light">Each project</div><h2 class="mega">A camera, a material pass, <em>and the hour</em></h2><p>Day, dusk, and night frames are finished for sales decks, websites, and launch campaigns, so a drawing can be read as a place before a wall is built.</p></div>
   </div>
@@ -142,12 +143,12 @@
     <p class="muted up">From exterior and interior renders to walkthrough animations and 360 panoramas, our 3D rendering services help architects and developers in Dubai turn drawings into decisions. Each service can stand on its own or sit in one visual set for a launch.</p>
   </div>
   <div class="stack">
-    <article class="scard"><div class="scard-txt"><span class="sn">01</span><h3>3D Architectural Rendering</h3><p class="sl">Photoreal exterior stills for villas, towers, and masterplans before a wall is built.</p><p>Villas, towers, and masterplans are lit, materialled, and finished until glass, stone, planting, and sky read as a place, not a sketch on a white field. If a still cannot survive a client meeting, it is not finished.</p><ul><li>Photoreal exterior stills for villas, towers, and plots</li><li>Day, dusk, and night cameras from the same model</li><li>Wide site views and close facade crops</li><li>Files ready for print, web, and presentations</li></ul></div><div class="scard-img"><img loading="lazy" src="m/tower-2-3.webp" alt="Tower Two close up facade view"></div></article>
-    <article class="scard"><div class="scard-txt"><span class="sn">02</span><h3>360 Panorama</h3><p class="sl">Full surround stills so clients can look around a space, not only at a single camera.</p><p>The frame is equirectangular, but the standard is the same as a hero render: material, light, and a space that feels finished. Headsets, web players, and gallery screens can all take the same file.</p><ul><li>Equirectangular stills with photoreal material and light</li><li>Interior, amenity, and exterior cameras</li><li>Files for web tours, sales galleries, and headsets</li><li>The same finish as the hero stills in the set</li></ul></div><div class="scard-img"><img loading="lazy" src="m/kenya-villa-2.webp" alt="Kenya Villa landscape view"></div></article>
-    <article class="scard"><div class="scard-txt"><span class="sn">03</span><h3>3D Interior Renderings</h3><p class="sl">Interior stills with material, light, and atmosphere ready to approve.</p><p>Living rooms, lobbies, suites, and amenity interiors are furnished and lit so material, daylight, and atmosphere feel finished before production. Stakeholders read the space as a photograph, not as a drawing they have to imagine.</p><ul><li>Photoreal interiors for living rooms, lobbies, and suites</li><li>Furniture, material, and daylight finished for approval</li><li>Day and mood cameras for sales and design review</li><li>Stills formatted for decks, print, and the web</li></ul></div><div class="scard-img"><img loading="lazy" src="m/nshama-2.webp" alt="Nshama living room interior"></div></article>
-    <article class="scard"><div class="scard-txt"><span class="sn">04</span><h3>Interior Design Support</h3><p class="sl">Support for design teams testing layout, material, and lighting before production.</p><p>This is visualization as a design tool, not only as a marketing still. Two looks of the same volume can sit side by side until the room is signed off, so a fit out team is not guessing on site.</p><ul><li>Option stills for layout, material, and lighting</li><li>Variant rooms so a team can compare looks</li><li>Mood studies before procurement</li><li>Files that can move from design review into sales</li></ul></div><div class="scard-img"><img loading="lazy" src="m/interior-1.webp" alt="Interior study bedroom"></div></article>
-    <article class="scard"><div class="scard-txt"><span class="sn">05</span><h3>AR / VR Visualization</h3><p class="sl">Immersive AR and VR that let buyers step into a project before it is built.</p><p>The scenes are prepared for launches, sales galleries, and remote review so the unbuilt space can be walked, not only looked at. We keep the same model, light, and finish across the set.</p><ul><li>Interactive scenes from the same project model</li><li>Experiences for launches, galleries, and remote review</li><li>Interior and exterior environments with matching finish</li><li>A path from stills and panoramas into immersive view</li></ul></div><div class="scard-img"><img loading="lazy" src="m/concept-tower-1.webp" alt="Concept Tower detail still"></div></article>
-    <article class="scard"><div class="scard-txt"><span class="sn">06</span><h3>3D Walkthrough Videos</h3><p class="sl">Cinematic walkthroughs that show a project in motion.</p><p>We guide the viewer through approach, lobby, rooms, and amenity so the project is felt in time, not only in a still. Cameras, light, and cut are set with the same material standard as the stills.</p><ul><li>Cinematic walkthroughs for marketing and investor decks</li><li>A path through approach, lobby, rooms, and amenity</li><li>The same material finish as the stills in the set</li><li>Cuts ready for web, presentation, and launch screens</li></ul></div><div class="scard-img"><img loading="lazy" src="m/tower-3-6.webp" alt="Tower Three evening view"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">01</span><h3>3D Architectural Rendering</h3><p class="sl">Photoreal exterior stills for villas, towers, and masterplans before a wall is built.</p><p>Villas, towers, and masterplans are lit, materialled, and finished until glass, stone, planting, and sky read as a place, not a sketch on a white field. If a still cannot survive a client meeting, it is not finished.</p><ul><li>Photoreal exterior stills for villas, towers, and plots</li><li>Day, dusk, and night cameras from the same model</li><li>Wide site views and close facade crops</li><li>Files ready for print, web, and presentations</li></ul></div><div class="scard-img"><img loading="lazy" src="m/tower-2-3.webp" srcset="m/tower-2-3.webp 1280w, g/tower-2-3.webp 1920w" sizes="(max-width:900px) 92vw, 45vw" alt="Tower Two close up facade view"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">02</span><h3>360 Panorama</h3><p class="sl">Full surround stills so clients can look around a space, not only at a single camera.</p><p>The frame is equirectangular, but the standard is the same as a hero render: material, light, and a space that feels finished. Headsets, web players, and gallery screens can all take the same file.</p><ul><li>Equirectangular stills with photoreal material and light</li><li>Interior, amenity, and exterior cameras</li><li>Files for web tours, sales galleries, and headsets</li><li>The same finish as the hero stills in the set</li></ul></div><div class="scard-img"><img loading="lazy" src="m/kenya-villa-2.webp" srcset="m/kenya-villa-2.webp 1280w, g/kenya-villa-2.webp 1920w" sizes="(max-width:900px) 92vw, 45vw" alt="Kenya Villa landscape view"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">03</span><h3>3D Interior Renderings</h3><p class="sl">Interior stills with material, light, and atmosphere ready to approve.</p><p>Living rooms, lobbies, suites, and amenity interiors are furnished and lit so material, daylight, and atmosphere feel finished before production. Stakeholders read the space as a photograph, not as a drawing they have to imagine.</p><ul><li>Photoreal interiors for living rooms, lobbies, and suites</li><li>Furniture, material, and daylight finished for approval</li><li>Day and mood cameras for sales and design review</li><li>Stills formatted for decks, print, and the web</li></ul></div><div class="scard-img"><img loading="lazy" src="m/nshama-2.webp" srcset="m/nshama-2.webp 1280w, g/nshama-2.webp 1920w" sizes="(max-width:900px) 92vw, 45vw" alt="Nshama living room interior"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">04</span><h3>Interior Design Support</h3><p class="sl">Support for design teams testing layout, material, and lighting before production.</p><p>This is visualization as a design tool, not only as a marketing still. Two looks of the same volume can sit side by side until the room is signed off, so a fit out team is not guessing on site.</p><ul><li>Option stills for layout, material, and lighting</li><li>Variant rooms so a team can compare looks</li><li>Mood studies before procurement</li><li>Files that can move from design review into sales</li></ul></div><div class="scard-img"><img loading="lazy" src="m/interior-1.webp" srcset="m/interior-1.webp 1280w, g/interior-1.webp 1920w" sizes="(max-width:900px) 92vw, 45vw" alt="Interior study bedroom"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">05</span><h3>AR / VR Visualization</h3><p class="sl">Immersive AR and VR that let buyers step into a project before it is built.</p><p>The scenes are prepared for launches, sales galleries, and remote review so the unbuilt space can be walked, not only looked at. We keep the same model, light, and finish across the set.</p><ul><li>Interactive scenes from the same project model</li><li>Experiences for launches, galleries, and remote review</li><li>Interior and exterior environments with matching finish</li><li>A path from stills and panoramas into immersive view</li></ul></div><div class="scard-img"><img loading="lazy" src="m/concept-tower-1.webp" srcset="m/concept-tower-1.webp 1280w, g/concept-tower-1.webp 1920w" sizes="(max-width:900px) 92vw, 45vw" alt="Concept Tower detail still"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">06</span><h3>3D Walkthrough Videos</h3><p class="sl">Cinematic walkthroughs that show a project in motion.</p><p>We guide the viewer through approach, lobby, rooms, and amenity so the project is felt in time, not only in a still. Cameras, light, and cut are set with the same material standard as the stills.</p><ul><li>Cinematic walkthroughs for marketing and investor decks</li><li>A path through approach, lobby, rooms, and amenity</li><li>The same material finish as the stills in the set</li><li>Cuts ready for web, presentation, and launch screens</li></ul></div><div class="scard-img"><img loading="lazy" src="m/tower-3-6.webp" srcset="m/tower-3-6.webp 1280w, g/tower-3-6.webp 1920w" sizes="(max-width:900px) 92vw, 45vw" alt="Tower Three evening view"></div></article>
   </div>
 </section>
 
@@ -245,7 +246,7 @@
 
 <!-- CONTACT -->
 <section class="contact" id="contact">
-  <div class="contact-bg"><img loading="lazy" src="m/tower-2-2.webp" alt="" class="par"></div>
+  <div class="contact-bg"><img loading="lazy" src="g/tower-2-2.webp" srcset="m/tower-2-2.webp 1280w, g/tower-2-2.webp 1920w, x/tower-2-2.webp 3840w" sizes="(max-aspect-ratio: 16/9) 200vh, 100vw" alt="" class="par"></div>
   <div class="contact-in">
     <div class="contact-l">
       <div class="eyebrow light">Contact</div>
@@ -299,7 +300,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="data.js?v=1"></script>
-<script type="module" src="main.js?v=1"></script>
+<script src="data.js?v=2"></script>
+<script type="module" src="main.js?v=2"></script>
 </body>
 </html>
