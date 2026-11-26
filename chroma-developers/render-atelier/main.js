@@ -60,7 +60,7 @@ function setCursor(el, forced) {
   cur.classList.toggle('hover', !!t || !!forced);
   const l = forced || (t && (t.getAttribute('data-cursor') || (t.classList.contains('wcard') ? 'View' : '')));
   if (l) { lab.textContent = l; cur.classList.add('label'); } else cur.classList.remove('label');
-  cur.classList.toggle('inv', !!(el && el.closest && el.closest('.process,.contact,.calc-out,.tier.hot,.incl-final,.sig,.window,.tunnel')));
+  cur.classList.toggle('inv', !!(el && el.closest && el.closest('.process,.contact,.calc-out,.tier.hot,.incl-final,.sig,.tunnel,.pano,.reveal')));
 }
 
 /* ---------------- magnetic ---------------- */
@@ -318,7 +318,23 @@ lenis.on('scroll', ({ scroll }) => {
 });
 
 /* ---------------- why glow ---------------- */
-$$('.why-card').forEach(c => c.addEventListener('pointermove', e => { const r = c.getBoundingClientRect(); c.style.setProperty('--mx', (e.clientX - r.left) + 'px'); c.style.setProperty('--my', (e.clientY - r.top) + 'px'); }));
+/* ---------------- premium cards: tilt toward the cursor, light that follows it ---------------- */
+$$('.why-card,.scard,.office,.consult-form').forEach(c => c.classList.add('fx'));
+if (FINE && DESK()) $$('.fx').forEach(c => {
+  let box = null;
+  const tilt = !c.classList.contains('scard') && !c.classList.contains('consult-form');
+  const rx = tilt && gsap.quickTo(c, 'rotationX', { duration: 1.2, ease: 'power3.out' }), ry = tilt && gsap.quickTo(c, 'rotationY', { duration: 1.2, ease: 'power3.out' });
+  if (tilt) gsap.set(c, { transformPerspective: 1100 });
+  c.addEventListener('pointerenter', () => { box = c.getBoundingClientRect(); c.classList.add('lit'); });
+  c.addEventListener('pointermove', e => {
+    if (!box) box = c.getBoundingClientRect();
+    const x = e.clientX - box.left, y = e.clientY - box.top;
+    c.style.setProperty('--mx', x + 'px'); c.style.setProperty('--my', y + 'px');
+    c.style.setProperty('--ang', (Math.atan2(y - box.height / 2, x - box.width / 2) * 180 / Math.PI + 90) + 'deg');
+    if (tilt) { rx(-(y / box.height - .5) * 7); ry((x / box.width - .5) * 9); }
+  });
+  c.addEventListener('pointerleave', () => { box = null; c.classList.remove('lit'); if (tilt) { rx(0); ry(0); } });
+});
 
 $('#consultForm').addEventListener('submit', e => {
   e.preventDefault(); const f = new FormData(e.target);
@@ -362,14 +378,14 @@ const SIGVID = { mandarin: 'v/mandarin.mp4', redsea: 'v/redsea.mp4' };
   r.setPixelRatio(Math.min(devicePixelRatio, 2));
   const SANI = r.capabilities.getMaxAnisotropy();
   const sc = new THREE.Scene(), cam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-  const U = { t1: { value: null }, t2: { value: null }, s1: { value: new THREE.Vector2(1, 1) }, s2: { value: new THREE.Vector2(1, 1) }, prog: { value: 0 }, time: { value: 0 }, res: { value: new THREE.Vector2(1, 1) } };
+  const U = { t1: { value: null }, t2: { value: null }, s1: { value: new THREE.Vector2(1, 1) }, s2: { value: new THREE.Vector2(1, 1) }, prog: { value: 0 }, time: { value: 0 }, res: { value: new THREE.Vector2(1, 1) }, z1: { value: 1 } };
   sc.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), new THREE.ShaderMaterial({
     uniforms: U, vertexShader: `varying vec2 vUv;void main(){vUv=uv;gl_Position=vec4(position,1.);}`,
-    fragmentShader: GLSL + `precision highp float;varying vec2 vUv;uniform sampler2D t1,t2;uniform vec2 s1,s2,res;uniform float prog,time;
+    fragmentShader: GLSL + `precision highp float;varying vec2 vUv;uniform sampler2D t1,t2;uniform vec2 s1,s2,res;uniform float prog,time,z1;
       void main(){vec2 uv=vUv;
         float n=fbm(uv*2.4+time*.02);float m=smoothstep(n-.2,n+.2,prog*1.4-.2);
         vec2 dir=vec2(.14,.05)*(n-.5);
-        vec2 u1=cover((uv-.5)*(1.-.05*prog)+.5+dir*prog,res,s1);
+        vec2 u1=cover((uv-.5)/z1*(1.-.05*prog)+.5+dir*prog,res,s1);
         vec2 u2=cover((uv-.5)*(1.+.06*(1.-prog))+.5-dir*(1.-prog),res,s2);
         vec3 c=mix(texture2D(t1,u1).rgb,texture2D(t2,u2).rgb,m);
         c+=vec3(.72,.36,.95)*(1.-smoothstep(0.,.06,abs(m-.5)))*.22*step(.02,prog)*step(prog,.98);
@@ -382,35 +398,41 @@ const SIGVID = { mandarin: 'v/mandarin.mp4', redsea: 'v/redsea.mp4' };
   const titles = $('#sigTitles');
   SIG.forEach((p, i) => { const d = document.createElement('div'); d.className = 'sig-t'; d.innerHTML = `<span>${p.m}</span><h3>${p.t.split(' ').map(w => `<i>${w}</i>`).join(' ')}</h3><p>${p.s}</p>`; if (i) gsap.set(d, { autoAlpha: 0 }); titles.appendChild(d); });
   const tEls = $$('.sig-t', titles);
+  setTimeout(() => driftStart(), 0);
   let shown = 0, want = 0, busy = false, vis = false, active = false;
   const size = () => { r.setSize(cv.clientWidth, cv.clientHeight, false); U.res.value.set(cv.clientWidth, cv.clientHeight); };
   size(); addEventListener('resize', size);
-  new IntersectionObserver(es => es.forEach(e => { vis = e.isIntersecting; if (vis) { SIG.forEach((_, i) => ld(i)); if (!busy) vidShow(shown); } else vid.pause(); }), { rootMargin: '0px' }).observe(cv);
+  new IntersectionObserver(es => es.forEach(e => { vis = e.isIntersecting; if (vis) { SIG.forEach((_, i) => ld(i)); if (!busy) vidShow(shown); if (drift && !busy) drift.resume(); } else { vid.pause(); drift && drift.pause(); } }), { rootMargin: '0px' }).observe(cv);
   // one title at a time: the old one leaves completely before the new one arrives
-  function title(i) {
+  // titles: the old one leaves as the image starts to change; the new one arrives only once the image has settled
+  function titleOut() { tEls.forEach(el => { gsap.killTweensOf(el); gsap.killTweensOf($$('h3 i', el)); if (+gsap.getProperty(el, 'opacity') > 0) gsap.to(el, { autoAlpha: 0, y: -14, duration: .7, ease: 'power2.inOut' }); }); }
+  function titleIn(i) {
     $('#sigN').textContent = String(i + 1).padStart(2, '0');
-    tEls.forEach((el, k) => { if (k === i) return; gsap.killTweensOf(el); if (+gsap.getProperty(el, 'opacity') > 0) gsap.to(el, { autoAlpha: 0, y: -14, duration: .5, ease: 'power2.in' }); });
     gsap.killTweensOf(tEls[i]);
-    gsap.fromTo(tEls[i], { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 1.2, delay: .55, ease: 'power3.out' });
-    gsap.fromTo($$('h3 i', tEls[i]), { yPercent: 110 }, { yPercent: 0, duration: 1.3, stagger: .06, delay: .55, ease: 'power4.out' });
+    gsap.fromTo(tEls[i], { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 1.4, ease: 'power3.out' });
+    gsap.fromTo($$('h3 i', tEls[i]), { yPercent: 110 }, { yPercent: 0, duration: 1.5, stagger: .07, ease: 'power4.out' });
   }
+  // the resting image breathes very slowly (1.00 to 1.04)
+  let drift = null;
+  function driftStart() { drift && drift.kill(); gsap.set([still, vid], { scale: 1 }); drift = gsap.to([still, vid], { scale: 1.04, duration: 14, ease: 'sine.inOut', paused: !vis }); }
   async function go() {
     if (busy || want === shown) return;
     busy = true; const from = shown, to = want;
     const [a, b] = await Promise.all([ld(from), ld(to)]);
-    title(to); vidHide();
-    if (!a || !b) { shown = to; still.src = sigSrc(SIG[to]); busy = false; return go(); }
+    titleOut(); vidHide();
+    if (drift) drift.pause(); U.z1.value = +gsap.getProperty(still, 'scale') || 1;
+    if (!a || !b) { shown = to; still.src = sigSrc(SIG[to]); titleIn(to); driftStart(); busy = false; return go(); }
     U.t1.value = a; U.s1.value.copy(a.userData.size); U.t2.value = b; U.s2.value.copy(b.userData.size); U.prog.value = 0;
     active = true; r.render(sc, cam); cv.style.opacity = 1; still.style.opacity = 0;
-    gsap.to(U.prog, { value: 1, duration: 1.4, ease: 'power2.inOut', onComplete: () => {
+    gsap.to(U.prog, { value: 1, duration: 2, ease: 'power3.inOut', onComplete: () => {
       shown = to; still.src = sigSrc(SIG[to]); still.alt = SIG[to].t + ', ' + SIG[to].m;
-      const done = () => { still.style.opacity = 1; requestAnimationFrame(() => { cv.style.opacity = 0; active = false; busy = false; if (want === shown) vidShow(shown); go(); }); };
+      const done = () => { gsap.set([still, vid], { scale: 1 }); still.style.opacity = 1; requestAnimationFrame(() => { cv.style.opacity = 0; active = false; busy = false; if (want === shown) { vidShow(shown); titleIn(shown); driftStart(); } go(); }); };
       still.decode ? still.decode().then(done, done) : done();
     } });
   }
   $('#sigOpen').addEventListener('click', e => { e.preventDefault(); openProject(SIG[want].slug); });
   ScrollTrigger.create({
-    trigger: '.sig-pin', start: 'top top', end: () => '+=' + innerHeight * (SIG.length - .5), pin: true, scrub: 1, refreshPriority: 3,
+    trigger: '.sig-pin', start: 'top top', end: () => '+=' + innerHeight * 1.3 * SIG.length, pin: true, scrub: 1.6, refreshPriority: 5,
     onUpdate: s => {
       const i = Math.min(SIG.length - 1, Math.round(s.progress * (SIG.length - 1)));
       $('#sigBar').style.width = s.progress * 100 + '%';
@@ -422,12 +444,233 @@ const SIGVID = { mandarin: 'v/mandarin.mp4', redsea: 'v/redsea.mp4' };
 }
 
 /* =================================================================
-   WINDOW: arch opens to full screen
+   STEP INSIDE: Palazzo Tissoli 360 tour (real cube faces)
    ================================================================= */
-gsap.timeline({ scrollTrigger: { trigger: '.window-pin', start: 'top top', end: '+=150%', pin: true, scrub: 1, refreshPriority: 2 } })
-  .to('#wFrame', { clipPath: 'inset(0% 0% 0% 0% round 0px 0px 0px 0px)', ease: 'none', duration: 1 })
-  .to('#wFrame img', { scale: 1, ease: 'none', duration: 1 }, 0)
-  .fromTo('#wTxt', { y: 0 }, { y: -40, ease: 'none', duration: 1 }, 0);
+{
+  const SC = {
+    50: ['Courtyard 01', 8.3, 11.9], 51: ['Courtyard 02', 0, 0], 60: ['Courtyard 04', 0, 0], 72: ['Courtyard Terrace', 0, -8],
+    56: ['Lobby 01', 36.1, .3], 57: ['Lobby 02', 0, 0], 61: ['Rooftop 1', 0, 0], 62: ['Rooftop 2', 0, 0], 66: ['Lounge bar', 0, 0]
+  };
+  const HOT = {
+    50: [[-331.36, -2.78, 51], [-59.41, -1.04, 60], [-12.99, 10.35, 72]],
+    51: [[-85.94, -1.22, 50], [-36.19, -.25, 60], [-344.31, 15.21, 72]],
+    60: [[-156.6, .51, 50], [-284.36, 20.44, 72]],
+    72: [[-313.52, -23.89, 60], [-.03, -16.81, 50], [-58.43, -20.51, 51]],
+    56: [[-353.21, .16, 57]], 57: [[-204.74, -2.61, 56]],
+    61: [[-61.28, -1.14, 62]], 62: [[-276.44, -.7, 61], [-220.78, -1.23, 66]], 66: [[-202.92, -.22, 62]]
+  };
+  const MENU = [[50, 'Courtyard'], [56, 'Lobby'], [61, 'Rooftop'], [66, 'Lounge bar']];
+  const cv = $('#panoGL'), veil = $('#panoVeil'), hotsEl = $('#panoHots');
+  const r = new THREE.WebGLRenderer({ canvas: cv, antialias: false, powerPreference: 'high-performance' });
+  r.setPixelRatio(Math.min(devicePixelRatio, 2));
+  const BIGP = Math.min(innerWidth, innerHeight) > 600;
+  const sc = new THREE.Scene(), cam = new THREE.PerspectiveCamera(70, 1, .1, 50);
+  const U = { cube: { value: null } };
+  const mat = new THREE.ShaderMaterial({
+    uniforms: U, side: THREE.BackSide, depthWrite: false,
+    vertexShader: 'varying vec3 vD;void main(){vD=position;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',
+    fragmentShader: 'precision highp float;uniform samplerCube cube;varying vec3 vD;void main(){gl_FragColor=vec4(textureCube(cube,vec3(-vD.x,vD.y,vD.z)).rgb,1.);}'
+  });
+  sc.add(new THREE.Mesh(new THREE.BoxGeometry(10, 10, 10), mat));
+  const CL = new THREE.CubeTextureLoader(), cubes = {};
+  const loadCube = id => cubes[id] || (cubes[id] = new Promise(res => CL.load([0, 1, 2, 3, 4, 5].map(k => `p/${id}/${BIGP ? '' : 's'}${k}.webp`), t => {
+    t.colorSpace = THREE.NoColorSpace; t.generateMipmaps = true; t.minFilter = THREE.LinearMipmapLinearFilter; t.anisotropy = r.capabilities.getMaxAnisotropy(); t.needsUpdate = true; res(t);
+  }, undefined, () => res(null))));
+  const view = { yaw: 0, pitch: 0, ty: 0, tp: 0 };
+  const dirOf = (pan, tilt) => { const p = THREE.MathUtils.degToRad(pan), t = THREE.MathUtils.degToRad(tilt); return new THREE.Vector3(-Math.sin(p) * Math.cos(t), Math.sin(t), -Math.cos(p) * Math.cos(t)); };
+  let cur = null, busy = false, vis = false, dirty = true, hots = [];
+  const sceneBtns = MENU.map(([id, name]) => { const b = document.createElement('button'); b.textContent = name; b.dataset.id = id; b.dataset.cursor = 'View'; $('#panoScenes').appendChild(b); return b; });
+  const cluster = id => id >= 61 && id <= 66 ? (id === 66 ? 66 : 61) : (id === 56 || id === 57 ? 56 : 50);
+  function setHots(id) {
+    hotsEl.innerHTML = ''; hots = (HOT[id] || []).map(([pan, tilt, to]) => {
+      const el = document.createElement('button'); el.className = 'hot'; el.dataset.cursor = 'Enter';
+      el.innerHTML = `<i></i><span>${SC[to][0]}</span>`; el.addEventListener('click', e => { e.stopPropagation(); go(to); });
+      hotsEl.appendChild(el); return { el, d: dirOf(pan, tilt), on: null };
+    });
+    gsap.fromTo(hotsEl, { opacity: 0 }, { opacity: 1, duration: 1.2, delay: .4, ease: 'power2.out' });
+  }
+  async function go(id, first) {
+    if (busy || id === cur) return; busy = true;
+    const t = await loadCube(id); if (!t) { busy = false; return; }
+    if (!first) await gsap.to(veil, { opacity: 1, duration: .7, ease: 'power2.inOut' });
+    U.cube.value = t; cur = id;
+    const [name, pan, tilt] = SC[id];
+    view.yaw = view.ty = -THREE.MathUtils.degToRad(pan); view.pitch = view.tp = THREE.MathUtils.degToRad(tilt) * .5;
+    $('#panoNow').textContent = name;
+    sceneBtns.forEach(b => b.classList.toggle('on', +b.dataset.id === cluster(id)));
+    setHots(id); dirty = true;
+    gsap.to(veil, { opacity: 0, duration: 1.3, ease: 'power2.inOut', onComplete: () => busy = false });
+    // warm the next spaces quietly
+    (HOT[id] || []).forEach(h => setTimeout(() => loadCube(h[2]), 1500));
+  }
+  $('#panoScenes').addEventListener('click', e => { const b = e.target.closest('button'); if (b) go(+b.dataset.id); });
+  // drag to look around (mouse and touch); vertical page scroll still works on touch
+  let drag = null, idleT = 0;
+  cv.style.touchAction = 'pan-y';
+  cv.addEventListener('pointerdown', e => { drag = { x: e.clientX, y: e.clientY, id: e.pointerId, moved: 0 }; idleT = performance.now(); });
+  addEventListener('pointermove', e => {
+    if (!drag || e.pointerId !== drag.id) return;
+    const dx = e.clientX - drag.x, dy = e.clientY - drag.y; drag.x = e.clientX; drag.y = e.clientY; drag.moved += Math.abs(dx);
+    const k = cam.fov / cv.clientHeight * Math.PI / 180;
+    view.ty += dx * k; if (e.pointerType === 'mouse') view.tp = gsap.utils.clamp(-1.2, 1.2, view.tp + dy * k);
+    idleT = performance.now();
+  }, { passive: true });
+  addEventListener('pointerup', () => drag = null); addEventListener('pointercancel', () => drag = null);
+  const size = () => { r.setSize(cv.clientWidth, cv.clientHeight, false); cam.aspect = cv.clientWidth / cv.clientHeight; cam.fov = cam.aspect < 1 ? 82 : 68; cam.updateProjectionMatrix(); dirty = true; };
+  size(); addEventListener('resize', size);
+  new IntersectionObserver(es => es.forEach(e => { vis = e.isIntersecting; if (vis && cur === null) go(50, true); }), { rootMargin: '400px' }).observe(cv);
+  ScrollTrigger.create({ trigger: '.pano-pin', start: 'top top', end: () => '+=' + innerHeight * 1.2, pin: true, refreshPriority: 4 });
+  const v3 = new THREE.Vector3();
+  gsap.ticker.add((time, dt) => {
+    if (!vis || !U.cube.value) return;
+    if (!drag && performance.now() - idleT > 2500) view.ty += .00011 * Math.min(dt, 50);
+    view.yaw += (view.ty - view.yaw) * .07; view.pitch += (view.tp - view.pitch) * .07;
+    cam.rotation.set(view.pitch, view.yaw, 0, 'YXZ');
+    r.render(sc, cam);
+    const w = cv.clientWidth, h = cv.clientHeight;
+    for (const o of hots) {
+      v3.copy(o.d).applyMatrix4(cam.matrixWorldInverse);
+      const on = v3.z < -.2;
+      if (on !== o.on) { o.on = on; o.el.style.visibility = on ? 'visible' : 'hidden'; }
+      if (!on) continue;
+      v3.applyMatrix4(cam.projectionMatrix);
+      o.el.style.transform = `translate3d(${(v3.x * .5 + .5) * w}px,${(-v3.y * .5 + .5) * h}px,0)`;
+    }
+  });
+}
+
+/* =================================================================
+   FROM MODEL TO RENDER: scan line turns a drawing into the render
+   ================================================================= */
+{
+  const cv = $('#revGL'), img = $('#revImg');
+  const r = new THREE.WebGLRenderer({ canvas: cv, antialias: false });
+  r.setPixelRatio(Math.min(devicePixelRatio, 2));
+  const sc = new THREE.Scene(), cam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+  const U = { tex: { value: null }, isz: { value: new THREE.Vector2(1, 1) }, res: { value: new THREE.Vector2(1, 1) }, p: { value: 0 }, time: { value: 0 }, port: { value: 0 } };
+  sc.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), new THREE.ShaderMaterial({
+    uniforms: U, vertexShader: 'varying vec2 vUv;void main(){vUv=uv;gl_Position=vec4(position,1.);}',
+    fragmentShader: GLSL + `precision highp float;varying vec2 vUv;uniform sampler2D tex;uniform vec2 isz,res;uniform float p,time,port;
+      float lum(vec2 u){return dot(texture2D(tex,u).rgb,vec3(.299,.587,.114));}
+      void main(){vec2 uv=cover(vUv,res,isz);vec2 px=1.4/isz;
+        float tl=lum(uv+px*vec2(-1,1)),t=lum(uv+px*vec2(0,1)),tr=lum(uv+px*vec2(1,1)),l=lum(uv+px*vec2(-1,0)),rr=lum(uv+px*vec2(1,0)),bl=lum(uv+px*vec2(-1,-1)),b=lum(uv+px*vec2(0,-1)),br=lum(uv+px*vec2(1,-1));
+        float gx=-tl-2.*l-bl+tr+2.*rr+br,gy=-bl-2.*b-br+tl+2.*t+tr;float e=smoothstep(.08,.42,length(vec2(gx,gy)));
+        vec3 col=texture2D(tex,uv).rgb;float L=dot(col,vec3(.299,.587,.114));
+        vec3 paper=vec3(.035,.03,.05)+vec3(.02,.01,.035)*(1.-vUv.y);
+        vec3 draw=mix(paper,vec3(.86,.78,.96),e*.92);
+        vec3 clay=mix(vec3(.16,.15,.17),vec3(.93,.91,.9),smoothstep(.05,.95,L));clay=mix(clay,clay*.55,e*.35);
+        float x=port>.5?1.-vUv.y:vUv.x;float n=fbm(vUv*vec2(1.6,2.4)+time*.02)*.025;
+        float s=p*1.5-.25;
+        float a=smoothstep(s+.02,s-.02,x+n);
+        float c=smoothstep(s+.3,s+.06,x+n);
+        vec3 o=mix(draw,clay,c);o=mix(o,col,a);
+        float line=exp(-abs(x+n-s)*160.);o+=vec3(.75,.45,1.)*line*.85+vec3(.6,.3,.9)*exp(-abs(x+n-s)*22.)*.18;
+        gl_FragColor=vec4(o,1.);}`
+  })));
+  let vis = false, active = true, t0 = null;
+  tex('xl/altiera-02.webp').then(t => { if (!t) return; sharp(t); U.tex.value = t; U.isz.value.copy(t.userData.size); });
+  const size = () => { r.setSize(cv.clientWidth, cv.clientHeight, false); U.res.value.set(cv.clientWidth, cv.clientHeight); U.port.value = cv.clientWidth < cv.clientHeight ? 1 : 0; };
+  size(); addEventListener('resize', size);
+  new IntersectionObserver(es => es.forEach(e => vis = e.isIntersecting)).observe(cv);
+  const steps = $$('#revSteps li'); let st = -1;
+  const sm = { v: 0 };
+  ScrollTrigger.create({ trigger: '.reveal-pin', start: 'top top', end: () => '+=' + innerHeight * 2.4, pin: true, scrub: 1.2, refreshPriority: 3,
+    onUpdate: s => { gsap.to(sm, { v: s.progress, duration: .9, ease: 'power2.out', overwrite: true }); } });
+  const clk = new THREE.Clock();
+  gsap.ticker.add(() => {
+    if (!vis || !U.tex.value) return;
+    const p = sm.v; U.p.value = p;
+    const k = p < .3 ? 0 : p < .66 ? 1 : 2;
+    if (k !== st) { st = k; steps.forEach((li, i) => li.classList.toggle('on', i === k)); }
+    // fully revealed: rest on the sharp image, stop drawing
+    const done = p > .985;
+    if (active === done) { active = !done; cv.style.opacity = active ? 1 : 0; }
+    if (!active) return;
+    U.time.value = clk.getElapsedTime(); r.render(sc, cam);
+  });
+}
+
+/* =================================================================
+   PROJECT INDEX: list with a cursor-follow WebGL preview
+   ================================================================= */
+{
+  const list = $('#plist');
+  P.forEach((p, i) => {
+    const li = document.createElement('li'); li.className = 'prow'; li.dataset.slug = p.slug; li.dataset.i = i;
+    li.innerHTML = `<a href="#" class="prow-a" data-open="${p.slug}" data-cursor="Open"><span class="pn">${String(i + 1).padStart(2, '0')}</span><span class="pt">${p.t}</span><span class="pm">${p.m}</span></a>
+      <div class="prow-m"><img loading="lazy" src="img/${p.img}.webp" alt="${p.t}"><a href="#" class="btn btn-gold btn-sm" data-open="${p.slug}">Open project</a></div>`;
+    list.appendChild(li);
+  });
+  if (FINE && DESK()) {
+    const cv = $('#pprev');
+    const r = new THREE.WebGLRenderer({ canvas: cv, alpha: true, antialias: true });
+    r.setPixelRatio(Math.min(devicePixelRatio, 2)); r.setClearColor(0, 0);
+    const W = 440, H = 300; r.setSize(W, H);
+    const sc = new THREE.Scene(), cam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+    const U = { t1: { value: null }, t2: { value: null }, s1: { value: new THREE.Vector2(1, 1) }, s2: { value: new THREE.Vector2(1, 1) }, blend: { value: 1 }, vel: { value: new THREE.Vector2() }, time: { value: 0 }, show: { value: 0 }, res: { value: new THREE.Vector2(W, H) } };
+    sc.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2, 32, 32), new THREE.ShaderMaterial({
+      uniforms: U, transparent: true,
+      vertexShader: 'uniform vec2 vel;varying vec2 vUv;void main(){vUv=uv;vec3 p=position;p.x+=sin(uv.y*3.1416)*vel.x*.06;p.y+=sin(uv.x*3.1416)*vel.y*.06;gl_Position=vec4(p,1.);}',
+      fragmentShader: GLSL + `precision highp float;varying vec2 vUv;uniform sampler2D t1,t2;uniform vec2 s1,s2,res,vel;uniform float blend,time,show;
+        void main(){vec2 uv=vUv;float l=length(uv-.5);float sp=length(vel);
+          uv+=normalize(uv-.5+1e-4)*sin(l*18.-time*2.)*.006*clamp(sp,0.,1.);
+          uv=(uv-.5)*(1.-.06*(1.-show))+.5;
+          vec3 a=texture2D(t1,cover(uv,res,s1)).rgb,b=texture2D(t2,cover(uv,res,s2)).rgb;
+          float n=fbm(vUv*3.+time*.05);float m=smoothstep(n-.2,n+.2,blend*1.4-.2);
+          vec2 q=abs(vUv-.5)*res;vec2 hs=res*.5;float rr=10.;float d=length(max(q-hs+rr,0.))-rr;float alpha=1.-smoothstep(-1.,0.,d);
+          float rev=smoothstep(show*1.3-.3,show*1.3,1.-vUv.y+n*.2);
+          gl_FragColor=vec4(mix(a,b,m),alpha*(1.-rev));}`
+    })));
+    const T = {}; const ld = s => T[s] || (T[s] = tex(`img/${s}-01.webp`).then(t => (t && sharp(t), t)));
+    P.forEach(p => ld(p.slug));
+    const pos = { x: innerWidth / 2, y: innerHeight / 2 }, last = { x: 0, y: 0 };
+    let on = false, curSlug = null, running = false;
+    async function setSlug(s) {
+      if (s === curSlug) return; curSlug = s; const t = await ld(s); if (!t || curSlug !== s) return;
+      if (!U.t2.value) { U.t1.value = U.t2.value = t; U.s1.value.copy(t.userData.size); U.s2.value.copy(t.userData.size); U.blend.value = 1; return; }
+      U.t1.value = U.t2.value; U.s1.value.copy(U.s2.value); U.t2.value = t; U.s2.value.copy(t.userData.size);
+      gsap.fromTo(U.blend, { value: 0 }, { value: 1, duration: 1.2, ease: 'power2.inOut' });
+    }
+    list.addEventListener('pointerover', e => { const li = e.target.closest('.prow'); if (!li) return; setSlug(li.dataset.slug); if (!on) { on = true; pos.x = mouse.x; pos.y = mouse.y; gsap.to(U.show, { value: 1, duration: 1.2, ease: 'power3.out' }); } });
+    list.addEventListener('pointerleave', () => { on = false; gsap.to(U.show, { value: 0, duration: .9, ease: 'power3.inOut' }); });
+    const clk = new THREE.Clock();
+    gsap.ticker.add(() => {
+      const showing = U.show.value > .001;
+      if (!showing) { if (running) { running = false; cv.style.visibility = 'hidden'; } return; }
+      if (!running) { running = true; cv.style.visibility = 'visible'; }
+      pos.x += (mouse.x - pos.x) * .1; pos.y += (mouse.y - pos.y) * .1;
+      const vx = gsap.utils.clamp(-1, 1, (pos.x - last.x) * .04), vy = gsap.utils.clamp(-1, 1, -(pos.y - last.y) * .04);
+      U.vel.value.x += (vx - U.vel.value.x) * .12; U.vel.value.y += (vy - U.vel.value.y) * .12; last.x = pos.x; last.y = pos.y;
+      cv.style.transform = `translate3d(${pos.x + 36}px,${pos.y - H / 2}px,0)`;
+      U.time.value = clk.getElapsedTime(); r.render(sc, cam);
+    });
+  } else {
+    // touch: first tap reveals the image inline, the button opens the project
+    list.addEventListener('click', e => {
+      const a = e.target.closest('.prow-a'); if (!a) return;
+      e.preventDefault(); e.stopPropagation();
+      const li = a.parentElement, open = !li.classList.contains('open');
+      $$('.prow.open', list).forEach(x => { if (x !== li) { x.classList.remove('open'); gsap.to($('.prow-m', x), { height: 0, duration: .9, ease: 'power3.inOut' }); } });
+      li.classList.toggle('open', open);
+      const m = $('.prow-m', li);
+      gsap.to(m, { height: open ? 'auto' : 0, duration: 1.1, ease: 'power3.inOut', onComplete: () => ScrollTrigger.refresh() });
+    }, true);
+  }
+}
+
+/* ---------- kinetic client marquee: drifts slowly, skews with scroll speed ---------- */
+{
+  const rows = $$('.cl-row').map((row, i) => ({ t: $('.cl-track', row), x: 0, w: 0, dir: i ? 1 : -1 }));
+  const measure = () => rows.forEach(r => r.w = r.t.scrollWidth / 2);
+  measure(); addEventListener('resize', measure); addEventListener('load', measure); document.fonts && document.fonts.ready.then(measure);
+  let on = false, sk = 0; new IntersectionObserver(es => es.forEach(e => on = e.isIntersecting)).observe($('.cl-marq'));
+  rows.forEach(r => { if (r.dir > 0) r.x = -r.w; });
+  gsap.ticker.add(() => {
+    if (!on) return; const v = lenis.velocity || 0;
+    sk += (gsap.utils.clamp(-6, 6, -v * .18) - sk) * .06;
+    rows.forEach(r => { r.x += r.dir * (.35 + Math.min(Math.abs(v), 30) * .05); if (r.x <= -r.w) r.x += r.w; if (r.x > 0) r.x -= r.w; r.t.style.transform = `translate3d(${r.x}px,0,0) skewX(${sk}deg)`; });
+  });
+}
 
 /* =================================================================
    TUNNEL: walk through the work
@@ -480,7 +723,7 @@ function scrollAnims() {
   $$('.split').forEach(el => { if (el.closest('.hero')) return; gsap.to($$('.w>span', el), { y: 0, duration: 1.3, ease: 'power4.out', stagger: .06, scrollTrigger: { trigger: el, start: 'top 86%' } }); });
   $$('.up').forEach(el => gsap.fromTo(el, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 1.2, ease: 'power3.out', clearProps: 'transform,opacity', scrollTrigger: { trigger: el, start: 'top 90%' } }));
   $$('.scrub-text').forEach(el => gsap.to($$('.sw', el), { opacity: 1, stagger: .1, ease: 'none', scrollTrigger: { trigger: el, start: 'top 82%', end: 'bottom 50%', scrub: true } }));
-  $$('.count').forEach(c => { const o = { v: 0 }; gsap.to(o, { v: +c.dataset.to, duration: 2.4, ease: 'power3.out', scrollTrigger: { trigger: c, start: 'top 88%' }, onUpdate: () => c.textContent = Math.round(o.v) }); });
+  $$('.count').forEach(c => { const o = { v: 0 }; gsap.to(o, { v: +c.dataset.to, duration: 2.4, ease: 'power3.out', scrollTrigger: { trigger: c, start: 'top 88%' }, onUpdate: () => c.textContent = Math.round(o.v).toLocaleString('en-US') }); });
   gsap.fromTo('.stat', { y: 60, opacity: 0 }, { y: 0, opacity: 1, stagger: .12, duration: 1.2, ease: 'power3.out', clearProps: 'all', scrollTrigger: { trigger: '.stats', start: 'top 82%' } });
   $$('.arch').forEach(a => {
     gsap.to(a, { clipPath: 'inset(0% 0% 0% 0% round 999px 999px 8px 8px)', duration: 1.8, ease: 'power3.inOut', scrollTrigger: { trigger: a, start: 'top 82%' } });
@@ -503,7 +746,9 @@ function scrollAnims() {
   // marquee reacts to scroll speed
   const mt = $('.marquee-track'); let mx = 0, dir = 1;
   gsap.ticker.add(() => { const v = lenis.velocity || 0; if (Math.abs(v) > .1) dir = v > 0 ? 1 : -1; mx -= (.7 + Math.abs(v) * .3) * dir; const w = mt.scrollWidth / 2; if (mx <= -w) mx += w; if (mx > 0) mx -= w; mt.style.transform = `translateX(${mx}px) skewX(${gsap.utils.clamp(-10, 10, -v * .35)}deg)`; });
-  gsap.fromTo('.why-card', { y: 70, opacity: 0 }, { y: 0, opacity: 1, duration: 1.1, stagger: .08, ease: 'power3.out', clearProps: 'transform,opacity', scrollTrigger: { trigger: '.why-grid', start: 'top 82%' } });
+  // cards resolve from a soft blur into sharp focus as they enter
+  $$('.why-card,.office').forEach((c, i) => gsap.fromTo(c, { opacity: 0, y: 40, filter: 'blur(12px)', clipPath: 'inset(10% 6% 10% 6% round 18px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', clipPath: 'inset(0% 0% 0% 0% round 0px)', duration: 1.8, delay: (i % 3) * .12, ease: 'power3.out', clearProps: 'filter,clipPath,opacity,y,transform', scrollTrigger: { trigger: c, start: 'top 90%' } }));
+  $$('.scard-txt,.scard-img').forEach(c => gsap.fromTo(c, { opacity: 0, filter: 'blur(10px)' }, { opacity: 1, filter: 'blur(0px)', duration: 1.8, ease: 'power2.out', clearProps: 'filter,opacity', scrollTrigger: { trigger: c, start: 'top 88%' } }));
   gsap.fromTo('.foot-big span,.foot-big em', { yPercent: 100, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 1.6, stagger: .12, ease: 'power4.out', scrollTrigger: { trigger: '.foot', start: 'top 88%' } });
 }
 

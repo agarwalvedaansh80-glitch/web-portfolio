@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Italiana&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=5">
+<link rel="stylesheet" href="style.css?v=6">
 </head>
 <body class="loading">
 
@@ -120,11 +120,20 @@
   <div class="wgrid" id="wgrid"></div>
 </section>
 
-<!-- WINDOW ZOOM -->
-<section class="window">
-  <div class="window-pin">
-    <div class="window-frame" id="wFrame"><img src="xl/seef-02.webp" alt="Seef Residences by Alef, beachfront rendering"></div>
-    <div class="window-txt" id="wTxt"><div class="eyebrow light">Emotional storytelling</div><h2 class="mega">3D rendering from <em>your perspective</em></h2><p>We are designers who render, to your vision. Beautifully crafted images to showcase Real Estate projects.</p></div>
+<!-- STEP INSIDE: real 360 tour -->
+<section class="pano" id="tour">
+  <div class="pano-pin">
+    <canvas id="panoGL" aria-label="Interactive 360 view of Palazzo Tissoli by Pininfarina"></canvas>
+    <div class="pano-veil" id="panoVeil"></div>
+    <div class="pano-hots" id="panoHots"></div>
+    <div class="pano-ui">
+      <div class="pano-head"><div class="eyebrow light">VR &amp; 360 Tours</div><h2 class="h2">Step inside <em>Palazzo Tissoli</em></h2><p>Pininfarina · Al Marjan Island. A 360 Tour frees the viewer by removing the boundaries of the frame.</p></div>
+      <div class="pano-foot">
+        <div class="pano-scenes" id="panoScenes" role="group" aria-label="Choose a space"></div>
+        <div class="pano-hint"><span class="pano-ico"><i></i></span><span id="panoHint">Drag to look around</span></div>
+      </div>
+      <div class="pano-now"><small>Now viewing</small><b id="panoNow">Courtyard 01</b></div>
+    </div>
   </div>
 </section>
 
@@ -141,6 +150,23 @@
     <article class="scard"><div class="scard-txt"><span class="sn">03</span><h3>3D Animation</h3><p class="sl">Why slide to the next image when you can walk through the next room?</p><p>Render Atelier creates cinematic 3D animation that helps developers, architects, interior designers and hospitality brands turn concepts into compelling launch assets, for investors, off plan marketing and hospitality destinations.</p><ul><li>Cinematic launch animations</li><li>Interior and exterior walkthroughs</li><li>Designed to strengthen confidence and support faster decisions</li></ul></div><div class="scard-img"><img loading="lazy" src="img/corniche-02.webp" srcset="img/corniche-02.webp 1280w, xl/corniche-02.webp 2560w" sizes="(max-width:900px) 92vw, 45vw" alt="Corniche Food Hall aerial rendering"></div></article>
     <article class="scard"><div class="scard-txt"><span class="sn">04</span><h3>VR &amp; 360 Tours</h3><p class="sl">A 360 Tour frees the viewer by removing the boundaries of the frame.</p><p>An immersive experience that allows the consumer to choose where they wish to look and explore the design and the space at its fullest. Cross compatibility on all devices, with customized texts, images, audio, links and interactive floor plans.</p><ul><li>Interactive 360° tours, such as Palazzo Tissoli by Pininfarina</li><li>Custom player interface and dedicated web app</li><li>Works on desktop, mobile and headset</li></ul></div><div class="scard-img"><img loading="lazy" src="img/tissoli-03.webp" srcset="img/tissoli-03.webp 1280w, xl/tissoli-03.webp 2560w" sizes="(max-width:900px) 92vw, 45vw" alt="Palazzo Tissoli amenities rendering"></div></article>
     <article class="scard"><div class="scard-txt"><span class="sn">05</span><h3>Digital Twin</h3><p class="sl">The digital sales room developers use to close faster.</p><p>A web based Real Estate Digital Twin creates a shareable link for your project with interactive floorplans, real time updates and detailed specifications. Prospects compare options, filter by size, type and views, and enjoy virtual tours, on any device, without downloads.</p><ul><li>Close deals sooner</li><li>Sell to anyone, anywhere</li><li>Cut reprint costs and stand out at launch</li></ul></div><div class="scard-img"><img loading="lazy" src="img/everly-03.webp" srcset="img/everly-03.webp 1280w, xl/everly-03.webp 2560w" sizes="(max-width:900px) 92vw, 45vw" alt="Ellington Everly Place lagoon rendering"></div></article>
+  </div>
+</section>
+
+<!-- MODEL TO RENDER: scroll reveal -->
+<section class="reveal" id="reveal">
+  <div class="reveal-pin">
+    <img class="reveal-img" id="revImg" src="xl/altiera-02.webp" alt="Altiera Heights by Ellington Properties, final render" decoding="async">
+    <canvas id="revGL" aria-hidden="true"></canvas>
+    <div class="reveal-ui">
+      <div class="reveal-head"><div class="eyebrow light">From model to render</div><h2 class="h2">Every frame begins <em>as a drawing</em></h2></div>
+      <ol class="reveal-steps" id="revSteps">
+        <li class="on"><span>01</span><b>Model</b><small>Architecture built to your drawings</small></li>
+        <li><span>02</span><b>Light</b><small>Light and shadow within a space</small></li>
+        <li><span>03</span><b>Render</b><small>The final, photo realistic frame</small></li>
+      </ol>
+      <p class="reveal-cap">Altiera Heights · Ellington Properties</p>
+    </div>
   </div>
 </section>
 
@@ -179,6 +205,13 @@
   </div>
 </section>
 
+<!-- PROJECT INDEX -->
+<section class="pindex" id="index">
+  <div class="sec-head"><div class="eyebrow">Project index</div><h2 class="h2 split">Selected <em>commissions</em></h2></div>
+  <ol class="plist" id="plist"></ol>
+  <canvas id="pprev" aria-hidden="true"></canvas>
+</section>
+
 <!-- WHY -->
 <section class="why">
   <div class="sec-head">
@@ -198,9 +231,8 @@
 <!-- CLIENTS -->
 <section class="clients" aria-label="Clients">
   <div class="sec-head"><div class="eyebrow">Trusted by</div><h2 class="h2 split">Architects, developers <em>and design brands</em></h2></div>
-  <ul class="client-list">
-    <li>Zaha Hadid Architects</li><li>Gensler</li><li>Emaar</li><li>Meraas</li><li>Mandarin Oriental</li><li>Ellington Properties</li><li>Damac</li><li>Sobha Realty</li><li>Dar Global</li><li>Aedas</li><li>Perkins Eastman</li><li>HBA</li><li>Meyer Davis</li><li>Parsons</li><li>Qatar Airways</li><li>Dubai Airports</li><li>Dubai Municipality</li><li>Al Habtoor</li><li>Deyaar</li><li>Imkan</li><li>Union Properties</li><li>The World Dubai</li><li>Jumeirah Golf Estates</li><li>Bloom</li><li>Prestige One</li><li>Alef</li>
-  </ul>
+  <div class="cl-marq" aria-label="Zaha Hadid Architects, Gensler, Emaar, Meraas, Mandarin Oriental, Ellington Properties, Damac, Sobha Realty, Dar Global, Aedas, Perkins Eastman, HBA, Meyer Davis, Parsons, Qatar Airways, Dubai Airports, Dubai Municipality, Al Habtoor, Deyaar, Imkan, Union Properties, The World Dubai, Jumeirah Golf Estates, Bloom, Prestige One, Alef"><div class="cl-row"><div class="cl-track"><span>Zaha Hadid Architects</span><b>✦</b><span>Gensler</span><b>✦</b><span>Emaar</span><b>✦</b><span>Meraas</span><b>✦</b><span>Mandarin Oriental</span><b>✦</b><span>Ellington Properties</span><b>✦</b><span>Damac</span><b>✦</b><span>Sobha Realty</span><b>✦</b><span>Dar Global</span><b>✦</b><span>Aedas</span><b>✦</b><span>Perkins Eastman</span><b>✦</b><span>HBA</span><b>✦</b><span>Meyer Davis</span><b>✦</b><span>Zaha Hadid Architects</span><b>✦</b><span>Gensler</span><b>✦</b><span>Emaar</span><b>✦</b><span>Meraas</span><b>✦</b><span>Mandarin Oriental</span><b>✦</b><span>Ellington Properties</span><b>✦</b><span>Damac</span><b>✦</b><span>Sobha Realty</span><b>✦</b><span>Dar Global</span><b>✦</b><span>Aedas</span><b>✦</b><span>Perkins Eastman</span><b>✦</b><span>HBA</span><b>✦</b><span>Meyer Davis</span><b>✦</b></div></div><div class="cl-row rev"><div class="cl-track"><span>Parsons</span><b>✦</b><span>Qatar Airways</span><b>✦</b><span>Dubai Airports</span><b>✦</b><span>Dubai Municipality</span><b>✦</b><span>Al Habtoor</span><b>✦</b><span>Deyaar</span><b>✦</b><span>Imkan</span><b>✦</b><span>Union Properties</span><b>✦</b><span>The World Dubai</span><b>✦</b><span>Jumeirah Golf Estates</span><b>✦</b><span>Bloom</span><b>✦</b><span>Prestige One</span><b>✦</b><span>Alef</span><b>✦</b><span>Parsons</span><b>✦</b><span>Qatar Airways</span><b>✦</b><span>Dubai Airports</span><b>✦</b><span>Dubai Municipality</span><b>✦</b><span>Al Habtoor</span><b>✦</b><span>Deyaar</span><b>✦</b><span>Imkan</span><b>✦</b><span>Union Properties</span><b>✦</b><span>The World Dubai</span><b>✦</b><span>Jumeirah Golf Estates</span><b>✦</b><span>Bloom</span><b>✦</b><span>Prestige One</span><b>✦</b><span>Alef</span><b>✦</b></div></div></div>
+  <p class="cl-note up">Over 350 brands have trusted us to help shape the way their projects are presented to the world.</p>
 </section>
 
 <!-- CONSULTATION -->
@@ -268,6 +300,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
 <script src="data.js?v=1"></script>
-<script type="module" src="main.js?v=4"></script>
+<script type="module" src="main.js?v=6"></script>
 </body>
 </html>
