@@ -94,6 +94,7 @@
       "source": "/nikki-bisiker",
       "destination": "/nikki-bisiker/",
       "permanent": false
-    }
+    },
+    { "source": "/tag-interiors", "destination": "/tag-interiors/", "permanent": false }
   ]
 }
