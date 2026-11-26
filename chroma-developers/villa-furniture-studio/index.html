@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<base href="/villa-furniture-studio/">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Al Sobha Home Furniture | Custom Furniture in Sharjah, Dubai &amp; across the UAE</title>
+<meta name="description" content="Custom furniture made to your design, size and space: sofas and majlis, bedrooms, wardrobes, TV units, dining, curtains and complete home interiors. Based in Sharjah, serving all Emirates.">
+<meta property="og:title" content="Al Sobha Home Furniture | Your Home. Our Design.">
+<meta property="og:description" content="Custom furniture and interior solutions for villas, apartments and offices across the UAE.">
+<meta property="og:image" content="https://chroma-developers.vercel.app/villa-furniture-studio/img/liv1.webp">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Cinzel:wght@400;500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=1">
+<script>try{if(localStorage.getItem('as-theme')==='light')document.documentElement.dataset.theme='light'}catch(e){}</script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+</head>
+<body class="loading in-hero">
+
+<div class="loader" id="loader">
+  <div class="loader-panels"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="loader-inner">
+    <div class="loader-word" aria-label="Al Sobha"><span>A</span><span>L</span><span class="sp"></span><span>S</span><span>O</span><span>B</span><span>H</span><span>A</span></div>
+    <div class="loader-sub">Home Furniture</div>
+    <div class="loader-bar"><i id="loaderBar"></i></div>
+    <div class="loader-meta"><span>Sharjah · UAE</span><span><b id="loaderNum">0</b>%</span></div>
+  </div>
+</div>
+
+<div class="cursor" id="cursor"><div class="c-ring"><span class="c-label" id="cLabel"></span></div><div class="c-dot"></div></div>
+<canvas id="gal" aria-hidden="true"></canvas>
+
+<header class="nav" id="nav">
+  <a href="#top" class="logo" aria-label="Al Sobha Home Furniture"><b>AL SOBHA</b><small>Home Furniture</small></a>
+  <nav class="nav-links">
+    <a href="#collection">Collection</a><a href="#collections">Rooms</a><a href="#services">Services</a><a href="#process">Process</a><a href="#studio">Studio</a><a href="#contact">Contact</a>
+  </nav>
+  <button class="theme" id="theme" aria-label="Switch day or night mode" data-cursor="Mode"><span>Day</span><i></i><span>Night</span></button>
+  <a href="#contact" class="btn btn-brass btn-sm nav-cta magnetic">Free quotation</a>
+  <button class="burger" id="burger" aria-label="Menu"><i></i><i></i></button>
+</header>
+<div class="menu" id="menu">
+  <a href="#collection">Collection</a><a href="#collections">Rooms</a><a href="#services">Services</a><a href="#process">Process</a><a href="#studio">Studio</a><a href="#contact">Contact</a>
+  <div class="menu-foot"><a href="https://wa.me/971526141684" target="_blank" rel="noopener">WhatsApp</a><a href="tel:+971526141684">+971 52 614 1684</a></div>
+</div>
+
+<main id="top">
+
+<!-- HERO: live furniture configurator -->
+<section class="hero" id="hero">
+  <div class="hero-pin">
+    <canvas id="cfgGL" aria-label="Interactive 3D sofa"></canvas>
+    <div class="hero-top" id="heroTop">
+      <div class="eyebrow h-in">Custom furniture · Sharjah, UAE</div>
+      <h1 class="hero-title split">Your home. <em>Our design.</em></h1>
+      <p class="hero-lead h-in">Sofas, bedrooms, wardrobes, TV units, dining and curtains, made to order for your size, style and space, and delivered across the UAE.</p>
+    </div>
+    <div class="xp" id="xp" aria-hidden="true">
+      <div class="eyebrow">Made to measure</div>
+      <h2 class="xp-title">Built piece by piece, <em>to your size</em></h2>
+      <p>Every piece is made to order in the fabric, finish and dimensions you choose.</p>
+    </div>
+    <div class="tags" id="tags">
+      <div class="tag" data-k="back"><i></i><span>Back cushions</span></div>
+      <div class="tag" data-k="seat"><i></i><span>Seat cushions</span></div>
+      <div class="tag" data-k="arm"><i></i><span>Arm with <b class="finName">walnut</b> tray</span></div>
+      <div class="tag" data-k="frame"><i></i><span>Upholstered frame</span></div>
+      <div class="tag" data-k="base"><i></i><span>Base in <b class="finName">walnut</b></span></div>
+      <div class="tag" data-k="table"><i></i><span>Table in <b class="finName">walnut</b></span></div>
+    </div>
+    <div class="cfg h-in" id="cfg">
+      <div class="cfg-head"><span>Design your sofa</span><b id="cfgSel">Bouclé Ivory · Walnut</b></div>
+      <div class="cfg-row"><label>Upholstery</label>
+        <div class="sw" id="swFab">
+          <button class="on" data-k="boucle" data-n="Bouclé Ivory" data-cursor="Bouclé" style="--sw:radial-gradient(circle at 35% 30%,#fbf7f0,#ddd4c6 70%)" aria-label="Bouclé Ivory"></button>
+          <button data-k="linen" data-n="Linen Stone" data-cursor="Linen" style="--sw:repeating-linear-gradient(90deg,#b7ad9f 0 2px,#a39888 2px 4px)" aria-label="Linen Stone"></button>
+          <button data-k="velvet" data-n="Velvet Mocha" data-cursor="Velvet" style="--sw:radial-gradient(circle at 35% 30%,#8a6a52,#3f2c20 72%)" aria-label="Velvet Mocha"></button>
+          <button data-k="charcoal" data-n="Velvet Charcoal" data-cursor="Charcoal" style="--sw:radial-gradient(circle at 35% 30%,#5a5856,#1c1c1c 72%)" aria-label="Velvet Charcoal"></button>
+          <button data-k="leather" data-n="Leather Cognac" data-cursor="Leather" style="--sw:radial-gradient(circle at 35% 30%,#b0703f,#5e3219 75%)" aria-label="Leather Cognac"></button>
+        </div>
+      </div>
+      <div class="cfg-row"><label>Base finish</label>
+        <div class="sw" id="swFin">
+          <button class="on" data-k="walnut" data-n="Walnut" data-cursor="Walnut" style="--sw:repeating-linear-gradient(100deg,#5a3a25 0 3px,#6e4a30 3px 5px,#4a2f1e 5px 8px)" aria-label="Walnut"></button>
+          <button data-k="oak" data-n="Oak" data-cursor="Oak" style="--sw:repeating-linear-gradient(100deg,#c49a68 0 3px,#b08458 3px 5px,#d2ab7b 5px 8px)" aria-label="Oak"></button>
+          <button data-k="marble" data-n="Marble" data-cursor="Marble" style="--sw:linear-gradient(135deg,#f1ede6 40%,#a59d92 44%,#f1ede6 47%,#e6e0d6 70%,#bdb4a6 72%,#f1ede6 74%)" aria-label="Marble"></button>
+          <button data-k="brass" data-n="Brushed Brass" data-cursor="Brass" style="--sw:linear-gradient(135deg,#8c6a39,#e2c58f 45%,#a98447 60%,#d9b97f)" aria-label="Brushed Brass"></button>
+        </div>
+      </div>
+      <a class="btn btn-brass btn-sm cfg-send magnetic" id="cfgSend" href="https://wa.me/971526141684" target="_blank" rel="noopener">Send this design</a>
+    </div>
+    <div class="hero-hint h-in"><span class="drag-ico"><i></i></span><span>Drag to rotate<br>Scroll to see it built</span></div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true"><div class="marquee-track">
+  <span>Sofas</span><b></b><span>Majlis</span><b></b><span>Bedrooms</span><b></b><span>Wardrobes</span><b></b><span>TV Units</span><b></b><span>Dining</span><b></b><span>Curtains</span><b></b><span>Gypsum Work</span><b></b>
+  <span>Sofas</span><b></b><span>Majlis</span><b></b><span>Bedrooms</span><b></b><span>Wardrobes</span><b></b><span>TV Units</span><b></b><span>Dining</span><b></b><span>Curtains</span><b></b><span>Gypsum Work</span><b></b>
+</div></div>
+
+<!-- INTRO -->
+<section class="intro" id="studio">
+  <div class="intro-img"><div class="arch"><img src="img/bed1.webp" alt="Upholstered cloud bed by Al Sobha Home Furniture" class="par"></div></div>
+  <div class="intro-text">
+    <div class="eyebrow">The studio</div>
+    <h2 class="h2 split">More than <em>furniture</em></h2>
+    <p class="scrub-text">We create spaces that inspire. From luxury villas and modern apartments to offices and commercial spaces, our custom furniture and interior solutions are designed to match your lifestyle.</p>
+    <p class="muted up">At Al Sobha Home Furniture we make furniture according to your design, size and requirements. Design and manufacturing come together under one name, from the first sketch to delivery at your door.</p>
+    <a href="#services" class="link-arrow up">What we make <span>→</span></a>
+  </div>
+</section>
+
+<!-- RING GALLERY -->
+<section class="ring-sec" id="collection">
+  <div class="ring-head">
+    <div class="eyebrow">The collection</div>
+    <h2 class="h2 split">Pieces made for <em>real homes</em></h2>
+  </div>
+  <canvas id="ring" aria-label="3D ring of furniture pieces"></canvas>
+  <div class="ring-label" id="ringLabel"><span id="rlMeta">Living</span><b id="rlName">Curved Ivory Sectional</b></div>
+  <div class="ring-hint"><span class="drag-ico"><i></i></span><span>Drag to turn<br>Tap a piece to open</span></div>
+</section>
+
+<!-- SHOWCASE (pinned, liquid WebGL) -->
+<section class="show" id="collections">
+  <div class="show-pin">
+    <div class="show-num" id="showNum" aria-hidden="true">01</div>
+    <div class="show-left">
+      <div class="eyebrow light">Rooms we furnish</div>
+      <div class="show-titles" id="showTitles"></div>
+      <div class="show-ctl"><a href="#" class="btn btn-brass magnetic" id="showOpen" data-cursor="Open">Open collection</a><div class="show-count"><b id="showN">01</b> / 05</div></div>
+    </div>
+    <div class="show-frame" id="showFrame"><canvas id="showGL"></canvas></div>
+    <ul class="show-list" id="showList"></ul>
+    <div class="show-bar"><i id="showBar"></i></div>
+  </div>
+</section>
+
+<!-- GALLERY GRID -->
+<section class="work" id="work">
+  <div class="work-head">
+    <div><div class="eyebrow">Selected pieces</div><h2 class="h2 split">Made to order, <em>made to last</em></h2>
+      <p class="muted up">A selection of sofas, bedrooms, wardrobes, media walls and dining sets from our collection. Every piece can be made in your size, fabric and finish.</p></div>
+  </div>
+  <div class="filters" id="filters" data-lenis-prevent></div>
+  <div class="wgrid" id="wgrid"></div>
+</section>
+
+<!-- WINDOW ZOOM -->
+<section class="window">
+  <div class="window-pin">
+    <div class="window-frame" id="wFrame"><img src="img/win.webp" alt="Arched mirror vanity with soft lighting"></div>
+    <div class="window-txt" id="wTxt"><div class="eyebrow light">Design · Manufacturing</div><h2 class="mega">Made for <em>your space</em></h2><p>Send us your design, your size or a photo you love. We design it, make it and deliver it to your home.</p></div>
+  </div>
+</section>
+
+<!-- SERVICES (stacking) -->
+<section class="services" id="services">
+  <div class="sec-head">
+    <div class="eyebrow">Services</div>
+    <h2 class="h2 split">Everything for <em>a finished home</em></h2>
+    <p class="muted up">From a single sofa to a complete villa, every piece is made to your design and size, with fabrics, colours and finishes chosen together.</p>
+  </div>
+  <div class="stack">
+    <article class="scard"><div class="scard-txt"><span class="sn">01</span><h3>Custom Sofas &amp; Majlis</h3><p class="sl">Sofa sets and majlis seating made to your design, size and fabric.</p><ul><li>Modern and luxury sofa sets</li><li>3+2+1 sets, L-shaped and corner sofas</li><li>Majlis seating for family and guests</li></ul><a href="#" class="link-arrow" data-cat="living">View sofas <span>→</span></a></div><div class="scard-img"><img src="img/liv2.webp" alt="Corner sofa living room" loading="lazy"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">02</span><h3>Bedrooms &amp; Dressing Tables</h3><p class="sl">Beds, complete bedroom sets and dressing tables that bring warmth and calm to the room.</p><ul><li>Beds and upholstered headboards</li><li>Complete bedroom sets</li><li>Dressing tables and vanity corners</li></ul><a href="#" class="link-arrow" data-cat="bedroom">View bedrooms <span>→</span></a></div><div class="scard-img"><img src="img/dre1.webp" alt="Dressing table with round mirror" loading="lazy"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">03</span><h3>Wardrobes &amp; Storage</h3><p class="sl">Custom wardrobes and smart storage solutions, from modern minimalism to luxury finishes.</p><ul><li>Walk-in and corner wardrobes</li><li>Glass fronted wardrobes with lighting</li><li>Built-in storage planned around your room</li></ul><a href="#" class="link-arrow" data-cat="wardrobe">View wardrobes <span>→</span></a></div><div class="scard-img"><img src="img/war3.webp" alt="Glass front wardrobe" loading="lazy"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">04</span><h3>TV Units &amp; Media Walls</h3><p class="sl">Modern TV units and complete media walls with LED lighting and display niches.</p><ul><li>Modern and wall mounted TV units</li><li>TV cabinets and stands</li><li>Feature walls and wall décor</li></ul><a href="#" class="link-arrow" data-cat="tv">View media walls <span>→</span></a></div><div class="scard-img"><img src="img/tv4.webp" alt="Media wall with display niches" loading="lazy"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">05</span><h3>Dining &amp; Tables</h3><p class="sl">Dining tables, dining sets, chairs, coffee tables and side tables for every room.</p><ul><li>Dining tables and complete dining sets</li><li>Dining chairs</li><li>Coffee tables and side tables</li></ul><a href="#" class="link-arrow" data-cat="dining">View dining <span>→</span></a></div><div class="scard-img"><img src="img/din2.webp" alt="Dining table and chairs" loading="lazy"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">06</span><h3>Curtains, Décor &amp; Complete Interiors</h3><p class="sl">Curtains, home décor and gypsum work, through to complete interiors for villas, apartments and offices.</p><ul><li>Wave curtains, sheers and drapery</li><li>Home décor and gypsum work</li><li>Office and commercial furniture</li></ul><a href="#" class="link-arrow" data-cat="curtains">View curtains <span>→</span></a></div><div class="scard-img"><img src="img/cur1.webp" alt="Bay window drapery" loading="lazy"></div></article>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="process-wrap">
+    <div class="plan-sticky">
+      <div class="eyebrow light">Process</div>
+      <h2 class="h2">From your idea <em>to your home</em></h2>
+      <svg class="plan" viewBox="0 0 560 360" fill="none" aria-hidden="true">
+        <g class="L1" stroke-width="2.4"><path d="M20 318H540"/><rect x="60" y="282" width="440" height="20" rx="3"/><rect x="50" y="250" width="460" height="32" rx="7"/></g>
+        <g class="L2" stroke-width="1.6"><rect x="88" y="128" width="384" height="122" rx="12"/><rect x="50" y="176" width="38" height="74" rx="10"/><rect x="472" y="176" width="38" height="74" rx="10"/><path d="M44 174H94M466 174H516"/></g>
+        <g class="L3" stroke-width="1.2"><rect x="96" y="140" width="118" height="80" rx="18"/><rect x="221" y="140" width="118" height="80" rx="18"/><rect x="346" y="140" width="118" height="80" rx="18"/><rect x="94" y="220" width="122" height="30" rx="10"/><rect x="219" y="220" width="122" height="30" rx="10"/><rect x="344" y="220" width="122" height="30" rx="10"/><path d="M110 302V316M450 302V316"/></g>
+        <g class="L4" stroke-width="1"><path d="M50 96H510M50 90V102M510 90V102"/><path d="M534 128V302M528 128H540M528 302H540"/><path d="M24 220V250M18 220H30M18 250H30" /><path d="M280 96V128" stroke-dasharray="2 4"/></g>
+        <g class="labels"><text x="232" y="84">Width</text><text x="546" y="220" transform="rotate(90 546 220)">Height</text><text x="6" y="268" >Seat</text><text x="216" y="340">Made to your size</text></g>
+      </svg>
+    </div>
+    <div class="steps">
+      <div class="step"><span>01</span><h3>Share your idea</h3><p>Send us your design, a photo you love or the size of your room on WhatsApp, or tell us what the space needs.</p></div>
+      <div class="step"><span>02</span><h3>Size, fabric &amp; finish</h3><p>We confirm the dimensions, fabrics, colours and finishes, so the piece fits your room and your style.</p></div>
+      <div class="step"><span>03</span><h3>Free quotation</h3><p>You receive a free quotation and custom design before anything is made.</p></div>
+      <div class="step"><span>04</span><h3>Manufacturing</h3><p>Your furniture is made to order to the design you approved.</p></div>
+      <div class="step"><span>05</span><h3>Delivery across the UAE</h3><p>Free home delivery to Dubai, Abu Dhabi, Sharjah, Ajman and all Emirates.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROMISES -->
+<section class="why">
+  <div class="sec-head">
+    <div class="eyebrow">Why Al Sobha</div>
+    <h2 class="h2 split">Turning ideas into <em>beautiful interiors</em></h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-card"><span>01</span><h3>Made to your size</h3><p>Every piece is made to order for the exact dimensions of your room, wall or alcove.</p></div>
+    <div class="why-card"><span>02</span><h3>Your design or ours</h3><p>Bring your own design or a picture you love, or let us design it for you from scratch.</p></div>
+    <div class="why-card"><span>03</span><h3>Free quotation</h3><p>Message us with your idea and receive a free quotation and custom design.</p></div>
+    <div class="why-card"><span>04</span><h3>Design and manufacturing</h3><p>One team designs and makes your furniture, so what you approve is what you receive.</p></div>
+    <div class="why-card"><span>05</span><h3>Free delivery across the UAE</h3><p>Based in Sharjah and serving Dubai, Abu Dhabi, Ajman and all Emirates.</p></div>
+    <div class="why-card"><span>06</span><h3>Complete home solutions</h3><p>Furniture, curtains, décor and gypsum work for villas, apartments, offices and commercial spaces.</p></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="sec-head"><div class="eyebrow">FAQ</div><h2 class="h2 split">Questions, <em>answered</em></h2></div>
+  <div class="faq-list">
+    <details><summary>Can you make furniture to my own design?</summary><p>Yes. We make custom furniture according to your design, size and requirements. Send us a drawing, a photo or a reference and we will work from it.</p></details>
+    <details><summary>Can you change the size, fabric or colour of a piece I see here?</summary><p>Yes. Every piece is made to order, so the size, fabric, colour and finish can be chosen for your space.</p></details>
+    <details><summary>How do I get a quotation?</summary><p>Message us on WhatsApp at +971 52 614 1684 with your idea, a photo or the size of your room. The quotation and custom design are free.</p></details>
+    <details><summary>Do you deliver outside Sharjah?</summary><p>Yes. We are based in Sharjah and serve customers across the UAE, including Dubai, Abu Dhabi, Ajman and all Emirates, with free home delivery.</p></details>
+    <details><summary>Do you furnish complete villas and offices?</summary><p>Yes. From luxury villas and modern apartments to offices and commercial spaces, we provide furniture, curtains, décor and complete interior solutions.</p></details>
+    <details><summary>Do you also make curtains and wall décor?</summary><p>Yes. Alongside furniture we make curtains and window décor, wall décor, feature walls and gypsum work.</p></details>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-bg"><img src="img/din3.webp" alt="" class="par"></div>
+  <div class="contact-in">
+    <div class="eyebrow light">Contact</div>
+    <h2 class="mega split">Let's design <em>your home</em></h2>
+    <p class="big up">Tell us about your room, your style and your size. Send a photo or a design, and we will reply with a free quotation and custom design.</p>
+    <div class="contact-btns up">
+      <a class="btn btn-brass magnetic" href="https://wa.me/971526141684?text=Hello%20Al%20Sobha%20Home%20Furniture%2C%20I%20would%20like%20a%20quotation%20for%20custom%20furniture." target="_blank" rel="noopener">Message on WhatsApp</a>
+      <a class="btn btn-line light magnetic" href="tel:+971526141684">Call +971 52 614 1684</a>
+    </div>
+    <div class="contact-card up">
+      <div class="mono">AS</div>
+      <div><strong>Al Sobha Home Furniture</strong><small>Custom furniture and interior solutions</small></div>
+      <ul>
+        <li><span>WhatsApp</span><a href="https://wa.me/971526141684" target="_blank" rel="noopener">+971 52 614 1684</a></li>
+        <li><span>Email</span><a href="mailto:mohammedmurad818@gmail.com">mohammedmurad818@gmail.com</a></li>
+        <li><span>Instagram</span><a href="https://www.instagram.com/alsobhahomefurniture/" target="_blank" rel="noopener">@alsobhahomefurniture</a></li>
+        <li><span>Location</span><b>Sharjah · serving all Emirates</b></li>
+      </ul>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="foot-big"><span>AL SOBHA</span></div>
+  <div class="foot-cols">
+    <div><h5>Studio</h5><a href="#collection">Collection</a><a href="#collections">Rooms</a><a href="#services">Services</a><a href="#process">Process</a><a href="#contact">Contact</a></div>
+    <div><h5>Collections</h5><a href="#" data-cat="living">Sofas &amp; Majlis</a><a href="#" data-cat="bedroom">Bedrooms</a><a href="#" data-cat="wardrobe">Wardrobes</a><a href="#" data-cat="tv">TV Units &amp; Media Walls</a><a href="#" data-cat="dining">Dining</a><a href="#" data-cat="curtains">Curtains</a></div>
+    <div><h5>Contact</h5><a href="https://wa.me/971526141684" target="_blank" rel="noopener">WhatsApp +971 52 614 1684</a><a href="mailto:mohammedmurad818@gmail.com">mohammedmurad818@gmail.com</a><a href="https://www.instagram.com/alsobhahomefurniture/" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/alsobhahomefurniture/" target="_blank" rel="noopener">Facebook</a><span>Sharjah, United Arab Emirates</span></div>
+  </div>
+  <div class="foot-bot"><span>© <span id="yr"></span> Al Sobha Home Furniture. Your Home. Our Design.</span><a href="#top">Back to top ↑</a></div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/971526141684?text=Hello%20Al%20Sobha%20Home%20Furniture%2C%20I%20would%20like%20a%20quotation%20for%20custom%20furniture." target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 32 32" width="26" height="26"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.7c-2 0-3.9-.5-5.6-1.5l-.4-.2-3.9 1 1-3.8-.3-.4A10.7 10.7 0 1 1 16 26.7zm5.9-8c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5 1-1.7.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4s-1.2 1.1-1.2 2.8 1.2 3.2 1.4 3.4 2.4 3.7 5.8 5.2c2.2.9 3 1 4.1.8.7-.1 1.9-.8 2.2-1.5s.3-1.3.2-1.5-.3-.2-.6-.4z"/></svg>
+</a>
+
+<div class="modal" id="modal" aria-hidden="true" role="dialog">
+  <button class="modal-x" id="modalX" data-cursor="Close" aria-label="Close"></button>
+  <div class="modal-scroll" id="modalScroll" data-lenis-prevent></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="data.js?v=1"></script>
+<script type="module" src="main.js?v=1"></script>
+</body>
+</html>
