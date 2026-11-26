@@ -128,7 +128,7 @@ html[data-theme=light] .hero{background:radial-gradient(70% 60% at 62% 58%,#f8f5
 .cfg-send{width:100%;margin-top:6px}
 .hero-hint{position:absolute;right:calc(var(--pad) + 74px);bottom:clamp(30px,6vh,56px);z-index:2;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink2);display:flex;align-items:center;gap:14px;line-height:1.8;pointer-events:none}
 @media (max-width:760px){
-  .hero-top,.xp{top:92px}
+  .hero-top,.xp{top:92px;right:var(--pad);max-width:none}
   .hero-title{font-size:clamp(42px,12vw,60px)}
   .hero-lead{display:none}
   .xp-title{font-size:38px}.xp p{display:none}
