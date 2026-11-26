@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<base href="/kamelia/">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Kamelia Landscape Design | Landscape Architecture, Dubai</title>
+<meta name="description" content="Kamelia Landscape Design is an award-winning landscape design studio in Dubai led by Kamelia Zaal, designing high-end residential villa gardens and boutique commercial landscapes across the UAE.">
+<meta property="og:title" content="Kamelia Landscape Design | Dubai">
+<meta property="og:description" content="Unique, tailored contemporary landscapes for private villas and boutique commercial projects.">
+<meta property="og:image" content="https://chroma-developers.vercel.app/kamelia/x/al-barari-villa-01.webp">
+<meta name="theme-color" content="#060907">
+<script>try{if(localStorage.getItem('kam-theme')==='light')document.documentElement.dataset.theme='light'}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Marcellus&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=1">
+<link rel="stylesheet" href="fx.css?v=1">
+<link rel="stylesheet" href="site.css?v=1">
+</head>
+<body class="loading">
+
+<div class="loader" id="loader">
+  <div class="loader-panels"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="loader-inner">
+    <svg class="mono" viewBox="0 0 120 150" aria-hidden="true">
+      <path class="mono-arch" d="M10 145V60A50 50 0 0 1 110 60V145Z"/>
+      <path class="mono-arch2" d="M18 137V61A42 42 0 0 1 102 61V137Z"/>
+      <text x="60" y="110" text-anchor="middle">K</text>
+    </svg>
+    <div class="loader-word" aria-label="Kamelia"><span>K</span><span>A</span><span>M</span><span>E</span><span>L</span><span>I</span><span>A</span></div>
+    <div class="loader-sub">Landscape Design</div>
+    <div class="loader-bar"><i id="loaderBar"></i></div>
+    <div class="loader-meta"><span>Al Barari &nbsp;·&nbsp; Dubai</span><span><b id="loaderNum">0</b>%</span></div>
+  </div>
+</div>
+
+<div class="cursor" id="cursor"><div class="c-ring"><span class="c-label" id="cLabel"></span></div><div class="c-dot"></div></div>
+<canvas id="gal" aria-hidden="true"></canvas>
+
+<header class="nav" id="nav">
+  <a href="#top" class="logo" aria-label="Kamelia Landscape Design"><span class="logo-main">KAMELIA</span><span class="logo-sub">Landscape Design</span></a>
+  <nav class="nav-links">
+    <a href="#studio">Studio</a><a href="#work">Projects</a><a href="#services">Services</a><a href="#process">Process</a><a href="#awards">Awards</a><a href="#contact">Contact</a>
+  </nav>
+  <button class="theme" id="theme" aria-label="Switch day or night mode" data-cursor="Mode"><span>Day</span><i></i><span>Night</span></button>
+  <a href="#contact" class="btn btn-solid btn-sm nav-cta">Plan your garden</a>
+  <button class="burger" id="burger" aria-label="Menu"><i></i><i></i></button>
+</header>
+<div class="menu" id="menu">
+  <div class="menu-links"><a href="#studio"><small>01</small>Studio</a><a href="#work"><small>02</small>Projects</a><a href="#services"><small>03</small>Services</a><a href="#process"><small>04</small>Process</a><a href="#awards"><small>05</small>Awards</a><a href="#contact"><small>06</small>Contact</a></div>
+  <div class="menu-foot"><a href="tel:+971501047974">+971 50 104 7974</a><a href="https://www.instagram.com/kamelialandscapedesign/" target="_blank" rel="noopener">@kamelialandscapedesign</a></div>
+</div>
+
+<main id="top">
+
+<section class="hero" id="hero">
+  <canvas id="ring"></canvas>
+  <div class="hero-top">
+    <div class="eyebrow h-in">Landscape Design &nbsp;·&nbsp; Site Supervision &nbsp;·&nbsp; Dubai</div>
+    <h1 class="hero-title split">Contemporary landscapes, <em>tailored to you</em></h1>
+  </div>
+  <div class="ring-label" id="ringLabel"><small>Now viewing</small><span id="rlMeta">Al Barari, Dubai</span><b id="rlName">Private Villa, Al Barari</b></div>
+  <div class="hero-bottom">
+    <div class="hero-left h-in">
+      <button class="hero-close" id="heroClose" aria-label="Close" data-cursor="Close"></button>
+      <p class="hero-lead">An award-winning landscape design studio led by Kamelia Zaal, creating unique gardens for high-end residential villas and boutique commercial projects, from the first sketch through to completion.</p>
+      <div class="hero-btns">
+        <a href="#work" class="btn btn-solid" data-fx-mag>View the gardens</a>
+        <a href="#contact" class="btn btn-line" data-fx-mag>Plan your garden</a>
+      </div>
+    </div>
+    <div class="hero-hint h-in"><span class="drag-ico"><i></i></span>Drag or scroll<br>to explore the gardens</div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true"><div class="marquee-track">
+  <span>Vogue Arabia</span><b></b><span>The Telegraph</span><b></b><span>Harper's Bazaar Arabia</span><b></b><span>The National</span><b></b><span>Khaleej Times</span><b></b><span>L'Officiel</span><b></b><span>Marie Claire Arabia</span><b></b><span>InsideOut</span><b></b><span>Landscape Middle East</span><b></b>
+  <span>Vogue Arabia</span><b></b><span>The Telegraph</span><b></b><span>Harper's Bazaar Arabia</span><b></b><span>The National</span><b></b><span>Khaleej Times</span><b></b><span>L'Officiel</span><b></b><span>Marie Claire Arabia</span><b></b><span>InsideOut</span><b></b><span>Landscape Middle East</span><b></b>
+</div></div>
+
+<section class="intro" id="studio">
+  <div class="intro-img"><div class="arch"><img src="m/kamelia.webp" alt="Kamelia Zaal, lead designer of Kamelia Landscape Design" class="par"></div><div class="arch-cap">Kamelia Zaal, Lead Designer</div></div>
+  <div class="intro-text">
+    <div class="eyebrow">The studio</div>
+    <h2 class="h2 split">Gardens made for <em>the way you live</em></h2>
+    <p class="scrub-text">We create unique, tailored contemporary landscapes, and we stay beside our clients through the whole design process until the garden is complete.</p>
+    <p class="muted up">Kamelia Landscape Design specialises in the design and project management of boutique commercial projects and high-end residential villas across Dubai, Abu Dhabi and the wider UAE.</p>
+    <div class="stats up">
+      <div class="stat"><div class="num"><span class="count" data-to="15">0</span><sup>+</sup></div><p>Years designing landscapes in the UAE</p></div>
+      <div class="stat"><div class="num"><span class="count" data-to="1">0</span><sup>st</sup></div><p>Arab landscape designer at the RHS Chelsea Flower Show</p></div>
+      <div class="stat"><div class="num"><span class="count" data-to="3">0</span></div><p>International awards and medals</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sig" id="signature">
+  <div class="sig-pin">
+    <canvas id="sigGL"></canvas>
+    <img class="sig-still" id="sigStill" alt="" decoding="async">
+    <div class="sig-shade"></div>
+    <div class="sig-ui">
+      <div class="sig-top"><div class="eyebrow light">Signature gardens</div><div class="sig-count"><b id="sigN">01</b> / 06</div></div>
+      <div class="sig-titles" id="sigTitles"></div>
+      <ol class="sig-list" id="sigList"></ol>
+      <div class="sig-bottom"><a href="#" class="btn btn-brass" id="sigOpen" data-cursor="Open">Open project</a><div class="sig-bar"><i id="sigBar"></i></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="work" id="work">
+  <div class="work-head">
+    <div><div class="eyebrow">Projects</div><h2 class="h2 split">Selected <em>landscapes</em></h2>
+      <p class="muted up">Private villas, residential communities, hospitality and award-winning show gardens.</p></div>
+    <div class="filters" id="filters"></div>
+  </div>
+  <div class="wgrid" id="wgrid"></div>
+</section>
+
+<!-- NEW: drifting light motes over a sunlit garden -->
+<section class="glow">
+  <div class="glow-img"><img src="x/pond.webp" alt="Sunlight through trees over a planted garden pond by Kamelia Landscape Design" loading="lazy"><canvas data-fx-motes="80" data-color="255,240,200"></canvas></div>
+  <div class="glow-txt"><div class="eyebrow light">Our approach</div><h2 class="mega">Unique, tailored <em>and lived in</em></h2><p>Every garden starts with how you wish to use it: the shade you need, the colours and textures you love, the hours you will spend outside.</p></div>
+</section>
+
+<section class="window">
+  <div class="window-pin">
+    <div class="window-frame" id="wFrame"><img src="x/meadow.webp" alt="Soft grasses and trees in a garden by Kamelia Landscape Design"></div>
+    <div class="window-grad" id="wGrad"></div>
+    <div class="window-eye" id="wEye"><div class="eyebrow light">Planting &nbsp;·&nbsp; Water &nbsp;·&nbsp; Light</div></div>
+    <div class="window-txt" id="wTxt"><h2 class="mega">From the first sketch <em>to the last tree</em></h2><p>Landscape plans, 3D renders and mood boards for materials, planting, lighting and furniture.</p></div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="sec-head">
+    <div class="eyebrow">Services</div>
+    <h2 class="h2 split">Complete landscape <em>design packages</em></h2>
+    <p class="muted up">From the first meeting through to tender documentation, and on site until the garden is handed over.</p>
+  </div>
+  <div class="stack">
+    <article class="scard"><div class="scard-txt"><span class="sn">I</span><h3>Landscape Design</h3><p class="sl">A landscape plan shaped around your brief, with 3D renders and mood boards.</p><p>Material selection, planting palette, lighting look and feel, garden accessories and furniture, refined with you into a final landscape masterplan.</p></div><div class="scard-img"><img src="m/emirates-hills-01.webp" alt="3D render of a villa garden proposal in Emirates Hills" loading="lazy"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">II</span><h3>Detailed Design &amp; Documentation</h3><p class="sl">Every detail drawn, specified and ready for contractors.</p><p>Hard and soft landscape plans, levels, sections and elevations, lighting and irrigation, pool and water features, pergolas and outdoor kitchens, plus specifications and a Bill of Quantities.</p></div><div class="scard-img"><img src="m/okku-01.webp" alt="Shaded pavilion landscape for OKKU restaurants" loading="lazy"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">III</span><h3>Site Supervision &amp; Administration</h3><p class="sl">We stay on site until the garden matches the design.</p><p>Tender support and analysis, then supervision of the landscape contractor so the work meets the design and your expectations, with clear reports and recommendations.</p></div><div class="scard-img"><img src="m/khalifa-city-villa-01.webp" alt="Completed villa garden in Khalifa City, Abu Dhabi" loading="lazy"></div></article>
+  </div>
+</section>
+
+<!-- NEW: curved momentum slider of arched garden cards, with section colour shift -->
+<section class="gardens" data-fx-bg="#0b1a12">
+  <div class="sec-head"><div class="eyebrow">Private villas</div><h2 class="h2 split">Residential <em>gardens</em></h2><p class="muted up">Drag to stroll through villa gardens in Dubai, Abu Dhabi and Sharjah.</p></div>
+  <div class="fx-curve" data-cursor="Drag">
+    <div class="fx-curve-track">
+      <a href="#" class="fx-curve-item" data-open="al-barari-villa"><img src="m/al-barari-villa-01.webp" alt="Private villa garden, Al Barari" loading="lazy"><span>Al Barari</span></a>
+      <a href="#" class="fx-curve-item" data-open="saadiyat-villa"><img src="m/saadiyat-villa-01.webp" alt="Private villa pool garden, Saadiyat Island" loading="lazy"><span>Saadiyat Island</span></a>
+      <a href="#" class="fx-curve-item" data-open="saadiyat-garden"><img src="m/saadiyat-garden-01.webp" alt="Private villa garden, Saadiyat Island" loading="lazy"><span>Saadiyat Island II</span></a>
+      <a href="#" class="fx-curve-item" data-open="khalifa-city-villa"><img src="m/khalifa-city-villa-01.webp" alt="Private villa garden, Khalifa City" loading="lazy"><span>Khalifa City</span></a>
+      <a href="#" class="fx-curve-item" data-open="nurai-show-villa"><img src="m/nurai-show-villa-01.webp" alt="Show villa landscape, Nurai Island" loading="lazy"><span>Nurai Island</span></a>
+      <a href="#" class="fx-curve-item" data-open="emirates-hills"><img src="m/emirates-hills-01.webp" alt="Villa garden proposal, Emirates Hills" loading="lazy"><span>Emirates Hills</span></a>
+      <a href="#" class="fx-curve-item" data-open="sharjah-villa"><img src="m/sharjah-villa-01.webp" alt="Villa garden proposal, Sharjah" loading="lazy"><span>Sharjah</span></a>
+      <a href="#" class="fx-curve-item" data-open="nurai-villa"><img src="m/nurai-villa-01.webp" alt="Villa garden proposal at night, Nurai Island" loading="lazy"><span>Nurai Island, by night</span></a>
+    </div>
+  </div>
+  <div class="curve-nav"><button data-curve="-1" aria-label="Previous" data-cursor="Prev">&#8592;</button><button data-curve="1" aria-label="Next" data-cursor="Next">&#8594;</button></div>
+</section>
+
+<section class="process" id="process">
+  <div class="process-wrap">
+    <div class="plan-sticky">
+      <div class="eyebrow light">Our process</div>
+      <h2 class="h2">A clear path <em>to your garden</em></h2>
+      <svg class="plan" viewBox="0 0 520 380" fill="none" aria-hidden="true">
+        <g class="L1" stroke-width="3"><path d="M20 20H500V360H20Z"/><path d="M20 92H500"/></g>
+        <g class="L2" stroke-width="1.5"><rect x="300" y="128" width="172" height="70" rx="2"/><rect x="44" y="116" width="190" height="80" rx="2"/><path d="M260 92V360"/><path d="M44 270H476"/><path d="M314 142H458V184H314Z" stroke-dasharray="3 4"/></g>
+        <g class="L3" stroke-width="1.1"><path d="M260.0 242.0 L265.0 258.0 L279.8 250.2 L272.0 265.0 L288.0 270.0 L272.0 275.0 L279.8 289.8 L265.0 282.0 L260.0 298.0 L255.0 282.0 L240.2 289.8 L248.0 275.0 L232.0 270.0 L248.0 265.0 L240.2 250.2 L255.0 258.0Z"/><circle cx="260" cy="270" r="40"/>
+          <rect x="60" y="294" width="128" height="48" rx="2"/><path d="M76 294V342M92 294V342M108 294V342M124 294V342M140 294V342M156 294V342M172 294V342"/>
+          <circle cx="330" cy="236" r="14"/><circle cx="372" cy="230" r="10"/><circle cx="420" cy="238" r="16"/><circle cx="462" cy="232" r="9"/><circle cx="340" cy="320" r="18"/><circle cx="400" cy="330" r="12"/><circle cx="456" cy="318" r="16"/>
+          <path d="M44 230C90 214 150 246 222 228"/><path d="M300 210C350 222 420 204 476 214"/><circle cx="70" cy="226" r="8"/><circle cx="120" cy="232" r="7"/><circle cx="180" cy="230" r="9"/></g>
+        <g class="L4" stroke-width="1"><path d="M20 8H500M20 3V13M500 3V13" /><path d="M512 20V360M507 20H517M507 360H517"/><path d="M300 120H472" stroke-dasharray="2 4"/></g>
+        <g class="labels"><text x="232" y="62">Villa</text><text x="104" y="160">Terrace</text><text x="364" y="168">Pool</text><text x="232" y="330">Fountain</text><text x="92" y="370">Pergola</text><text x="380" y="292">Planting</text></g>
+      </svg>
+    </div>
+    <div class="steps">
+      <div class="step"><span>01</span><h3>Meeting &amp; brief</h3><p>We listen to your requirements, your preferred style and the planting colours and textures you love, and how you wish to use the garden. Then we write the brief together.</p></div>
+      <div class="step"><span>02</span><h3>Fee proposal</h3><p>A clear proposal with every design stage explained, its deliverables and time scales.</p></div>
+      <div class="step"><span>03</span><h3>Site survey &amp; analysis</h3><p>We assess the site and its surroundings and gather the technical information we need before design begins.</p></div>
+      <div class="step"><span>04</span><h3>Design &amp; masterplan</h3><p>A landscape plan with 3D renders and mood boards, refined with you into the final landscape masterplan.</p></div>
+      <div class="step"><span>05</span><h3>Detailed design &amp; tender</h3><p>Construction drawings, specifications and a Bill of Quantities, then support through tender with a clear recommendation.</p></div>
+      <div class="step"><span>06</span><h3>Site supervision</h3><p>We supervise the landscape works so the finished garden matches the design and your expectations.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="tunnel">
+  <div class="tunnel-pin">
+    <canvas id="tunGL"></canvas>
+    <div class="tunnel-txt" id="tunTxt"><div class="eyebrow light">Dubai &nbsp;·&nbsp; Abu Dhabi &nbsp;·&nbsp; Sharjah</div><h2 class="mega">Walk through <em>the gardens</em></h2><p>Scroll to stroll through villas, communities and show gardens. Select any image to open the project.</p></div>
+    <div class="tunnel-name" id="tunName"></div>
+  </div>
+</section>
+
+<section class="awards" id="awards">
+  <div class="sec-head"><div class="eyebrow">Recognition</div><h2 class="h2 split">Awards <em>&amp; medals</em></h2><p class="muted up">Hover an award to preview the garden.</p></div>
+  <div class="ledger" id="ledger">
+    <a href="#" class="lrow" data-open="gardening-world-cup" data-img="gardening-world-cup-01"><span class="ly">2016</span><span class="la">Gardening World Cup<small>Silver Gilt Medal</small></span><span class="lp">Show garden</span></a>
+    <a href="#" class="lrow" data-open="chelsea" data-img="chelsea-01"><span class="ly">2015</span><span class="la">RHS Chelsea Flower Show<small>Silver Gilt Medal · First Arab landscape designer at Chelsea</small></span><span class="lp">Show garden</span></a>
+    <a href="#contact" class="lrow" data-img="kamelia-2"><span class="ly">2014</span><span class="la">International Property Awards<small>Best International Residential Landscape Architecture, Dubai &amp; Arabia</small></span><span class="lp">Residential landscape</span></a>
+  </div>
+  <div class="lprev" id="lprev" aria-hidden="true"><img alt=""></div>
+</section>
+
+<section class="about" id="founder">
+  <div class="about-img"><div class="arch"><img src="m/path.webp" alt="Stepping stones through lush planting in a garden by Kamelia Landscape Design" class="par" loading="lazy"></div><div class="about-tag">Landscape Design &nbsp;·&nbsp; Site Supervision</div></div>
+  <div class="about-text">
+    <div class="eyebrow">The lead designer</div>
+    <h2 class="h2 split">Kamelia <em>Zaal</em></h2>
+    <h4>Founder and Lead Designer</h4>
+    <p>Kamelia has worked in landscape design for over fifteen years. In 2006 she established Second Nature landscape design and began work on Al Barari, the UAE's most distinguished, luxurious and sustainable green residential development, work that won her no fewer than three awards.</p>
+    <h4>A first at Chelsea</h4>
+    <p>In 2015 Kamelia became the first Arab landscape designer ever to take part in the RHS Chelsea Flower Show, where her garden won a Silver Gilt Medal. In 2016 she won a Silver Gilt Medal at the Gardening World Cup.</p>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="contact-bg"><img src="m/pool.webp" alt="" class="par" loading="lazy"></div>
+  <div class="contact-in">
+    <div class="eyebrow light">Contact</div>
+    <h2 class="mega split">Let's plan <em>your garden</em></h2>
+    <p class="big up">Tell us about your villa, community or hospitality project, and Kamelia's studio will be in touch.</p>
+    <form class="cform up" id="cform">
+      <input name="n" placeholder="Your name" required autocomplete="name">
+      <select name="t"><option>Private villa garden</option><option>Pool and water features</option><option>Residential community</option><option>Hospitality or restaurant</option><option>Site supervision</option></select>
+      <textarea name="m" rows="3" placeholder="Location, plot size and timing"></textarea>
+      <button class="btn btn-brass" type="submit" data-fx-mag>Send on WhatsApp</button>
+    </form>
+    <div class="contact-cards up">
+      <div class="ccard"><h5>Studio</h5><p>Kamelia Landscape LLC<br>Wadi Al Safa 3, Al Barari<br>Dubai, UAE</p><a href="tel:+971501047974">+971 50 104 7974</a></div>
+      <div class="ccard"><h5>Follow</h5><p>New gardens, site visits and show garden stories.</p><a href="https://www.instagram.com/kamelialandscapedesign/" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/kamelialandscapedesign/" target="_blank" rel="noopener">Facebook</a></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="foot-big"><span>KAMELIA</span></div>
+  <div class="foot-cols">
+    <div><h5>Studio</h5><a href="#studio">About</a><a href="#work">Projects</a><a href="#services">Services</a><a href="#process">Process</a><a href="#awards">Awards</a></div>
+    <div><h5>Visit</h5><span>Wadi Al Safa 3, Al Barari</span><span>Dubai, United Arab Emirates</span></div>
+    <div><h5>Contact</h5><a href="tel:+971501047974">+971 50 104 7974</a><a href="https://www.instagram.com/kamelialandscapedesign/" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/kamelialandscapedesign/" target="_blank" rel="noopener">Facebook</a></div>
+  </div>
+  <div class="foot-bot"><span>© <span id="yr"></span> Kamelia Landscape Design LLC. All rights reserved.</span><a href="#top">Back to top</a></div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/971501047974?text=Hello%20Kamelia%20Landscape%20Design%2C%20I%20would%20like%20to%20discuss%20a%20garden." target="_blank" rel="noopener" aria-label="WhatsApp" data-cursor="WhatsApp">
+<svg viewBox="0 0 32 32" width="24" height="24"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.7c-2 0-3.9-.5-5.6-1.5l-.4-.2-3.9 1 1-3.8-.3-.4A10.7 10.7 0 1 1 16 26.7zm5.9-8c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5 1-1.7.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4s-1.2 1.1-1.2 2.8 1.2 3.2 1.4 3.4 2.4 3.7 5.8 5.2c2.2.9 3 1 4.1.8.7-.1 1.9-.8 2.2-1.5s.3-1.3.2-1.5-.3-.2-.6-.4z"/></svg>
+</a>
+
+<div class="modal" id="modal" aria-hidden="true">
+  <button class="modal-x" id="modalX" aria-label="Close project" data-cursor="Close"></button>
+  <div class="modal-scroll" id="modalScroll" data-lenis-prevent></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="data.js?v=1"></script>
+<script type="module" src="main.js?v=1"></script>
+<script src="fx.js?v=1"></script>
+<script>(()=>{const f=document.getElementById('cform');if(f)f.addEventListener('submit',e=>{e.preventDefault();const d=new FormData(f);const m=`Hello Kamelia Landscape Design, my name is ${d.get('n')}.\nProject: ${d.get('t')}\n${d.get('m')||''}`;window.open('https://wa.me/971501047974?text='+encodeURIComponent(m),'_blank','noopener');});})();</script>
+</body>
+</html>
