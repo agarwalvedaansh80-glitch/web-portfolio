@@ -116,7 +116,6 @@
       "permanent": false
     },
     {
-<<<<<<< Updated upstream
       "source": "/cest-ici",
       "destination": "/cest-ici/",
       "permanent": false
@@ -129,10 +128,11 @@
     {
       "source": "/soul-space",
       "destination": "/soul-space/",
-=======
+      "permanent": false
+    },
+    {
       "source": "/kamelia",
       "destination": "/kamelia/",
->>>>>>> Stashed changes
       "permanent": false
     }
   ]
