@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<base href="/catch-design/">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Catch Design | Interior &amp; Architecture Studio in Dubai</title>
+<meta name="description" content="Catch Design is an interior and architecture studio with offices in Dubai and Kyiv: luxury villa interiors, architecture, landscape, fit-out and photorealistic 3D design.">
+<meta property="og:title" content="Catch Design | Interior &amp; Architecture Studio in Dubai">
+<meta property="og:description" content="Interior design, architecture, fit-out and landscape for villas and apartments in Dubai.">
+<meta property="og:image" content="https://chroma-developers.vercel.app/catch-design/s/district-22.webp">
+<meta name="theme-color" content="#05070b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2305070b'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='26' fill='%23d6b688' text-anchor='middle'%3ECD%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Marcellus+SC&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=1">
+</head>
+<body class="loading">
+
+<div class="loader" id="loader">
+  <div class="loader-panels"><i></i><i></i><i></i><i></i></div>
+  <div class="loader-inner">
+    <div class="loader-mono"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="48"/></svg><span>C</span><span class="g">D</span></div>
+    <div class="loader-word"><span>C</span><span>A</span><span>T</span><span>C</span><span>H</span><span class="sp"></span><span class="g">D</span><span class="g">E</span><span class="g">S</span><span class="g">I</span><span class="g">G</span><span class="g">N</span></div>
+    <div class="loader-bar"><i id="loaderBar"></i></div>
+    <div class="loader-meta"><span>Dubai · Kyiv</span><span><b id="loaderNum">0</b>%</span></div>
+  </div>
+</div>
+
+<div class="cursor" id="cursor"><div class="c-ring"><span class="c-label" id="cLabel"></span></div><div class="c-dot"></div></div>
+<canvas id="gal" aria-hidden="true"></canvas>
+
+<header class="nav" id="nav">
+  <a href="#top" class="logo">Catch<em>Design</em></a>
+  <nav class="nav-links">
+    <a href="#work" data-scramble>Projects</a><a href="#services" data-scramble>Services</a><a href="#process" data-scramble>Process</a><a href="#studio" data-scramble>Studio</a><a href="#contact" data-scramble>Contact</a>
+  </nav>
+  <button class="theme" id="theme" aria-label="Switch day or night mode" data-cursor="Day / Night"><svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg></button>
+  <a href="#consultation" class="btn btn-gold btn-sm nav-cta magnetic">Consultation</a>
+  <button class="burger" id="burger" aria-label="Menu"><i></i><i></i></button>
+</header>
+<div class="menu" id="menu">
+  <a href="#work">Projects</a><a href="#services">Services</a><a href="#process">Process</a><a href="#studio">Studio</a><a href="#consultation">Consultation</a><a href="#contact">Contact</a>
+  <div class="menu-foot"><a href="https://wa.me/971585586494">WhatsApp</a><a href="mailto:info@catchdesigncompany.com">info@catchdesigncompany.com</a></div>
+</div>
+
+<main id="top">
+
+<!-- HERO: 3D ring of interiors -->
+<section class="hero" id="hero">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <canvas id="ring"></canvas>
+  <div class="hero-top">
+    <div class="eyebrow h-in">Interior · Architecture · Fit-out · Landscape</div>
+    <h1 class="hero-title split">Interiors made <em>for living</em> in Dubai</h1>
+  </div>
+  <div class="ring-label" id="ringLabel"><span id="rlMeta">Villa, Dubai</span><b id="rlName">District 22</b></div>
+  <div class="hero-bottom">
+    <div class="hero-left h-in">
+      <button class="hero-close" id="heroClose" aria-label="Close" data-cursor="Close"></button>
+      <div class="hero-sig"><span class="hero-mono">CD</span><div><strong>Catch Design Studio</strong><small>Dubai · Kyiv</small></div></div>
+      <p class="hero-lead">A house becomes a home when it's personalised. We design interiors, architecture and landscape that show your taste and work with the way you live.</p>
+      <div class="hero-btns">
+        <a href="#work" class="btn btn-dark magnetic">View projects</a>
+        <a href="#consultation" class="btn btn-line magnetic">Consultation</a>
+      </div>
+    </div>
+    <div class="hero-hint h-in">Drag to explore<br>the interiors</div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true"><div class="marquee-track">
+  <span>Interior Design</span><b>✦</b><span>Architecture</span><b>✦</b><span>Fit-out</span><b>✦</b><span>Landscape</span><b>✦</b><span>Photorealistic 3D</span><b>✦</b><span>Project Management</span><b>✦</b>
+  <span>Interior Design</span><b>✦</b><span>Architecture</span><b>✦</b><span>Fit-out</span><b>✦</b><span>Landscape</span><b>✦</b><span>Photorealistic 3D</span><b>✦</b><span>Project Management</span><b>✦</b>
+</div></div>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="stat"><div class="num"><span class="count" data-to="10">0</span><sup>+</sup></div><p>Years of experience in interior design and architecture</p></div>
+  <div class="stat"><div class="num"><span class="count" data-to="250">0</span><sup>+</sup></div><p>Projects created by our co-founder, each as a unique home</p></div>
+  <div class="stat"><div class="num"><span class="count" data-to="7">0</span></div><p>Countries, including the UAE, USA, UK, France, Germany and Ukraine</p></div>
+  <div class="stat"><div class="num"><span class="count" data-to="2">0</span></div><p>Offices, in Dubai and in Kyiv, working with clients worldwide</p></div>
+</section>
+
+<!-- INTRO -->
+<section class="intro" id="studio">
+  <div class="intro-img"><div class="arch"><img src="xl/district-22-04.webp" alt="Master bedroom with marble wall, District 22, Dubai" class="par"></div></div>
+  <div class="intro-text">
+    <div class="eyebrow">About the studio</div>
+    <h2 class="h2 split">Great interior design is <em>our passion</em></h2>
+    <p class="scrub-text">Your space should show off your taste and personality, work with your lifestyle, and maybe make your guests a little jealous. Creating a home that does all of this isn't easy, and we're here to help.</p>
+    <p class="muted up">Catch Design is a full service interior and architecture studio based in Dubai, with a second office in Kyiv. From new villas to the renovation of existing homes, through to high end interior production, a qualified team plans and furnishes luxurious living spaces for clients around the world.</p>
+    <a href="#work" class="link-arrow up">Explore the projects <span>→</span></a>
+  </div>
+</section>
+
+<!-- STATEMENT: character blur reveal -->
+<section class="statement" aria-label="Studio statement">
+  <p class="blur-chars" id="blurChars">Each project is created as a unique product: beautiful, functional, modern and cozy.</p>
+  <p class="statement-by up">Iryna, co-founder of Catch Design</p>
+</section>
+
+<!-- SIGNATURE (pinned showcase: sharp image at rest, liquid dissolve between) -->
+<section class="sig" id="signature">
+  <div class="sig-pin">
+    <img class="sig-still" id="sigStill" alt="" decoding="async">
+    <video class="sig-vid" id="sigVid" muted loop playsinline preload="none" aria-hidden="true"></video>
+    <canvas id="sigGL"></canvas>
+    <div class="sig-shade"></div>
+    <div class="sig-ui">
+      <div class="sig-top"><div class="eyebrow light">Signature projects</div><div class="sig-count"><b id="sigN">01</b> / <span id="sigTot">06</span></div></div>
+      <div class="sig-titles" id="sigTitles"></div>
+      <div class="sig-bottom"><a href="#" class="btn btn-gold magnetic" id="sigOpen" data-cursor="Open">Open project</a><div class="sig-bar"><i id="sigBar"></i></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="work" id="work">
+  <div class="work-head">
+    <div><div class="eyebrow">Projects</div><h2 class="h2 split">Villas, penthouses <em>and gardens</em></h2>
+      <p class="muted up">A selection of recent homes in Dubai: villa interiors, a duplex penthouse and a 1200 sq.m. landscape terrace.</p></div>
+    <div class="filters" id="filters"></div>
+  </div>
+  <div class="wgrid" id="wgrid"></div>
+</section>
+
+<!-- COVER FLOW -->
+<section class="flow" id="rooms">
+  <div class="sec-head"><div class="eyebrow">Room by room</div><h2 class="h2 split">Spaces we <em>love to design</em></h2></div>
+  <div class="flow-stage" id="flowStage" data-cursor="Drag">
+    <div class="flow-track" id="flowTrack"></div>
+  </div>
+  <div class="flow-ui">
+    <button class="flow-btn" id="flowPrev" aria-label="Previous" data-cursor="Previous"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <div class="flow-cap" id="flowCap"><small></small><b></b></div>
+    <button class="flow-btn" id="flowNext" aria-label="Next" data-cursor="Next"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+  </div>
+</section>
+
+<!-- SERVICES (stacking) -->
+<section class="services" id="services">
+  <div class="sec-head">
+    <div class="eyebrow">What we do</div>
+    <h2 class="h2 split">Full service design, <em>inside and out</em></h2>
+    <p class="muted up">Interior, landscape, architecture and fit-out solutions, planned and delivered by one qualified team, anywhere in the world.</p>
+  </div>
+  <div class="stack">
+    <article class="scard"><div class="scard-txt"><span class="sn">01</span><h3>Interior Design</h3><p class="sl">Photorealistic 3D design and a complete set of working drawings for every room.</p><p>Zoning with a furniture layout, photorealistic 3D renders and drawings your contractor can build from.</p><ul><li>3D design and photorealistic renders</li><li>Zoning and furniture layout</li><li>Ceiling, lighting, electrical and plumbing plans</li><li>Furniture, lighting and finishes specifications</li></ul></div><div class="scard-img"><img loading="lazy" src="xl/serenity-02.webp" alt="Interior design, Serenity villa, Dubai"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">02</span><h3>Exterior Design</h3><p class="sl">The house itself: master plan, facades and photorealistic exterior views.</p><p>A master plan with furniture layout, up to two options, developed into the full architectural set.</p><ul><li>Master plan, floor plans and roof plan</li><li>Elevations and sections of the building</li><li>Finishes, door and window schedules</li></ul></div><div class="scard-img"><img loading="lazy" src="xl/villa-terrace-03.webp" alt="Villa exterior and terrace, Dubai"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">03</span><h3>Landscape</h3><p class="sl">Gardens, terraces and pools planned as a continuation of the interior.</p><p>A landscape plan for the house with up to two planning options, a master plan and 3D visualisation.</p><ul><li>Up to two planning options</li><li>Landscape master plan</li><li>3D visualisation</li></ul></div><div class="scard-img"><img loading="lazy" src="xl/villa-terrace-02.webp" alt="Landscape terrace lounge, Dubai"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">04</span><h3>Project Management</h3><p class="sl">Selection, deliveries and site control, so the result matches the design.</p><p>We look after the details between the drawings and the finished home.</p><ul><li>Selection and calculation of specifications</li><li>Organisation and control of deliveries</li><li>Monitoring construction and all contractors</li><li>Acceptance of materials and furniture</li></ul></div><div class="scard-img"><img loading="lazy" src="xl/orange-lake-03.webp" alt="Living area, Orange Lake villa, Dubai"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">05</span><h3>Fit-out &amp; Implementation</h3><p class="sl">From new construction and renovation to high end interior production.</p><p>A full service from planning and design through to the finished, furnished home, delivered by a qualified team.</p><ul><li>New spaces and renovation of existing ones</li><li>High end interior production</li><li>Luxurious, fully furnished living spaces</li></ul></div><div class="scard-img"><img loading="lazy" src="xl/penthouse-207-02.webp" alt="Penthouse 207 living room, Dubai"></div></article>
+  </div>
+</section>
+
+<!-- IRIS: circle zoom-through -->
+<section class="iris" aria-label="Landscape">
+  <div class="iris-pin">
+    <div class="iris-img" id="irisImg"><img src="s/villa-terrace.webp" alt="Villa Terrace landscape, Dubai"></div>
+    <div class="iris-txt" id="irisTxt"><div class="eyebrow light">Landscape · 1200 sq.m.</div><h2 class="mega">Where light meets <em>the garden</em></h2><p>Architecture, light and landscape merge into a single harmonious flow.</p></div>
+  </div>
+</section>
+
+<!-- MODEL TO RENDER: scroll reveal -->
+<section class="reveal" id="reveal">
+  <div class="reveal-pin">
+    <img class="reveal-img" id="revImg" src="xl/district-22-02.webp" alt="District 22 bar and dining area, final render" decoding="async">
+    <canvas id="revGL" aria-hidden="true"></canvas>
+    <div class="reveal-ui">
+      <div class="reveal-head"><div class="eyebrow light">From drawing to render</div><h2 class="h2">See every room <em>before it's built</em></h2></div>
+      <ol class="reveal-steps" id="revSteps">
+        <li class="on"><span>01</span><b>Drawing</b><small>Zoning and furniture layout</small></li>
+        <li><span>02</span><b>Volume</b><small>Form, light and proportion</small></li>
+        <li><span>03</span><b>Render</b><small>Photorealistic materials and light</small></li>
+      </ol>
+      <p class="reveal-cap">District 22 · Dubai</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS: drawing drawn by scroll -->
+<section class="process" id="process">
+  <div class="process-wrap">
+    <div class="plan-sticky">
+      <div class="eyebrow light">How we work</div>
+      <h2 class="h2">From the first plan <em>to the keys</em></h2>
+      <svg class="plan" viewBox="0 0 520 380" fill="none" aria-hidden="true">
+        <g class="L1" stroke-width="3.2"><path d="M20 20H500V360H20Z"/><path d="M20 210H150"/><path d="M330 20V150"/></g>
+        <g class="L2" stroke-width="1.6"><path d="M150 210V360"/><path d="M150 20V160"/><path d="M330 150H500"/><path d="M330 240H500"/><path d="M380 240V360"/><path d="M150 160H230"/><path d="M270 160H330"/>
+          <path d="M230 160A40 40 0 0 1 270 160" stroke-dasharray="3 4"/><path d="M150 250A40 40 0 0 0 190 210" stroke-dasharray="3 4"/><path d="M330 190A40 40 0 0 0 370 150" stroke-dasharray="3 4"/></g>
+        <g class="L3" stroke-width="1.2"><rect x="185" y="230" width="110" height="46" rx="10"/><rect x="200" y="290" width="80" height="34" rx="4"/><circle cx="240" cy="90" r="34"/><circle cx="240" cy="90" r="20"/>
+          <rect x="365" y="45" width="100" height="80" rx="4"/><path d="M365 62H465"/><rect x="40" y="40" width="88" height="140" rx="6"/><path d="M50 60H118M50 80H118M50 100H118"/>
+          <rect x="398" y="262" width="80" height="80" rx="3"/><path d="M398 302H478"/><path d="M40 240H128V340H40Z"/><circle cx="84" cy="290" r="18"/></g>
+        <g class="L4" stroke-width="1"><path d="M20 8H500M20 3V13M500 3V13" /><path d="M512 20V360M507 20H517M507 360H517"/><path d="M330 30V140" stroke-dasharray="2 4"/></g>
+        <g class="labels"><text x="70" y="200">Entry</text><text x="214" y="345">Living</text><text x="210" y="140">Dining</text><text x="388" y="140">Master</text><text x="412" y="225">Bath</text><text x="56" y="360">Kitchen</text><text x="410" y="355">Terrace</text></g>
+      </svg>
+    </div>
+    <div class="steps">
+      <div class="step"><span>01</span><h3>Zoning</h3><p>A plan of your home with the furniture layout, so every room works for the way you live.</p></div>
+      <div class="step"><span>02</span><h3>3D design</h3><p>Photorealistic 3D renders show materials, light and furniture before any work begins.</p></div>
+      <div class="step"><span>03</span><h3>Working drawings</h3><p>Dimensions, ceilings, lighting, electrical, plumbing, finishes and specifications, ready for your contractor.</p></div>
+      <div class="step"><span>04</span><h3>Implementation</h3><p>Selection, deliveries, site visits and acceptance of materials and furniture, until the home is complete.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TUNNEL -->
+<section class="tunnel">
+  <div class="tunnel-pin">
+    <canvas id="tunGL"></canvas>
+    <div class="tunnel-txt" id="tunTxt"><div class="eyebrow light">Dubai · Kyiv</div><h2 class="mega">Step inside <em>the homes</em></h2><p>Scroll to walk through living rooms, bedrooms, terraces and penthouses designed in Dubai.</p></div>
+    <div class="tunnel-name" id="tunName"></div>
+  </div>
+</section>
+
+<!-- PROJECT INDEX -->
+<section class="pindex" id="index">
+  <div class="sec-head"><div class="eyebrow">Project index</div><h2 class="h2 split">Selected <em>homes</em></h2></div>
+  <ol class="plist" id="plist"></ol>
+  <canvas id="pprev" aria-hidden="true"></canvas>
+</section>
+
+<!-- WHY -->
+<section class="why">
+  <div class="sec-head">
+    <div class="eyebrow">Why Catch Design</div>
+    <h2 class="h2 split">Beautiful, functional, <em>modern and cozy</em></h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-card"><span>01</span><h3>A home that is yours</h3><p>Every design reflects the client's vision and needs, so your home shows your taste, personality and way of living.</p></div>
+    <div class="why-card"><span>02</span><h3>One full service team</h3><p>Interior, architecture, landscape and fit-out solutions under one roof, from the first plan to the finished home.</p></div>
+    <div class="why-card"><span>03</span><h3>See it in 3D first</h3><p>Photorealistic 3D renders of every space, so decisions are made before work starts on site.</p></div>
+    <div class="why-card"><span>04</span><h3>Drawings that build</h3><p>A complete set of working drawings and specifications for contractors, down to skirting boards and floor heating.</p></div>
+    <div class="why-card"><span>05</span><h3>Managed on site</h3><p>Deliveries, contractors and construction are monitored, and materials and furniture are accepted against the design.</p></div>
+    <div class="why-card"><span>06</span><h3>Dubai, Kyiv and worldwide</h3><p>Offices in Dubai and Kyiv and projects in seven countries, so your home can be designed wherever you are.</p></div>
+  </div>
+</section>
+
+<!-- CONSULTATION -->
+<section class="consult" id="consultation">
+  <div class="consult-in">
+    <div class="consult-txt">
+      <div class="eyebrow">Free consultation</div>
+      <h2 class="h2 split">Planning a new <em>interior project?</em></h2>
+      <p class="muted up">Tell us about your project and our design team will get in touch on WhatsApp.</p>
+      <ol class="consult-steps up"><li><span>1</span>You share your project</li><li><span>2</span>We reply on WhatsApp</li><li><span>3</span>We meet in Dubai or by video call</li></ol>
+    </div>
+    <form class="consult-form" id="consultForm">
+      <h3>Let's talk about the project</h3>
+      <p class="muted small">Leave your name and number and the team will reply personally.</p>
+      <label><span>Your name</span><input name="name" required autocomplete="name"></label>
+      <label><span>Phone or WhatsApp</span><input name="phone" required inputmode="tel" autocomplete="tel"></label>
+      <label><span>Project</span><select name="type"><option>Villa interior</option><option>Apartment or penthouse</option><option>Architecture and exterior</option><option>Landscape</option><option>Fit-out and renovation</option><option>Office or commercial</option></select></label>
+      <button class="btn btn-gold" type="submit">Send on WhatsApp</button>
+      <p class="consult-ok" id="consultOk">Thank you. Your request is ready to send on WhatsApp.</p>
+      <p class="small muted">Prefer email? <a class="link" href="mailto:info@catchdesigncompany.com">info@catchdesigncompany.com</a></p>
+    </form>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-bg"><img src="xl/villa-terrace-04.webp" alt="" class="par"></div>
+  <div class="contact-in">
+    <div class="eyebrow light">Contact</div>
+    <h2 class="mega split">Let's create <em>your home</em></h2>
+    <p class="big up">We look forward to working with you and creating a home that you and your family will love for years to come.</p>
+    <div class="contact-btns up">
+      <a class="btn btn-gold magnetic" href="https://wa.me/971585586494?text=Hello%20Catch%20Design%2C%20I%20would%20like%20to%20discuss%20an%20interior%20project." target="_blank" rel="noopener">Message on WhatsApp</a>
+      <a class="btn btn-line light magnetic" href="mailto:info@catchdesigncompany.com">info@catchdesigncompany.com</a>
+    </div>
+    <div class="offices up">
+      <div class="office"><span>Dubai</span><p>Interior and architecture studio, United Arab Emirates</p><a href="tel:+971585586494">+971 58 558 6494</a></div>
+      <div class="office"><span>Kyiv</span><p>Interior and architecture studio, Ukraine</p><a href="tel:+380960100006">+38 096 010 0006</a></div>
+      <div class="office"><span>Instagram</span><p>New projects and work in progress</p><a href="https://www.instagram.com/catch.design.studio/" target="_blank" rel="noopener">@catch.design.studio</a></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="foot-big"><span>Catch</span> <em>Design</em></div>
+  <div class="foot-cols">
+    <div><h5>Studio</h5><p class="foot-p">An interior and architecture studio in Dubai and Kyiv, designing personal, livable luxury homes for clients worldwide.</p></div>
+    <div><h5>Services</h5><span>Interior Design</span><span>Exterior Design</span><span>Landscape</span><span>Project Management</span><span>Fit-out &amp; Implementation</span></div>
+    <div><h5>Contact</h5><a href="https://wa.me/971585586494">WhatsApp +971 58 558 6494</a><a href="mailto:info@catchdesigncompany.com">info@catchdesigncompany.com</a><span>Dubai · Kyiv</span></div>
+  </div>
+  <div class="foot-bot"><span>© <span id="yr"></span> Catch Design Studio. All rights reserved.</span><a href="#top">Back to top ↑</a></div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/971585586494?text=Hello%20Catch%20Design%2C%20I%20would%20like%20to%20discuss%20an%20interior%20project." target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 32 32" width="26" height="26"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.7c-2 0-3.9-.5-5.6-1.5l-.4-.2-3.9 1 1-3.8-.3-.4A10.7 10.7 0 1 1 16 26.7zm5.9-8c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5 1-1.7.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4s-1.2 1.1-1.2 2.8 1.2 3.2 1.4 3.4 2.4 3.7 5.8 5.2c2.2.9 3 1 4.1.8.7-.1 1.9-.8 2.2-1.5s.3-1.3.2-1.5-.3-.2-.6-.4z"/></svg>
+</a>
+
+<div class="modal" id="modal" aria-hidden="true">
+  <button class="modal-x" id="modalX" data-cursor="Close" aria-label="Close"></button>
+  <div class="modal-scroll" id="modalScroll" data-lenis-prevent></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="data.js?v=1"></script>
+<script type="module" src="main.js?v=1"></script>
+</body>
+</html>
