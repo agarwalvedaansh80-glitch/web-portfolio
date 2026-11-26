@@ -20,7 +20,7 @@ let VW = innerWidth, VH = innerHeight;
 addEventListener('resize', () => { VW = innerWidth; VH = innerHeight; });
 
 /* ---------------- smooth scroll ---------------- */
-const lenis = new Lenis({ lerp: 0.09 });
+const lenis = new Lenis({ lerp: 0.08 });
 let SY = window.scrollY;
 lenis.on('scroll', l => { SY = l.animatedScroll; ScrollTrigger.update(); });
 addEventListener('scroll', () => { SY = window.scrollY; }, { passive: true });
@@ -84,9 +84,11 @@ if (FINE) $$('.magnetic').forEach(b => {
 
 /* ---------------- shared texture + glsl ---------------- */
 const TL = new THREE.TextureLoader(), tcache = {};
-function tex(url) {
-  return tcache[url] || (tcache[url] = new Promise(res => TL.load(url, t => {
-    t.colorSpace = THREE.SRGBColorSpace; t.minFilter = THREE.LinearFilter; t.generateMipmaps = false;
+function tex(url, aniso) {
+  const key = url + (aniso ? '#m' : '');
+  return tcache[key] || (tcache[key] = new Promise(res => TL.load(url, t => {
+    t.colorSpace = THREE.SRGBColorSpace;
+    if (aniso) { t.generateMipmaps = true; t.minFilter = THREE.LinearMipmapLinearFilter; t.anisotropy = aniso; } else { t.minFilter = THREE.LinearFilter; t.generateMipmaps = false; }
     t.userData.size = new THREE.Vector2(t.image.width, t.image.height); res(t);
   }, undefined, () => res(null))));
 }
@@ -267,8 +269,7 @@ const flash = { v: 0 };
   const b = e.target.closest('button'); if (!b || b.classList.contains('on')) return;
   $$('button', $(sel)).forEach(x => x.classList.toggle('on', x === b));
   cfgState[k] = b.dataset.k; applyMats();
-  gsap.fromTo(flash, { v: 1 }, { v: 0, duration: .9, ease: 'power2.out' });
-  yaw.v += .02;
+  gsap.fromTo(flash, { v: 1 }, { v: 0, duration: 1.4, ease: 'power3.out' });
 }));
 
 const cCam = new THREE.PerspectiveCamera(28, 1, .1, 60);
@@ -280,7 +281,7 @@ function cfgSize() {
   cCam.updateProjectionMatrix();
 }
 cfgSize(); addEventListener('resize', cfgSize);
-const yaw = { a: -2.6, t: -2.6, v: 0 };
+const yaw = { a: -1.4, t: -1.4, v: 0 };
 const ex = { v: 0 }, exS = { v: 1 }, intro = { ex: 1 };
 let drag = false, lx = 0, cfgOn = true, heroP = 0;
 cfgCv.addEventListener('pointerdown', e => { drag = true; lx = e.clientX; try { cfgCv.setPointerCapture(e.pointerId); } catch (_) {} });
@@ -293,10 +294,10 @@ const ease3 = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 const heroTop = $('#heroTop'), xp = $('#xp'), hint = $('.hero-hint');
 gsap.ticker.add(() => {
   if (!cfgOn) return;
-  if (!drag) { yaw.t += yaw.v; yaw.v *= .93; yaw.t += .0011; }
-  yaw.a += (yaw.t - yaw.a) * .07;
+  if (!drag) { yaw.t += yaw.v; yaw.v *= .94; yaw.t += .00045; }
+  yaw.a += (yaw.t - yaw.a) * .045;
   const target = Math.max(ex.v, intro.ex);
-  exS.v += (target - exS.v) * .1;
+  exS.v += (target - exS.v) * .055;
   const e = exS.v;
   croot.rotation.y = yaw.a;
   parts.forEach(p => { const k = ease3(clamp(e * 1.3 - p.d)); p.m.position.set(p.p.x + p.o.x * k, p.p.y + p.o.y * k, p.p.z + p.o.z * k); });
@@ -342,7 +343,8 @@ ScrollTrigger.create({
 const RING = ['liv1', 'bed1', 'dre1', 'war1', 'tv1', 'din1', 'cur1', 'liv2', 'bed2', 'war2', 'tv3', 'din2', 'tab1', 'wal1'].map(id => BYID[id]);
 const rc = $('#ring');
 const rr = new THREE.WebGLRenderer({ canvas: rc, antialias: true, alpha: true, powerPreference: 'high-performance' });
-rr.setClearColor(0x000000, 0); rr.setPixelRatio(Math.min(devicePixelRatio, 1.5));
+rr.setClearColor(0x000000, 0); rr.setPixelRatio(Math.min(devicePixelRatio, 2));
+const ANISO = rr.capabilities.getMaxAnisotropy();
 const rScene = new THREE.Scene(), rCam = new THREE.PerspectiveCamera(34, 1, .1, 100), rGroup = new THREE.Group(); rScene.add(rGroup);
 const RN = RING.length, PW = 1.5, PH = 1.95, GAP = .24, RR = RN * (PW + GAP) / (Math.PI * 2);
 const rIntro = { v: 0 };
@@ -367,7 +369,7 @@ const panels = RING.map((p, i) => {
   const mesh = new THREE.Mesh(g, m), th = i / RN * Math.PI * 2;
   mesh.rotation.y = th; mesh.position.set(Math.sin(th) * RR, 0, Math.cos(th) * RR);
   mesh.userData = { p, u, th }; rGroup.add(mesh);
-  tex(`t/${p.id}.webp`).then(t => { if (t) { u.tex.value = t; u.isz.value.copy(t.userData.size); } });
+  tex(`img/${p.id}.webp`, ANISO).then(t => { if (t) { u.tex.value = t; u.isz.value.copy(t.userData.size); } });
   return mesh;
 });
 const ringBox = { top: 0, left: 0, w: 1, h: 1 };
@@ -379,15 +381,15 @@ let rTick = 0, overRing = false, rDrag = false, rdx = 0, rMoved = 0, ringOn = fa
 rc.addEventListener('pointerenter', () => overRing = true);
 rc.addEventListener('pointerleave', () => { overRing = false; setHover(null); });
 rc.addEventListener('pointerdown', e => { rDrag = true; rdx = e.clientX; rMoved = 0; try { rc.setPointerCapture(e.pointerId); } catch (_) {} });
-rc.addEventListener('pointermove', e => { if (rDrag) { const dx = e.clientX - rdx; rdx = e.clientX; rMoved += Math.abs(dx); rot.t -= dx * .0042; rot.v = -dx * .0042; } });
+rc.addEventListener('pointermove', e => { if (rDrag) { const dx = e.clientX - rdx; rdx = e.clientX; rMoved += Math.abs(dx); rot.t -= dx * .0036; rot.v = -dx * .0024; } });
 rc.addEventListener('pointerup', () => { rDrag = false; if (FINE && rMoved < 6 && hovered) openPiece(hovered.userData.p.id); });
 rc.addEventListener('pointercancel', () => rDrag = false);
 const ray = new THREE.Raycaster(), ndc = new THREE.Vector2();
 function setHover(m) {
   if (m === hovered) return;
-  if (hovered) gsap.to(hovered.userData.u.hov, { value: 0, duration: .6, ease: 'power3.out' });
+  if (hovered) gsap.to(hovered.userData.u.hov, { value: 0, duration: 1.2, ease: 'power3.out' });
   hovered = m;
-  if (m) { gsap.to(m.userData.u.hov, { value: 1, duration: .6, ease: 'power3.out' }); showLabel(m.userData.p); }
+  if (m) { gsap.to(m.userData.u.hov, { value: 1, duration: 1.2, ease: 'power3.out' }); showLabel(m.userData.p); }
   if (FINE) setCursor(null, m ? 'Open' : null);
 }
 let labelP = null, labelT = 0;
@@ -402,15 +404,15 @@ function frontPanel() {
 }
 onScreen($('#collection'), v => ringOn = v, '80px');
 ScrollTrigger.create({ trigger: '#collection', start: 'top bottom', end: 'bottom top', onUpdate: s => ringP = s.progress });
-ScrollTrigger.create({ trigger: '#collection', start: 'top 70%', once: true, onEnter: () => { gsap.to(rIntro, { v: 1, duration: 2.4, ease: 'power3.out' }); gsap.fromTo(rot, { t: rot.t - 2 }, { t: rot.t, duration: 2.4, ease: 'power3.out' }); } });
+ScrollTrigger.create({ trigger: '#collection', start: 'top 70%', once: true, onEnter: () => { gsap.to(rIntro, { v: 1, duration: 3, ease: 'power3.inOut' }); gsap.fromTo(rot, { t: rot.t - .9 }, { t: rot.t, duration: 3.2, ease: 'power3.inOut' }); } });
 gsap.ticker.add(() => {
   if (!ringOn) return;
   const v = lenis.velocity || 0;
-  if (!rDrag) { rot.t += .0018 + v * .0006 + rot.v; rot.v *= .94; }
-  rot.a += (rot.t - rot.a) * .07;
+  if (!rDrag) { rot.t += .0007 + v * .00022 + rot.v; rot.v *= .95; }
+  rot.a += (rot.t - rot.a) * .045;
   rGroup.rotation.y = -rot.a;
   const mx = mouse.x / VW - .5, my = mouse.y / VH - .5;
-  tilt.x += ((FINE ? my * .1 : 0) - tilt.x) * .05; tilt.y += ((FINE ? mx * .08 : 0) - tilt.y) * .05;
+  tilt.x += ((FINE ? my * .08 : 0) - tilt.x) * .03; tilt.y += ((FINE ? mx * .06 : 0) - tilt.y) * .03;
   const k = ringP - .5;
   rGroup.rotation.x = .1 + tilt.x + k * .28; rGroup.rotation.z = -.04 + tilt.y * .4;
   rGroup.position.y = (DESK() ? -.42 : .25) - k * .7;
@@ -439,36 +441,41 @@ if (!FINE) rc.addEventListener('click', e => {
    SHOWCASE: pinned liquid WebGL transitions
    ================================================================= */
 const SHOW = [
-  { k: 'living', img: 'liv1', t: 'Living', m: 'Sofas and majlis', s: 'Sofa sets, corner sofas and majlis seating made to your size and fabric.' },
-  { k: 'bedroom', img: 'bed3', t: 'Bedrooms', m: 'Beds and dressing', s: 'Beds, bedroom sets and dressing tables that bring calm to the room.' },
-  { k: 'wardrobe', img: 'war1', t: 'Wardrobes', m: 'Storage solutions', s: 'Walk-in, corner and glass fronted wardrobes planned around your space.' },
+  { k: 'living', img: 'liv3', t: 'Living', m: 'Sofas and majlis', s: 'Sofa sets, corner sofas and majlis seating made to your size and fabric.' },
+  { k: 'bedroom', img: 'bed1', t: 'Bedrooms', m: 'Beds and dressing', s: 'Beds, bedroom sets and dressing tables that bring calm to the room.' },
+  { k: 'wardrobe', img: 'war7', t: 'Wardrobes', m: 'Storage solutions', s: 'Walk-in, corner and glass fronted wardrobes planned around your space.' },
   { k: 'tv', img: 'tv1', t: 'Media Walls', m: 'TV units', s: 'TV units and complete media walls with LED lighting and display niches.' },
   { k: 'dining', img: 'din1', t: 'Dining', m: 'Tables and chairs', s: 'Dining tables, sets and chairs for family meals and for guests.' }
 ];
 {
   const cv = $('#showGL'), frame = $('#showFrame');
   const r = new THREE.WebGLRenderer({ canvas: cv, antialias: false, powerPreference: 'high-performance' });
-  r.setPixelRatio(Math.min(devicePixelRatio, 1.5));
+  r.setPixelRatio(Math.min(devicePixelRatio, 2));
   const sc = new THREE.Scene(), cam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
   const U = { t1: { value: null }, t2: { value: null }, s1: { value: new THREE.Vector2(1, 1) }, s2: { value: new THREE.Vector2(1, 1) }, prog: { value: 0 }, time: { value: 0 }, res: { value: new THREE.Vector2(1, 1) }, mouse: { value: new THREE.Vector2(.5, .5) }, vel: { value: 0 } };
   sc.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), new THREE.ShaderMaterial({
     uniforms: U, vertexShader: `varying vec2 vUv;void main(){vUv=uv;gl_Position=vec4(position,1.);}`,
     fragmentShader: GLSL + `precision highp float;varying vec2 vUv;uniform sampler2D t1,t2;uniform vec2 s1,s2,res,mouse;uniform float prog,time,vel;
       void main(){vec2 uv=vUv;float asp=res.x/res.y;vec2 d=(uv-mouse)*vec2(asp,1.);float l=length(d);
-        uv+=normalize(d+1e-4)/vec2(asp,1.)*sin(l*28.-time*3.)*.004*smoothstep(.4,0.,l);
-        uv.x+=sin(uv.y*9.+time)*vel*.0009;
-        float n=fbm(uv*2.4+time*.03);float m=smoothstep(n-.2,n+.2,prog*1.4-.2+(1.-uv.y)*.15);
+        uv+=normalize(d+1e-4)/vec2(asp,1.)*sin(l*22.-time*1.4)*.003*smoothstep(.4,0.,l)*sin(prog*3.1416);
+        float n=fbm(uv*2.4+time*.02);float m=smoothstep(n-.2,n+.2,prog*1.4-.2+(1.-uv.y)*.15);
         vec2 dir=vec2(.06,.22)*(n-.5);
         vec2 u1=cover((uv-.5)*(1.-.08*prog)+.5+dir*prog,res,s1);
         vec2 u2=cover((uv-.5)*(1.+.1*(1.-prog))+.5-dir*(1.-prog),res,s2);
         vec3 c=mix(texture2D(t1,u1).rgb,texture2D(t2,u2).rgb,m);
         c+=vec3(.95,.76,.46)*(1.-smoothstep(0.,.06,abs(m-.5)))*.3*step(.02,prog)*step(prog,.98);
-        float vg=smoothstep(1.25,.35,length((vUv-.5)*vec2(1.,1.2)));c*=mix(.72,1.,vg);
         gl_FragColor=vec4(c,1.);}`
   })));
   const T = [];
   SHOW.forEach((p, i) => tex(`img/${p.img}.webp`).then(t => { T[i] = t; if (i === 0 && t) { U.t1.value = t; U.s1.value.copy(t.userData.size); U.t2.value = t; U.s2.value.copy(t.userData.size); } }));
-  const titles = $('#showTitles'), list = $('#showList');
+  const titles = $('#showTitles'), list = $('#showList'), imgBox = $('#showImgs');
+  const domImgs = SHOW.map((p, i) => { const im = document.createElement('img'); im.src = `img/${p.img}.webp`; im.alt = p.t; im.decoding = 'async'; if (!i) im.className = 'on'; imgBox.appendChild(im); return im; });
+  let restIdx = 0, glOn = false, cvVis = false;
+  function setRest(i) {
+    if (i === restIdx && !glOn) return;
+    restIdx = i; glOn = i < 0;
+    if (i >= 0) { domImgs.forEach((im, k) => im.classList.toggle('on', k === i)); cv.style.visibility = 'hidden'; cvVis = false; }
+  }
   SHOW.forEach((p, i) => {
     const d = document.createElement('div'); d.className = 'show-t';
     d.innerHTML = `<span>${String(i + 1).padStart(2, '0')} · ${p.m}</span><h3>${p.t.split(' ').map(w => `<i>${w}</i>`).join(' ')}</h3><p>${p.s}</p>`;
@@ -484,43 +491,46 @@ const SHOW = [
     $('#showN').textContent = $('#showNum').textContent = String(i + 1).padStart(2, '0');
     lis.forEach((l, k) => l.classList.toggle('on', k === i));
     tEls.forEach((el, k) => { gsap.killTweensOf(el); gsap.killTweensOf($$('h3 i', el)); if (k !== i) gsap.set(el, { autoAlpha: 0 }); });
-    gsap.fromTo(tEls[i], { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: .6, ease: 'power3.out' });
-    gsap.fromTo($$('h3 i', tEls[i]), { yPercent: 110 }, { yPercent: 0, duration: .8, stagger: .05, ease: 'power4.out' });
+    gsap.fromTo(tEls[i], { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 1.3, ease: 'power3.out' });
+    gsap.fromTo($$('h3 i', tEls[i]), { yPercent: 110 }, { yPercent: 0, duration: 1.4, stagger: .08, ease: 'power4.out' });
   }
   $('#showOpen').addEventListener('click', e => { e.preventDefault(); openCat(SHOW[idx].k); });
   const st = ScrollTrigger.create({
-    trigger: '.show-pin', start: 'top top', end: () => '+=' + Math.round(VH * 4), pin: true, scrub: true, refreshPriority: 4,
+    trigger: '.show-pin', start: 'top top', end: () => '+=' + Math.round(VH * 4.4), pin: true, scrub: 1.2, refreshPriority: 4,
     onUpdate: s => {
       const x = s.progress * (SHOW.length - 1), a = Math.min(Math.floor(x), SHOW.length - 2), f = x - a;
-      if (T[a] && T[a + 1]) { U.t1.value = T[a]; U.s1.value.copy(T[a].userData.size); U.t2.value = T[a + 1]; U.s2.value.copy(T[a + 1].userData.size); }
-      U.prog.value = clamp((f - .2) / .6);
+      const pr = clamp((f - .2) / .6), ready = T[a] && T[a + 1];
+      if (ready) { U.t1.value = T[a]; U.s1.value.copy(T[a].userData.size); U.t2.value = T[a + 1]; U.s2.value.copy(T[a + 1].userData.size); }
+      U.prog.value = pr;
+      setRest(!ready ? (pr < .5 ? a : a + 1) : pr <= 0 ? a : pr >= 1 ? a + 1 : -1);
       setIdx(Math.round(x)); $('#showBar').style.width = s.progress * 100 + '%';
     }
   });
   list.addEventListener('click', e => { const li = e.target.closest('li'); if (!li) return; lenis.scrollTo(st.start + (st.end - st.start) * (+li.dataset.i / (SHOW.length - 1)) + 2, { duration: 1.4 }); });
   onScreen($('.show'), v => on = v, '40px');
   const clk = new THREE.Clock(), sm = { x: .5, y: .5 }, mv = new THREE.Vector2(.5, .5);
-  cv.addEventListener('pointermove', e => { sm.x = e.offsetX / fw; sm.y = 1 - e.offsetY / fh; });
-  cv.addEventListener('pointerleave', () => { sm.x = .5; sm.y = .5; });
-  cv.addEventListener('click', () => openCat(SHOW[idx].k));
-  cv.dataset.cursor = 'Open';
+  frame.addEventListener('pointermove', e => { sm.x = e.offsetX / fw; sm.y = 1 - e.offsetY / fh; });
+  frame.addEventListener('pointerleave', () => { sm.x = .5; sm.y = .5; });
+  frame.addEventListener('click', () => openCat(SHOW[idx].k));
+  frame.dataset.cursor = 'Open';
   gsap.ticker.add(() => {
-    if (!on) return;
-    U.time.value = clk.getElapsedTime(); mv.set(sm.x, sm.y); U.mouse.value.lerp(mv, .08);
-    U.vel.value += (clamp(lenis.velocity || 0, -40, 40) - U.vel.value) * .1;
+    if (!on || !glOn) return;
+    U.time.value = clk.getElapsedTime(); mv.set(sm.x, sm.y); U.mouse.value.lerp(mv, .05);
     r.render(sc, cam);
+    if (!cvVis) { cv.style.visibility = 'visible'; cvVis = true; }
   });
 }
 
 /* =================================================================
    GALLERY GRID (scroll reactive WebGL on desktop)
    ================================================================= */
+const srcset = p => `t/${p.id}.webp ${Math.round(p.w * Math.min(1, 720 / Math.max(p.w, p.h)))}w, img/${p.id}.webp ${p.w}w`;
 const CUR = ['liv3', 'bed2', 'war2', 'tv2', 'din3', 'dre2', 'cur2', 'tab6', 'liv4', 'bed3', 'wal2', 'din4'];
 const ORDER = [...CUR.map(id => BYID[id]), ...PCS.filter(p => !CUR.includes(p.id))];
 const wg = $('#wgrid');
 ORDER.forEach((p, i) => {
   const a = document.createElement('a'); a.href = '#'; a.className = 'wcard' + (i < CUR.length ? '' : ' gone'); a.dataset.piece = p.id; a.dataset.c = p.c; a.dataset.cur = i < CUR.length ? 1 : 0;
-  a.innerHTML = `<figure data-img="${p.id}"><img loading="lazy" src="t/${p.id}.webp" alt="${p.t}" width="${p.w}" height="${p.h}"></figure>
+  a.innerHTML = `<figure data-img="${p.id}"><img loading="lazy" src="t/${p.id}.webp" srcset="${srcset(p)}" sizes="(max-width:900px) 46vw, 52vw" alt="${p.t}" width="${p.w}" height="${p.h}"></figure>
     <div class="wcap"><h3><span class="wn">${String(i + 1).padStart(2, '0')}</span>${p.t}</h3><span>${CAT[p.c].s}</span></div>`;
   wg.appendChild(a);
 });
@@ -529,19 +539,20 @@ const fl = $('#filters');
 function filterGrid(k) {
   $$('button', fl).forEach(x => x.classList.toggle('on', x.dataset.k === k));
   const cards = $$('.wcard', wg);
-  gsap.to(cards, { opacity: 0, y: 20, duration: .3, onComplete: () => {
+  gsap.to(cards, { opacity: 0, y: 16, duration: .6, ease: 'power2.inOut', onComplete: () => {
     let n = 0;
     cards.forEach(c => { const show = k === 'all' ? c.dataset.cur === '1' : c.dataset.c === k; c.classList.toggle('gone', !show); if (show) $('.wn', c).textContent = String(++n).padStart(2, '0'); });
     wg.classList.toggle('flat', k !== 'all');
     ScrollTrigger.refresh();
-    gsap.fromTo(cards.filter(c => !c.classList.contains('gone')), { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: .8, stagger: .05, ease: 'power3.out' });
+    gsap.fromTo(cards.filter(c => !c.classList.contains('gone')), { opacity: 0, y: 36 }, { opacity: 1, y: 0, duration: 1.3, stagger: .07, ease: 'power3.out' });
   } });
 }
 fl.addEventListener('click', e => { const b = e.target.closest('button'); if (b && !b.classList.contains('on')) filterGrid(b.dataset.k); });
 if (FINE && DESK()) {
   const gc = $('#gal');
   const gr = new THREE.WebGLRenderer({ canvas: gc, alpha: true, antialias: true });
-  gr.setClearColor(0x000000, 0); gr.setPixelRatio(Math.min(devicePixelRatio, 1.5));
+  gr.setClearColor(0x000000, 0); gr.setPixelRatio(Math.min(devicePixelRatio, 2));
+  const GAN = gr.capabilities.getMaxAnisotropy(); wg.classList.add('gl');
   let workOn = false; onScreen(wg, v => workOn = v, '200px');
   const gs = new THREE.Scene();
   let W = VW, H = VH;
@@ -549,7 +560,7 @@ if (FINE && DESK()) {
   const gsize = () => { W = innerWidth; H = innerHeight; gr.setSize(W, H); Object.assign(gcam, { left: -W / 2, right: W / 2, top: H / 2, bottom: -H / 2 }); gcam.updateProjectionMatrix(); };
   gsize(); addEventListener('resize', gsize);
   const geo = new THREE.PlaneGeometry(1, 1, 24, 24);
-  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { const it = e.target._it; if (it && !it.loading) { it.loading = true; tex(`t/${it.fig.dataset.img}.webp`).then(t => { if (!t) return; it.u.tex.value = t; it.u.isz.value.copy(t.userData.size); it.fig.classList.add('gl-ready'); }); } } }), { rootMargin: '400px' });
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { const it = e.target._it; if (it && !it.loading) { it.loading = true; tex(`img/${it.fig.dataset.img}.webp`, GAN).then(t => { if (!t) return; it.u.tex.value = t; it.u.isz.value.copy(t.userData.size); }); } } }), { rootMargin: '400px' });
   const items = $$('.wcard figure', wg).map(fig => {
     const u = { tex: { value: null }, isz: { value: new THREE.Vector2(1, 1) }, psz: { value: new THREE.Vector2(1, 1) }, vel: { value: 0 }, hov: { value: 0 }, ms: { value: new THREE.Vector2(.5, .5) }, rev: { value: 0 }, time: { value: 0 } };
     const mat = new THREE.ShaderMaterial({
@@ -557,7 +568,7 @@ if (FINE && DESK()) {
       vertexShader: `uniform float vel;varying vec2 vUv;void main(){vUv=uv;vec3 p=position;p.y+=sin(uv.x*3.1416)*vel*.0016;gl_Position=projectionMatrix*modelViewMatrix*vec4(p,1.);}`,
       fragmentShader: GLSL + `precision highp float;uniform sampler2D tex;uniform vec2 isz,psz,ms;uniform float vel,hov,rev,time;varying vec2 vUv;
         void main(){vec2 uv=vUv;vec2 d=uv-ms;float l=length(d*vec2(psz.x/psz.y,1.));
-          uv+=normalize(d+1e-4)*sin(l*26.-time*4.)*.006*hov*smoothstep(.55,0.,l);
+          uv+=normalize(d+1e-4)*sin(l*22.-time*1.8)*.005*hov*smoothstep(.55,0.,l);
           uv=cover(uv,psz,isz);uv=(uv-.5)*(1.-.06*hov-.08*(1.-rev))+.5;
           float s=clamp(abs(vel)*.00012,0.,.0025);
           vec3 c=vec3(texture2D(tex,uv+vec2(0,s)).r,texture2D(tex,uv).g,texture2D(tex,uv-vec2(0,s)).b);
@@ -567,9 +578,9 @@ if (FINE && DESK()) {
     });
     const mesh = new THREE.Mesh(geo, mat); mesh.visible = false; gs.add(mesh);
     const card = fig.closest('.wcard');
-    card.addEventListener('pointerenter', () => gsap.to(u.hov, { value: 1, duration: .8, ease: 'power3.out' }));
-    card.addEventListener('pointerleave', () => gsap.to(u.hov, { value: 0, duration: .8, ease: 'power3.out' }));
-    const it = { fig, mesh, u, x: 0, top: 0, w: 0, h: 0, loading: false, shown: false };
+    card.addEventListener('pointerenter', () => gsap.to(u.hov, { value: 1, duration: 1.3, ease: 'power3.out' }));
+    card.addEventListener('pointerleave', () => gsap.to(u.hov, { value: 0, duration: 1.3, ease: 'power3.inOut' }));
+    const it = { fig, mesh, u, x: 0, top: 0, w: 0, h: 0, loading: false, shown: false, act: false };
     fig.addEventListener('pointermove', e => { if (it.w) u.ms.value.set(e.offsetX / it.w, 1 - e.offsetY / it.h); });
     fig._it = it; io.observe(fig);
     return it;
@@ -583,8 +594,11 @@ if (FINE && DESK()) {
     items.forEach(it => {
       const y = it.top - SY;
       const v = it.w > 0 && y + it.h > -60 && y < H + 60 && !!it.u.tex.value;
-      it.mesh.visible = v; if (!v) return; any = true;
-      if (!it.shown) { it.shown = true; gsap.fromTo(it.u.rev, { value: 0 }, { value: 1, duration: 1.8, ease: 'power2.out' }); }
+      if (v && !it.shown) { it.shown = true; gsap.fromTo(it.u.rev, { value: 0 }, { value: 1, duration: 2, ease: 'power3.inOut' }); }
+      // WebGL only while revealing, hovered or scrolling; at rest the sharp DOM image shows
+      const act = v && (it.u.rev.value < .999 || it.u.hov.value > .002 || Math.abs(sv) > .35);
+      if (act !== it.act) { it.act = act; it.fig.classList.toggle('gl-on', act); }
+      it.mesh.visible = act; if (!act) return; any = true;
       it.mesh.scale.set(it.w, it.h, 1);
       it.mesh.position.set(it.x + it.w / 2 - W / 2, -(y + it.h / 2) + H / 2, 0);
       it.u.psz.value.set(it.w, it.h); it.u.vel.value = clamp(sv, -24, 24); it.u.time.value = t;
@@ -602,11 +616,11 @@ function showModal(html) {
   ms.innerHTML = html; ms.scrollTop = 0;
   modal.classList.add('open'); modal.setAttribute('aria-hidden', 'false');
   document.body.classList.add('modal-open'); lenis.stop();
-  gsap.fromTo('.m-pic img', { scale: 1.2 }, { scale: 1, duration: 1.6, ease: 'power3.out' });
-  gsap.fromTo('.m-title>*', { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 1.1, stagger: .08, delay: .35, ease: 'power3.out' });
+  gsap.fromTo('.m-pic img', { scale: 1.12 }, { scale: 1, duration: 2, ease: 'power3.out' });
+  gsap.fromTo('.m-title>*', { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 1.4, stagger: .1, delay: .45, ease: 'power3.out' });
 }
 const heroBlock = (img, w, h, eyebrow, title) => `<div class="m-hero"><img class="m-bg" src="t/${img}.webp" alt=""><div class="m-title"><span>${eyebrow}</span><h2>${title}</h2></div><div class="m-pic" style="--ar:${w}/${h}"><img src="img/${img}.webp" alt="${title}"></div></div>`;
-const galBlock = list => list.length ? `<div class="m-gal">${list.map(p => `<a href="#" data-piece="${p.id}" data-cursor="View"><img loading="lazy" src="t/${p.id}.webp" alt="${p.t}"><span>${p.t}</span></a>`).join('')}</div>` : '';
+const galBlock = list => list.length ? `<div class="m-gal">${list.map(p => `<a href="#" data-piece="${p.id}" data-cursor="View"><img loading="lazy" src="t/${p.id}.webp" srcset="${srcset(p)}" sizes="(max-width:900px) 46vw, 30vw" alt="${p.t}"><span>${p.t}</span></a>`).join('')}</div>` : '';
 function openCat(k) {
   const c = CAT[k]; if (!c) return;
   const list = PCS.filter(p => p.c === k), first = list[0], ci = CATS.findIndex(x => x.k === k), nx = CATS[(ci + 1) % CATS.length];
@@ -664,9 +678,9 @@ $('#theme').addEventListener('click', () => applyTheme(document.documentElement.
 /* =================================================================
    WINDOW: arch opens to full screen
    ================================================================= */
-gsap.timeline({ scrollTrigger: { trigger: '.window-pin', start: 'top top', end: () => '+=' + Math.round(VH * 1.5), pin: true, scrub: 1, refreshPriority: 3 } })
-  .fromTo('#wFrame', { clipPath: VW < 760 ? 'inset(26% 16% 26% 16% round 999px 999px 12px 12px)' : 'inset(20% 37% 20% 37% round 999px 999px 12px 12px)' }, { clipPath: 'inset(0% 0% 0% 0% round 0px 0px 0px 0px)', ease: 'none', duration: 1 })
-  .fromTo('#wFrame img', { scale: 1.3 }, { scale: 1, ease: 'none', duration: 1 }, 0)
+gsap.timeline({ scrollTrigger: { trigger: '.window-pin', start: 'top top', end: () => '+=' + Math.round(VH * 1.5), pin: true, scrub: 1.2, refreshPriority: 3 } })
+  .fromTo('#wFrame', { clipPath: 'inset(24% 26% 24% 26% round 999px 999px 12px 12px)' }, { clipPath: 'inset(0% 0% 0% 0% round 999px 999px 14px 14px)', ease: 'power1.inOut', duration: 1 })
+  .fromTo('#wFrame img', { scale: 1.18 }, { scale: 1, ease: 'power1.inOut', duration: 1 }, 0)
   .fromTo('#wTxt', { y: 0 }, { y: -40, ease: 'none', duration: 1 }, 0);
 
 /* =================================================================
@@ -695,7 +709,7 @@ function scrollAnims() {
   const mt = $('.marquee-track'); let mx = 0, dir = 1, mw = mt.scrollWidth / 2, mOn = false;
   measurers.push(() => { mw = mt.scrollWidth / 2; });
   onScreen($('.marquee'), v => mOn = v);
-  gsap.ticker.add(() => { if (!mOn) return; const v = lenis.velocity || 0; if (Math.abs(v) > .1) dir = v > 0 ? 1 : -1; mx -= (.6 + Math.abs(v) * .3) * dir; if (mx <= -mw) mx += mw; if (mx > 0) mx -= mw; mt.style.transform = `translateX(${mx}px) skewX(${clamp(-v * .3, -8, 8)}deg)`; });
+  gsap.ticker.add(() => { if (!mOn) return; const v = lenis.velocity || 0; if (Math.abs(v) > .1) dir = v > 0 ? 1 : -1; mx -= (.32 + Math.abs(v) * .12) * dir; if (mx <= -mw) mx += mw; if (mx > 0) mx -= mw; mt.style.transform = `translateX(${mx}px) skewX(${clamp(-v * .12, -3, 3)}deg)`; });
   gsap.fromTo('.why-card', { y: 70, opacity: 0 }, { y: 0, opacity: 1, duration: 1.1, stagger: .08, ease: 'power3.out', clearProps: 'transform,opacity', scrollTrigger: { trigger: '.why-grid', start: 'top 85%' } });
   gsap.fromTo('details', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: .9, stagger: .05, ease: 'power3.out', clearProps: 'transform,opacity', scrollTrigger: { trigger: '.faq-list', start: 'top 90%' } });
   gsap.fromTo('.foot-big span', { yPercent: 100, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 1.6, ease: 'power4.out', scrollTrigger: { trigger: '.foot', start: 'top 90%' } });
@@ -711,7 +725,7 @@ function scrollAnims() {
   const upd = () => { $('#loaderNum').textContent = Math.round(prog.v); $('#loaderBar').style.width = prog.v + '%'; };
   const tw = gsap.fromTo(prog, { v: 0 }, { v: 88, duration: 1.5, ease: 'power2.out', onUpdate: upd });
   CR.compile(cScene, cCam);
-  const need = [...RING.slice(0, 5).map(p => tex(`t/${p.id}.webp`)), tex('img/liv1.webp')];
+  const need = [...RING.slice(0, 5).map(p => tex(`img/${p.id}.webp`, ANISO)), tex('img/liv3.webp')];
   await Promise.race([Promise.all([...need, document.fonts ? document.fonts.ready : 0, new Promise(r => setTimeout(r, 900))]), new Promise(r => setTimeout(r, 5000))]);
   tw.kill();
   await gsap.fromTo(prog, { v: prog.v }, { v: 100, duration: .5, ease: 'power2.inOut', onUpdate: upd });
@@ -719,8 +733,8 @@ function scrollAnims() {
   tl.fromTo('.loader-inner', { y: 0, opacity: 1 }, { y: -40, opacity: 0, duration: .7, ease: 'power3.in' })
     .fromTo('.loader-panels i', { scaleY: 1 }, { scaleY: 0, duration: 1.1, stagger: .07, ease: 'power4.inOut' }, '-=.2')
     .set('.loader', { display: 'none' })
-    .fromTo(intro, { ex: 1 }, { ex: 0, duration: 2.6, ease: 'power3.inOut' }, '-=1.1')
-    .fromTo(yaw, { t: -2.6 }, { t: -.62, duration: 2.8, ease: 'power3.out' }, '<')
+    .fromTo(intro, { ex: 1 }, { ex: 0, duration: 3.4, ease: 'power3.inOut' }, '-=1.1')
+    .fromTo(yaw, { t: -1.4 }, { t: -.62, duration: 3.6, ease: 'power3.inOut' }, '<')
     .fromTo('.hero-title .w>span', { y: '110%' }, { y: '0%', duration: 1.5, stagger: .08, ease: 'power4.out' }, '-=2.3')
     .fromTo('.h-in', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 1.2, stagger: .12, ease: 'power3.out' }, '-=1.4')
     .fromTo('.nav', { y: -30, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'power3.out' }, '-=1.2');
