@@ -16,7 +16,7 @@ $('#yr').textContent = new Date().getFullYear();
 let paused = false; // true while a project page is open
 
 /* ---------------- smooth scroll ---------------- */
-const lenis = new Lenis({ lerp: 0.09 });
+const lenis = new Lenis({ lerp: 0.075 });
 let SY = 0;
 lenis.on('scroll', l => { SY = l.scroll; ScrollTrigger.update(); });
 gsap.ticker.add(t => lenis.raf(t * 1000));
@@ -58,7 +58,7 @@ const mouse = { x: VW / 2, y: VH / 2, moved: false }, rp = { x: mouse.x, y: mous
 addEventListener('pointermove', e => { mouse.x = e.clientX; mouse.y = e.clientY; mouse.moved = true; }, { passive: true });
 if (FINE) {
   gsap.ticker.add(() => {
-    rp.x += (mouse.x - rp.x) * .22; rp.y += (mouse.y - rp.y) * .22;
+    rp.x += (mouse.x - rp.x) * .18; rp.y += (mouse.y - rp.y) * .18;
     dot.style.transform = `translate3d(${mouse.x}px,${mouse.y}px,0)`;
     ring.style.transform = `translate3d(${rp.x}px,${rp.y}px,0)`;
   });
@@ -77,9 +77,12 @@ function setCursor(el, forced) {
 
 /* ---------------- textures ---------------- */
 const TL = new THREE.TextureLoader(), cache = {};
+let ANISO = 8;
+const DPR2 = Math.min(devicePixelRatio || 1, 2);
+const BIG = FINE && DESK();
 function tex(url) {
   return cache[url] || (cache[url] = new Promise(res => TL.load(url, t => {
-    t.colorSpace = THREE.SRGBColorSpace; t.minFilter = THREE.LinearFilter; t.generateMipmaps = false;
+    t.colorSpace = THREE.SRGBColorSpace; t.generateMipmaps = true; t.minFilter = THREE.LinearMipmapLinearFilter; t.magFilter = THREE.LinearFilter; t.anisotropy = ANISO;
     t.userData.size = new THREE.Vector2(t.image.width, t.image.height); res(t);
   }, undefined, () => res(null))));
 }
@@ -94,11 +97,12 @@ const onScreen = (el, cb, margin = '0px') => new IntersectionObserver(es => es.f
 /* =================================================================
    HERO: 3D RING OF PROJECTS
    ================================================================= */
-const RING = window.RING.map(([s, k]) => ({ p: BYSLUG[s], img: `t/${imgName(BYSLUG[s], k)}.webp` }));
+const RING = window.RING.map(([s, k]) => ({ p: BYSLUG[s], img: `${BIG ? 'm' : 't'}/${imgName(BYSLUG[s], k)}.webp` }));
 const rc = $('#ring');
 const rr = new THREE.WebGLRenderer({ canvas: rc, antialias: true, alpha: true, powerPreference: 'high-performance' });
 rr.setClearColor(0x000000, 0);
-rr.setPixelRatio(Math.min(devicePixelRatio, 1.5));
+rr.setPixelRatio(DPR2);
+ANISO = rr.capabilities.getMaxAnisotropy();
 const rScene = new THREE.Scene();
 const rCam = new THREE.PerspectiveCamera(34, 1, .1, 100);
 const group = new THREE.Group(); rScene.add(group);
@@ -151,16 +155,16 @@ const ray = new THREE.Raycaster(), ndc = new THREE.Vector2();
 const setNdc = (cx, cy) => ndc.set(cx / VW * 2 - 1, -((cy + SY) / heroH) * 2 + 1);
 function setHover(m) {
   if (m === hovered) return;
-  if (hovered) gsap.to(hovered.userData.u.hov, { value: 0, duration: .7, ease: 'power3.out' });
+  if (hovered) gsap.to(hovered.userData.u.hov, { value: 0, duration: 1.2, ease: 'power3.inOut' });
   hovered = m;
-  if (m) { gsap.to(m.userData.u.hov, { value: 1, duration: .7, ease: 'power3.out' }); showLabel(m.userData.p); }
+  if (m) { gsap.to(m.userData.u.hov, { value: 1, duration: 1.2, ease: 'power3.inOut' }); showLabel(m.userData.p); }
   if (FINE) setCursor(rc, m ? 'Open' : null);
 }
 let labelP = null, labelT = 0;
 const rlEl = $('#ringLabel'), rlName = $('#rlName'), rlMeta = $('#rlMeta');
 function showLabel(p) {
   if (p === labelP) return; labelP = p; rlEl.classList.add('swap'); clearTimeout(labelT);
-  labelT = setTimeout(() => { rlName.textContent = p.t; rlMeta.textContent = p.m; rlEl.classList.remove('swap'); }, 280);
+  labelT = setTimeout(() => { rlName.textContent = p.t; rlMeta.textContent = p.m; rlEl.classList.remove('swap'); }, 450);
 }
 function frontPanel() {
   let best = null, bd = 9;
@@ -171,11 +175,11 @@ ScrollTrigger.create({ trigger: '#hero', start: 'top top', end: 'bottom top', on
 gsap.ticker.add(() => {
   if (!heroOn || paused) return;
   const v = lenis.velocity || 0;
-  if (!dragging) { rot.t += .0017 + v * .0006 + rot.v; rot.v *= .94; }
-  rot.a += (rot.t - rot.a) * .07;
+  if (!dragging) { rot.t += .0008 + v * .00028 + rot.v; rot.v *= .95; }
+  rot.a += (rot.t - rot.a) * .045;
   group.rotation.y = -rot.a;
   const mx = mouse.x / VW - .5, my = mouse.y / VH - .5;
-  tilt.x += ((FINE ? my * .08 : 0) - tilt.x) * .05; tilt.y += ((FINE ? mx * .06 : 0) - tilt.y) * .05;
+  tilt.x += ((FINE ? my * .06 : 0) - tilt.x) * .03; tilt.y += ((FINE ? mx * .05 : 0) - tilt.y) * .03;
   group.rotation.x = .1 + tilt.x + heroP * .5; group.rotation.z = -.04 + tilt.y * .4;
   group.position.y = (DESK() ? -1.22 : -.15) + heroP * 1.6;
   rCam.position.set(0, .2, (VW < 700 ? 14.2 : 11.4) + heroP * 3);
@@ -215,10 +219,10 @@ fl.addEventListener('click', e => {
   const b = e.target.closest('button'); if (!b) return;
   $$('button', fl).forEach(x => x.classList.toggle('on', x === b));
   const c = b.dataset.c, cards = $$('.wcard', wg);
-  gsap.to(cards, { opacity: 0, y: 20, duration: .35, ease: 'power2.in', onComplete: () => {
+  gsap.to(cards, { opacity: 0, y: 20, duration: .5, ease: 'power2.in', onComplete: () => {
     cards.forEach(el => el.classList.toggle('gone', c !== 'all' && el.dataset.cat !== c));
     ScrollTrigger.refresh();
-    gsap.fromTo(cards.filter(el => !el.classList.contains('gone')), { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: .9, stagger: .06, ease: 'power3.out' });
+    gsap.fromTo(cards.filter(el => !el.classList.contains('gone')), { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 1.3, stagger: .08, ease: 'power3.out' });
   } });
 });
 
@@ -227,7 +231,7 @@ let galItems = [];
 if (FINE && DESK()) {
   const gc = $('#gal');
   const gr = new THREE.WebGLRenderer({ canvas: gc, alpha: true, antialias: true });
-  gr.setClearColor(0x000000, 0); gr.setPixelRatio(Math.min(devicePixelRatio, 1.5));
+  gr.setClearColor(0x000000, 0); gr.setPixelRatio(DPR2);
   let workOn = false; onScreen($('#wgrid'), v => workOn = v, '200px');
   const gs = new THREE.Scene();
   const gcam = new THREE.OrthographicCamera(-VW / 2, VW / 2, VH / 2, -VH / 2, -10, 10);
@@ -239,12 +243,12 @@ if (FINE && DESK()) {
     const mat = new THREE.ShaderMaterial({
       uniforms: u, transparent: true,
       vertexShader: `uniform float vel;varying vec2 vUv;void main(){vUv=uv;vec3 p=position;
-        p.y+=sin(uv.x*3.1416)*vel*.0015;gl_Position=projectionMatrix*modelViewMatrix*vec4(p,1.);}`,
+        p.y+=sin(uv.x*3.1416)*vel*.0008;gl_Position=projectionMatrix*modelViewMatrix*vec4(p,1.);}`,
       fragmentShader: GLSL + `precision highp float;uniform sampler2D tex;uniform vec2 isz,psz,ms;uniform float vel,hov,rev,time;varying vec2 vUv;
         void main(){vec2 uv=vUv;vec2 d=uv-ms;float l=length(d*vec2(psz.x/psz.y,1.));
-          uv+=normalize(d+1e-4)*sin(l*24.-time*3.)*.005*hov*smoothstep(.5,0.,l);
+          uv+=normalize(d+1e-4)*sin(l*20.-time*1.4)*.0035*hov*smoothstep(.5,0.,l);
           uv=cover(uv,psz,isz);uv=(uv-.5)*(1.-.05*hov-.08*(1.-rev))+.5;
-          float s=clamp(abs(vel)*.0001,0.,.002);
+          float s=clamp(abs(vel)*.00005,0.,.001);
           vec3 c=vec3(texture2D(tex,uv+vec2(0,s)).r,texture2D(tex,uv).g,texture2D(tex,uv-vec2(0,s)).b);
           float n=fbm(vUv*3.+time*.04);float m=smoothstep(n-.15,n+.15,rev*1.35-.2+(vUv.y-.5)*.4);
           gl_FragColor=vec4(c,m);}`
@@ -252,12 +256,12 @@ if (FINE && DESK()) {
     const mesh = new THREE.Mesh(geo, mat); mesh.visible = false; gs.add(mesh);
     const card = fig.closest('.wcard');
     const it = { fig, mesh, u, top: 0, left: 0, w: 0, h: 0 };
-    card.addEventListener('pointerenter', () => gsap.to(u.hov, { value: 1, duration: .9, ease: 'power3.out' }));
-    card.addEventListener('pointerleave', () => gsap.to(u.hov, { value: 0, duration: .9, ease: 'power3.out' }));
+    card.addEventListener('pointerenter', () => gsap.to(u.hov, { value: 1, duration: 1.3, ease: 'power3.inOut' }));
+    card.addEventListener('pointerleave', () => gsap.to(u.hov, { value: 0, duration: 1.3, ease: 'power3.inOut' }));
     // pointer position from cached geometry (no layout reads)
     fig.addEventListener('pointermove', e => { u.ms.value.set((e.clientX - it.left) / it.w, 1 - (e.clientY - (it.top - SY)) / it.h); });
-    tex(`m/${fig.dataset.img}.webp`).then(t => { if (!t) return; u.tex.value = t; u.isz.value.copy(t.userData.size); fig.classList.add('gl-ready'); });
-    ScrollTrigger.create({ trigger: fig, start: 'top 92%', once: true, onEnter: () => gsap.to(u.rev, { value: 1, duration: 1.9, ease: 'power2.out' }) });
+    tex(`g/${fig.dataset.img}.webp`).then(t => { if (!t) return; u.tex.value = t; u.isz.value.copy(t.userData.size); fig.classList.add('gl-ready'); });
+    ScrollTrigger.create({ trigger: fig, start: 'top 92%', once: true, onEnter: () => gsap.to(u.rev, { value: 1, duration: 2.2, ease: 'power2.inOut' }) });
     return it;
   });
   const measure = () => { const sy = scrollY; galItems.forEach(it => { const r = it.fig.getBoundingClientRect(); it.top = r.top + sy; it.left = r.left; it.w = r.width; it.h = r.height; it.u.psz.value.set(r.width || 1, r.height || 1); }); };
@@ -266,7 +270,7 @@ if (FINE && DESK()) {
   const show = v => { if (v !== shown) { shown = v; gc.style.visibility = v ? 'visible' : 'hidden'; } };
   gsap.ticker.add(() => {
     if (!workOn || paused) { show(false); return; }
-    const t = clk.getElapsedTime(); sv += ((lenis.velocity || 0) - sv) * .15;
+    const t = clk.getElapsedTime(); sv += ((lenis.velocity || 0) - sv) * .08;
     const vel = gsap.utils.clamp(-24, 24, sv);
     let any = false;
     for (const it of galItems) {
@@ -339,58 +343,72 @@ $('#theme').addEventListener('click', () => applyTheme(document.documentElement.
 /* =================================================================
    SIGNATURE: pinned full-screen WebGL showcase
    ================================================================= */
-const SIG = window.SIG.map(([s, k]) => ({ p: BYSLUG[s], img: `m/${imgName(BYSLUG[s], k)}.webp` }));
+const SIG = window.SIG.map(([s, k]) => ({ p: BYSLUG[s], img: `x/${imgName(BYSLUG[s], k)}.webp`, gl: `${BIG ? 'x' : 'm'}/${imgName(BYSLUG[s], k)}.webp` }));
 {
-  const cv = $('#sigGL');
+  const cv = $('#sigGL'), still = $('#sigStill');
   const r = new THREE.WebGLRenderer({ canvas: cv, antialias: false });
-  r.setPixelRatio(1);
+  r.setPixelRatio(DPR2);
   const sc = new THREE.Scene(), cam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-  const U = { t1: { value: null }, t2: { value: null }, s1: { value: new THREE.Vector2(1, 1) }, s2: { value: new THREE.Vector2(1, 1) }, prog: { value: 0 }, time: { value: 0 }, res: { value: new THREE.Vector2(1, 1) }, mouse: { value: new THREE.Vector2(.5, .5) } };
+  const U = { t1: { value: null }, t2: { value: null }, s1: { value: new THREE.Vector2(1, 1) }, s2: { value: new THREE.Vector2(1, 1) }, prog: { value: 0 }, time: { value: 0 }, res: { value: new THREE.Vector2(1, 1) } };
   sc.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), new THREE.ShaderMaterial({
     uniforms: U, vertexShader: `varying vec2 vUv;void main(){vUv=uv;gl_Position=vec4(position,1.);}`,
-    fragmentShader: GLSL + `precision highp float;varying vec2 vUv;uniform sampler2D t1,t2;uniform vec2 s1,s2,res,mouse;uniform float prog,time;
-      void main(){vec2 uv=vUv;float asp=res.x/res.y;vec2 d=(uv-mouse)*vec2(asp,1.);float l=length(d);
-        uv+=normalize(d+1e-4)/vec2(asp,1.)*sin(l*28.-time*2.6)*.0026*smoothstep(.35,0.,l);
-        float n=fbm(uv*2.4+time*.025);float m=smoothstep(n-.2,n+.2,prog*1.4-.2);
-        vec2 dir=vec2(.22,.07)*(n-.5);
-        vec2 u1=cover((uv-.5)*(1.-.08*prog)+.5+dir*prog,res,s1);
-        vec2 u2=cover((uv-.5)*(1.+.1*(1.-prog))+.5-dir*(1.-prog),res,s2);
+    fragmentShader: GLSL + `precision highp float;varying vec2 vUv;uniform sampler2D t1,t2;uniform vec2 s1,s2,res;uniform float prog,time;
+      void main(){vec2 uv=vUv;
+        float n=fbm(uv*2.2+time*.02);float m=smoothstep(n-.22,n+.22,prog*1.44-.22);
+        vec2 dir=vec2(.16,.05)*(n-.5);
+        vec2 u1=cover((uv-.5)*(1.-.06*prog)+.5+dir*prog,res,s1);
+        vec2 u2=cover((uv-.5)*(1.+.07*(1.-prog))+.5-dir*(1.-prog),res,s2);
         vec3 c=mix(texture2D(t1,u1).rgb,texture2D(t2,u2).rgb,m);
-        c+=vec3(.83,.7,.46)*(1.-smoothstep(0.,.06,abs(m-.5)))*.22*step(.02,prog)*step(prog,.98);
+        c+=vec3(.83,.7,.46)*(1.-smoothstep(0.,.05,abs(m-.5)))*.18*step(.02,prog)*step(prog,.98);
         gl_FragColor=vec4(c,1.);}`
   })));
   const T = [];
-  SIG.forEach((it, i) => tex(it.img).then(t => { T[i] = t; if (i === 0 && t) { U.t1.value = t; U.s1.value.copy(t.userData.size); U.t2.value = t; U.s2.value.copy(t.userData.size); dirty = true; } }));
+  SIG.forEach((it, i) => tex(it.gl).then(t => { T[i] = t; if (i === 0 && t) { U.t1.value = t; U.s1.value.copy(t.userData.size); U.t2.value = t; U.s2.value.copy(t.userData.size); } }));
+  SIG.forEach(it => { const im = new Image(); im.decoding = 'async'; im.src = it.img; });
+  still.src = SIG[0].img; still.alt = SIG[0].p.t;
   const titles = $('#sigTitles');
   SIG.forEach(({ p }, i) => { const d = document.createElement('div'); d.className = 'sig-t'; d.innerHTML = `<span>${p.m}</span><h3>${p.t.split(' ').map(w => `<i>${w}</i>`).join(' ')}</h3><p>${p.s}</p>`; if (i) gsap.set(d, { autoAlpha: 0 }); titles.appendChild(d); });
   $('.sig-count').innerHTML = `<b id="sigN">01</b> / ${pad2(SIG.length)}`;
   const tEls = $$('.sig-t', titles), sigN = $('#sigN'), sigBar = $('#sigBar');
-  let cur = 0, vis = false, dirty = true;
+  let cur = 0, vis = false, resting = true, stillIdx = 0;
   onScreen($('.sig'), v => vis = v);
-  const size = () => { r.setSize(cv.clientWidth, cv.clientHeight, false); U.res.value.set(cv.clientWidth, cv.clientHeight); dirty = true; };
+  const size = () => { r.setSize(cv.clientWidth, cv.clientHeight, false); U.res.value.set(cv.clientWidth, cv.clientHeight); };
   size(); addEventListener('resize', size);
+  // one title at a time: the old one leaves completely before the new one arrives
   function setIdx(i) {
     if (i === cur) return; cur = i;
     sigN.textContent = pad2(i + 1);
-    tEls.forEach((el, k) => { gsap.killTweensOf(el); gsap.killTweensOf($$('h3 i', el)); if (k !== i) gsap.set(el, { autoAlpha: 0 }); });
-    gsap.fromTo(tEls[i], { autoAlpha: 0, y: 26 }, { autoAlpha: 1, y: 0, duration: .7, ease: 'power3.out' });
-    gsap.fromTo($$('h3 i', tEls[i]), { yPercent: 110 }, { yPercent: 0, duration: .9, stagger: .05, ease: 'power4.out' });
+    tEls.forEach((el, k) => {
+      gsap.killTweensOf(el); gsap.killTweensOf($$('h3 i', el));
+      if (k !== i) { if (+gsap.getProperty(el, 'opacity') > 0) gsap.to(el, { autoAlpha: 0, y: -16, duration: .5, ease: 'power2.in' }); else gsap.set(el, { autoAlpha: 0 }); }
+    });
+    gsap.fromTo(tEls[i], { autoAlpha: 0, y: 22 }, { autoAlpha: 1, y: 0, duration: 1.3, delay: .55, ease: 'power3.out' });
+    gsap.fromTo($$('h3 i', tEls[i]), { yPercent: 110 }, { yPercent: 0, duration: 1.4, stagger: .07, delay: .55, ease: 'power4.out' });
   }
+  function setStill(i) { if (i !== stillIdx) { stillIdx = i; still.src = SIG[i].img; still.alt = SIG[i].p.t; } }
   $('#sigOpen').addEventListener('click', e => { e.preventDefault(); openProject(SIG[cur].p.slug); });
+  const clk = new THREE.Clock();
   ScrollTrigger.create({
-    trigger: '.sig-pin', start: 'top top', end: () => '+=' + innerHeight * 4, pin: true, scrub: true, refreshPriority: 3,
+    trigger: '.sig-pin', start: 'top top', end: () => '+=' + innerHeight * (SIG.length + .5), pin: true, scrub: 1.2, refreshPriority: 3,
     onUpdate: s => {
       const x = s.progress * (SIG.length - 1), a = Math.min(Math.floor(x), SIG.length - 2), f = x - a;
       if (T[a] && T[a + 1]) { U.t1.value = T[a]; U.s1.value.copy(T[a].userData.size); U.t2.value = T[a + 1]; U.s2.value.copy(T[a + 1].userData.size); }
-      U.prog.value = gsap.utils.clamp(0, 1, (f - .2) / .6);
+      const pr = gsap.utils.clamp(0, 1, (f - .25) / .5);
+      U.prog.value = pr;
+      const rest = pr <= 0 || pr >= 1 || !(T[a] && T[a + 1]);
+      setStill(pr >= 1 ? a + 1 : a);
+      if (rest !== resting) {
+        resting = rest;
+        if (!rest) { U.time.value = clk.getElapsedTime(); r.render(sc, cam); }
+        still.style.opacity = rest ? 1 : 0;
+      }
       setIdx(Math.round(x)); sigBar.style.width = s.progress * 100 + '%';
     }
   });
-  const clk = new THREE.Clock(), sm = new THREE.Vector2(.5, .5);
-  cv.parentElement.addEventListener('pointermove', e => sm.set(e.clientX / VW, 1 - e.clientY / VH));
+  // WebGL only renders while a transition is under way; at rest a sharp DOM image is shown
   gsap.ticker.add(() => {
-    if (!vis || paused) return;
-    U.time.value = clk.getElapsedTime(); U.mouse.value.lerp(sm, .08);
+    if (!vis || paused || resting) return;
+    U.time.value = clk.getElapsedTime();
     r.render(sc, cam);
   });
 }
@@ -398,11 +416,13 @@ const SIG = window.SIG.map(([s, k]) => ({ p: BYSLUG[s], img: `m/${imgName(BYSLUG
 /* =================================================================
    WINDOW: arch opens to full screen
    ================================================================= */
-gsap.timeline({ scrollTrigger: { trigger: '.window-pin', start: 'top top', end: '+=150%', pin: true, scrub: 1, refreshPriority: 2 } })
-  .fromTo('#wFrame', { clipPath: DESK() ? 'inset(20% 37% 20% 37% round 999px 999px 0px 0px)' : 'inset(26% 16% 26% 16% round 999px 999px 0px 0px)' }, { clipPath: 'inset(0% 0% 0% 0% round 0px 0px 0px 0px)', ease: 'none', duration: 1 })
-  .fromTo('#wFrame img', { scale: 1.3 }, { scale: 1, ease: 'none', duration: 1 }, 0)
-  .fromTo('#wVeil', { opacity: .75 }, { opacity: 1, ease: 'none', duration: .6 }, .4)
-  .fromTo('#wTxt', { y: 0 }, { y: -40, ease: 'none', duration: 1 }, 0);
+gsap.timeline({ scrollTrigger: { trigger: '.window-pin', start: 'top top', end: '+=200%', pin: true, scrub: 1.5, refreshPriority: 2 } })
+  .fromTo('#wFrame', { clipPath: DESK() ? 'inset(20% 37% 20% 37% round 999px 999px 0px 0px)' : 'inset(26% 16% 26% 16% round 999px 999px 0px 0px)' }, { clipPath: 'inset(0% 0% 0% 0% round 0px 0px 0px 0px)', ease: 'power1.inOut', duration: 1 })
+  .fromTo('#wFrame img', { scale: 1.25 }, { scale: 1, ease: 'power1.inOut', duration: 1 }, 0)
+  .fromTo('#wEye', { opacity: 1, y: 0 }, { opacity: 0, y: -20, ease: 'power1.in', duration: .3 }, 0)
+  .fromTo('#wGrad', { opacity: 0 }, { opacity: 1, ease: 'none', duration: .4 }, .7)
+  .fromTo('#wTxt', { opacity: 0, y: 50 }, { opacity: 1, y: 0, ease: 'power2.out', duration: .45 }, .85)
+  .to({}, { duration: .4 });
 
 /* =================================================================
    TUNNEL: walk through the work
@@ -410,11 +430,11 @@ gsap.timeline({ scrollTrigger: { trigger: '.window-pin', start: 'top top', end: 
 {
   const cv = $('#tunGL');
   const r = new THREE.WebGLRenderer({ canvas: cv, antialias: true });
-  r.setPixelRatio(1); r.setClearColor('#0a0a0a');
+  r.setPixelRatio(DPR2); r.setClearColor('#0a0a0a');
   const sc = new THREE.Scene(), cam = new THREE.PerspectiveCamera(70, 1, .1, 60);
   sc.fog = new THREE.Fog('#0a0a0a', 6, 15);
   const tg = new THREE.Group(); sc.add(tg);
-  const list = window.TUNNEL.map(([s, k]) => ({ p: BYSLUG[s], src: `t/${imgName(BYSLUG[s], k)}.webp` }));
+  const list = window.TUNNEL.map(([s, k]) => ({ p: BYSLUG[s], src: `${BIG ? 'm' : 't'}/${imgName(BYSLUG[s], k)}.webp` }));
   const RAD = 2.4, STEP = 1.6, meshes = [];
   const narrow = VW < 700;
   list.forEach((it, i) => {
@@ -437,15 +457,15 @@ gsap.timeline({ scrollTrigger: { trigger: '.window-pin', start: 'top top', end: 
   const size = () => { r.setSize(cv.clientWidth, cv.clientHeight, false); cam.aspect = cv.clientWidth / cv.clientHeight; cam.updateProjectionMatrix(); };
   size(); addEventListener('resize', size);
   const tunTxt = $('#tunTxt'), tunName = $('#tunName');
-  ScrollTrigger.create({ trigger: '.tunnel-pin', start: 'top top', end: () => '+=' + innerHeight * 3, pin: true, scrub: 1, refreshPriority: 1, onUpdate: s => prog = s.progress });
+  ScrollTrigger.create({ trigger: '.tunnel-pin', start: 'top top', end: () => '+=' + innerHeight * 3.4, pin: true, scrub: 1.6, refreshPriority: 1, onUpdate: s => prog = s.progress });
   gsap.ticker.add(() => {
     if (!vis || paused) return;
     const cz = 4 - prog * (LEN - 2.5);
-    cam.position.z += (cz - cam.position.z) * .12;
+    cam.position.z += (cz - cam.position.z) * .06;
     const mx = FINE ? mouse.x / VW - .5 : 0, my = FINE ? mouse.y / VH - .5 : 0;
-    cam.position.x += (mx * .6 - cam.position.x) * .05; cam.position.y += (-my * .6 - cam.position.y) * .05;
+    cam.position.x += (mx * .5 - cam.position.x) * .03; cam.position.y += (-my * .5 - cam.position.y) * .03;
     cam.lookAt(cam.position.x * .3, cam.position.y * .3, cam.position.z - 6);
-    tg.rotation.z = prog * .5;
+    tg.rotation.z = prog * .25;
     let near = null, nd = 99;
     for (const m of meshes) { const d = cam.position.z - m.position.z; m.material.opacity = gsap.utils.clamp(0, 1, (12 - d) / 6) * gsap.utils.clamp(0, 1, (d + .3) / 1.2); if (d > .8 && d < nd) { nd = d; near = m; } }
     const o = Math.round(gsap.utils.clamp(0, 1, 1 - prog * 9) * 100) / 100;
@@ -466,13 +486,13 @@ gsap.timeline({ scrollTrigger: { trigger: '.window-pin', start: 'top top', end: 
   function showQ(i) {
     i = (i + Q.length) % Q.length; if (i === qi) return;
     const prev = qs[qi]; qi = i;
-    if (prev) gsap.to(prev, { autoAlpha: 0, y: -14, duration: .5, ease: 'power2.in' });
+    if (prev) gsap.to(prev, { autoAlpha: 0, y: -14, duration: .7, ease: 'power2.in' });
     const el = qs[i];
-    gsap.fromTo(el, { autoAlpha: 0, y: 0 }, { autoAlpha: 1, duration: .01, delay: prev ? .45 : 0 });
-    gsap.fromTo($$('.w>span', el), { yPercent: 105 }, { yPercent: 0, duration: 1.1, stagger: .012, ease: 'power4.out', delay: prev ? .45 : 0 });
-    gsap.fromTo($('cite', el), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .9, ease: 'power3.out', delay: prev ? 1 : .5 });
+    gsap.fromTo(el, { autoAlpha: 0, y: 0 }, { autoAlpha: 1, duration: .01, delay: prev ? .75 : 0 });
+    gsap.fromTo($$('.w>span', el), { yPercent: 105 }, { yPercent: 0, duration: 1.4, stagger: .014, ease: 'power4.out', delay: prev ? .75 : 0 });
+    gsap.fromTo($('cite', el), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .9, ease: 'power3.out', delay: prev ? 1.4 : .6 });
     $('#qNum').textContent = `${pad2(i + 1)} / ${pad2(Q.length)}`;
-    clearTimeout(timer); timer = setTimeout(() => { if (qVis && !paused) showQ(qi + 1); else timer = setTimeout(() => showQ(qi + 1), 9000); }, 9000);
+    clearTimeout(timer); timer = setTimeout(() => { if (qVis && !paused) showQ(qi + 1); else timer = setTimeout(() => showQ(qi + 1), 11000); }, 11000);
   }
   $('#qPrev').addEventListener('click', () => showQ(qi - 1));
   $('#qNext').addEventListener('click', () => showQ(qi + 1));
@@ -524,7 +544,7 @@ function scrollAnims() {
   const mt = $('.marquee-track'); let mx = 0, dir = 1, mw = mt.scrollWidth / 2, mOn = false, skew = 0;
   addEventListener('resize', () => mw = mt.scrollWidth / 2); ScrollTrigger.addEventListener('refresh', () => mw = mt.scrollWidth / 2);
   onScreen($('.marquee'), v => mOn = v);
-  gsap.ticker.add(() => { if (!mOn || paused) return; const v = lenis.velocity || 0; if (Math.abs(v) > .1) dir = v > 0 ? 1 : -1; mx -= (.55 + Math.abs(v) * .25) * dir; if (mx <= -mw) mx += mw; if (mx > 0) mx -= mw; skew += (gsap.utils.clamp(-6, 6, -v * .25) - skew) * .1; mt.style.transform = `translate3d(${mx}px,0,0) skewX(${skew}deg)`; });
+  gsap.ticker.add(() => { if (!mOn || paused) return; const v = lenis.velocity || 0; if (Math.abs(v) > .1) dir = v > 0 ? 1 : -1; mx -= (.32 + Math.abs(v) * .1) * dir; if (mx <= -mw) mx += mw; if (mx > 0) mx -= mw; skew += (gsap.utils.clamp(-2.5, 2.5, -v * .1) - skew) * .06; mt.style.transform = `translate3d(${mx}px,0,0) skewX(${skew}deg)`; });
   gsap.fromTo('.pq', { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 1.2, stagger: .12, ease: 'power3.out', scrollTrigger: { trigger: '.philo-grid', start: 'top 85%' } });
   gsap.fromTo('.lrow', { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 1, stagger: .07, ease: 'power3.out', scrollTrigger: { trigger: '.ledger', start: 'top 88%' } });
   gsap.fromTo('.foot-big span', { yPercent: 100, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 1.6, stagger: .12, ease: 'power4.out', scrollTrigger: { trigger: '.foot', start: 'top 90%' } });
@@ -550,8 +570,8 @@ function scrollAnims() {
   tl.to('.loader-inner', { y: -30, opacity: 0, duration: .8, ease: 'power3.in' })
     .to('.loader-panels i', { scaleY: 0, duration: 1.2, stagger: .07, ease: 'power4.inOut' }, '-=.2')
     .set('.loader', { display: 'none' })
-    .to(intro, { v: 1, duration: 2.6, ease: 'power3.out' }, '-=1.2')
-    .fromTo(rot, { t: -2.2 }, { t: 0, duration: 2.6, ease: 'power3.out' }, '<')
+    .to(intro, { v: 1, duration: 3, ease: 'power3.out' }, '-=1.2')
+    .fromTo(rot, { t: -1.6 }, { t: 0, duration: 3.4, ease: 'power3.out' }, '<')
     .fromTo('.hero-title .w>span', { yPercent: 110 }, { yPercent: 0, duration: 1.5, stagger: .08, ease: 'power4.out' }, '-=2.4')
     .fromTo('.h-in', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 1.2, stagger: .12, ease: 'power3.out' }, '-=1.4')
     .fromTo('.ring-label', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 1.1, ease: 'power3.out' }, '<')

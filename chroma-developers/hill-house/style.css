@@ -184,11 +184,11 @@ section{position:relative}
 .window-pin{height:100vh;height:100svh;position:relative;overflow:hidden;display:grid;place-items:center}
 .window-frame{position:absolute;inset:0;clip-path:inset(20% 37% 20% 37% round 999px 999px 0 0);will-change:clip-path}
 .window-frame img{width:100%;height:100%;object-fit:cover;transform:scale(1.3)}
-.window-veil{position:absolute;inset:0;background:radial-gradient(closest-side,rgba(8,8,8,.62),rgba(8,8,8,.38));opacity:.75;pointer-events:none}
-.window-txt{position:relative;z-index:2;text-align:center;color:#efe9dd;padding:0 var(--pad);max-width:1180px}
-.window-txt .eyebrow{justify-content:center}
-.window-txt .mega{text-shadow:0 10px 60px rgba(0,0,0,.5)}
-.window-txt p{max-width:520px;margin:26px auto 0;color:rgba(239,233,221,.88)}
+.window-grad{position:absolute;inset:0;background:linear-gradient(0deg,rgba(6,6,6,.94) 0%,rgba(6,6,6,.78) 26%,rgba(6,6,6,.35) 48%,rgba(6,6,6,0) 66%);opacity:0;pointer-events:none}
+.window-eye{position:absolute;top:12%;left:0;right:0;z-index:2;display:flex;justify-content:center}.window-eye .eyebrow{margin:0}
+.window-txt{position:absolute;left:var(--pad);right:var(--pad);bottom:clamp(44px,9vh,96px);z-index:2;color:#efe9dd;max-width:1100px;opacity:0}
+.window-txt .mega{font-size:clamp(40px,6.2vw,108px)}
+.window-txt p{max-width:520px;margin:24px 0 0;color:rgba(239,233,221,.86)}
 @media (max-width:760px){.window-frame{clip-path:inset(26% 16% 26% 16% round 999px 999px 0 0)}}
 
 /* SERVICES stack */
@@ -347,8 +347,8 @@ html.fine .lprev{display:block}
 @media (max-width:760px){.wa-float{right:16px;bottom:max(16px,env(safe-area-inset-bottom));width:52px;height:52px}}
 
 /* MODAL */
-.modal{position:fixed;inset:0;z-index:120;background:var(--bg);clip-path:inset(100% 0 0 0);transition:clip-path 1s var(--ease),visibility 0s 1s;visibility:hidden}
-.modal.open{clip-path:inset(0 0 0 0);visibility:visible;transition:clip-path 1s var(--ease),visibility 0s 0s}
+.modal{position:fixed;inset:0;z-index:120;background:var(--bg);clip-path:inset(100% 0 0 0);transition:clip-path 1.3s var(--ease),visibility 0s 1.3s;visibility:hidden}
+.modal.open{clip-path:inset(0 0 0 0);visibility:visible;transition:clip-path 1.3s var(--ease),visibility 0s 0s}
 .modal-x{position:fixed;top:20px;right:var(--pad);z-index:3;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:var(--ink);box-shadow:0 10px 30px rgba(0,0,0,.35);transition:transform .6s var(--out),background .4s}
 .modal-x::before,.modal-x::after{content:"";position:absolute;width:20px;height:1.5px;background:var(--bg);transform:rotate(45deg)}
 .modal-x::after{transform:rotate(-45deg)}
@@ -378,7 +378,8 @@ html.fine .lprev{display:block}
 .sig{background:#0a0a0a}
 .sig-pin{height:100vh;height:100svh;position:relative;overflow:hidden;color:#efe9dd}
 #sigGL{position:absolute;inset:0;width:100%;height:100%}
-.sig-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.5),rgba(0,0,0,0) 30%,rgba(0,0,0,0) 50%,rgba(0,0,0,.72));pointer-events:none}
+.sig-still{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.sig-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.5) 0%,rgba(0,0,0,0) 24%,rgba(0,0,0,.12) 42%,rgba(0,0,0,.82) 100%),linear-gradient(90deg,rgba(0,0,0,.5) 0%,rgba(0,0,0,.2) 45%,rgba(0,0,0,0) 70%);pointer-events:none}
 .sig-ui{position:absolute;inset:0;padding:112px var(--pad) 50px;display:flex;flex-direction:column;justify-content:space-between;pointer-events:none}
 .sig-top{display:flex;justify-content:space-between;align-items:center}
 .sig-top .eyebrow{margin:0}
