@@ -480,3 +480,5 @@ html,body,.services,.pricing,.faq,.foot,.hero,.scard,.calc-form,.tier,.why-card{
 @media (max-width:760px){
   .ring-label{top:auto;bottom:calc(16px + 150px)}
 }
+
+@media (max-width:760px){.wa-float{transition:opacity .6s,transform .6s}body.in-hero .wa-float{opacity:0;transform:scale(.8);pointer-events:none}}

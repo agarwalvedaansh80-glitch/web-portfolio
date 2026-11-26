@@ -92,7 +92,9 @@ const RING = ['fire-and-water-villa-dubai', 'villa-aurora', 'grand-majlis', 'pin
 const rc = $('#ring');
 const rr = new THREE.WebGLRenderer({ canvas: rc, antialias: true, alpha: true, powerPreference: 'high-performance' });
 rr.setClearColor(0x000000, 0);
-rr.setPixelRatio(Math.min(devicePixelRatio, 1.5));
+rr.setPixelRatio(Math.min(devicePixelRatio, 2));
+const ANISO = rr.capabilities.getMaxAnisotropy();
+const sharp = t => { if (t && !t.userData.sharp) { t.userData.sharp = 1; t.generateMipmaps = true; t.minFilter = THREE.LinearMipmapLinearFilter; t.anisotropy = ANISO; t.needsUpdate = true; } return t; };
 const rScene = new THREE.Scene();
 const rCam = new THREE.PerspectiveCamera(34, 1, .1, 100);
 const group = new THREE.Group(); rScene.add(group);
@@ -122,7 +124,7 @@ const panels = RING.map((p, i) => {
   mesh.rotation.y = th; mesh.position.set(Math.sin(th) * R, 0, Math.cos(th) * R);
   mesh.userData = { p, u, th };
   group.add(mesh);
-  tex(`t/${p.img}.webp`).then(t => { if (t) { u.tex.value = t; u.isz.value.copy(t.userData.size); } });
+  tex(`m/${p.img}.webp`).then(t => { if (t) { sharp(t); u.tex.value = t; u.isz.value.copy(t.userData.size); } });
   return mesh;
 });
 function rSize() {
@@ -137,7 +139,7 @@ rc.addEventListener('pointerleave', () => overCanvas = false);
 let dragging = false, dragX = 0, dragMoved = 0, heroOn = true, heroP = 0, hovered = null;
 rc.addEventListener('pointerdown', e => { dragging = true; dragX = e.clientX; dragMoved = 0; rc.setPointerCapture(e.pointerId); });
 rc.addEventListener('pointermove', e => {
-  if (dragging) { const dx = e.clientX - dragX; dragX = e.clientX; dragMoved += Math.abs(dx); rot.t -= dx * .0042; rot.v = -dx * .0042; }
+  if (dragging) { const dx = e.clientX - dragX; dragX = e.clientX; dragMoved += Math.abs(dx); rot.t -= dx * .0036; rot.v = -dx * .0024; }
 });
 rc.addEventListener('pointerup', e => { dragging = false; if (dragMoved < 6 && hovered) openProject(hovered.userData.p.slug); });
 rc.addEventListener('pointercancel', () => dragging = false);
@@ -145,9 +147,9 @@ rc.addEventListener('pointerleave', () => { setHover(null); });
 const ray = new THREE.Raycaster(), ndc = new THREE.Vector2();
 function setHover(m) {
   if (m === hovered) return;
-  if (hovered) gsap.to(hovered.userData.u.hov, { value: 0, duration: .6, ease: 'power3.out' });
+  if (hovered) gsap.to(hovered.userData.u.hov, { value: 0, duration: 1.2, ease: 'power3.out' });
   hovered = m;
-  if (m) { gsap.to(m.userData.u.hov, { value: 1, duration: .6, ease: 'power3.out' }); showLabel(m.userData.p); }
+  if (m) { gsap.to(m.userData.u.hov, { value: 1, duration: 1.2, ease: 'power3.out' }); showLabel(m.userData.p); }
   if (FINE) { if (m) setCursor(null, 'Open'); else setCursor(null); }
   rc.style.cursor = m && !FINE ? 'pointer' : '';
 }
@@ -162,14 +164,16 @@ function frontPanel() {
   return best;
 }
 ScrollTrigger.create({ trigger: '#hero', start: 'top top', end: 'bottom top', onToggle: s => heroOn = s.isActive, onUpdate: s => heroP = s.progress });
+document.body.classList.add('in-hero');
+ScrollTrigger.create({ trigger: '#hero', start: 'top top', end: '40% top', onToggle: s => document.body.classList.toggle('in-hero', s.isActive) });
 gsap.ticker.add(() => {
   if (!heroOn) return;
   const v = lenis.velocity || 0;
-  if (!dragging) { rot.t += .0019 + v * .0007 + rot.v; rot.v *= .94; }
-  rot.a += (rot.t - rot.a) * .07;
+  if (!dragging) { rot.t += .0007 + v * .00022 + rot.v; rot.v *= .95; }
+  rot.a += (rot.t - rot.a) * .045;
   group.rotation.y = -rot.a;
   const mx = mouse.x / innerWidth - .5, my = mouse.y / innerHeight - .5;
-  tilt.x += ((FINE ? my * .1 : 0) - tilt.x) * .05; tilt.y += ((FINE ? mx * .08 : 0) - tilt.y) * .05;
+  tilt.x += ((FINE ? my * .08 : 0) - tilt.x) * .03; tilt.y += ((FINE ? mx * .06 : 0) - tilt.y) * .03;
   group.rotation.x = .1 + tilt.x + heroP * .5; group.rotation.z = -.04 + tilt.y * .4;
   group.position.y = (DESK() ? -1.0 : -.05) + heroP * 1.6;
   rCam.position.set(0, .2, (innerWidth < 700 ? 10.8 : 11.2) + heroP * 3);
@@ -523,7 +527,7 @@ function scrollAnims() {
   const prog = { v: 0 };
   const upd = () => { $('#loaderNum').textContent = Math.round(prog.v); $('#loaderBar').style.width = prog.v + '%'; };
   const tw = gsap.to(prog, { v: 88, duration: 2.4, ease: 'power2.out', onUpdate: upd });
-  const need = RING.slice(0, 6).map(p => tex(`t/${p.img}.webp`));
+  const need = RING.slice(0, 6).map(p => tex(`m/${p.img}.webp`));
   await Promise.race([Promise.all([...need, document.fonts ? document.fonts.ready : 0]), new Promise(r => setTimeout(r, 6000))]);
   tw.kill();
   await gsap.to(prog, { v: 100, duration: .5, ease: 'power2.inOut', onUpdate: upd });
@@ -531,8 +535,8 @@ function scrollAnims() {
   tl.to('.loader-inner', { y: -40, opacity: 0, duration: .7, ease: 'power3.in' })
     .to('.loader-panels i', { scaleY: 0, duration: 1.1, stagger: .08, ease: 'power4.inOut' }, '-=.2')
     .set('.loader', { display: 'none' })
-    .to(intro, { v: 1, duration: 2.6, ease: 'power3.out' }, '-=1.1')
-    .fromTo(rot, { t: -2.2 }, { t: 0, duration: 2.6, ease: 'power3.out' }, '<')
+    .to(intro, { v: 1, duration: 3, ease: 'power3.inOut' }, '-=1.1')
+    .fromTo(rot, { t: -.9 }, { t: 0, duration: 3.2, ease: 'power3.inOut' }, '<')
     .to('.hero-title .w>span', { y: 0, duration: 1.5, stagger: .08, ease: 'power4.out' }, '-=2.4')
     .fromTo('.h-in', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 1.2, stagger: .12, ease: 'power3.out' }, '-=1.4')
     .fromTo('.nav', { y: -30, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'power3.out' }, '-=1.2');
