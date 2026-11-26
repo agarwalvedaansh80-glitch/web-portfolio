@@ -79,6 +79,11 @@
       "source": "/the-design-house",
       "destination": "/the-design-house/",
       "permanent": false
+    },
+    {
+      "source": "/mdo",
+      "destination": "/mdo/",
+      "permanent": false
     }
   ]
 }

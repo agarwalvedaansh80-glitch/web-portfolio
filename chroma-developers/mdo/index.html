@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<base href="/mdo/">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MDO Landscape | Most Desired Outdoor, Dubai</title>
+<meta name="description" content="MDO Most Desired Outdoor is a boutique, full-service landscape and swimming pool design and build company in Dubai, creating outdoor living spaces from rooftop gardens to residential estates.">
+<meta property="og:title" content="MDO Landscape | Most Desired Outdoor">
+<meta property="og:description" content="Landscape, pool, design and build for villas and estates in Dubai.">
+<meta property="og:image" content="https://chroma-developers.vercel.app/mdo/img/p02.webp">
+<meta name="theme-color" content="#090c0a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=1">
+<link rel="stylesheet" href="fx.css?v=1">
+<link rel="stylesheet" href="site.css?v=1">
+<script>try{if(localStorage.getItem('mdo-theme')==='light')document.documentElement.dataset.theme='light'}catch(e){}</script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"}}</script>
+</head>
+<body class="loading">
+
+<div class="loader" id="loader">
+  <div class="loader-panels"><i></i><i></i><i></i><i></i></div>
+  <div class="loader-inner">
+    <div class="loader-mono"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="48"/></svg><span>M</span><span class="g">O</span></div>
+    <div class="loader-word"><span>M</span><span>D</span><span>O</span><span class="sp"></span><span class="g">L</span><span class="g">A</span><span class="g">N</span><span class="g">D</span><span class="g">S</span><span class="g">C</span><span class="g">A</span><span class="g">P</span><span class="g">E</span></div>
+    <div class="loader-bar"><i id="loaderBar"></i></div>
+    <div class="loader-meta"><span>Most Desired Outdoor · Dubai</span><span><b id="loaderNum">0</b>%</span></div>
+  </div>
+</div>
+
+<div class="cursor" id="cursor"><div class="c-ring"><span class="c-label" id="cLabel"></span></div><div class="c-dot"></div></div>
+<canvas id="gal" aria-hidden="true"></canvas>
+
+<header class="nav" id="nav">
+  <a href="#top" class="logo">MDO<em>Landscape</em></a>
+  <nav class="nav-links">
+    <a href="#work">Work</a><a href="#services">Services</a><a href="#process">Process</a><a href="#about">Studio</a><a href="#contact">Contact</a>
+  </nav>
+  <button class="theme" id="theme" aria-label="Switch day or night mode" data-cursor="Day / Night"><svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg></button>
+  <a href="#consultation" class="btn btn-gold btn-sm nav-cta magnetic">Consultation</a>
+  <button class="burger" id="burger" aria-label="Menu"><i></i><i></i></button>
+</header>
+<div class="menu" id="menu">
+  <a href="#work">Work</a><a href="#services">Services</a><a href="#process">Process</a><a href="#about">Studio</a><a href="#consultation">Consultation</a><a href="#contact">Contact</a>
+  <div class="menu-foot"><a href="https://wa.me/971528589124">WhatsApp</a><a href="tel:+971528589124">+971 52 858 9124</a></div>
+</div>
+
+<main id="top">
+
+<section class="hero" id="hero">
+  <canvas id="ring"></canvas>
+  <div class="hero-top">
+    <div class="eyebrow h-in">Landscape · Pool · Design · Build</div>
+    <h1 class="hero-title split">Most desired <em>outdoor</em></h1>
+  </div>
+  <div class="ring-label" id="ringLabel"><span id="rlMeta">Jumeirah Islands</span><b id="rlName">The Waterline Estate 43</b></div>
+  <div class="hero-bottom">
+    <div class="hero-left h-in">
+      <button class="hero-close" id="heroClose" aria-label="Close" data-cursor="Close"></button>
+      <div class="hero-sig"><span class="mono-badge">MDO</span><div><strong>MDO Landscape &amp; Swimming Pools</strong><small>Boutique design and build, Dubai</small></div></div>
+      <p class="hero-lead">Full-service landscape and pool design and implementation, crafting outdoor living spaces from intimate rooftop gardens to expansive residential estates.</p>
+      <div class="hero-btns">
+        <a href="#work" class="btn btn-dark magnetic">View projects</a>
+        <a href="#consultation" class="btn btn-line magnetic">Arrange a consultation</a>
+      </div>
+    </div>
+    <div class="hero-hint h-in">Drag to explore<br>the gardens</div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true"><div class="marquee-track">
+  <span>Landscape Design</span><b>✦</b><span>Swimming Pools</span><b>✦</b><span>Outdoor Kitchens</span><b>✦</b><span>Planting</span><b>✦</b><span>Water Features</span><b>✦</b><span>Pergolas</span><b>✦</b><span>Construction</span><b>✦</b>
+  <span>Landscape Design</span><b>✦</b><span>Swimming Pools</span><b>✦</b><span>Outdoor Kitchens</span><b>✦</b><span>Planting</span><b>✦</b><span>Water Features</span><b>✦</b><span>Pergolas</span><b>✦</b><span>Construction</span><b>✦</b>
+</div></div>
+
+<section class="intro">
+  <div class="intro-img"><div class="arch"><img src="img/p06.webp" alt="Century-old olive trees at the arrival of Olive and Stone, Jumeirah Islands" class="par"></div></div>
+  <div class="intro-text">
+    <div class="eyebrow">The studio</div>
+    <h2 class="h2 split">Outdoors <em>reimagined</em></h2>
+    <p class="scrub-text">We believe the best landscape design plays to the conditions of your site, taking advantage of position, architecture, light and space, further enhanced by a strong horticultural element.</p>
+    <p class="muted up">We focus on the visual, but also on the experience, creating spaces that will be enjoyed and savoured for years to come. See how century-old olive trees reshaped the arrival at <a href="#" data-open="olive-and-stone" class="link">Olive and Stone in Jumeirah Islands</a>.</p>
+    <a href="#about" class="link-arrow up">Meet the studio <span>→</span></a>
+  </div>
+</section>
+
+<section class="sig" id="signature">
+  <div class="sig-pin">
+    <canvas id="sigGL"></canvas>
+    <div class="sig-shade"></div>
+    <div class="sig-ui">
+      <div class="sig-top"><div class="eyebrow light">Signature gardens</div><div class="sig-count"><b id="sigN">01</b> / 05</div></div>
+      <div class="sig-titles" id="sigTitles"></div>
+      <div class="sig-bottom"><a href="#" class="btn btn-gold magnetic" id="sigOpen" data-cursor="Open">Open project</a><div class="sig-bar"><i id="sigBar"></i></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- NEW: water shader -->
+<section class="water" id="water">
+  <canvas class="water-gl" data-fx-water="img/p07.webp" data-mask="0,0.6,0.6,1"></canvas>
+  <img class="water-still" src="img/p07.webp" alt="Overflow pool at sunset, Monochrome, Jumeirah Islands">
+  <div class="water-txt">
+    <div class="eyebrow light">Monochrome · Jumeirah Islands</div>
+    <h2 class="mega" data-fx-chars>Water, <em>mirrored</em></h2>
+    <p>An overflow pool with a tranquil, mirror-like surface ties the garden together.</p>
+    <a href="#" class="btn btn-line light magnetic" data-open="monochrome">Open project</a>
+  </div>
+</section>
+
+<section class="work" id="work">
+  <div class="work-head">
+    <div><div class="eyebrow">Projects</div><h2 class="h2 split">Selected <em>gardens</em></h2>
+      <p class="muted up">Villas and estates across Dubai, from Jumeirah Islands to Dubai Hills, each designed and built by our own team.</p></div>
+    <div class="filters" id="filters"></div>
+  </div>
+  <div class="wgrid" id="wgrid"></div>
+</section>
+
+<!-- NEW: horizontal skew gallery -->
+<section class="fx-hgal" id="sequence" data-prio="2.5">
+  <div class="fx-hhead"><div class="eyebrow">In sequence</div><h2 class="h2">Every path reveals <em>a new atmosphere</em></h2></div>
+  <div class="fx-htrack">
+    <figure class="fx-hitem" data-open="master-view-estate" data-cursor="Open"><img src="g/master-view-estate-02.webp" alt="Master View Estate pergola lounge" loading="lazy"><figcaption>Master View Estate</figcaption></figure>
+    <figure class="fx-hitem" data-open="palm-hills-oasis" data-cursor="Open"><img src="g/palm-hills-oasis-02.webp" alt="Palm Hills Oasis sunken seating" loading="lazy"><figcaption>Palm Hills Oasis</figcaption></figure>
+    <figure class="fx-hitem" data-open="the-waterline-estate-43" data-cursor="Open"><img src="g/the-waterline-estate-43-02.webp" alt="The Waterline Estate 43 garden path" loading="lazy"><figcaption>The Waterline Estate 43</figcaption></figure>
+    <figure class="fx-hitem" data-open="olive-and-stone" data-cursor="Open"><img src="g/olive-and-stone-02.webp" alt="Olive and Stone arrival" loading="lazy"><figcaption>Olive and Stone</figcaption></figure>
+    <figure class="fx-hitem" data-open="beach-house-bliss" data-cursor="Open"><img src="g/beach-house-bliss-02.webp" alt="Beach House Bliss lounge by the sea" loading="lazy"><figcaption>Beach House Bliss</figcaption></figure>
+    <figure class="fx-hitem" data-open="a-flame-ridge" data-cursor="Open"><img src="g/a-flame-ridge-02.webp" alt="A Flame Ridge garden" loading="lazy"><figcaption>A Flame Ridge</figcaption></figure>
+    <figure class="fx-hitem" data-open="monochrome" data-cursor="Open"><img src="g/monochrome-03.webp" alt="Monochrome garden" loading="lazy"><figcaption>Monochrome</figcaption></figure>
+    <figure class="fx-hitem" data-open="white-pearl" data-cursor="Open"><img src="g/white-pearl-02.webp" alt="White Pearl planting" loading="lazy"><figcaption>White Pearl</figcaption></figure>
+    <figure class="fx-hitem" data-open="lime-tree-valley" data-cursor="Open"><img src="g/lime-tree-valley-02.webp" alt="Lime Tree Valley" loading="lazy"><figcaption>Lime Tree Valley</figcaption></figure>
+  </div>
+</section>
+
+<section class="window">
+  <div class="window-pin">
+    <div class="window-frame" id="wFrame"><img src="img/p08.webp" alt="Palm Hills Oasis sunken seating surrounded by water"></div>
+    <div class="window-txt" id="wTxt"><div class="eyebrow light">Palm Hills Oasis</div><h2 class="mega">Water, fire <em>and greenery</em></h2><p>A private oasis where the line between architecture and landscape disappears.</p></div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="sec-head">
+    <div class="eyebrow">Services</div>
+    <h2 class="h2 split">Design and build, <em>under one roof</em></h2>
+    <p class="muted up">The execution of your design is as important as the design itself, so one team carries every project from concept to completion.</p>
+  </div>
+  <div class="stack">
+    <article class="scard"><div class="scard-txt"><span class="sn">01</span><h3>Landscape Design</h3><p class="sl">Design that plays to your site: position, architecture, light and space, enhanced by a strong horticultural element.</p><ul><li>Villa and estate gardens</li><li>Rooftop gardens and terraces</li><li>Planting design</li></ul></div><div class="scard-img"><img src="g/white-pearl-01.webp" alt="White Pearl garden" loading="lazy"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">02</span><h3>Landscape Construction</h3><p class="sl">Our experienced construction team brings the design to life with minimum disruption, working with you throughout.</p><ul><li>Hardscape and paving</li><li>Pergolas and canopies</li><li>Lighting and water features</li></ul></div><div class="scard-img"><img src="g/master-view-estate-04.webp" alt="Master View Estate construction detail" loading="lazy"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">03</span><h3>Swimming Pools</h3><p class="sl">Custom pools for villas that blend nature and architecture, designed and built to the highest standards of craftsmanship.</p><ul><li>Infinity and overflow pools</li><li>Sunken lounges and fire features</li><li>Resort-style water features</li></ul></div><div class="scard-img"><img src="g/beach-house-bliss-01.webp" alt="Beach House Bliss infinity pool" loading="lazy"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">04</span><h3>Outdoor Kitchens</h3><p class="sl">Custom outdoor kitchens that integrate architecture with nature, for cooking and entertaining in style.</p><ul><li>Barbecue and bar areas</li><li>Alfresco dining</li><li>Pool houses</li></ul></div><div class="scard-img"><img src="g/umbra-grey-02.webp" alt="Umbra Grey outdoor living" loading="lazy"></div></article>
+  </div>
+</section>
+
+<section class="process" id="process">
+  <div class="process-wrap">
+    <div class="plan-sticky">
+      <div class="eyebrow light">Process</div>
+      <h2 class="h2">From first sketch <em>to first swim</em></h2>
+      <svg class="plan" viewBox="0 0 520 380" fill="none" aria-hidden="true">
+        <g class="L1" stroke-width="3.2"><path d="M20 20H500V360H20Z"/><path d="M20 210H150"/><path d="M330 20V150"/></g>
+        <g class="L2" stroke-width="1.6"><path d="M150 210V360"/><path d="M150 20V160"/><path d="M330 150H500"/><path d="M330 240H500"/><path d="M380 240V360"/><path d="M150 160H230"/><path d="M270 160H330"/>
+          <path d="M230 160A40 40 0 0 1 270 160" stroke-dasharray="3 4"/><path d="M150 250A40 40 0 0 0 190 210" stroke-dasharray="3 4"/><path d="M330 190A40 40 0 0 0 370 150" stroke-dasharray="3 4"/></g>
+        <g class="L3" stroke-width="1.2"><rect x="185" y="230" width="110" height="46" rx="10"/><rect x="200" y="290" width="80" height="34" rx="4"/><circle cx="240" cy="90" r="34"/><circle cx="240" cy="90" r="20"/>
+          <rect x="365" y="45" width="100" height="80" rx="4"/><path d="M365 62H465"/><rect x="40" y="40" width="88" height="140" rx="6"/><path d="M50 60H118M50 80H118M50 100H118"/>
+          <rect x="398" y="262" width="80" height="80" rx="3"/><path d="M398 302H478"/><path d="M40 240H128V340H40Z"/><circle cx="84" cy="290" r="18"/></g>
+        <g class="L4" stroke-width="1"><path d="M20 8H500M20 3V13M500 3V13" /><path d="M512 20V360M507 20H517M507 360H517"/><path d="M330 30V140" stroke-dasharray="2 4"/></g>
+        <g class="labels"><text x="70" y="200">Planting</text><text x="214" y="345">Lounge</text><text x="210" y="140">Olive</text><text x="388" y="140">Pergola</text><text x="412" y="225">Spa</text><text x="56" y="360">Kitchen</text><text x="410" y="355">Pool</text></g>
+      </svg>
+    </div>
+    <div class="steps">
+      <div class="step"><span>01</span><h3>Consultation</h3><p>Call or WhatsApp us to arrange a consultation and talk through your home, your lifestyle and the space.</p></div>
+      <div class="step"><span>02</span><h3>Landscape design</h3><p>A design that works with position, architecture, light and space, with planting at its heart.</p></div>
+      <div class="step"><span>03</span><h3>Construction</h3><p>Our construction team builds the garden and pool, working with you throughout and keeping disruption to a minimum.</p></div>
+      <div class="step"><span>04</span><h3>Enjoy for years</h3><p>A finished outdoor space designed to be enjoyed and savoured for years to come.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- NEW: Ken Burns parallax quote -->
+<section class="fx-kb kbq">
+  <img class="fx-kb-bg" src="img/p01.webp" alt="" aria-hidden="true">
+  <div class="kbq-shade"></div>
+  <div class="fx-kb-fg kbq-in"><div class="eyebrow light">Our philosophy</div><p class="kbq-txt">Engaged in the creation of <em>timeless landscapes</em></p></div>
+</section>
+
+<section class="tunnel">
+  <div class="tunnel-pin">
+    <canvas id="tunGL"></canvas>
+    <div class="tunnel-txt" id="tunTxt"><div class="eyebrow light">Ten gardens</div><h2 class="mega">Walk <em>the gardens</em></h2><p>Scroll to move through pools, terraces and planting across Dubai.</p></div>
+    <div class="tunnel-name" id="tunName"></div>
+  </div>
+</section>
+
+<section class="why">
+  <div class="sec-head">
+    <div class="eyebrow">Why MDO</div>
+    <h2 class="h2 split">A boutique team, <em>from concept to completion</em></h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-card"><span>01</span><h3>Full service</h3><p>Landscape, pool design and implementation, carried by one company from the first drawing to the final planting.</p></div>
+    <div class="why-card"><span>02</span><h3>A multidisciplinary team</h3><p>Landscape designers, project managers and horticulturists, led by directors Matt and Miguel.</p></div>
+    <div class="why-card"><span>03</span><h3>Every scale</h3><p>From intimate rooftop gardens to expansive residential estates.</p></div>
+    <div class="why-card"><span>04</span><h3>Planting first</h3><p>Hundreds of carefully selected species layered for maturity, depth and privacy from day one.</p></div>
+    <div class="why-card"><span>05</span><h3>Clients who return</h3><p>A large number of repeat customers entrust us with their next projects.</p></div>
+    <div class="why-card"><span>06</span><h3>Made for you</h3><p>A collaborative approach, so every space responds to your lifestyle and taste.</p></div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="about-img"><canvas class="mdo-particles" data-fx-particles="MDO" data-font="800 200px Archivo" data-color="#c9d1b4" aria-hidden="true"></canvas><div class="about-tag">Most Desired Outdoor · Al Quoz, Dubai</div></div>
+  <div class="about-text">
+    <div class="eyebrow">The studio</div>
+    <h2 class="h2 split">Matt <em>and Miguel</em></h2>
+    <h4>Creative Director, Matt</h4>
+    <p>Matt has built the business around his passion for design, and his work encompasses every aspect of the outdoor environment. He holds a Bachelor of Arts in Environmental Design from the University of Quebec in Montreal and has more than a decade of experience on landscape projects across North America and the Middle East, from concept through to construction.</p>
+    <h4>Operations, Miguel</h4>
+    <p>Miguel studied Building Design and Project Management and has a 15 year background in Europe, South Asia and the Middle East, with notable residential and commercial landscape projects in Dubai and Abu Dhabi since 2008. He leads the MDO team through the technical and execution side of every landscape and pool.</p>
+    <h4>Our clients</h4>
+    <p>We take great pride in our client relationships, evidenced by the many repeat customers who return to us for their next projects. At MDO, we consider it a privilege to bring your outdoor dreams to life, one project at a time.</p>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="sec-head"><div class="eyebrow">FAQ</div><h2 class="h2 split">Frequently asked <em>questions</em></h2></div>
+  <div class="faq-list">
+    <details><summary>Do you design and build?</summary><p>Yes. MDO is a full-service landscape and pool company. We design the garden and our own construction team builds it.</p></details>
+    <details><summary>Do you build swimming pools?</summary><p>Yes. We design and build custom pools for villas, from infinity and overflow pools to sunken lounges and resort-style water features.</p></details>
+    <details><summary>What size of project do you take on?</summary><p>Projects of every scale, from intimate rooftop gardens to expansive residential estates.</p></details>
+    <details><summary>Can you renovate an existing garden?</summary><p>Yes. Many of our projects transform existing villas and beach houses, from a new arrival and driveway to a complete garden and pool.</p></details>
+    <details><summary>Do you design outdoor kitchens?</summary><p>Yes. We design custom outdoor kitchens, barbecue and bar areas and pool houses that integrate with the architecture of your home.</p></details>
+    <details><summary>How do we start?</summary><p>Call or WhatsApp us on +971 52 858 9124 or email hello@mdolandscape.com to arrange a consultation.</p></details>
+  </div>
+</section>
+
+<section class="consult" id="consultation">
+  <div class="consult-in">
+    <div class="consult-txt">
+      <div class="eyebrow">Consultation</div>
+      <h2 class="h2 split">Tell us about <em>your garden</em></h2>
+      <p class="muted up">If you have been inspired by what you have seen, leave your details and we will arrange a consultation.</p>
+      <ol class="consult-steps up"><li><span>1</span>You send the request</li><li><span>2</span>We call you back</li><li><span>3</span>We meet at your home</li></ol>
+    </div>
+    <form class="consult-form" id="consultForm">
+      <h3>Arrange a consultation</h3>
+      <p class="muted small">Your request opens on WhatsApp, ready to send.</p>
+      <label><span>Your name</span><input name="name" required autocomplete="name"></label>
+      <label><span>Phone or WhatsApp</span><input name="phone" required inputmode="tel" autocomplete="tel"></label>
+      <label><span>Your project</span><select name="type"><option>Landscape design and build</option><option>Swimming pool</option><option>Outdoor kitchen</option><option>Rooftop garden</option><option>Garden renovation</option></select></label>
+      <button class="btn btn-gold" type="submit">Request a consultation</button>
+      <p class="consult-ok" id="consultOk">Thank you. Your request is ready to send on WhatsApp.</p>
+      <p class="small muted">Prefer email? <a class="link" href="mailto:hello@mdolandscape.com">hello@mdolandscape.com</a></p>
+    </form>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="contact-bg"><img src="img/p03.webp" alt="" class="par"></div>
+  <div class="contact-in">
+    <div class="eyebrow light">Contact</div>
+    <h2 class="mega split">Your most desired <em>outdoor</em></h2>
+    <p class="big up">Call or WhatsApp us to arrange a consultation for your villa, rooftop or estate.</p>
+    <div class="contact-btns up">
+      <a class="btn btn-gold magnetic" href="https://wa.me/971528589124?text=Hello%20MDO%2C%20I%20would%20like%20to%20arrange%20a%20consultation%20for%20my%20garden." target="_blank" rel="noopener">Message on WhatsApp</a>
+      <a class="btn btn-line light magnetic" href="tel:+97145911843">Call +971 4 591 1843</a>
+    </div>
+    <div class="contact-card up">
+      <span class="mono-badge big">MDO</span>
+      <div><strong>MDO Landscape &amp; Swimming Pools</strong><small>Most Desired Outdoor</small></div>
+      <ul>
+        <li><span>WhatsApp</span><a href="https://wa.me/971528589124">+971 52 858 9124</a></li>
+        <li><span>Office</span><a href="tel:+97145911843">+971 4 591 1843</a></li>
+        <li><span>Email</span><a href="mailto:hello@mdolandscape.com">hello@mdolandscape.com</a></li>
+        <li><span>Location</span><b>Al Quoz 3, Dubai</b></li>
+      </ul>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="foot-big"><span>MDO</span> <em>Landscape</em></div>
+  <div class="foot-cols">
+    <div><h5>Studio</h5><a href="#work">Projects</a><a href="#services">Services</a><a href="#process">Process</a><a href="#about">Studio</a><a href="#contact">Contact</a></div>
+    <div><h5>Gardens</h5><a href="#" data-open="the-waterline-estate-43">The Waterline Estate 43</a><a href="#" data-open="master-view-estate">Master View Estate</a><a href="#" data-open="palm-hills-oasis">Palm Hills Oasis</a><a href="#" data-open="monochrome">Monochrome</a><a href="#" data-open="beach-house-bliss">Beach House Bliss</a></div>
+    <div><h5>Contact</h5><a href="https://wa.me/971528589124">WhatsApp +971 52 858 9124</a><a href="mailto:hello@mdolandscape.com">hello@mdolandscape.com</a><a href="https://www.instagram.com/mdo_landscape/" target="_blank" rel="noopener">Instagram @mdo_landscape</a><span>P.O. Box 393627, Al Quoz 3, Dubai</span></div>
+  </div>
+  <div class="foot-bot"><span>© <span id="yr"></span> MDO Landscape and Swimming Pools. All rights reserved.</span><a href="#top">Back to top ↑</a></div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/971528589124?text=Hello%20MDO%2C%20I%20would%20like%20to%20arrange%20a%20consultation%20for%20my%20garden." target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 32 32" width="26" height="26"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.7c-2 0-3.9-.5-5.6-1.5l-.4-.2-3.9 1 1-3.8-.3-.4A10.7 10.7 0 1 1 16 26.7zm5.9-8c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5 1-1.7.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4s-1.2 1.1-1.2 2.8 1.2 3.2 1.4 3.4 2.4 3.7 5.8 5.2c2.2.9 3 1 4.1.8.7-.1 1.9-.8 2.2-1.5s.3-1.3.2-1.5-.3-.2-.6-.4z"/></svg>
+</a>
+
+<div class="modal" id="modal" aria-hidden="true">
+  <button class="modal-x" id="modalX" data-cursor="Close" aria-label="Close"></button>
+  <div class="modal-scroll" id="modalScroll" data-lenis-prevent></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="data.js?v=1"></script>
+<script type="module" src="main.js?v=1"></script>
+<script src="fx.js?v=1"></script>
+</body>
+</html>
