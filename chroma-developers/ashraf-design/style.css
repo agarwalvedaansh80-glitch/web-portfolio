@@ -33,13 +33,13 @@ em{font-style:italic;color:var(--gold);font-weight:300}
 /* cursor (dot inside ring) */
 .cursor{position:fixed;left:0;top:0;z-index:150;pointer-events:none;display:none}
 html.fine .cursor{display:block}
-.c-dot{position:fixed;width:6px;height:6px;margin:-3px 0 0 -3px;border-radius:50%;background:var(--ink);transition:opacity .2s}
-.c-ring{position:fixed;width:38px;height:38px;margin:-19px 0 0 -19px;border:1px solid rgba(29,24,19,.45);border-radius:50%;display:grid;place-items:center;transition:width .35s var(--ease),height .35s var(--ease),margin .35s var(--ease),background .3s,border-color .3s}
-.c-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#fff;opacity:0;transition:opacity .2s;font-weight:600}
-.cursor.hover .c-ring{width:60px;height:60px;margin:-30px 0 0 -30px;border-color:var(--gold)}
-.cursor.label .c-ring{width:88px;height:88px;margin:-44px 0 0 -44px;background:var(--gold);border-color:var(--gold)}
-.cursor.label .c-label{opacity:1}.cursor.label .c-dot{opacity:0}
-.cursor.inv .c-dot{background:var(--ivory)}.cursor.inv .c-ring{border-color:rgba(243,236,224,.5)}
+.c-dot{position:fixed;width:5px;height:5px;margin:-2.5px 0 0 -2.5px;border-radius:50%;background:var(--ink);transition:opacity .2s}
+.c-ring{position:fixed;width:30px;height:30px;margin:-15px 0 0 -15px;border:1px solid rgba(29,24,19,.35);border-radius:50%;display:grid;place-items:center;transition:width .35s var(--ease),height .35s var(--ease),margin .35s var(--ease),background .3s,border-color .3s}
+.c-label{position:absolute;left:calc(100% + 10px);top:50%;transform:translateY(-50%);white-space:nowrap;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--bg);background:var(--ink);padding:5px 9px;border-radius:20px;opacity:0;transition:opacity .25s;font-weight:700}
+.cursor.hover .c-ring{width:42px;height:42px;margin:-21px 0 0 -21px;border-color:var(--gold)}
+.cursor.label .c-ring{width:42px;height:42px;margin:-21px 0 0 -21px;border-color:var(--gold)}
+.cursor.label .c-label{opacity:1}
+.cursor.inv .c-dot{background:var(--ivory)}.cursor.inv .c-ring{border-color:rgba(243,236,224,.5)}.cursor.inv .c-label{background:var(--ivory);color:var(--dark)}
 
 #gal{position:fixed;inset:0;width:100vw;height:100vh;z-index:5;pointer-events:none}
 
@@ -322,7 +322,7 @@ details p{color:var(--mute);padding:0 0 28px;max-width:760px}
 /* MODAL */
 .modal{position:fixed;inset:0;z-index:120;background:var(--bg);clip-path:inset(100% 0 0 0);transition:clip-path 1s var(--ease);visibility:hidden}
 .modal.open{clip-path:inset(0 0 0 0);visibility:visible}
-.modal-x{position:fixed;top:22px;right:var(--pad);z-index:3;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;padding:12px 20px;border-radius:100px;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(8px);border:1px solid var(--line)}
+.modal-x{position:fixed;top:22px;right:var(--pad);z-index:3;font-size:0;width:54px;height:54px;border-radius:50%;display:grid;place-items:center;transition:transform .5s var(--ease),background .3s;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(8px);border:1px solid var(--line)}
 .modal-scroll{height:100%;overflow-y:auto;overscroll-behavior:contain}
 .m-hero{height:90vh;position:relative;overflow:hidden}
 .m-hero img{width:100%;height:100%;object-fit:cover}
@@ -395,3 +395,8 @@ html[data-theme=dark] .theme i::after{transform:translateX(18px)}
 .tunnel-name{position:absolute;left:var(--pad);bottom:40px;color:#fff;font-family:var(--serif);font-size:clamp(22px,2.2vw,34px);pointer-events:none}
 .tunnel-name small{display:block;font-family:var(--sans);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold2);font-weight:700}
 @media (max-width:760px){.foot-big{white-space:normal;font-size:20vw}}
+
+.modal-x::before,.modal-x::after{content:"";position:absolute;width:20px;height:1.5px;background:var(--ink);transform:rotate(45deg)}
+.modal-x::after{transform:rotate(-45deg)}
+.modal-x:hover{transform:rotate(90deg);background:var(--gold)}
+.sig-t{will-change:opacity,transform}

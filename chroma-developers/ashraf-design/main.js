@@ -60,7 +60,7 @@ function setCursor(el, forced) {
   cur.classList.toggle('hover', !!t || !!forced);
   const l = forced || (t && (t.getAttribute('data-cursor') || (t.classList.contains('wcard') ? 'View' : '')));
   if (l) { lab.textContent = l; cur.classList.add('label'); } else cur.classList.remove('label');
-  cur.classList.toggle('inv', !!(el && el.closest && el.closest('.process,.contact,.calc-out,.tier.hot,.incl-final')));
+  cur.classList.toggle('inv', !!(el && el.closest && el.closest('.process,.contact,.calc-out,.tier.hot,.incl-final,.sig,.window,.tunnel')));
 }
 
 /* ---------------- magnetic ---------------- */
@@ -92,7 +92,7 @@ const RING = ['fire-and-water-villa-dubai', 'villa-aurora', 'grand-majlis', 'pin
 const rc = $('#ring');
 const rr = new THREE.WebGLRenderer({ canvas: rc, antialias: true, alpha: true, powerPreference: 'high-performance' });
 rr.setClearColor(0x000000, 0);
-rr.setPixelRatio(Math.min(devicePixelRatio, 2));
+rr.setPixelRatio(Math.min(devicePixelRatio, 1.5));
 const rScene = new THREE.Scene();
 const rCam = new THREE.PerspectiveCamera(34, 1, .1, 100);
 const group = new THREE.Group(); rScene.add(group);
@@ -131,6 +131,9 @@ function rSize() {
 }
 rSize(); addEventListener('resize', rSize);
 const rot = { a: 0, t: 0, v: 0 }, tilt = { x: 0, y: 0 };
+let rayTick = 0, overCanvas = false;
+rc.addEventListener('pointerenter', () => overCanvas = true);
+rc.addEventListener('pointerleave', () => overCanvas = false);
 let dragging = false, dragX = 0, dragMoved = 0, heroOn = true, heroP = 0, hovered = null;
 rc.addEventListener('pointerdown', e => { dragging = true; dragX = e.clientX; dragMoved = 0; rc.setPointerCapture(e.pointerId); });
 rc.addEventListener('pointermove', e => {
@@ -172,13 +175,12 @@ gsap.ticker.add(() => {
   rCam.position.set(0, .2, (innerWidth < 700 ? 13.5 : 11.2) + heroP * 3);
   rCam.lookAt(0, -.2, 0);
   panels.forEach(pm => pm.userData.u.inn.value = gsap.utils.clamp(0, 1, intro.v * 1.6 - (pm.userData.th / (Math.PI * 2)) * .6));
-  if (FINE && !dragging) {
+  if (FINE && !dragging && (++rayTick % 3 === 0)) {
     const r = rc.getBoundingClientRect();
     ndc.set((mouse.x - r.left) / r.width * 2 - 1, -((mouse.y - r.top) / r.height) * 2 + 1);
     ray.setFromCamera(ndc, rCam);
     const hit = ray.intersectObjects(panels, false).find(h => h.point.z > 0);
-    const overUI = document.elementFromPoint(mouse.x, mouse.y);
-    setHover(hit && overUI === rc ? hit.object : null);
+    setHover(hit && overCanvas ? hit.object : null);
   }
   if (!hovered) { const f = frontPanel(); if (f) showLabel(f.userData.p); }
   rr.render(rScene, rCam);
@@ -222,7 +224,8 @@ fl.addEventListener('click', e => {
 if (FINE && DESK()) {
   const gc = $('#gal');
   const gr = new THREE.WebGLRenderer({ canvas: gc, alpha: true, antialias: true });
-  gr.setClearColor(0x000000, 0); gr.setPixelRatio(Math.min(devicePixelRatio, 2));
+  gr.setClearColor(0x000000, 0); gr.setPixelRatio(Math.min(devicePixelRatio, 1.5));
+  let workOn = false; new IntersectionObserver(es => es.forEach(e => workOn = e.isIntersecting), { rootMargin: '200px' }).observe($('#wgrid'));
   const gs = new THREE.Scene();
   let W = innerWidth, H = innerHeight;
   const gcam = new THREE.OrthographicCamera(-W / 2, W / 2, H / 2, -H / 2, -10, 10);
@@ -250,12 +253,13 @@ if (FINE && DESK()) {
     card.addEventListener('pointerenter', () => gsap.to(u.hov, { value: 1, duration: .8, ease: 'power3.out' }));
     card.addEventListener('pointerleave', () => gsap.to(u.hov, { value: 0, duration: .8, ease: 'power3.out' }));
     fig.addEventListener('pointermove', e => { const r = fig.getBoundingClientRect(); u.ms.value.set((e.clientX - r.left) / r.width, 1 - (e.clientY - r.top) / r.height); });
-    tex(fig.dataset.img).then(t => { if (!t) return; u.tex.value = t; u.isz.value.copy(t.userData.size); fig.classList.add('gl-ready'); });
+    tex(`m/${fig.dataset.img}.webp`).then(t => { if (!t) return; u.tex.value = t; u.isz.value.copy(t.userData.size); fig.classList.add('gl-ready'); });
     ScrollTrigger.create({ trigger: fig, start: 'top 92%', once: true, onEnter: () => gsap.to(u.rev, { value: 1, duration: 1.8, ease: 'power2.out' }) });
     return { fig, mesh, u };
   });
   const clk = new THREE.Clock(); let sv = 0;
   gsap.ticker.add(() => {
+    if (!workOn) { if (gc.style.visibility !== 'hidden') gc.style.visibility = 'hidden'; return; }
     const t = clk.getElapsedTime(); sv += ((lenis.velocity || 0) - sv) * .15;
     let any = false;
     items.forEach(it => {
@@ -351,7 +355,7 @@ const SIG = ['fire-and-water-villa-dubai', 'villa-aurora', 'grand-majlis', 'open
 {
   const cv = $('#sigGL');
   const r = new THREE.WebGLRenderer({ canvas: cv, antialias: false });
-  r.setPixelRatio(Math.min(devicePixelRatio, 1.5));
+  r.setPixelRatio(1);
   const sc = new THREE.Scene(), cam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
   const U = { t1: { value: null }, t2: { value: null }, s1: { value: new THREE.Vector2(1, 1) }, s2: { value: new THREE.Vector2(1, 1) }, prog: { value: 0 }, time: { value: 0 }, res: { value: new THREE.Vector2(1, 1) }, mouse: { value: new THREE.Vector2(.5, .5) } };
   sc.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), new THREE.ShaderMaterial({
@@ -376,11 +380,11 @@ const SIG = ['fire-and-water-villa-dubai', 'villa-aurora', 'grand-majlis', 'open
   const size = () => { r.setSize(cv.clientWidth, cv.clientHeight, false); U.res.value.set(cv.clientWidth, cv.clientHeight); };
   size(); addEventListener('resize', size);
   function setIdx(i) {
-    if (i === cur) return; const prev = cur; cur = i;
+    if (i === cur) return; cur = i;
     $('#sigN').textContent = String(i + 1).padStart(2, '0');
-    gsap.to(tEls[prev], { autoAlpha: 0, y: -30, duration: .5, ease: 'power2.in' });
-    gsap.fromTo(tEls[i], { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: .8, ease: 'power3.out', delay: .15 });
-    gsap.fromTo($$('h3 i', tEls[i]), { yPercent: 110 }, { yPercent: 0, duration: 1, stagger: .05, ease: 'power4.out', delay: .15 });
+    tEls.forEach((el, k) => { gsap.killTweensOf(el); gsap.killTweensOf($$('h3 i', el)); if (k !== i) gsap.set(el, { autoAlpha: 0 }); });
+    gsap.fromTo(tEls[i], { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: .6, ease: 'power3.out' });
+    gsap.fromTo($$('h3 i', tEls[i]), { yPercent: 110 }, { yPercent: 0, duration: .8, stagger: .04, ease: 'power4.out' });
   }
   $('#sigOpen').addEventListener('click', e => { e.preventDefault(); openProject(SIG[cur].slug); });
   ScrollTrigger.create({
@@ -416,7 +420,7 @@ gsap.timeline({ scrollTrigger: { trigger: '.window-pin', start: 'top top', end: 
 {
   const cv = $('#tunGL');
   const r = new THREE.WebGLRenderer({ canvas: cv, antialias: true });
-  r.setPixelRatio(Math.min(devicePixelRatio, 1.5)); r.setClearColor('#17130f');
+  r.setPixelRatio(Math.min(devicePixelRatio, 1.25)); r.setClearColor('#17130f');
   const sc = new THREE.Scene(), cam = new THREE.PerspectiveCamera(70, 1, .1, 60);
   const tg = new THREE.Group(); sc.add(tg);
   const list = []; P.forEach(p => (p.g || []).slice(0, 2).forEach(g => list.push({ p, src: 't/' + g.split('/').pop() })));
@@ -428,6 +432,10 @@ gsap.timeline({ scrollTrigger: { trigger: '.window-pin', start: 'top top', end: 
     tex(it.src).then(t => { if (!t) return; m.material.map = t; m.material.needsUpdate = true; const ar = t.userData.size.x / t.userData.size.y; m.scale.set(ar >= 1.48 ? 1 : ar / 1.48, ar >= 1.48 ? 1.48 / ar : 1, 1); });
   });
   const LEN = list.length * STEP;
+  const tray = new THREE.Raycaster(), tn = new THREE.Vector2();
+  function pick(e) { const b = cv.getBoundingClientRect(); tn.set((e.clientX - b.left) / b.width * 2 - 1, -((e.clientY - b.top) / b.height) * 2 + 1); tray.setFromCamera(tn, cam); const h = tray.intersectObjects(meshes, false).find(h => h.object.material.opacity > .4); return h && h.object; }
+  cv.addEventListener('click', e => { const m = pick(e); if (m) openProject(m.userData.p.slug); });
+  cv.addEventListener('pointermove', e => { const m = pick(e); cv.style.cursor = m ? 'pointer' : ''; if (FINE) setCursor(cv, m ? 'Open' : null); });
   let prog = 0, on = false, last = null;
   const size = () => { r.setSize(cv.clientWidth, cv.clientHeight, false); cam.aspect = cv.clientWidth / cv.clientHeight; cam.updateProjectionMatrix(); };
   size(); addEventListener('resize', size);
@@ -508,5 +516,4 @@ function scrollAnims() {
     .fromTo('.h-in', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 1.2, stagger: .12, ease: 'power3.out' }, '-=1.4')
     .fromTo('.nav', { y: -30, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'power3.out' }, '-=1.2');
   tl.add(() => { document.body.classList.remove('loading'); lenis.start(); scrollAnims(); ScrollTrigger.sort(); ScrollTrigger.refresh(); }, '-=1.4');
-  P.forEach(p => tex(p.img));
 })();
