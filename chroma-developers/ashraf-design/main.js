@@ -374,7 +374,7 @@ function vtex(src) {
 {
   const cv = $('#sigGL');
   const r = new THREE.WebGLRenderer({ canvas: cv, antialias: false });
-  r.setPixelRatio(1);
+  r.setPixelRatio(Math.min(devicePixelRatio, 2));
   const sc = new THREE.Scene(), cam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
   const U = { t1: { value: null }, t2: { value: null }, s1: { value: new THREE.Vector2(1, 1) }, s2: { value: new THREE.Vector2(1, 1) }, prog: { value: 0 }, time: { value: 0 }, res: { value: new THREE.Vector2(1, 1) }, mouse: { value: new THREE.Vector2(.5, .5) } };
   sc.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), new THREE.ShaderMaterial({
