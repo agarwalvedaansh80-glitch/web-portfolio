@@ -54,6 +54,11 @@
       "source": "/shaped-ae",
       "destination": "/shaped-ae/",
       "permanent": false
+    },
+    {
+      "source": "/homefigures",
+      "destination": "/homefigures/",
+      "permanent": false
     }
   ]
 }

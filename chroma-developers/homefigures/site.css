@@ -1,0 +1,47 @@
+/* Home Figures palette and sections */
+:root{--bg:#0b0a0a;--bg2:#131010;--card:#1a1515;--ink:#f1e9e2;--ink2:#c9bdb2;--mute:#8f8279;--line:rgba(241,233,226,.12);
+  --brass:#cf8f6e;--brass2:#e2a986;--ivory:#f1e9e2;--fx-a:#e2a986;
+  --serif:"Fraunces",Georgia,serif;--cap:"Jost",system-ui,sans-serif;--sans:"Jost",system-ui,sans-serif}
+html[data-theme=light]{--bg:#f2ece6;--bg2:#e9e1d9;--card:#faf6f2;--ink:#1a1414;--ink2:#4a3f3a;--mute:#7e716a;--line:rgba(26,20,20,.13);--brass:#a8603f;--brass2:#c47a58;--fx-a:#a8603f}
+.h2,.mega,.hero-title{font-weight:300;letter-spacing:-.025em}
+.logo b{letter-spacing:.34em;font-weight:500}
+/* hero card close */
+.cfg-x{position:absolute;top:-14px;right:-14px;width:34px;height:34px;border-radius:50%;background:var(--brass2);z-index:2;box-shadow:0 8px 20px rgba(0,0,0,.35);transition:transform .6s var(--ease)}
+.cfg-x::before,.cfg-x::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:1.5px;background:#140d0b;transform:translate(-50%,-50%) rotate(45deg)}
+.cfg-x::after{transform:translate(-50%,-50%) rotate(-45deg)}
+.cfg-x:hover{transform:rotate(90deg)}
+.cfg{transition:transform 1.2s var(--ease),opacity 1s}
+.cfg.closed{transform:translateY(30px);opacity:0;pointer-events:none}
+.cfg-open{position:absolute;left:var(--pad);bottom:clamp(22px,5vh,48px);z-index:3;opacity:0;pointer-events:none;transition:opacity 1s .4s}
+.cfg.closed~.cfg-open{opacity:1;pointer-events:auto}
+@media (max-width:760px){.cfg-x{top:-12px;right:-6px;width:30px;height:30px}.cfg-open{left:12px;bottom:14px}}
+/* signature cover flow */
+.sig{padding:clamp(90px,14vh,150px) 0 clamp(60px,10vh,110px);overflow:hidden}
+.sig .sec-head{margin-bottom:10px}
+.fx-flow-cap{display:flex;flex-direction:column;align-items:center;gap:4px}
+.fx-flow-cap b{font-family:var(--serif);font-weight:300;font-size:clamp(24px,2.4vw,36px);color:var(--ink)}
+.fx-flow-cap span{font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--brass)}
+.fx-flow-item{border-radius:200px 200px 6px 6px}
+.sig-hint{text-align:center;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--mute);margin-top:22px;padding:0 16px}
+/* philosophy fill */
+.philo{padding:clamp(90px,16vh,180px) var(--pad);max-width:1300px;margin:0 auto}
+.philo-txt{font-family:var(--serif);font-weight:300;font-size:clamp(32px,4.8vw,78px);line-height:1.08;letter-spacing:-.02em;color:var(--ink)}
+/* index + trail */
+.idx{padding:clamp(70px,12vh,130px) var(--pad);overflow:hidden}
+.idx-list{list-style:none;border-top:1px solid var(--line);position:relative;z-index:2}
+.idx-list a{display:grid;grid-template-columns:70px 1fr auto;align-items:baseline;gap:20px;padding:clamp(18px,3vh,30px) 0;border-bottom:1px solid var(--line);transition:padding .8s var(--ease),color .6s}
+.idx-list a:hover{padding-left:18px;color:var(--brass2)}
+.idx-list .n{font-size:11px;letter-spacing:.2em;color:var(--brass)}
+.idx-list b{font-family:var(--serif);font-weight:300;font-size:clamp(30px,5vw,76px);line-height:1;letter-spacing:-.02em}
+.idx-list i{font-style:normal;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+.fx-trail-img{z-index:1}
+@media (max-width:620px){.idx-list a{grid-template-columns:34px 1fr}.idx-list i{display:none}}
+/* contact form */
+.cform{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:760px;margin-bottom:50px}
+.cform input,.cform select,.cform textarea{font:inherit;font-size:15px;color:#f1e9e2;background:rgba(20,14,12,.5);border:1px solid rgba(241,233,226,.25);border-radius:14px;padding:15px 18px;outline:none;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:border-color .5s}
+.cform select option{color:#111}
+.cform textarea{grid-column:1/-1;resize:vertical}
+.cform input:focus,.cform select:focus,.cform textarea:focus{border-color:var(--brass2)}
+.cform input::placeholder,.cform textarea::placeholder{color:rgba(241,233,226,.55)}
+.cform .btn{grid-column:1/-1;justify-self:start}
+@media (max-width:620px){.cform{grid-template-columns:1fr}.cform .btn{width:100%}}
