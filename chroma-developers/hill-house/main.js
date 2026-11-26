@@ -370,6 +370,9 @@ const SIG = window.SIG.map(([s, k]) => ({ p: BYSLUG[s], img: `x/${imgName(BYSLUG
   SIG.forEach(({ p }, i) => { const d = document.createElement('div'); d.className = 'sig-t'; d.innerHTML = `<span>${p.m}</span><h3>${p.t.split(' ').map(w => `<i>${w}</i>`).join(' ')}</h3><p>${p.s}</p>`; if (i) gsap.set(d, { autoAlpha: 0 }); titles.appendChild(d); });
   $('.sig-count').innerHTML = `<b id="sigN">01</b> / ${pad2(SIG.length)}`;
   const tEls = $$('.sig-t', titles), sigN = $('#sigN'), sigBar = $('#sigBar');
+  const sigList = $('#sigList');
+  SIG.forEach(({ p }, i) => { const li = document.createElement('li'); li.innerHTML = `<small>${pad2(i + 1)}</small>${p.t}`; li.dataset.i = i; li.dataset.cursor = 'View'; if (!i) li.className = 'on'; sigList.appendChild(li); });
+  const sigLis = $$('li', sigList);
   let cur = 0, vis = false, resting = true, stillIdx = 0;
   onScreen($('.sig'), v => vis = v);
   const size = () => { r.setSize(cv.clientWidth, cv.clientHeight, false); U.res.value.set(cv.clientWidth, cv.clientHeight); };
@@ -378,6 +381,7 @@ const SIG = window.SIG.map(([s, k]) => ({ p: BYSLUG[s], img: `x/${imgName(BYSLUG
   function setIdx(i) {
     if (i === cur) return; cur = i;
     sigN.textContent = pad2(i + 1);
+    sigLis.forEach((l, k) => l.classList.toggle('on', k === i));
     tEls.forEach((el, k) => {
       gsap.killTweensOf(el); gsap.killTweensOf($$('h3 i', el));
       if (k !== i) { if (+gsap.getProperty(el, 'opacity') > 0) gsap.to(el, { autoAlpha: 0, y: -16, duration: .5, ease: 'power2.in' }); else gsap.set(el, { autoAlpha: 0 }); }
@@ -387,8 +391,10 @@ const SIG = window.SIG.map(([s, k]) => ({ p: BYSLUG[s], img: `x/${imgName(BYSLUG
   }
   function setStill(i) { if (i !== stillIdx) { stillIdx = i; still.src = SIG[i].img; still.alt = SIG[i].p.t; } }
   $('#sigOpen').addEventListener('click', e => { e.preventDefault(); openProject(SIG[cur].p.slug); });
+  sigList.addEventListener('click', e => { const li = e.target.closest('li'); if (!li || !window.__sigST) return; const st = window.__sigST; lenis.scrollTo(st.start + (st.end - st.start) * (+li.dataset.i / Math.max(1, SIG.length - 1)) + 2, { duration: 1.6 }); });
   const clk = new THREE.Clock();
-  ScrollTrigger.create({
+  setTimeout(() => { window.__sigST = sigST; }, 0);
+  const sigST = ScrollTrigger.create({
     trigger: '.sig-pin', start: 'top top', end: () => '+=' + innerHeight * (SIG.length + .5), pin: true, scrub: 1.2, refreshPriority: 3,
     onUpdate: s => {
       const x = s.progress * (SIG.length - 1), a = Math.min(Math.floor(x), SIG.length - 2), f = x - a;
@@ -578,3 +584,5 @@ function scrollAnims() {
     .fromTo('.nav', { y: -30, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'power3.out' }, '-=1.2');
   tl.add(() => { document.body.classList.remove('loading'); lenis.start(); scrollAnims(); ScrollTrigger.sort(); ScrollTrigger.refresh(); }, '-=1.4');
 })();
+
+$('#heroClose')?.addEventListener('click', () => gsap.to('.hero-left', { autoAlpha: 0, y: 20, duration: .6, ease: 'power3.in' }));
