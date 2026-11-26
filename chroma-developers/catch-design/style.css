@@ -472,7 +472,7 @@ html,body,.services,.pricing,.faq,.foot,.hero,.scard,.calc-form,.tier,.why-card{
 
 @media (max-width:760px){.wa-float{transition:opacity .6s,transform .6s}body.in-hero .wa-float{opacity:0;transform:scale(.8);pointer-events:none}}
 
-/* ===== Render Atelier: luminous accent, glowing hairlines ===== */
+/* ===== luminous accent, glowing hairlines ===== */
 body{font-weight:300;letter-spacing:.005em}
 .h2,.mega,.hero-title,.scard h3,.step h3,.sig-t h3,.foot-big{font-weight:400;letter-spacing:-.01em}
 .hero-title{font-weight:300}
