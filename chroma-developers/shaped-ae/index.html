@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<base href="/shaped-ae/">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shaped AE | Bespoke Media Walls, Joinery &amp; Fit-Out in Dubai</title>
+<meta name="description" content="British founded and managed design and build studio in Dubai. Bespoke media walls, wardrobes, dining and high-end joinery, made in our own workshop in Dubai Investment Park.">
+<meta property="og:title" content="Shaped AE | British Joinery, Made in Dubai">
+<meta property="og:description" content="Bespoke media walls, furniture and joinery, designed and made in our Dubai workshop.">
+<meta property="og:image" content="https://chroma-developers.vercel.app/shaped-ae/img/mw5.webp">
+<meta name="theme-color" content="#06080c">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=1">
+<script>try{if(localStorage.getItem('sh-theme')==='light')document.documentElement.dataset.theme='light'}catch(e){}</script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+</head>
+<body class="loading in-hero">
+
+<div class="loader" id="loader">
+  <div class="loader-curtain"></div>
+  <div class="loader-inner">
+    <svg class="mono" viewBox="0 0 140 110" fill="none" aria-label="Shaped">
+      <path class="mono-house" d="M24 86V40L70 6l46 34v62"/>
+      <path class="mono-arch" d="M101 29C82 40 76 64 84 82c4 9 12 16 22 18h10"/>
+      <g class="mono-flutes"><path d="M90 39v46"/><path d="M95 34v57"/><path d="M100 31v63"/><path d="M105 33v64"/><path d="M110 37v62"/></g>
+      <path class="mono-base" d="M40 100h76"/>
+    </svg>
+    <div class="loader-word" aria-hidden="true"><span>S</span><span>H</span><span>A</span><span>P</span><span>E</span><span>D</span></div>
+    <div class="loader-sub">Design &amp; Build · Dubai</div>
+    <div class="loader-bar"><i id="loaderBar"></i></div>
+    <div class="loader-meta"><span>British joinery</span><span><b id="loaderNum">0</b>%</span></div>
+  </div>
+</div>
+
+<div class="cursor" id="cursor"><div class="c-ring"><span class="c-label" id="cLabel"></span></div><div class="c-dot"></div></div>
+<canvas id="gal" aria-hidden="true"></canvas>
+
+<header class="nav" id="nav">
+  <a href="#top" class="logo" aria-label="Shaped AE">
+    <svg viewBox="0 0 140 110" fill="none" class="logo-mark" aria-hidden="true"><path d="M24 86V40L70 6l46 34v62"/><path d="M101 29C82 40 76 64 84 82c4 9 12 16 22 18h10"/><path d="M90 39v46M95 34v57M100 31v63M105 33v64M110 37v62"/></svg>
+    <span><b>SHAPED</b><small>Design &amp; Build</small></span>
+  </a>
+  <nav class="nav-links">
+    <a href="#walls">Media Walls</a><a href="#collections">Rooms</a><a href="#services">Services</a><a href="#process">Process</a><a href="#studio">Studio</a><a href="#contact">Contact</a>
+  </nav>
+  <button class="theme" id="theme" aria-label="Switch day or night mode" data-cursor="Mode"><span>Day</span><i></i><span>Night</span></button>
+  <a href="#contact" class="btn btn-brass btn-sm nav-cta magnetic">Request a quote</a>
+  <button class="burger" id="burger" aria-label="Menu"><i></i><i></i></button>
+</header>
+<div class="menu" id="menu">
+  <a href="#walls">Media Walls</a><a href="#collections">Rooms</a><a href="#services">Services</a><a href="#process">Process</a><a href="#studio">Studio</a><a href="#contact">Contact</a>
+  <div class="menu-foot"><a href="https://wa.me/971585851174" target="_blank" rel="noopener">WhatsApp</a><a href="tel:+971585851174">+971 58 585 1174</a></div>
+</div>
+
+<main id="top">
+
+<!-- HERO: live media wall configurator -->
+<section class="hero" id="hero">
+  <div class="hero-pin">
+    <canvas id="cfgGL" aria-label="Interactive 3D media wall"></canvas>
+    <div class="hero-top" id="heroTop">
+      <div class="eyebrow h-in">British joinery · Made in Dubai</div>
+      <h1 class="hero-title split">Walls that are <em>shaped</em> around you.</h1>
+      <p class="hero-lead h-in">Bespoke media walls, wardrobes and furniture, designed and built in our own Dubai workshop under British management.</p>
+    </div>
+    <div class="xp" id="xp" aria-hidden="true">
+      <div class="eyebrow">Layer by layer</div>
+      <h2 class="xp-title">Every layer, <em>made in house</em></h2>
+      <p>Panelling, stone, light and storage, made to measure for your wall.</p>
+    </div>
+    <div class="tags" id="tags">
+      <div class="tag" data-k="panel"><i></i><span>Fluted panelling in <b class="finName">oak</b></span></div>
+      <div class="tag" data-k="surround"><i></i><span><b class="surName">Travertine</b> surround</span></div>
+      <div class="tag" data-k="led"><i></i><span>Integrated warm LED</span></div>
+      <div class="tag" data-k="tv"><i></i><span>Recessed TV panel</span></div>
+      <div class="tag" data-k="cab"><i></i><span>Floating cabinet</span></div>
+      <div class="tag" data-k="top"><i></i><span>Stone topper</span></div>
+    </div>
+    <div class="cfg h-in" id="cfg">
+      <button class="cfg-x" id="cfgX" aria-label="Close" data-cursor="Close"></button>
+      <div class="cfg-head"><span>Design your wall</span><b id="cfgSel">Travertine · Oak</b></div>
+      <div class="cfg-row"><label>Surround</label>
+        <div class="sw" id="swFab">
+          <button class="on" data-k="trav" data-n="Travertine" data-cursor="Travertine" style="--sw:repeating-linear-gradient(8deg,#d9c9ad 0 3px,#cbb795 3px 5px,#e3d6be 5px 9px)" aria-label="Travertine"></button>
+          <button data-k="marble" data-n="Book matched marble" data-cursor="Marble" style="--sw:linear-gradient(135deg,#f1efea 40%,#9c9a96 44%,#f1efea 47%,#e6e3dc 70%,#b5b1aa 72%,#f1efea 74%)" aria-label="Book matched marble"></button>
+          <button data-k="rock" data-n="Rock wall" data-cursor="Rock" style="--sw:radial-gradient(circle at 30% 30%,#f4f1ec,#bdb7ad 75%)" aria-label="Rock wall"></button>
+          <button data-k="linen" data-n="Linen" data-cursor="Linen" style="--sw:repeating-linear-gradient(90deg,#cfc6b8 0 2px,#bfb5a6 2px 4px)" aria-label="Linen"></button>
+          <button data-k="plaster" data-n="Hand painted" data-cursor="Painted" style="--sw:radial-gradient(circle at 35% 30%,#a9a49c,#77726b 72%)" aria-label="Hand painted"></button>
+        </div>
+      </div>
+      <div class="cfg-row"><label>Joinery</label>
+        <div class="sw" id="swFin">
+          <button class="on" data-k="oak" data-n="Oak" data-cursor="Oak" style="--sw:repeating-linear-gradient(90deg,#c9a77a 0 3px,#b8946a 3px 5px,#d6b88e 5px 8px)" aria-label="Oak"></button>
+          <button data-k="walnut" data-n="Walnut" data-cursor="Walnut" style="--sw:repeating-linear-gradient(90deg,#6a4630 0 3px,#563726 3px 5px,#7b553b 5px 8px)" aria-label="Walnut"></button>
+          <button data-k="greige" data-n="Painted greige" data-cursor="Greige" style="--sw:radial-gradient(circle at 35% 30%,#d8d1c6,#a79f93 75%)" aria-label="Painted greige"></button>
+          <button data-k="ink" data-n="Painted ink" data-cursor="Ink" style="--sw:radial-gradient(circle at 35% 30%,#3a4150,#151a22 75%)" aria-label="Painted ink"></button>
+        </div>
+      </div>
+      <a class="btn btn-brass btn-sm cfg-send magnetic" id="cfgSend" href="https://wa.me/971585851174" target="_blank" rel="noopener">Send this design</a>
+    </div>
+    <button class="cfg-open" id="cfgOpen" aria-label="Open the wall designer" data-cursor="Design"><span>Design your wall</span></button>
+    <div class="hero-hint h-in"><span class="drag-ico"><i></i></span><span>Drag to turn<br>Scroll to see it built</span></div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true"><div class="marquee-track">
+  <span>Media Walls</span><b></b><span>Wardrobes</span><b></b><span>Bar Units</span><b></b><span>Dining</span><b></b><span>Feature Walls</span><b></b><span>Fit-Out</span><b></b><span>Renovation</span><b></b>
+  <span>Media Walls</span><b></b><span>Wardrobes</span><b></b><span>Bar Units</span><b></b><span>Dining</span><b></b><span>Feature Walls</span><b></b><span>Fit-Out</span><b></b><span>Renovation</span><b></b>
+</div></div>
+
+<!-- INTRO -->
+<section class="intro" id="studio">
+  <div class="intro-img"><div class="arch"><img src="img/st7.webp" alt="Hampton feature wall with arched shelving by Shaped AE" class="par"></div></div>
+  <div class="intro-text">
+    <div class="eyebrow">Our story</div>
+    <h2 class="h2 split">From Guildford <em>to Dubai</em></h2>
+    <p class="fill-text">Shaped began in Guildford, Surrey, and moved to Dubai for the growing demand for high quality bespoke furniture and joinery.</p>
+    <p class="muted up long">Our in-house joinery factory in Dubai Investment Park 1 runs on Italian machinery for precision and consistency. From the first drawing to installation, you are kept informed at every stage, so what you approve is exactly what is built.</p>
+    <a href="#services" class="link-arrow up">What we make <span>→</span></a>
+  </div>
+</section>
+
+<!-- HORIZONTAL MEDIA WALL GALLERY -->
+<section class="hz" id="walls">
+  <div class="hz-pin">
+    <div class="hz-head">
+      <div class="eyebrow">The media wall collection</div>
+      <h2 class="h2 split">Every wall, <em>one standard</em></h2>
+    </div>
+    <div class="hz-track" id="hzTrack"></div>
+    <div class="hz-bar"><i id="hzBar"></i></div>
+  </div>
+</section>
+
+<!-- RING GALLERY -->
+<section class="ring-sec" id="collection">
+  <div class="ring-head">
+    <div class="eyebrow">Selected pieces</div>
+    <h2 class="h2 split">Made for <em>real homes</em></h2>
+  </div>
+  <canvas id="ring" aria-label="3D ring of Shaped pieces"></canvas>
+  <div class="ring-label" id="ringLabel"><span id="rlMeta">Media Walls</span><b id="rlName">Kensington Media Wall</b></div>
+  <div class="ring-hint"><span class="drag-ico"><i></i></span><span>Drag to turn<br>Tap a piece to open</span></div>
+</section>
+
+<!-- SHOWCASE (pinned, liquid WebGL) -->
+<section class="show" id="collections">
+  <div class="show-pin">
+    <div class="show-num" id="showNum" aria-hidden="true">01</div>
+    <div class="show-left">
+      <div class="eyebrow light">Rooms we build for</div>
+      <div class="show-titles" id="showTitles"></div>
+      <div class="show-ctl"><a href="#" class="btn btn-brass magnetic" id="showOpen" data-cursor="Open">Open collection</a><div class="show-count"><b id="showN">01</b> / 05</div></div>
+    </div>
+    <div class="show-frame" id="showFrame"><div class="show-imgs" id="showImgs"></div><canvas id="showGL"></canvas></div>
+    <ul class="show-list" id="showList"></ul>
+    <div class="show-bar"><i id="showBar"></i></div>
+  </div>
+</section>
+
+<!-- LENS DETAIL -->
+<section class="lens-sec" id="detail">
+  <div class="lens-txt">
+    <div class="eyebrow">Look closer</div>
+    <h2 class="h2 split">The detail <em>is the design</em></h2>
+    <p class="muted up long">Book matched marble, fluted timber and warm LED set into the joinery. Move over the Kensington media wall to see the finish up close.</p>
+    <a href="#" class="link-arrow up" data-piece="mw5">Kensington Media Wall <span>→</span></a>
+  </div>
+  <div class="lens-frame" id="lensFrame" data-cursor="Zoom">
+    <img src="img/mw5.webp" alt="Kensington media wall with book matched marble and warm LED" id="lensImg">
+    <div class="lens" id="lens"></div>
+  </div>
+</section>
+
+<!-- GALLERY GRID -->
+<section class="work" id="work">
+  <div class="work-head">
+    <div><div class="eyebrow">Our work</div><h2 class="h2 split">Made to measure, <em>made to last</em></h2>
+      <p class="muted up">Media walls, wardrobes, dining and bar units from our recent installations. Every piece is fully bespoke in size, material and finish.</p></div>
+  </div>
+  <div class="filters" id="filters" data-lenis-prevent></div>
+  <div class="wgrid" id="wgrid"></div>
+</section>
+
+<!-- WINDOW ZOOM -->
+<section class="window">
+  <div class="window-pin">
+    <div class="window-frame" id="wFrame"><img src="img/mw11.webp" alt="Sevenoaks media wall with fluted panelling and LED lighting"></div>
+    <div class="window-txt" id="wTxt"><div class="eyebrow light">Design · Manufacture · Install</div><h2 class="mega">Drawing to <em>completion</em></h2><p>One team guides every project, from the first drawing to the final installation.</p></div>
+  </div>
+</section>
+
+<!-- SERVICES (stacking) -->
+<section class="services" id="services">
+  <div class="sec-head">
+    <div class="eyebrow">Services</div>
+    <h2 class="h2 split">Design and build, <em>under one roof</em></h2>
+    <p class="muted up">Interior design, fit-out, renovation and high-end bespoke furniture, managed by a British team and made in our Dubai workshop.</p>
+  </div>
+  <div class="stack">
+    <article class="scard"><div class="scard-txt"><span class="sn">01</span><h3>Bespoke Media Walls</h3><p class="sl">TV walls in fluted timber, travertine, marble and rock, with integrated warm LED lighting.</p><ul><li>Fluted and shaker panelling</li><li>Stone and hand painted surrounds</li><li>Floating cabinets and display niches</li></ul><a href="#" class="link-arrow" data-cat="media">View media walls <span>→</span></a></div><div class="scard-img"><img src="img/mw1.webp" alt="Chelwood media wall" loading="lazy"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">02</span><h3>Wardrobes &amp; Storage</h3><p class="sl">Fitted wardrobes and built in storage with arched shaker doors and fluted details.</p><ul><li>Fitted and arched wardrobes</li><li>Shelving units and feature walls</li><li>Painted and timber finishes</li></ul><a href="#" class="link-arrow" data-cat="storage">View storage <span>→</span></a></div><div class="scard-img"><img src="img/st1.webp" alt="Tetbury arched wardrobe" loading="lazy"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">03</span><h3>Dining &amp; Living</h3><p class="sl">Travertine and marble tables, dining benches, consoles, sofas and accent chairs.</p><ul><li>Stone dining and coffee tables</li><li>Dining benches and consoles</li><li>Sofas and accent chairs</li></ul><a href="#" class="link-arrow" data-cat="dining">View dining <span>→</span></a></div><div class="scard-img"><img src="img/dn1.webp" alt="Belgravia travertine dining table" loading="lazy"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">04</span><h3>Bars, Bedrooms &amp; Consoles</h3><p class="sl">Bar units with stone splashbacks, bedroom feature walls and lit vanity consoles.</p><ul><li>Bar units and wine storage</li><li>Bedroom feature walls</li><li>Vanity and console units</li></ul><a href="#" class="link-arrow" data-cat="bars">View bars <span>→</span></a></div><div class="scard-img"><img src="img/br2.webp" alt="Halewood bar unit" loading="lazy"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">05</span><h3>Fit-Out &amp; Renovation</h3><p class="sl">Interior design, fit-out and renovation, delivered with the same joinery standard.</p><ul><li>Interior design</li><li>Renovation and fit-out</li><li>Project managed from drawing to install</li></ul><a href="#contact" class="link-arrow">Start a project <span>→</span></a></div><div class="scard-img"><img src="img/lv2.webp" alt="Living room with Chiswick sofa" loading="lazy"></div></article>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="process-wrap">
+    <div class="plan-sticky">
+      <div class="eyebrow light">Process</div>
+      <h2 class="h2">From first drawing <em>to installation</em></h2>
+      <svg class="plan" viewBox="0 0 560 360" fill="none" aria-hidden="true">
+        <g class="L1" stroke-width="2.4"><path d="M20 330H540"/><rect x="80" y="262" width="400" height="44" rx="4"/><path d="M80 312H480" stroke-dasharray="3 5"/></g>
+        <g class="L2" stroke-width="1.4"><path d="M60 40V262M74 40V262M88 40V262M102 40V262M116 40V262"/><path d="M444 40V262M458 40V262M472 40V262M486 40V262M500 40V262"/></g>
+        <g class="L3" stroke-width="1.6"><rect x="140" y="70" width="280" height="168" rx="6"/><rect x="172" y="96" width="216" height="118" rx="2"/></g>
+        <g class="L4" stroke-width="1"><path d="M140 52H420M140 46V58M420 46V58"/><path d="M528 40V306M522 40H534M522 306H534"/><path d="M280 214V262" stroke-dasharray="2 4"/></g>
+        <g class="labels"><text x="250" y="38">Width</text><text x="546" y="160" transform="rotate(90 546 160)">Height</text><text x="200" y="352">Made to your wall</text></g>
+      </svg>
+    </div>
+    <div class="steps">
+      <div class="step"><span>01</span><h3>Your space</h3><p>Share your room, your measurements and the look you want, on WhatsApp or by phone.</p></div>
+      <div class="step"><span>02</span><h3>Design</h3><p>Our design team details materials, finishes, lighting and storage around your space and your vision.</p></div>
+      <div class="step"><span>03</span><h3>Approval</h3><p>You approve the design and quotation before anything is made, with clear communication throughout.</p></div>
+      <div class="step"><span>04</span><h3>Manufacture</h3><p>Every piece is made in our joinery factory in Dubai Investment Park on Italian machinery.</p></div>
+      <div class="step"><span>05</span><h3>Installation</h3><p>Our team installs and finishes on site, delivered to the highest standard.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROMISES -->
+<section class="why">
+  <div class="sec-head">
+    <div class="eyebrow">Why Shaped</div>
+    <h2 class="h2 split">Precision, <em>without the guesswork</em></h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-card"><span>01</span><h3>British managed</h3><p>Founded in Guildford, Surrey, and managed by a British team in Dubai.</p></div>
+    <div class="why-card"><span>02</span><h3>In-house manufacturing</h3><p>Our own joinery factory in Dubai Investment Park 1, with Italian machinery.</p></div>
+    <div class="why-card"><span>03</span><h3>Fully bespoke</h3><p>Every piece is made to measure in the size, material and finish you choose.</p></div>
+    <div class="why-card"><span>04</span><h3>Transparent process</h3><p>Clear, consistent communication from the first drawing to installation.</p></div>
+    <div class="why-card"><span>05</span><h3>Natural materials</h3><p>Travertine, marble, rock and timber, chosen and finished with care.</p></div>
+    <div class="why-card"><span>06</span><h3>Design and build</h3><p>Interior design, fit-out and renovation alongside our furniture and joinery.</p></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="sec-head"><div class="eyebrow">FAQ</div><h2 class="h2 split">Questions, <em>answered</em></h2></div>
+  <div class="faq-list">
+    <details><summary>Can every piece be made to my size?</summary><p>Yes. Our furniture and joinery are fully bespoke, so sizes, materials and finishes are tailored to your space.</p></details>
+    <details><summary>Where is your furniture made?</summary><p>In our own joinery factory at Street 55, Warehouse 3, Dubai Investment Park 1, Dubai.</p></details>
+    <details><summary>Can you change the stone or the finish of a media wall?</summary><p>Yes. Surrounds can be travertine, book matched marble, rock, linen or a hand painted finish, with timber or painted joinery and integrated LED lighting.</p></details>
+    <details><summary>Do you also handle fit-out and renovation?</summary><p>Yes. We provide interior design, renovation and fit-out alongside bespoke furniture and joinery.</p></details>
+    <details><summary>How do I start?</summary><p>Message us on WhatsApp or call +971 58 585 1174 with your room, your measurements or a photo, and our team will guide you from there.</p></details>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-bg"><img src="img/mw19.webp" alt="" class="par"></div>
+  <div class="contact-in">
+    <div class="eyebrow light">Contact</div>
+    <h2 class="mega split">Let's shape <em>your space</em></h2>
+    <p class="big up">Tell us about the room and the wall. Send a photo or your measurements and our team will come back to you.</p>
+    <form class="qform up" id="qform">
+      <div class="qrow"><input name="name" placeholder="Your name" required><input name="area" placeholder="Area, e.g. Dubai Hills"></div>
+      <div class="qrow"><select name="type"><option>Media wall</option><option>Wardrobes &amp; storage</option><option>Dining or living</option><option>Bar unit</option><option>Fit-out or renovation</option></select><input name="size" placeholder="Wall width, if known"></div>
+      <textarea name="msg" rows="2" placeholder="Tell us about the space"></textarea>
+      <button class="btn btn-brass magnetic" type="submit">Send on WhatsApp</button>
+    </form>
+    <div class="contact-card up">
+      <div class="mono-card"><svg viewBox="0 0 140 110" fill="none" aria-hidden="true"><path d="M24 86V40L70 6l46 34v62"/><path d="M101 29C82 40 76 64 84 82c4 9 12 16 22 18h10"/><path d="M90 39v46M95 34v57M100 31v63M105 33v64M110 37v62"/></svg></div>
+      <div><strong>Shaped AE</strong><small>Shaped Home Decor And Joinery L.L.C</small></div>
+      <ul>
+        <li><span>WhatsApp</span><a href="https://wa.me/971585851174" target="_blank" rel="noopener">+971 58 585 1174</a></li>
+        <li><span>Email</span><a href="mailto:info@shapedae.com">info@shapedae.com</a></li>
+        <li><span>Instagram</span><a href="https://www.instagram.com/shapedae/" target="_blank" rel="noopener">@shapedae</a></li>
+        <li><span>Workshop</span><b>Street 55, Warehouse 3, DIP 1, Dubai</b></li>
+      </ul>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="foot-big"><span>SHAPED</span></div>
+  <div class="foot-cols">
+    <div><h5>Studio</h5><a href="#walls">Media Walls</a><a href="#collections">Rooms</a><a href="#services">Services</a><a href="#process">Process</a><a href="#contact">Contact</a></div>
+    <div><h5>Collections</h5><a href="#" data-cat="media">Media Walls</a><a href="#" data-cat="storage">Wardrobes &amp; Storage</a><a href="#" data-cat="dining">Dining</a><a href="#" data-cat="living">Living</a><a href="#" data-cat="bedroom">Bedrooms</a><a href="#" data-cat="bars">Bars &amp; Consoles</a></div>
+    <div><h5>Contact</h5><a href="https://wa.me/971585851174" target="_blank" rel="noopener">WhatsApp +971 58 585 1174</a><a href="mailto:info@shapedae.com">info@shapedae.com</a><a href="https://www.instagram.com/shapedae/" target="_blank" rel="noopener">Instagram</a><span>Dubai Investment Park 1, Dubai</span></div>
+  </div>
+  <div class="foot-bot"><span>© <span id="yr"></span> Shaped Home Decor And Joinery L.L.C</span><a href="#top">Back to top ↑</a></div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/971585851174?text=Hello%20Shaped%2C%20I%20would%20like%20to%20discuss%20a%20bespoke%20project." target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 32 32" width="26" height="26"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.7c-2 0-3.9-.5-5.6-1.5l-.4-.2-3.9 1 1-3.8-.3-.4A10.7 10.7 0 1 1 16 26.7zm5.9-8c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5 1-1.7.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4s-1.2 1.1-1.2 2.8 1.2 3.2 1.4 3.4 2.4 3.7 5.8 5.2c2.2.9 3 1 4.1.8.7-.1 1.9-.8 2.2-1.5s.3-1.3.2-1.5-.3-.2-.6-.4z"/></svg>
+</a>
+
+<div class="modal" id="modal" aria-hidden="true" role="dialog">
+  <button class="modal-x" id="modalX" data-cursor="Close" aria-label="Close"></button>
+  <div class="modal-scroll" id="modalScroll" data-lenis-prevent></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="data.js?v=1"></script>
+<script type="module" src="main.js?v=1"></script>
+</body>
+</html>

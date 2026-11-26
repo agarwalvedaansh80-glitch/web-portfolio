@@ -49,6 +49,11 @@
       "source": "/cyril-furniture",
       "destination": "/cyril-furniture/",
       "permanent": false
+    },
+    {
+      "source": "/shaped-ae",
+      "destination": "/shaped-ae/",
+      "permanent": false
     }
   ]
 }
