@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<base href="/render-atelier/">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Render Atelier | 3D Rendering and Architectural Visualization Studio</title>
+<meta name="description" content="Render Atelier is a boutique 3D rendering company: photoreal CGI stills, 3D animation, VR and 360 tours and Digital Twin for architects, interior designers and developers. Offices in Dubai, London and Italy.">
+<meta property="og:title" content="Render Atelier | Evocative. Aspirational. Detailed.">
+<meta property="og:description" content="Immersive, immaculate 3D rendering services for architects, interior designers and developers.">
+<meta property="og:image" content="https://chroma-developers.vercel.app/render-atelier/img/everly-01.webp">
+<meta name="theme-color" content="#050506">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23050506'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='28' fill='%237fe0d4' text-anchor='middle'%3ERA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Italiana&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=1">
+</head>
+<body class="loading">
+
+<div class="loader" id="loader">
+  <div class="loader-panels"><i></i><i></i><i></i><i></i></div>
+  <div class="loader-inner">
+    <div class="loader-mono"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="48"/></svg><span>R</span><span class="g">A</span></div>
+    <div class="loader-word"><span>R</span><span>E</span><span>N</span><span>D</span><span>E</span><span>R</span><span class="sp"></span><span class="g">A</span><span class="g">T</span><span class="g">E</span><span class="g">L</span><span class="g">I</span><span class="g">E</span><span class="g">R</span></div>
+    <div class="loader-bar"><i id="loaderBar"></i></div>
+    <div class="loader-meta"><span>Dubai · London · Italy</span><span><b id="loaderNum">0</b>%</span></div>
+  </div>
+</div>
+
+<div class="cursor" id="cursor"><div class="c-ring"><span class="c-label" id="cLabel"></span></div><div class="c-dot"></div></div>
+<canvas id="gal" aria-hidden="true"></canvas>
+
+<header class="nav" id="nav">
+  <a href="#top" class="logo">Render<em>Atelier</em></a>
+  <nav class="nav-links">
+    <a href="#work">Portfolio</a><a href="#services">Services</a><a href="#process">Process</a><a href="#studio">Studio</a><a href="#contact">Contact</a>
+  </nav>
+  <button class="theme" id="theme" aria-label="Switch day or night mode" data-cursor="Day / Night"><svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg></button>
+  <a href="#consultation" class="btn btn-gold btn-sm nav-cta magnetic">Consultation</a>
+  <button class="burger" id="burger" aria-label="Menu"><i></i><i></i></button>
+</header>
+<div class="menu" id="menu">
+  <a href="#work">Portfolio</a><a href="#services">Services</a><a href="#process">Process</a><a href="#studio">Studio</a><a href="#consultation">Consultation</a><a href="#contact">Contact</a>
+  <div class="menu-foot"><a href="https://wa.me/971547985833">WhatsApp</a><a href="mailto:info@renderatelier.com">info@renderatelier.com</a></div>
+</div>
+
+<main id="top">
+
+<!-- HERO: 3D ring of renders -->
+<section class="hero" id="hero">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <canvas id="ring"></canvas>
+  <div class="hero-top">
+    <div class="eyebrow h-in">Evocative · Aspirational · Detailed</div>
+    <h1 class="hero-title split">Render your clients <em>speechless.</em></h1>
+  </div>
+  <div class="ring-label" id="ringLabel"><span id="rlMeta">Meydan Horizon, Dubai</span><b id="rlName">Ellington Everly Place</b></div>
+  <div class="hero-bottom">
+    <div class="hero-left h-in">
+      <button class="hero-close" id="heroClose" aria-label="Close" data-cursor="Close"></button>
+      <div class="hero-sig"><span class="hero-mono">RA</span><div><strong>Immersive, Immaculate 3D Rendering</strong><small>Dubai · London · Italy</small></div></div>
+      <p class="hero-lead">We are a boutique 3D rendering company who can help you transform the brilliant designs from your imagination into evocative visuals for your clients.</p>
+      <div class="hero-btns">
+        <a href="#work" class="btn btn-dark magnetic">View portfolio</a>
+        <a href="#consultation" class="btn btn-line magnetic">Schedule consultation</a>
+      </div>
+    </div>
+    <div class="hero-hint h-in">Drag to explore<br>the portfolio</div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true"><div class="marquee-track">
+  <span>Architectural Renderings</span><b>✦</b><span>Interior Renderings</span><b>✦</b><span>3D Animation</span><b>✦</b><span>VR &amp; 360 Tours</span><b>✦</b><span>Digital Twin</span><b>✦</b><span>Masterplan Visualization</span><b>✦</b>
+  <span>Architectural Renderings</span><b>✦</b><span>Interior Renderings</span><b>✦</b><span>3D Animation</span><b>✦</b><span>VR &amp; 360 Tours</span><b>✦</b><span>Digital Twin</span><b>✦</b><span>Masterplan Visualization</span><b>✦</b>
+</div></div>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="stat"><div class="num"><span class="count" data-to="350">0</span><sup>+</sup></div><p>Brands have trusted us to shape the way their projects are presented to the world</p></div>
+  <div class="stat"><div class="num"><span class="count" data-to="1000">0</span><sup>+</sup></div><p>Projects delivered, from single rooms to full hospitality builds</p></div>
+  <div class="stat"><div class="num"><span class="count" data-to="8000">0</span><sup>+</sup></div><p>Still renders across residential, hospitality and commercial interiors</p></div>
+  <div class="stat"><div class="num"><span class="count" data-to="15">0</span><sup>+</sup></div><p>Countries served across the UK, Italy, UAE, India and South Asia</p></div>
+</section>
+
+<!-- INTRO -->
+<section class="intro" id="studio">
+  <div class="intro-img"><div class="arch"><img src="xl/mandarin-02.webp" alt="Mandarin Oriental, Vienna, Penthouse Suite living room rendered by Render Atelier" class="par"></div></div>
+  <div class="intro-text">
+    <div class="eyebrow">A unique renderings studio</div>
+    <h2 class="h2 split">Partners in <em>visual storytelling</em></h2>
+    <p class="scrub-text">Render Atelier is made up of a hand picked team of designers, architects and digital artists with a passion for creating sophisticated, photo realistic architectural visualization.</p>
+    <p class="muted up">Being designers and artists first, we understand how critical the right visual detail or imagery can be in convincing your client to close the sale. Which is why we create not just flawless residential and commercial renderings, but help you tell the perfect, aspirational story. Over 350 brands have trusted us to help shape the way their projects are presented to the world.</p>
+    <a href="#work" class="link-arrow up">Explore the portfolio <span>→</span></a>
+  </div>
+</section>
+
+<!-- SIGNATURE (pinned showcase: sharp image at rest, liquid dissolve between) -->
+<section class="sig" id="signature">
+  <div class="sig-pin">
+    <img class="sig-still" id="sigStill" alt="" decoding="async">
+    <canvas id="sigGL"></canvas>
+    <div class="sig-shade"></div>
+    <div class="sig-ui">
+      <div class="sig-top"><div class="eyebrow light">Signature projects</div><div class="sig-count"><b id="sigN">01</b> / <span id="sigTot">06</span></div></div>
+      <div class="sig-titles" id="sigTitles"></div>
+      <div class="sig-bottom"><a href="#" class="btn btn-gold magnetic" id="sigOpen" data-cursor="Open">Open project</a><div class="sig-bar"><i id="sigBar"></i></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="work" id="work">
+  <div class="work-head">
+    <div><div class="eyebrow">Portfolio</div><h2 class="h2 split">International <em>clients portfolio</em></h2>
+      <p class="muted up">Our client portfolio includes architectural design studios, developers and design brands globally. A selection of recent architecture, interior and hospitality renderings.</p></div>
+    <div class="filters" id="filters"></div>
+  </div>
+  <div class="wgrid" id="wgrid"></div>
+</section>
+
+<!-- WINDOW ZOOM -->
+<section class="window">
+  <div class="window-pin">
+    <div class="window-frame" id="wFrame"><img src="xl/seef-02.webp" alt="Seef Residences by Alef, beachfront rendering"></div>
+    <div class="window-txt" id="wTxt"><div class="eyebrow light">Emotional storytelling</div><h2 class="mega">3D rendering from <em>your perspective</em></h2><p>We are designers who render, to your vision. Beautifully crafted images to showcase Real Estate projects.</p></div>
+  </div>
+</section>
+
+<!-- SERVICES (stacking) -->
+<section class="services" id="services">
+  <div class="sec-head">
+    <div class="eyebrow">Services</div>
+    <h2 class="h2 split">If it needs to be seen before it is built, <em>we render it</em></h2>
+    <p class="muted up">Render Atelier provides photorealistic 3D rendering services across architectural, interior, real estate, masterplan, animation and virtual tour projects. Each visual is built to match the design intent, the project's positioning and the specific audience it needs to reach.</p>
+  </div>
+  <div class="stack">
+    <article class="scard"><div class="scard-txt"><span class="sn">01</span><h3>Architectural Rendering</h3><p class="sl">Exterior façade shots, building massing, site context and material accuracy.</p><p>Built for pitch decks, planning submissions, hoarding campaigns and pre-sales launches. Our architectural renders show a building the way it will actually read from street level, with architects and designers leading the process.</p><ul><li>Exterior and amenity visualization</li><li>Masterplan and site rendering</li><li>Day, dusk and aerial views</li></ul></div><div class="scard-img"><img loading="lazy" src="img/altiera-02.webp" srcset="img/altiera-02.webp 1280w, xl/altiera-02.webp 2560w" sizes="(max-width:900px) 92vw, 45vw" alt="Altiera Heights exterior rendering"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">02</span><h3>Interior Rendering</h3><p class="sl">Photorealistic interior visuals that show the layout, lighting, furniture, finishes and atmosphere of a space before it's built.</p><p>Built for design approvals, real estate marketing, hospitality presentations and client pitches. Our team is led by architects and interior designers, so every interior render reflects real spatial logic, not just a well styled frame.</p><ul><li>Residential and hospitality interiors</li><li>Lobbies, suites, clubhouses and amenities</li><li>An obsession for details and a real love for interior compositions</li></ul></div><div class="scard-img"><img loading="lazy" src="img/redsea-03.webp" srcset="img/redsea-03.webp 1280w, xl/redsea-03.webp 2560w" sizes="(max-width:900px) 92vw, 45vw" alt="Red Sea Development suite interior rendering"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">03</span><h3>3D Animation</h3><p class="sl">Why slide to the next image when you can walk through the next room?</p><p>Render Atelier creates cinematic 3D animation that helps developers, architects, interior designers and hospitality brands turn concepts into compelling launch assets, for investors, off plan marketing and hospitality destinations.</p><ul><li>Cinematic launch animations</li><li>Interior and exterior walkthroughs</li><li>Designed to strengthen confidence and support faster decisions</li></ul></div><div class="scard-img"><img loading="lazy" src="img/corniche-02.webp" srcset="img/corniche-02.webp 1280w, xl/corniche-02.webp 2560w" sizes="(max-width:900px) 92vw, 45vw" alt="Corniche Food Hall aerial rendering"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">04</span><h3>VR &amp; 360 Tours</h3><p class="sl">A 360 Tour frees the viewer by removing the boundaries of the frame.</p><p>An immersive experience that allows the consumer to choose where they wish to look and explore the design and the space at its fullest. Cross compatibility on all devices, with customized texts, images, audio, links and interactive floor plans.</p><ul><li>Interactive 360° tours, such as Palazzo Tissoli by Pininfarina</li><li>Custom player interface and dedicated web app</li><li>Works on desktop, mobile and headset</li></ul></div><div class="scard-img"><img loading="lazy" src="img/tissoli-03.webp" srcset="img/tissoli-03.webp 1280w, xl/tissoli-03.webp 2560w" sizes="(max-width:900px) 92vw, 45vw" alt="Palazzo Tissoli amenities rendering"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">05</span><h3>Digital Twin</h3><p class="sl">The digital sales room developers use to close faster.</p><p>A web based Real Estate Digital Twin creates a shareable link for your project with interactive floorplans, real time updates and detailed specifications. Prospects compare options, filter by size, type and views, and enjoy virtual tours, on any device, without downloads.</p><ul><li>Close deals sooner</li><li>Sell to anyone, anywhere</li><li>Cut reprint costs and stand out at launch</li></ul></div><div class="scard-img"><img loading="lazy" src="img/everly-03.webp" srcset="img/everly-03.webp 1280w, xl/everly-03.webp 2560w" sizes="(max-width:900px) 92vw, 45vw" alt="Ellington Everly Place lagoon rendering"></div></article>
+  </div>
+</section>
+
+<!-- PROCESS: drawing drawn by scroll -->
+<section class="process" id="process">
+  <div class="process-wrap">
+    <div class="plan-sticky">
+      <div class="eyebrow light">How we work</div>
+      <h2 class="h2">From your brief to <em>evocative visuals</em></h2>
+      <svg class="plan" viewBox="0 0 520 380" fill="none" aria-hidden="true">
+        <g class="L1" stroke-width="3.2"><path d="M20 20H500V360H20Z"/><path d="M20 210H150"/><path d="M330 20V150"/></g>
+        <g class="L2" stroke-width="1.6"><path d="M150 210V360"/><path d="M150 20V160"/><path d="M330 150H500"/><path d="M330 240H500"/><path d="M380 240V360"/><path d="M150 160H230"/><path d="M270 160H330"/>
+          <path d="M230 160A40 40 0 0 1 270 160" stroke-dasharray="3 4"/><path d="M150 250A40 40 0 0 0 190 210" stroke-dasharray="3 4"/><path d="M330 190A40 40 0 0 0 370 150" stroke-dasharray="3 4"/></g>
+        <g class="L3" stroke-width="1.2"><rect x="185" y="230" width="110" height="46" rx="10"/><rect x="200" y="290" width="80" height="34" rx="4"/><circle cx="240" cy="90" r="34"/><circle cx="240" cy="90" r="20"/>
+          <rect x="365" y="45" width="100" height="80" rx="4"/><path d="M365 62H465"/><rect x="40" y="40" width="88" height="140" rx="6"/><path d="M50 60H118M50 80H118M50 100H118"/>
+          <rect x="398" y="262" width="80" height="80" rx="3"/><path d="M398 302H478"/><path d="M40 240H128V340H40Z"/><circle cx="84" cy="290" r="18"/></g>
+        <g class="L4" stroke-width="1"><path d="M20 8H500M20 3V13M500 3V13" /><path d="M512 20V360M507 20H517M507 360H517"/><path d="M330 30V140" stroke-dasharray="2 4"/></g>
+        <g class="labels"><text x="70" y="200">Lobby</text><text x="214" y="345">Lounge</text><text x="210" y="140">Dining</text><text x="388" y="140">Suite</text><text x="412" y="225">Spa</text><text x="56" y="360">Terrace</text><text x="410" y="355">Pool</text></g>
+      </svg>
+    </div>
+    <div class="steps">
+      <div class="step"><span>01</span><h3>Your brief</h3><p>We ensure that your brief is carried out in every detail. This is your vision that we are helping to realize, in glorious 3D detailing.</p></div>
+      <div class="step"><span>02</span><h3>A dedicated lead</h3><p>We assign you a dedicated project lead who will be responsive to any changes or feedback that you share.</p></div>
+      <div class="step"><span>03</span><h3>Draft renderings</h3><p>The rendering status is communicated at all times, with draft renderings to explain the lighting and materials. Reviews run through Zoom, Skype and WhatsApp.</p></div>
+      <div class="step"><span>04</span><h3>Final visuals</h3><p>Clear costings and defined timelines for each phase, so there is no ambiguity, and visuals that help projects get approved, funded and sold.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TUNNEL -->
+<section class="tunnel">
+  <div class="tunnel-pin">
+    <canvas id="tunGL"></canvas>
+    <div class="tunnel-txt" id="tunTxt"><div class="eyebrow light">Dubai · London · Italy</div><h2 class="mega">Step inside <em>the work</em></h2><p>Scroll to walk through towers, lagoons, suites and palazzi rendered for developers and design studios worldwide.</p></div>
+    <div class="tunnel-name" id="tunName"></div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why">
+  <div class="sec-head">
+    <div class="eyebrow">The Render Atelier advantages</div>
+    <h2 class="h2 split">Designers first, <em>artists always</em></h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-card"><span>01</span><h3>Precision with poetry</h3><p>Highly skilled digital experts helmed by architects and interior designers, who understand the fine points of structural integrity or light and shadow within a space.</p></div>
+    <div class="why-card"><span>02</span><h3>Dedicated point of contact</h3><p>A dedicated project lead for your brief, responsive to any changes or feedback, so you have peace of mind about the visualization of your passion projects.</p></div>
+    <div class="why-card"><span>03</span><h3>Anytime virtual updates</h3><p>Status shared with you at all times, with draft renderings to explain the lighting and materials, keeping you an integral part of the development process.</p></div>
+    <div class="why-card"><span>04</span><h3>Transparency of fees and timelines</h3><p>Clear costings and defined timelines for each phase of the project ensure there is no ambiguity, for maximum return on your investment.</p></div>
+    <div class="why-card"><span>05</span><h3>Italian sensibility</h3><p>A dedicated team of Italian architects, interior designers and artists. We speak the same language and share the same artistic sensibility with our clients.</p></div>
+    <div class="why-card"><span>06</span><h3>Bespoke, at any scale</h3><p>Bespoke 3D rendering solutions to any scale, from splendid Italian renaissance residences and hotels to upscale villa interiors.</p></div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section class="clients" aria-label="Clients">
+  <div class="sec-head"><div class="eyebrow">Trusted by</div><h2 class="h2 split">Architects, developers <em>and design brands</em></h2></div>
+  <ul class="client-list">
+    <li>Zaha Hadid Architects</li><li>Gensler</li><li>Emaar</li><li>Meraas</li><li>Mandarin Oriental</li><li>Ellington Properties</li><li>Damac</li><li>Sobha Realty</li><li>Dar Global</li><li>Aedas</li><li>Perkins Eastman</li><li>HBA</li><li>Meyer Davis</li><li>Parsons</li><li>Qatar Airways</li><li>Dubai Airports</li><li>Dubai Municipality</li><li>Al Habtoor</li><li>Deyaar</li><li>Imkan</li><li>Union Properties</li><li>The World Dubai</li><li>Jumeirah Golf Estates</li><li>Bloom</li><li>Prestige One</li><li>Alef</li>
+  </ul>
+</section>
+
+<!-- CONSULTATION -->
+<section class="consult" id="consultation">
+  <div class="consult-in">
+    <div class="consult-txt">
+      <div class="eyebrow">Schedule consultation</div>
+      <h2 class="h2 split">Do you have a project <em>in hand?</em></h2>
+      <p class="muted up">Looking to know if we can meet your budget? Tell us about your project and a member of our team will be in touch shortly. We are always looking to establish long term partnerships with our customers.</p>
+      <ol class="consult-steps up"><li><span>1</span>You share your project</li><li><span>2</span>We reply on WhatsApp</li><li><span>3</span>We meet on Zoom, WhatsApp or in our studio</li></ol>
+    </div>
+    <form class="consult-form" id="consultForm">
+      <h3>Start with a short request</h3>
+      <p class="muted small">Leave your name and number and we will reply personally.</p>
+      <label><span>Your name</span><input name="name" required autocomplete="name"></label>
+      <label><span>Phone or WhatsApp</span><input name="phone" required inputmode="tel" autocomplete="tel"></label>
+      <label><span>Project type</span><select name="type"><option>Architectural rendering</option><option>Interior rendering</option><option>3D animation</option><option>VR and 360 tour</option><option>Digital Twin</option><option>Masterplan visualization</option></select></label>
+      <button class="btn btn-gold" type="submit">Send on WhatsApp</button>
+      <p class="consult-ok" id="consultOk">Thank you. Your request is ready to send on WhatsApp.</p>
+      <p class="small muted">Prefer email? <a class="link" href="mailto:info@renderatelier.com">info@renderatelier.com</a></p>
+    </form>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-bg"><img src="xl/corniche-01.webp" alt="" class="par"></div>
+  <div class="contact-in">
+    <div class="eyebrow light">Contact</div>
+    <h2 class="mega split">Let's render <em>your vision</em></h2>
+    <p class="big up">We appreciate your interest in Render Atelier and look forward to the opportunity to collaborate and demonstrate what sets us apart.</p>
+    <div class="contact-btns up">
+      <a class="btn btn-gold magnetic" href="https://wa.me/971547985833?text=Hello%20Render%20Atelier%2C%20I%20would%20like%20to%20discuss%20a%20rendering%20project." target="_blank" rel="noopener">Message on WhatsApp</a>
+      <a class="btn btn-line light magnetic" href="mailto:info@renderatelier.com">info@renderatelier.com</a>
+    </div>
+    <div class="offices up">
+      <div class="office"><span>Dubai</span><p>Render Atelier Ltd, 8th Floor, Sheikh Zayed Rd, Trade Centre 2, Dubai, United Arab Emirates</p><a href="tel:+971547985833">+971 54 798 5833</a></div>
+      <div class="office"><span>London</span><p>Render Atelier Ltd, Hamilton House, Mabledon Place, London WC1H 9BB, England</p><a href="tel:+447452016344">+44 7452 016344</a></div>
+      <div class="office"><span>Italy</span><p>Tiempo Business Center, Centro Direzionale, Isola E5, 80143 Napoli, Italy</p><a href="tel:+393274787481">+39 327 478 7481</a></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="foot-big"><span>Render</span> <em>Atelier</em></div>
+  <div class="foot-cols">
+    <div><h5>Studio</h5><p class="foot-p">We are a Premium Architectural Visualization Studio who can transform your brilliant designs from your imagination into evocative visuals for your clients.</p></div>
+    <div><h5>Services</h5><span>Architectural Rendering</span><span>Interior Rendering</span><span>3D Animation</span><span>VR &amp; 360 Tours</span><span>Digital Twin</span></div>
+    <div><h5>Contact</h5><a href="https://wa.me/971547985833">WhatsApp +971 54 798 5833</a><a href="mailto:info@renderatelier.com">info@renderatelier.com</a><span>Dubai · London · Italy</span></div>
+  </div>
+  <div class="foot-bot"><span>© <span id="yr"></span> Render Atelier. All rights reserved.</span><a href="#top">Back to top ↑</a></div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/971547985833?text=Hello%20Render%20Atelier%2C%20I%20would%20like%20to%20discuss%20a%20rendering%20project." target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 32 32" width="26" height="26"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.7c-2 0-3.9-.5-5.6-1.5l-.4-.2-3.9 1 1-3.8-.3-.4A10.7 10.7 0 1 1 16 26.7zm5.9-8c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5 1-1.7.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4s-1.2 1.1-1.2 2.8 1.2 3.2 1.4 3.4 2.4 3.7 5.8 5.2c2.2.9 3 1 4.1.8.7-.1 1.9-.8 2.2-1.5s.3-1.3.2-1.5-.3-.2-.6-.4z"/></svg>
+</a>
+
+<div class="modal" id="modal" aria-hidden="true">
+  <button class="modal-x" id="modalX" data-cursor="Close">Close</button>
+  <div class="modal-scroll" id="modalScroll" data-lenis-prevent></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="data.js?v=1"></script>
+<script type="module" src="main.js?v=1"></script>
+</body>
+</html>
