@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<base href="/aka-interiors/">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>AKA Interiors | Interior Design, Fit-Out &amp; Joinery in Dubai</title>
+<meta name="description" content="AKA Interiors designs and delivers private villas, building entrances, hospitality and commercial interiors across the UAE, from Business Bay, Dubai, with a factory in Umm Al Quwain.">
+<meta property="og:title" content="AKA Interiors | Interior Design, Fit-Out &amp; Joinery in Dubai">
+<meta property="og:description" content="Design and execution for villas, building entrances, hospitality and offices across the UAE.">
+<meta property="og:image" content="https://chroma-developers.vercel.app/aka-interiors/g/jadaf-almeria-01.webp">
+<meta name="theme-color" content="#050c0c">
+<script>try{if(localStorage.getItem('aka-theme')==='light')document.documentElement.dataset.theme='light'}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Marcellus&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=1">
+<link rel="stylesheet" href="extra.css?v=1">
+</head>
+<body class="loading">
+
+<div class="loader" id="loader">
+  <div class="loader-panels"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="loader-inner">
+    <svg class="mono" viewBox="0 0 120 150" aria-hidden="true">
+      <path class="mono-arch" d="M10 145V60A50 50 0 0 1 110 60V145Z"/>
+      <path class="mono-arch2" d="M18 137V61A42 42 0 0 1 102 61V137Z"/>
+      <text x="60" y="108" text-anchor="middle">AKA</text>
+    </svg>
+    <div class="loader-word" aria-label="AKA Interiors"><span>A</span><span>K</span><span>A</span></div>
+    <div class="loader-sub">Interiors</div>
+    <div class="loader-bar"><i id="loaderBar"></i></div>
+    <div class="loader-meta"><span>Dubai &nbsp;·&nbsp; Umm Al Quwain</span><span><b id="loaderNum">0</b>%</span></div>
+  </div>
+</div>
+
+<div class="cursor" id="cursor"><div class="c-ring"><span class="c-label" id="cLabel"></span></div><div class="c-dot"></div></div>
+<canvas id="gal" aria-hidden="true"></canvas>
+
+<header class="nav" id="nav">
+  <a href="#top" class="logo" aria-label="AKA Interiors"><span class="logo-main">AKA</span><span class="logo-sub">Interiors</span></a>
+  <nav class="nav-links">
+    <a href="#studio" class="scr">Studio</a><a href="#work" class="scr">Projects</a><a href="#entrances" class="scr">Entrances</a><a href="#services" class="scr">Services</a><a href="#approach" class="scr">Approach</a><a href="#contact" class="scr">Contact</a>
+  </nav>
+  <button class="theme" id="theme" aria-label="Switch day or night mode" data-cursor="Mode"><span>Day</span><i></i><span>Night</span></button>
+  <a href="#contact" class="btn btn-solid btn-sm nav-cta mag">Book a consultation</a>
+  <button class="burger" id="burger" aria-label="Menu"><i></i><i></i></button>
+</header>
+<div class="menu" id="menu">
+  <div class="menu-links"><a href="#studio"><small>01</small>Studio</a><a href="#work"><small>02</small>Projects</a><a href="#entrances"><small>03</small>Entrances</a><a href="#services"><small>04</small>Services</a><a href="#approach"><small>05</small>Approach</a><a href="#contact"><small>06</small>Contact</a></div>
+  <div class="menu-foot"><a href="https://wa.me/971585696403" target="_blank" rel="noopener">WhatsApp</a><a href="tel:+971585696403">+971 58 569 6403</a></div>
+</div>
+
+<main id="top">
+
+<!-- HERO: 3D ring of projects -->
+<section class="hero" id="hero">
+  <canvas id="ring"></canvas>
+  <div class="hero-top">
+    <div class="eyebrow h-in">Interior design &nbsp;·&nbsp; Fit-out &nbsp;·&nbsp; Joinery</div>
+    <h1 class="hero-title split">Design and execution, <em>under one roof</em></h1>
+  </div>
+  <div class="ring-label" id="ringLabel"><small>Now viewing</small><span id="rlMeta">Al Jaddaf, Dubai</span><b id="rlName">Jadaf 2 Almeria</b></div>
+  <div class="hero-bottom">
+    <div class="hero-left h-in">
+      <button class="hero-close" id="heroClose" aria-label="Close" data-cursor="Close"></button>
+      <p class="hero-lead">From private villas to landmark building entrances, AKA Interiors designs, builds and delivers interiors across the UAE, backed by our own factory in Umm Al Quwain.</p>
+      <div class="hero-btns">
+        <a href="#work" class="btn btn-solid mag">View projects</a>
+        <a href="#contact" class="btn btn-line mag">Book a consultation</a>
+      </div>
+    </div>
+    <div class="hero-hint h-in"><span class="drag-ico"><i></i></span>Drag or scroll<br>to explore the work</div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true"><div class="marquee-track">
+  <span>Luxury Villas</span><b></b><span>Building Entrances</span><b></b><span>Hospitality</span><b></b><span>Offices</span><b></b><span>Restaurants &amp; Cafés</span><b></b><span>Clinics</span><b></b><span>Retail &amp; Kiosks</span><b></b><span>Lighting</span><b></b>
+  <span>Luxury Villas</span><b></b><span>Building Entrances</span><b></b><span>Hospitality</span><b></b><span>Offices</span><b></b><span>Restaurants &amp; Cafés</span><b></b><span>Clinics</span><b></b><span>Retail &amp; Kiosks</span><b></b><span>Lighting</span><b></b>
+</div></div>
+
+<!-- STUDIO -->
+<section class="intro" id="studio">
+  <div class="intro-img"><div class="arch"><img src="m/mayden-villa-03.webp" alt="Marble and timber living room at Mayden Villa by AKA Interiors" class="par"></div><div class="arch-cap">Mayden Villa, private residence</div></div>
+  <div class="intro-text">
+    <div class="eyebrow">The studio</div>
+    <h2 class="h2 split">We don't just design interiors, <em>we curate experiences</em></h2>
+    <p class="scrub-text">A passionate team of designers, creators and engineers, dedicated to transforming spaces into timeless reflections of individuality and sophistication.</p>
+    <p class="muted up">AKA Interiors is more than an interior design firm; it is a hub of creativity and innovation. Our designers, engineers and craftsmen each bring their own perspective to a collaborative process, turning ordinary spaces into extraordinary sanctuaries.</p>
+    <div class="stats up">
+      <div class="stat"><div class="num"><span class="count" data-to="13">0</span></div><p>Sectors, from villas to TV studios</p></div>
+      <div class="stat"><div class="num"><span class="count" data-to="1">0</span></div><p>In-house factory in Umm Al Quwain</p></div>
+      <div class="stat"><div class="num"><span class="count" data-to="3">0</span></div><p>Bases in Dubai, Umm Al Quwain and Syria</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNATURE (pinned WebGL showcase) -->
+<section class="sig" id="signature">
+  <div class="sig-pin">
+    <canvas id="sigGL"></canvas>
+    <img class="sig-still" id="sigStill" alt="" decoding="async">
+    <div class="sig-shade"></div>
+    <div class="sig-ui">
+      <div class="sig-top"><div class="eyebrow light">Signature projects</div><div class="sig-count"><b id="sigN">01</b> / 05</div></div>
+      <div class="sig-titles" id="sigTitles"></div>
+      <ol class="sig-list" id="sigList"></ol>
+      <div class="sig-bottom"><a href="#" class="btn btn-brass" id="sigOpen" data-cursor="Open">Open project</a><div class="sig-bar"><i id="sigBar"></i></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ENTRANCES: horizontal pinned gallery -->
+<section class="hg" id="entrances">
+  <div class="hg-pin">
+    <div class="hg-head">
+      <div class="eyebrow">Building entrances</div>
+      <h2 class="h2 split">The first room <em>everyone sees</em></h2>
+      <p class="muted">Lobbies in Al Jaddaf, designed and fitted out with stone, timber and sculptural light.</p>
+    </div>
+    <div class="hg-track" id="hgTrack"></div>
+    <div class="hg-prog"><i id="hgBar"></i></div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="work" id="work">
+  <div class="work-head">
+    <div><div class="eyebrow">Projects</div><h2 class="h2 split">Spaces, <em>delivered</em></h2>
+      <p class="muted up">A selection of our completed work across private villas, building entrances, hospitality and commercial interiors in the UAE.</p></div>
+    <div class="filters" id="filters"></div>
+  </div>
+  <div class="wgrid" id="wgrid"></div>
+</section>
+
+<!-- WINDOW ZOOM with light sweep -->
+<section class="window">
+  <div class="window-pin">
+    <div class="window-frame" id="wFrame"><img src="x/jadaf-madeira-01.webp" alt="Crystal chandelier and marble lobby at Jadaf 4 Madeira by AKA Interiors"><div class="beam" aria-hidden="true"></div></div>
+    <div class="window-grad" id="wGrad"></div>
+    <div class="window-eye" id="wEye"><div class="eyebrow light">Our vision</div></div>
+    <div class="window-txt" id="wTxt"><h2 class="mega">Timeless elegance, <em>made functional</em></h2><p>We envision a world where thoughtful design transforms every environment into a unique and inspiring masterpiece.</p></div>
+  </div>
+</section>
+
+<!-- WORKSHOP TO SITE: blinds wipe -->
+<section class="craft" id="craft">
+  <div class="craft-pin">
+    <div class="craft-stage">
+      <img class="craft-a" src="img/ba-before.webp" alt="Curved reception desk being built in the workshop">
+      <div class="craft-b" id="craftB"></div>
+      <div class="craft-tag craft-tag-a" id="tagA"><small>01</small>In the workshop</div>
+      <div class="craft-tag craft-tag-b" id="tagB"><small>02</small>Installed at Zabeel One Tower</div>
+    </div>
+    <div class="craft-txt">
+      <div class="eyebrow">From workshop to site</div>
+      <h2 class="h2 split">Made by our hands, <em>finished in place</em></h2>
+      <p class="muted">The curved reception desk for White Space Architect's head office took shape in the workshop before it was installed on site. Scroll to follow it from the bench to the finished office.</p>
+      <a href="#" class="link-arrow" data-open="wsa-office">View the project <span>→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES (stacking) -->
+<section class="services" id="services">
+  <div class="sec-head">
+    <div class="eyebrow">Services</div>
+    <h2 class="h2 split">From concept <em>to handover</em></h2>
+    <p class="muted up">Interior design, fit-out, furniture and lighting from one team, for private clients, developers and operators across the UAE.</p>
+  </div>
+  <div class="stack">
+    <article class="scard"><div class="scard-txt"><span class="sn">I</span><h3>Interior Design &amp; Fit&#8209;Out</h3><p class="sl">Interiors that reflect the individuality of each client, carried from the first layout to the final finish.</p><p>Our designers and engineers work side by side, so every drawing is planned with the way it will be built in mind.</p><ul><li>Private villas and residences</li><li>Building entrances and lobbies</li><li>Offices, clinics and retail</li></ul></div><div class="scard-img"><img src="m/victory-heights-01.webp" alt="Marble media wall with lit shelving at Victory Heights Villa" loading="lazy"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">II</span><h3>Furniture &amp; Joinery</h3><p class="sl">Bespoke furniture, wall panelling and joinery produced in our own factory in Umm Al Quwain.</p><p>Reception desks, media walls, wardrobes and sleeping pods are made to measure and installed by our team.</p><ul><li>Reception desks and counters</li><li>Wall panelling and media walls</li><li>Wardrobes, storage and display</li></ul></div><div class="scard-img"><img src="m/sleepover-01.webp" alt="Timber sleeping suites at Sleepover by AKA Interiors" loading="lazy"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">III</span><h3>Lighting</h3><p class="sl">Light that shapes the room: sculptural chandeliers, coffered ceilings and concealed lines of light.</p><p>From crystal installations in building lobbies to the glow of a hospitality venue, lighting is planned with the interior from the start.</p><ul><li>Feature chandeliers and installations</li><li>Coffered and lit ceilings</li><li>Concealed and linear lighting</li></ul></div><div class="scard-img"><img src="m/theatre-dubai-02.webp" alt="Crystal chandeliers under a black and gold ceiling at Theatre Dubai" loading="lazy"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">IV</span><h3>Hospitality &amp; Food and Beverage</h3><p class="sl">Restaurants, cafés and hospitality spaces with a clear identity and hard-working detail.</p><p>We bring together layout, joinery, lighting and finishes so guests feel the concept from the storefront to the last table.</p><ul><li>Restaurants and cafés</li><li>Hotels and hospitality</li><li>Kiosks and mall units</li></ul></div><div class="scard-img"><img src="m/tumyum-01.webp" alt="Timber walls and red banquettes at TumYum Thai Restaurant" loading="lazy"></div></article>
+  </div>
+</section>
+
+<!-- APPROACH: plan drawn by scroll -->
+<section class="process" id="approach">
+  <div class="process-wrap">
+    <div class="plan-sticky">
+      <div class="eyebrow light">Our approach</div>
+      <h2 class="h2">Every space begins <em>with a vision</em></h2>
+      <svg class="plan" viewBox="0 0 520 380" fill="none" aria-hidden="true">
+        <g class="L1" stroke-width="3"><path d="M20 20H500V360H20Z"/><path d="M20 210H150"/><path d="M330 20V150"/></g>
+        <g class="L2" stroke-width="1.5"><path d="M150 210V360"/><path d="M150 20V160"/><path d="M330 150H500"/><path d="M330 240H500"/><path d="M380 240V360"/><path d="M150 160H230"/><path d="M270 160H330"/>
+          <path d="M230 160A40 40 0 0 1 270 160" stroke-dasharray="3 4"/><path d="M150 250A40 40 0 0 0 190 210" stroke-dasharray="3 4"/><path d="M330 190A40 40 0 0 0 370 150" stroke-dasharray="3 4"/></g>
+        <g class="L3" stroke-width="1.1"><rect x="185" y="230" width="110" height="46" rx="4"/><rect x="200" y="290" width="80" height="34" rx="2"/><circle cx="240" cy="90" r="34"/><circle cx="240" cy="90" r="20"/>
+          <rect x="365" y="45" width="100" height="80" rx="2"/><path d="M365 62H465"/><rect x="40" y="40" width="88" height="140" rx="2"/><path d="M50 60H118M50 80H118M50 100H118"/>
+          <rect x="398" y="262" width="80" height="80" rx="2"/><path d="M398 302H478"/><path d="M40 240H128V340H40Z"/><circle cx="84" cy="290" r="18"/></g>
+        <g class="L4" stroke-width="1"><path d="M20 8H500M20 3V13M500 3V13" /><path d="M512 20V360M507 20H517M507 360H517"/><path d="M330 30V140" stroke-dasharray="2 4"/></g>
+        <g class="labels"><text x="58" y="200">Majlis</text><text x="200" y="345">Living</text><text x="214" y="140">Dining</text><text x="372" y="140">Master suite</text><text x="404" y="225">Dressing</text><text x="56" y="360">Kitchen</text><text x="400" y="355">Terrace</text></g>
+      </svg>
+    </div>
+    <div class="steps">
+      <div class="step"><span>01</span><h3>Consultation</h3><p>We start by listening: the space, the way you want to use it and the feeling you want it to give.</p></div>
+      <div class="step"><span>02</span><h3>Design</h3><p>Layouts, materials, lighting and joinery come together into a design you can see clearly before work begins.</p></div>
+      <div class="step"><span>03</span><h3>Manufacture</h3><p>Furniture and joinery are produced in our factory in Umm Al Quwain, so quality is controlled at the source.</p></div>
+      <div class="step"><span>04</span><h3>Execution &amp; Handover</h3><p>Our engineers lead the fit-out on site through to a finished space, delivered with precision and careful finishing.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- VISION & MISSION -->
+<section class="philo">
+  <div class="sec-head"><div class="eyebrow">Vision &amp; mission</div><h2 class="h2 split">Weaving dreams <em>into reality</em></h2></div>
+  <div class="philo-grid">
+    <figure class="pq up"><blockquote>Empowering spaces with timeless elegance and functionality, we envision a world where thoughtful design transforms every environment into a unique and inspiring masterpiece.</blockquote><figcaption><b>Vision</b>AKA Interiors</figcaption></figure>
+    <figure class="pq up"><blockquote>Dedicated to creating bespoke interiors that reflect the individuality of our clients, fostering spaces that inspire, comfort and endure.</blockquote><figcaption><b>Mission</b>AKA Interiors</figcaption></figure>
+  </div>
+</section>
+
+<!-- TUNNEL -->
+<section class="tunnel">
+  <div class="tunnel-pin">
+    <canvas id="tunGL"></canvas>
+    <div class="tunnel-txt" id="tunTxt"><div class="eyebrow light">Villas &nbsp;·&nbsp; Lobbies &nbsp;·&nbsp; Hospitality</div><h2 class="mega">Step inside <em>the work</em></h2><p>Scroll to walk through our villas, lobbies and hospitality spaces. Select any room to open the project.</p></div>
+    <div class="tunnel-name" id="tunName"></div>
+  </div>
+</section>
+
+<!-- STUDIO & FACTORY -->
+<section class="dubai" id="founders">
+  <div class="dubai-img"><div class="frame"><img src="m/wsa-office-01.webp" alt="White Space Architect head office at Zabeel One Tower by AKA Interiors" class="par" loading="lazy"></div></div>
+  <div class="dubai-text">
+    <div class="eyebrow">Studio &amp; factory</div>
+    <h2 class="h2 split">Led by <em>engineers</em></h2>
+    <p class="big up">AKA Interiors is led by Eng. Alaa and Eng. Ammar, who guide every project from the first consultation to the finished space.</p>
+    <p class="up">Our studio sits in Business Bay, Dubai, with our factory in Umm Al Quwain producing the furniture and joinery we install. Speak to either of our engineers directly about your project.</p>
+    <div class="dubai-card up">
+      <div><span>Eng. Alaa</span><a href="tel:+971585696403">+971 58 569 6403</a></div>
+      <div><span>Eng. Ammar</span><a href="tel:+971585506776">+971 58 550 6776</a></div>
+      <div><span>Studio</span><b>Business Bay, Dubai</b></div>
+      <div><span>Factory</span><b>Umm Al Quwain, UAE</b></div>
+      <a href="#" class="link-arrow" data-open="nad-al-sheba">View Nad Al Sheba Villa <span>→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="quotes" id="clients">
+  <div class="quotes-in">
+    <div class="eyebrow">Client words</div>
+    <div class="q-stage" id="qStage"></div>
+    <div class="q-nav"><button id="qPrev" aria-label="Previous testimonial" data-cursor="Prev"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><span id="qNum">01 / 03</span><button id="qNext" aria-label="Next testimonial" data-cursor="Next"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button></div>
+  </div>
+</section>
+
+<!-- PROJECT INDEX -->
+<section class="awards" id="index">
+  <div class="sec-head"><div class="eyebrow">Index</div><h2 class="h2 split">Selected <em>projects</em></h2><p class="muted up">Hover to preview, select to open.</p></div>
+  <div class="ledger" id="ledger"></div>
+  <div class="lprev" id="lprev" aria-hidden="true"><img alt=""></div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-bg"><img src="m/jadaf-niom-02.webp" alt="" class="par" loading="lazy"></div>
+  <div class="contact-in">
+    <div class="eyebrow light">Contact</div>
+    <h2 class="mega split">Let's shape <em>your space</em></h2>
+    <p class="big up">Tell us about your villa, building or venue. Your message opens WhatsApp, straight to our team.</p>
+    <form class="cform up" id="cform">
+      <label><span>Your name</span><input name="name" required autocomplete="name" placeholder="Full name"></label>
+      <label><span>Project type</span><select name="type"><option>Private villa</option><option>Apartment</option><option>Building entrance</option><option>Office</option><option>Restaurant or café</option><option>Hospitality</option><option>Furniture and joinery</option><option>Other</option></select></label>
+      <label class="full"><span>About the project</span><textarea name="msg" rows="3" placeholder="Location, size and timing"></textarea></label>
+      <div class="full cform-row"><button class="btn btn-brass mag" type="submit">Send on WhatsApp</button><a class="btn btn-line light mag" href="tel:+971585696403">Call +971 58 569 6403</a></div>
+    </form>
+    <div class="contact-cards up">
+      <div class="ccard"><h5>Dubai Studio</h5><p>Business Bay, Dubai<br>United Arab Emirates</p><a href="tel:+971585696403">Eng. Alaa +971 58 569 6403</a><a href="tel:+971585506776">Eng. Ammar +971 58 550 6776</a><small>WhatsApp available on both numbers</small></div>
+      <div class="ccard"><h5>Factory &amp; Email</h5><p>Umm Al Quwain<br>United Arab Emirates</p><a href="mailto:info@akainteriors.ae">info@akainteriors.ae</a><a href="https://www.instagram.com/aka_interiors_uae/" target="_blank" rel="noopener">Instagram @aka_interiors_uae</a></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="foot-big"><span>AKA</span> <span>Interiors</span></div>
+  <div class="foot-cols">
+    <div><h5>Studio</h5><a href="#studio">About</a><a href="#work">Projects</a><a href="#entrances">Entrances</a><a href="#services">Services</a><a href="#approach">Approach</a></div>
+    <div><h5>Locations</h5><span>Business Bay, Dubai</span><span>Factory, Umm Al Quwain</span><span>Syria</span></div>
+    <div><h5>Contact</h5><a href="https://wa.me/971585696403" target="_blank" rel="noopener">WhatsApp +971 58 569 6403</a><a href="mailto:info@akainteriors.ae">info@akainteriors.ae</a><a href="https://www.instagram.com/aka_interiors_uae/" target="_blank" rel="noopener">Instagram</a><a href="https://www.tiktok.com/@aka.interiors" target="_blank" rel="noopener">TikTok</a></div>
+  </div>
+  <div class="foot-bot"><span>© <span id="yr"></span> AKA Interiors. All rights reserved.</span><a href="#top">Back to top</a></div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/971585696403?text=Hello%20AKA%20Interiors%2C%20I%20would%20like%20to%20discuss%20an%20interior%20project." target="_blank" rel="noopener" aria-label="WhatsApp" data-cursor="WhatsApp">
+  <svg viewBox="0 0 32 32" width="24" height="24"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.7c-2 0-3.9-.5-5.6-1.5l-.4-.2-3.9 1 1-3.8-.3-.4A10.7 10.7 0 1 1 16 26.7zm5.9-8c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5 1-1.7.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4s-1.2 1.1-1.2 2.8 1.2 3.2 1.4 3.4 2.4 3.7 5.8 5.2c2.2.9 3 1 4.1.8.7-.1 1.9-.8 2.2-1.5s.3-1.3.2-1.5-.3-.2-.6-.4z"/></svg>
+</a>
+
+<div class="modal" id="modal" aria-hidden="true">
+  <button class="modal-x" id="modalX" aria-label="Close project" data-cursor="Close"></button>
+  <div class="modal-scroll" id="modalScroll" data-lenis-prevent></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="data.js?v=1"></script>
+<script type="module" src="main.js?v=1"></script>
+</body>
+</html>
