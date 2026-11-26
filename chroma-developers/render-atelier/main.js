@@ -351,8 +351,13 @@ $('#theme').addEventListener('click', () => applyTheme(document.documentElement.
    ================================================================= */
 const SIG = ['everly', 'tissoli', 'redsea', 'corniche', 'mandarin', 'acres'].map(s => BYSLUG[s]);
 const sigSrc = p => `s/${p.slug}.webp`;
+const SIGVID = { mandarin: 'v/mandarin.mp4', redsea: 'v/redsea.mp4' };
 {
-  const cv = $('#sigGL'), still = $('#sigStill');
+  const cv = $('#sigGL'), still = $('#sigStill'), vid = $('#sigVid');
+  // calm living loop on resting slides that have one; never during a transition
+  let vidFor = -1;
+  function vidShow(i) { const src = SIGVID[SIG[i].slug]; if (!src || !vis) return; if (vidFor !== i) { vidFor = i; vid.src = src; } vid.currentTime = 0; const p = vid.play(); if (p) p.then(() => gsap.to(vid, { opacity: 1, duration: 1.2, ease: 'power2.inOut' }), () => {}); }
+  function vidHide() { gsap.killTweensOf(vid); gsap.to(vid, { opacity: 0, duration: .35, ease: 'power2.out', onComplete: () => vid.pause() }); }
   const r = new THREE.WebGLRenderer({ canvas: cv, antialias: false, powerPreference: 'high-performance' });
   r.setPixelRatio(Math.min(devicePixelRatio, 2));
   const SANI = r.capabilities.getMaxAnisotropy();
@@ -380,7 +385,7 @@ const sigSrc = p => `s/${p.slug}.webp`;
   let shown = 0, want = 0, busy = false, vis = false, active = false;
   const size = () => { r.setSize(cv.clientWidth, cv.clientHeight, false); U.res.value.set(cv.clientWidth, cv.clientHeight); };
   size(); addEventListener('resize', size);
-  new IntersectionObserver(es => es.forEach(e => { vis = e.isIntersecting; if (vis) SIG.forEach((_, i) => ld(i)); }), { rootMargin: '600px' }).observe(cv);
+  new IntersectionObserver(es => es.forEach(e => { vis = e.isIntersecting; if (vis) { SIG.forEach((_, i) => ld(i)); if (!busy) vidShow(shown); } else vid.pause(); }), { rootMargin: '0px' }).observe(cv);
   // one title at a time: the old one leaves completely before the new one arrives
   function title(i) {
     $('#sigN').textContent = String(i + 1).padStart(2, '0');
@@ -393,13 +398,13 @@ const sigSrc = p => `s/${p.slug}.webp`;
     if (busy || want === shown) return;
     busy = true; const from = shown, to = want;
     const [a, b] = await Promise.all([ld(from), ld(to)]);
-    title(to);
+    title(to); vidHide();
     if (!a || !b) { shown = to; still.src = sigSrc(SIG[to]); busy = false; return go(); }
     U.t1.value = a; U.s1.value.copy(a.userData.size); U.t2.value = b; U.s2.value.copy(b.userData.size); U.prog.value = 0;
     active = true; r.render(sc, cam); cv.style.opacity = 1; still.style.opacity = 0;
     gsap.to(U.prog, { value: 1, duration: 1.4, ease: 'power2.inOut', onComplete: () => {
       shown = to; still.src = sigSrc(SIG[to]); still.alt = SIG[to].t + ', ' + SIG[to].m;
-      const done = () => { still.style.opacity = 1; requestAnimationFrame(() => { cv.style.opacity = 0; active = false; busy = false; go(); }); };
+      const done = () => { still.style.opacity = 1; requestAnimationFrame(() => { cv.style.opacity = 0; active = false; busy = false; if (want === shown) vidShow(shown); go(); }); };
       still.decode ? still.decode().then(done, done) : done();
     } });
   }
