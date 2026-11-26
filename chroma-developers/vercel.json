@@ -124,6 +124,11 @@
       "source": "/wolfgang-regner",
       "destination": "/wolfgang-regner/",
       "permanent": false
+    },
+    {
+      "source": "/soul-space",
+      "destination": "/soul-space/",
+      "permanent": false
     }
   ]
 }
