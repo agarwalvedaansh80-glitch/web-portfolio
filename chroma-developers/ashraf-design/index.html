@@ -9,37 +9,32 @@
 <meta property="og:title" content="Ashraf Design | Luxury Interior Designer in Dubai & UAE">
 <meta property="og:description" content="Interior, exterior and 3D visualization for villas and apartments in Dubai and across the UAE.">
 <meta property="og:image" content="https://chroma-developers.vercel.app/ashraf-design/img/hero.webp">
-<meta name="theme-color" content="#0c0a08">
+<meta name="theme-color" content="#f3eee6">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=2">
 </head>
-<body>
+<body class="loading">
 
 <div class="loader" id="loader">
+  <div class="loader-panels"><i></i><i></i><i></i><i></i></div>
   <div class="loader-inner">
     <div class="loader-word"><span>A</span><span>s</span><span>h</span><span>r</span><span>a</span><span>f</span><span class="sp"></span><span class="g">D</span><span class="g">e</span><span class="g">s</span><span class="g">i</span><span class="g">g</span><span class="g">n</span></div>
     <div class="loader-bar"><i id="loaderBar"></i></div>
-    <div class="loader-count"><span id="loaderNum">0</span>%</div>
+    <div class="loader-meta"><span>Dubai · UAE</span><span><b id="loaderNum">0</b>%</span></div>
   </div>
 </div>
 
 <div class="cursor" id="cursor"><div class="c-ring"><span class="c-label" id="cLabel"></span></div><div class="c-dot"></div></div>
-<canvas id="reveal" aria-hidden="true"></canvas>
-<div class="grain" aria-hidden="true"></div>
+<canvas id="gal" aria-hidden="true"></canvas>
 
 <header class="nav" id="nav">
-  <a href="#top" class="logo" data-cursor>Ashraf <em>Design</em></a>
+  <a href="#top" class="logo">Ashraf <em>Design</em></a>
   <nav class="nav-links">
-    <a href="#work" data-cursor>Work</a>
-    <a href="#services" data-cursor>Services</a>
-    <a href="#process" data-cursor>Process</a>
-    <a href="#pricing" data-cursor>Pricing</a>
-    <a href="#about" data-cursor>About</a>
-    <a href="#contact" data-cursor>Contact</a>
+    <a href="#work">Work</a><a href="#services">Services</a><a href="#process">Process</a><a href="#pricing">Pricing</a><a href="#about">About</a><a href="#contact">Contact</a>
   </nav>
-  <a href="#contact" class="btn btn-gold btn-sm nav-cta magnetic" data-cursor>Consultation</a>
+  <a href="#contact" class="btn btn-dark btn-sm nav-cta magnetic">Consultation</a>
   <button class="burger" id="burger" aria-label="Menu"><i></i><i></i></button>
 </header>
 <div class="menu" id="menu">
@@ -49,22 +44,25 @@
 
 <main id="top">
 
-<!-- HERO -->
+<!-- HERO: 3D ring of renders -->
 <section class="hero" id="hero">
-  <canvas id="heroGL"></canvas>
-  <div class="hero-shade"></div>
-  <div class="hero-content">
-    <div class="eyebrow reveal-up">Interior · Exterior · 3D Visualization</div>
-    <h1 class="hero-title split">Luxury Interior <br><em>Designer</em> in Dubai</h1>
-    <div class="hero-sig reveal-up"><span class="sig-line"></span><div><strong>Ashraf Abdullaev</strong><small>Interior &amp; exterior designer</small></div></div>
-    <p class="hero-lead reveal-up">From the first concept to the final detail on site. 14+ years of experience, photorealistic 3D visualization and complete project support, with one designer leading your project personally.</p>
-    <div class="hero-btns reveal-up">
-      <a href="#work" class="btn btn-gold magnetic" data-cursor>View projects</a>
-      <a href="#contact" class="btn btn-ghost magnetic" data-cursor>Get a consultation</a>
-    </div>
+  <canvas id="ring"></canvas>
+  <div class="hero-top">
+    <div class="eyebrow h-in">Interior · Exterior · 3D Visualization</div>
+    <h1 class="hero-title split">Luxury Interior <em>Designer</em> in Dubai</h1>
   </div>
-  <div class="hero-index"><span id="heroIdx">01</span><i></i><span id="heroName">Fire &amp; Water Villa, Dubai</span></div>
-  <div class="scroll-cue"><span>Scroll</span><i></i></div>
+  <div class="ring-label" id="ringLabel"><span id="rlMeta">Dubai</span><b id="rlName">Fire &amp; Water Villa, Dubai</b></div>
+  <div class="hero-bottom">
+    <div class="hero-left h-in">
+      <div class="hero-sig"><img src="img/portrait.webp" alt="Ashraf Abdullaev"><div><strong>Ashraf Abdullaev</strong><small>Interior &amp; exterior designer</small></div></div>
+      <p class="hero-lead">From the first concept to the final detail on site. 14+ years of experience, photorealistic 3D visualization and complete project support, with one designer leading your project personally.</p>
+      <div class="hero-btns">
+        <a href="#work" class="btn btn-dark magnetic">View projects</a>
+        <a href="#contact" class="btn btn-line magnetic">Get a consultation</a>
+      </div>
+    </div>
+    <div class="hero-hint h-in"><span class="drag-ico"><i></i></span>Drag or scroll<br>to explore the work</div>
+  </div>
 </section>
 
 <div class="marquee" aria-hidden="true"><div class="marquee-track">
@@ -74,94 +72,71 @@
 
 <!-- STATS -->
 <section class="stats">
-  <div class="stat"><div class="num"><span class="count" data-to="14">0</span>+</div><p>Years of experience in interior, exterior and 3D design</p></div>
-  <div class="stat"><div class="num"><span class="count" data-to="250">0</span>+</div><p>Projects completed: villas, apartments and commercial spaces</p></div>
+  <div class="stat"><div class="num"><span class="count" data-to="14">0</span><sup>+</sup></div><p>Years of experience in interior, exterior and 3D design</p></div>
+  <div class="stat"><div class="num"><span class="count" data-to="250">0</span><sup>+</sup></div><p>Projects completed: villas, apartments and commercial spaces</p></div>
   <div class="stat"><div class="num"><span class="count" data-to="3">0</span></div><p>Countries of practice: Tajikistan, Russia and the UAE</p></div>
   <div class="stat"><div class="num"><span class="count" data-to="3">0</span></div><p>Languages I work in: English, Russian and Farsi</p></div>
 </section>
 
 <!-- INTRO -->
-<section class="intro" id="intro">
-  <div class="intro-img"><div class="clip"><img src="img/portrait.webp" alt="Ashraf Abdullaev" class="parallax-img"></div></div>
+<section class="intro">
+  <div class="intro-img"><div class="arch"><img src="img/about.webp" alt="Ashraf Abdullaev" class="par"></div><span class="intro-badge">Your designer</span></div>
   <div class="intro-text">
     <div class="eyebrow">Your designer</div>
     <h2 class="h2 split">Hi, I'm <em>Ashraf</em></h2>
-    <p class="big reveal-up">I design villas, apartments and commercial spaces across the UAE and lead every project myself, from the first conversation to the last detail on site. You work directly with me, not with a large studio team.</p>
-    <p class="reveal-up muted">Planning a villa? See how I approach villa interior design in Dubai and the <a href="#" data-open="villa-aurora" data-cursor class="link">Villa Aurora project in Dubai Hills</a>.</p>
-    <a href="#about" class="link-arrow reveal-up" data-cursor>More about me <span>→</span></a>
+    <p class="scrub-text">I design villas, apartments and commercial spaces across the UAE and lead every project myself, from the first conversation to the last detail on site. You work directly with me, not with a large studio team.</p>
+    <p class="muted up">Planning a villa? See how I approach villa interior design in Dubai and the <a href="#" data-open="villa-aurora" class="link">Villa Aurora project in Dubai Hills</a>.</p>
+    <a href="#about" class="link-arrow up">More about me <span>→</span></a>
   </div>
 </section>
 
-<!-- FEATURED (horizontal) -->
-<section class="featured" id="work">
-  <div class="featured-pin">
-    <div class="featured-head">
-      <div class="eyebrow">Projects</div>
-      <h2 class="h2">Selected <em>work</em></h2>
-      <p class="muted">A few recent projects: villa interiors, a formal majlis and a private residence designed from the ground up.</p>
-      <div class="f-progress"><i id="fProg"></i></div>
-    </div>
-    <div class="featured-track" id="fTrack">
-      <article class="f-card" data-open="fire-and-water-villa-dubai" data-cursor="View"><div class="f-img"><img src="img/p01.webp" alt="Fire & Water Villa, Dubai"></div><div class="f-meta"><span>01 · Dubai</span><h3>Fire &amp; Water Villa</h3></div></article>
-      <article class="f-card" data-open="villa-aurora" data-cursor="View"><div class="f-img"><img src="img/p03.webp" alt="Villa Aurora"></div><div class="f-meta"><span>02 · Dubai Hills</span><h3>Villa Aurora</h3></div></article>
-      <article class="f-card wide" data-open="grand-majlis" data-cursor="View"><div class="f-img"><img src="img/p19.webp" alt="Grand Majlis"></div><div class="f-meta"><span>03 · Majlis</span><h3>Grand Majlis</h3></div></article>
-      <article class="f-card wide" data-open="pine-crown-residence-rublyovka" data-cursor="View"><div class="f-img"><img src="img/p02.webp" alt="Pine Crown Residence"></div><div class="f-meta"><span>04 · Rublyovka</span><h3>Pine Crown Residence</h3></div></article>
-      <article class="f-card" data-open="sky-terrace" data-cursor="View"><div class="f-img"><img src="img/p22.webp" alt="Sky Terrace"></div><div class="f-meta"><span>05 · Downtown Dubai</span><h3>Sky Terrace</h3></div></article>
-      <div class="f-end"><a href="#index" class="circle-btn magnetic" data-cursor>All<br>projects</a></div>
-    </div>
-  </div>
-</section>
-
-<!-- INDEX -->
-<section class="index" id="index">
-  <div class="index-head">
-    <div><div class="eyebrow">Portfolio</div><h2 class="h2">Selected <em>projects</em></h2><p class="muted">Villas and residences across the UAE, from the first concept to fully visualized interiors.</p></div>
+<!-- WORK -->
+<section class="work" id="work">
+  <div class="work-head">
+    <div><div class="eyebrow">Projects</div><h2 class="h2 split">Selected <em>work</em></h2>
+      <p class="muted up">Villas and residences across the UAE, from the first concept to fully visualized interiors. A few recent projects: villa interiors, a formal majlis and a private residence designed from the ground up.</p></div>
     <div class="filters" id="filters"></div>
   </div>
-  <ol class="plist" id="plist"></ol>
-  <div class="pgrid" id="pgrid"></div>
+  <div class="wgrid" id="wgrid"></div>
 </section>
 
-<!-- SERVICES -->
+<!-- SERVICES (stacking) -->
 <section class="services" id="services">
   <div class="sec-head">
     <div class="eyebrow">Services</div>
     <h2 class="h2 split">Design for your home, <em>inside and out</em></h2>
-    <p class="muted reveal-up">Every project is developed as one coherent whole, so the space you approve is the space you live in.</p>
+    <p class="muted up">Every project is developed as one coherent whole, so the space you approve is the space you live in.</p>
   </div>
-  <div class="svc-list">
-    <div class="svc" data-img="img/s-interior.webp">
-      <div class="svc-row" data-cursor="Open"><span class="svc-n">01</span><h3>Interior Design</h3><p>Complete interiors for villas and apartments, with photorealistic 3D visualization and working drawings for contractors.</p><span class="svc-plus">+</span></div>
-      <div class="svc-body"><div class="svc-body-in"><img src="img/s-interior.webp" alt="Interior design"><div><p>Complete interior design for villas, apartments and commercial spaces such as offices, showrooms and restaurants, from the first idea to drawings your contractor can build from.</p><ul><li>Photorealistic 3D visualization of every room</li><li>Working drawings for contractors and suppliers</li></ul></div></div></div>
-    </div>
-    <div class="svc" data-img="img/s-exterior.webp">
-      <div class="svc-row" data-cursor="Open"><span class="svc-n">02</span><h3>Exterior &amp; Architecture</h3><p>Architecture, facade design, facade lighting and landscape design that give a villa its own character.</p><span class="svc-plus">+</span></div>
-      <div class="svc-body"><div class="svc-body-in"><img src="img/s-exterior.webp" alt="Exterior and architecture"><div><p>Everything outside the house: the architecture, the look of the villa and the garden around it.</p><ul><li>Architecture</li><li>Facade design</li><li>Architectural facade lighting</li><li>Landscape design: garden, courtyard and pool areas</li></ul></div></div></div>
-    </div>
-    <div class="svc" data-img="img/s-support.webp">
-      <div class="svc-row" data-cursor="Open"><span class="svc-n">03</span><h3>Project Support</h3><p>Material selection and design supervision on site, so the finished home matches the approved design.</p><span class="svc-plus">+</span></div>
-      <div class="svc-body"><div class="svc-body-in"><img src="img/s-support.webp" alt="Project support"><div><p>Support when the design moves into construction, so the result matches the project.</p><ul><li>Material selection: stone, tiles, finishes, furniture and lighting</li><li>Design supervision during construction and renovation</li></ul></div></div></div>
-    </div>
-    <div class="svc" data-img="img/s-styling.webp">
-      <div class="svc-row" data-cursor="Open"><span class="svc-n">04</span><h3>Home Furnishing &amp; Styling</h3><p>Furniture layout, rugs and styling for new villa and apartment owners who want a finished, comfortable home.</p><span class="svc-plus">+</span></div>
-      <div class="svc-body"><div class="svc-body-in"><img src="img/s-styling.webp" alt="Home furnishing and styling"><div><p>For new owners of a villa or apartment who want a beautiful, comfortable home without a full design project.</p><ul><li>Furniture layout: dining table, TV, beds, sofas, poufs, floor lamps, coffee tables, vanity and wardrobes</li><li>Rug selection and placement</li><li>A balanced composition for every room, easy to live in</li></ul></div></div></div>
-    </div>
+  <div class="stack">
+    <article class="scard"><div class="scard-txt"><span class="sn">01</span><h3>Interior Design</h3><p class="sl">Complete interiors for villas and apartments, with photorealistic 3D visualization and working drawings for contractors.</p><p>Complete interior design for villas, apartments and commercial spaces such as offices, showrooms and restaurants, from the first idea to drawings your contractor can build from.</p><ul><li>Photorealistic 3D visualization of every room</li><li>Working drawings for contractors and suppliers</li></ul></div><div class="scard-img"><img src="img/s-interior.webp" alt="Interior design"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">02</span><h3>Exterior &amp; Architecture</h3><p class="sl">Architecture, facade design, facade lighting and landscape design that give a villa its own character.</p><p>Everything outside the house: the architecture, the look of the villa and the garden around it.</p><ul><li>Architecture</li><li>Facade design</li><li>Architectural facade lighting</li><li>Landscape design: garden, courtyard and pool areas</li></ul></div><div class="scard-img"><img src="img/s-exterior.webp" alt="Exterior and architecture"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">03</span><h3>Project Support</h3><p class="sl">Material selection and design supervision on site, so the finished home matches the approved design.</p><p>Support when the design moves into construction, so the result matches the project.</p><ul><li>Material selection: stone, tiles, finishes, furniture and lighting</li><li>Design supervision during construction and renovation</li></ul></div><div class="scard-img"><img src="img/s-support.webp" alt="Project support"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">04</span><h3>Home Furnishing &amp; Styling</h3><p class="sl">Furniture layout, rugs and styling for new villa and apartment owners who want a finished, comfortable home.</p><p>For new owners of a villa or apartment who want a beautiful, comfortable home without a full design project.</p><ul><li>Furniture layout: dining table, TV, beds, sofas, poufs, floor lamps, coffee tables, vanity and wardrobes</li><li>Rug selection and placement</li><li>A balanced composition for every room, easy to live in</li></ul></div><div class="scard-img"><img src="img/s-styling.webp" alt="Home furnishing and styling"></div></article>
   </div>
 </section>
 
-<!-- PROCESS -->
+<!-- PROCESS: floor plan drawn by scroll -->
 <section class="process" id="process">
-  <div class="process-pin">
-    <div class="process-left">
-      <div class="eyebrow">Process</div>
+  <div class="process-wrap">
+    <div class="plan-sticky">
+      <div class="eyebrow light">Process</div>
       <h2 class="h2">A clear path from <em>idea to result</em></h2>
-      <div class="p-line"><i id="pLine"></i></div>
+      <svg class="plan" viewBox="0 0 520 380" fill="none" aria-hidden="true">
+        <g class="L1" stroke-width="3.2"><path d="M20 20H500V360H20Z"/><path d="M20 210H150"/><path d="M330 20V150"/></g>
+        <g class="L2" stroke-width="1.6"><path d="M150 210V360"/><path d="M150 20V160"/><path d="M330 150H500"/><path d="M330 240H500"/><path d="M380 240V360"/><path d="M150 160H230"/><path d="M270 160H330"/>
+          <path d="M230 160A40 40 0 0 1 270 160" stroke-dasharray="3 4"/><path d="M150 250A40 40 0 0 0 190 210" stroke-dasharray="3 4"/><path d="M330 190A40 40 0 0 0 370 150" stroke-dasharray="3 4"/></g>
+        <g class="L3" stroke-width="1.2"><rect x="185" y="230" width="110" height="46" rx="10"/><rect x="200" y="290" width="80" height="34" rx="4"/><circle cx="240" cy="90" r="34"/><circle cx="240" cy="90" r="20"/>
+          <rect x="365" y="45" width="100" height="80" rx="4"/><path d="M365 62H465"/><rect x="40" y="40" width="88" height="140" rx="6"/><path d="M50 60H118M50 80H118M50 100H118"/>
+          <rect x="398" y="262" width="80" height="80" rx="3"/><path d="M398 302H478"/><path d="M40 240H128V340H40Z"/><circle cx="84" cy="290" r="18"/></g>
+        <g class="L4" stroke-width="1"><path d="M20 8H500M20 3V13M500 3V13" /><path d="M512 20V360M507 20H517M507 360H517"/><path d="M330 30V140" stroke-dasharray="2 4"/></g>
+        <g class="labels"><text x="70" y="200">Majlis</text><text x="214" y="345">Living</text><text x="210" y="140">Dining</text><text x="388" y="140">Master</text><text x="412" y="225">Bath</text><text x="56" y="360">Kitchen</text><text x="410" y="355">Pool</text></g>
+      </svg>
     </div>
-    <div class="process-steps">
-      <div class="pstep"><span>01</span><h3>Consultation</h3><p>We discuss your lifestyle, taste, budget and timeline to define a clear brief.</p></div>
-      <div class="pstep"><span>02</span><h3>Concept</h3><p>Layout options, mood and material direction are developed and agreed together.</p></div>
-      <div class="pstep"><span>03</span><h3>Visualization</h3><p>Photorealistic 3D images show the finished space before anything is built.</p></div>
-      <div class="pstep"><span>04</span><h3>Drawings &amp; supervision</h3><p>Working drawings guide the build, and I supervise on site so the result matches the design.</p></div>
+    <div class="steps">
+      <div class="step"><span>01</span><h3>Consultation</h3><p>We discuss your lifestyle, taste, budget and timeline to define a clear brief.</p></div>
+      <div class="step"><span>02</span><h3>Concept</h3><p>Layout options, mood and material direction are developed and agreed together.</p></div>
+      <div class="step"><span>03</span><h3>Visualization</h3><p>Photorealistic 3D images show the finished space before anything is built.</p></div>
+      <div class="step"><span>04</span><h3>Drawings &amp; supervision</h3><p>Working drawings guide the build, and I supervise on site so the result matches the design.</p></div>
     </div>
   </div>
 </section>
@@ -173,12 +148,12 @@
     <h2 class="h2 split">One designer, personally <em>responsible for your home</em></h2>
   </div>
   <div class="why-grid">
-    <div class="why-card tilt"><span>01</span><h3>I lead your project personally</h3><p>You work directly with me from the first call to the last site visit. No account managers, no juniors, no lost details.</p></div>
-    <div class="why-card tilt"><span>02</span><h3>14+ years, 250+ projects</h3><p>Villas, apartments, hotels and commercial spaces in the UAE, Russia and Central Asia.</p></div>
-    <div class="why-card tilt"><span>03</span><h3>See it in 3D before you build</h3><p>Photorealistic visualizations show every room before work starts, so there are no surprises on site.</p></div>
-    <div class="why-card tilt"><span>04</span><h3>From idea to finished home</h3><p>Design, working drawings and site supervision in one place. Your contractor builds exactly what you approved.</p></div>
-    <div class="why-card tilt"><span>05</span><h3>English, Russian, Farsi</h3><p>We discuss your home in the language you think in, so nothing gets lost in translation.</p></div>
-    <div class="why-card tilt"><span>06</span><h3>Clear prices, no surprises</h3><p>Transparent prices per m², a written proposal and payments linked to visible project stages.</p></div>
+    <div class="why-card"><span>01</span><h3>I lead your project personally</h3><p>You work directly with me from the first call to the last site visit. No account managers, no juniors, no lost details.</p></div>
+    <div class="why-card"><span>02</span><h3>14+ years, 250+ projects</h3><p>Villas, apartments, hotels and commercial spaces in the UAE, Russia and Central Asia.</p></div>
+    <div class="why-card"><span>03</span><h3>See it in 3D before you build</h3><p>Photorealistic visualizations show every room before work starts, so there are no surprises on site.</p></div>
+    <div class="why-card"><span>04</span><h3>From idea to finished home</h3><p>Design, working drawings and site supervision in one place. Your contractor builds exactly what you approved.</p></div>
+    <div class="why-card"><span>05</span><h3>English, Russian, Farsi</h3><p>We discuss your home in the language you think in, so nothing gets lost in translation.</p></div>
+    <div class="why-card"><span>06</span><h3>Clear prices, no surprises</h3><p>Transparent prices per m², a written proposal and payments linked to visible project stages.</p></div>
   </div>
 </section>
 
@@ -187,9 +162,8 @@
   <div class="sec-head">
     <div class="eyebrow">Pricing</div>
     <h2 class="h2 split">How much does <em>interior design cost?</em></h2>
-    <p class="muted reveal-up">Pick the project type, area and service to see an instant estimate.</p>
+    <p class="muted up">Pick the project type, area and service to see an instant estimate.</p>
   </div>
-
   <div class="calc">
     <div class="calc-form">
       <div class="field"><label>1. Project type</label><div class="seg" data-name="type"><button class="on" data-v="Villa">Villa</button><button data-v="Apartment">Apartment</button><button data-v="Commercial">Commercial</button></div></div>
@@ -197,27 +171,26 @@
       <div class="field"><label>3. Area to design <b id="areaOut">300 m²</b></label><input type="range" id="area" min="30" max="2000" step="10" value="300"></div>
       <div class="field two"><div><label>4. Location</label><select id="loc"><option>Dubai</option><option>Abu Dhabi</option><option>Sharjah</option><option>Ajman</option><option>Umm Al Quwain</option><option>Ras Al Khaimah</option><option>Fujairah</option></select></div>
         <div><label>Timing</label><select id="when"><option>Start as soon as possible</option><option>Start in 1–3 months</option><option>Start in 3+ months</option><option>Just exploring</option></select></div></div>
-      <div class="field"><label>5. Also interested in <small>· optional, price on request</small></label><div class="chips" id="extras"><button>Exterior &amp; architecture</button><button>Landscape</button><button>Material selection</button><button>Home furnishing &amp; styling</button></div></div>
+      <div class="field"><label>5. Also interested in <small>optional, price on request</small></label><div class="chips" id="extras"><button>Exterior &amp; architecture</button><button>Landscape</button><button>Material selection</button><button>Home furnishing &amp; styling</button></div></div>
     </div>
     <div class="calc-out">
-      <div class="eyebrow">Your starting estimate</div>
+      <div class="eyebrow light">Your starting estimate</div>
       <small>Design fee from</small>
       <div class="calc-num">AED <span id="est">45,000</span></div>
       <ul class="calc-sum"><li><span>Project</span><b id="sType">Villa</b></li><li><span>Service</span><b id="sSvc">Working Drawings + 3D Visualization</b></li><li><span>Area</span><b id="sArea">300 m²</b></li><li><span>Location</span><b id="sLoc">Dubai</b></li></ul>
       <p class="fine">This is a starting estimate for design work only. Furniture, materials and construction are not included. Exterior, landscape and styling are quoted separately. The final quote depends on the scope and complexity of your project.</p>
-      <a class="btn btn-gold magnetic" id="sendEst" target="_blank" rel="noopener" data-cursor>Send estimate on WhatsApp</a>
+      <a class="btn btn-gold magnetic" id="sendEst" target="_blank" rel="noopener">Send estimate on WhatsApp</a>
     </div>
   </div>
-
   <div class="tiers">
-    <div class="tier tilt"><h3>3D Visualization</h3><div class="price"><small>from</small>120<span>AED / m²</span></div><ul><li>Photorealistic renders of your spaces</li><li>Materials, furniture and lighting shown realistically</li><li>For clients who already have a layout or design</li></ul></div>
-    <div class="tier tilt hot"><em class="badge">Most popular</em><h3>Working Drawings + 3D Visualization</h3><div class="price"><small>from</small>150<span>AED / m²</span></div><ul><li>Space planning and layout</li><li>Working drawings for contractors</li><li>Photorealistic 3D visualization of every room</li></ul></div>
-    <div class="tier tilt"><h3>Full Project with Design Supervision</h3><div class="price"><small>from</small>250<span>AED / m²</span></div><ul><li>Working drawings + 3D visualization</li><li>Design supervision on site</li><li>Support until the project is complete</li></ul></div>
+    <div class="tier"><h3>3D Visualization</h3><div class="price"><small>from</small>120<span>AED / m²</span></div><ul><li>Photorealistic renders of your spaces</li><li>Materials, furniture and lighting shown realistically</li><li>For clients who already have a layout or design</li></ul></div>
+    <div class="tier hot"><em class="badge">Most popular</em><h3>Working Drawings + 3D Visualization</h3><div class="price"><small>from</small>150<span>AED / m²</span></div><ul><li>Space planning and layout</li><li>Working drawings for contractors</li><li>Photorealistic 3D visualization of every room</li></ul></div>
+    <div class="tier"><h3>Full Project with Design Supervision</h3><div class="price"><small>from</small>250<span>AED / m²</span></div><ul><li>Working drawings + 3D visualization</li><li>Design supervision on site</li><li>Support until the project is complete</li></ul></div>
   </div>
   <p class="muted center small">Prices are per square metre of the designed area. Exterior &amp; architecture, landscape, material selection and home furnishing &amp; styling: price on request. Villas, apartments and commercial spaces across all seven emirates.</p>
 
   <div class="incl">
-    <div class="incl-head"><div class="eyebrow">What you receive</div><h2 class="h2">Everything included in a <em>full design project</em></h2><p class="muted">From the first meeting to the last detail on site. Here is exactly what you get, step by step.</p></div>
+    <div class="incl-head"><div class="eyebrow">What you receive</div><h2 class="h2 split">Everything included in a <em>full design project</em></h2><p class="muted up">From the first meeting to the last detail on site. Here is exactly what you get, step by step.</p></div>
     <div class="incl-list">
       <div class="incl-item"><span>01</span><div><h4>Brief and measurements</h4><p>We meet and discuss your lifestyle, family, taste and budget, and I measure the property or review your existing plans. You receive a written design brief that guides the whole project.</p></div></div>
       <div class="incl-item"><span>02</span><div><h4>Space planning</h4><p>2–3 layout options with furniture arrangement and zoning. We choose the best one together, so every room works for the way you live.</p></div></div>
@@ -246,7 +219,7 @@
 
 <!-- ABOUT -->
 <section class="about" id="about">
-  <div class="about-img"><div class="clip"><img src="img/about.webp" alt="Ashraf Abdullaev, interior and exterior designer in Dubai, UAE" class="parallax-img"></div><div class="about-tag">Interior &amp; Exterior Design · 3D Visualization · 14+ years of experience</div></div>
+  <div class="about-img"><div class="arch"><img src="img/portrait.webp" alt="Ashraf Abdullaev, interior and exterior designer in Dubai, UAE" class="par"></div><div class="about-tag">Interior &amp; Exterior Design · 3D Visualization · 14+ years of experience</div></div>
   <div class="about-text">
     <div class="eyebrow">About</div>
     <h2 class="h2 split">Ashraf <em>Abdullaev</em></h2>
@@ -281,16 +254,16 @@
 
 <!-- CONTACT -->
 <section class="contact" id="contact">
-  <div class="contact-bg"><img src="img/p22.webp" alt=""></div>
+  <div class="contact-bg"><img src="img/p22.webp" alt="" class="par"></div>
   <div class="contact-in">
-    <div class="eyebrow">Contact</div>
+    <div class="eyebrow light">Contact</div>
     <h2 class="mega split">Let's discuss <em>your project</em></h2>
-    <p class="big reveal-up">Planning a villa or an apartment? Tell me about your villa, apartment or office, and I will suggest the next steps.</p>
-    <div class="contact-btns reveal-up">
-      <a class="btn btn-gold magnetic" href="https://wa.me/971588874003?text=Hello%2C%20I%20would%20like%20to%20discuss%20an%20interior%20design%20project." target="_blank" rel="noopener" data-cursor>Message on WhatsApp</a>
-      <a class="btn btn-ghost magnetic" href="tel:+971588874003" data-cursor>Call +971 58 887 4003</a>
+    <p class="big up">Planning a villa or an apartment? Tell me about your villa, apartment or office, and I will suggest the next steps.</p>
+    <div class="contact-btns up">
+      <a class="btn btn-gold magnetic" href="https://wa.me/971588874003?text=Hello%2C%20I%20would%20like%20to%20discuss%20an%20interior%20design%20project." target="_blank" rel="noopener">Message on WhatsApp</a>
+      <a class="btn btn-line light magnetic" href="tel:+971588874003">Call +971 58 887 4003</a>
     </div>
-    <div class="contact-card reveal-up">
+    <div class="contact-card up">
       <img src="img/portrait.webp" alt="Ashraf Abdullaev">
       <div><strong>Ashraf Abdullaev</strong><small>I reply to every message personally</small></div>
       <ul>
@@ -304,28 +277,28 @@
 </main>
 
 <footer class="foot">
-  <div class="foot-big">Ashraf <em>Design</em></div>
+  <div class="foot-big"><span>Ashraf</span> <em>Design</em></div>
   <div class="foot-cols">
     <div><h5>Studio</h5><a href="#work">Projects</a><a href="#services">Services</a><a href="#pricing">Pricing</a><a href="#about">About</a><a href="#contact">Contact</a></div>
     <div><h5>Expertise</h5><span>Villa interior design, Dubai</span><span>Majlis design, Dubai</span><span>Interior designer in Sharjah</span><span>Interior designer in Abu Dhabi</span><span>Russian-speaking interior designer, Dubai</span></div>
     <div><h5>Contact</h5><a href="https://wa.me/971588874003">WhatsApp +971 58 887 4003</a><a href="mailto:info@ashrafdesign.ae">info@ashrafdesign.ae</a><span>Dubai and across the UAE</span></div>
   </div>
-  <div class="foot-bot"><span>© <span id="yr"></span> Ashraf Design. All rights reserved.</span><a href="#top" data-cursor>Back to top ↑</a></div>
+  <div class="foot-bot"><span>© <span id="yr"></span> Ashraf Design. All rights reserved.</span><a href="#top">Back to top ↑</a></div>
 </footer>
 
-<a class="wa-float magnetic" href="https://wa.me/971588874003?text=Hello%2C%20I%20would%20like%20to%20discuss%20an%20interior%20design%20project." target="_blank" rel="noopener" aria-label="WhatsApp" data-cursor>
+<a class="wa-float" href="https://wa.me/971588874003?text=Hello%2C%20I%20would%20like%20to%20discuss%20an%20interior%20design%20project." target="_blank" rel="noopener" aria-label="WhatsApp">
   <svg viewBox="0 0 32 32" width="26" height="26"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.7c-2 0-3.9-.5-5.6-1.5l-.4-.2-3.9 1 1-3.8-.3-.4A10.7 10.7 0 1 1 16 26.7zm5.9-8c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5 1-1.7.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4s-1.2 1.1-1.2 2.8 1.2 3.2 1.4 3.4 2.4 3.7 5.8 5.2c2.2.9 3 1 4.1.8.7-.1 1.9-.8 2.2-1.5s.3-1.3.2-1.5-.3-.2-.6-.4z"/></svg>
 </a>
 
 <div class="modal" id="modal" aria-hidden="true">
   <button class="modal-x" id="modalX" data-cursor="Close">Close ✕</button>
-  <div class="modal-scroll" id="modalScroll"></div>
+  <div class="modal-scroll" id="modalScroll" data-lenis-prevent></div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
 <script src="data.js"></script>
-<script type="module" src="main.js"></script>
+<script type="module" src="main.js?v=2"></script>
 </body>
 </html>
