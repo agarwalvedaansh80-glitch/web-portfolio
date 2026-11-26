@@ -654,3 +654,7 @@ html.fine .scard:hover .scard-img img{transform:scale(1.06)}
 .pano-ui{background:radial-gradient(80% 60% at 0% 0%,rgba(0,0,0,.62),rgba(0,0,0,0) 62%),linear-gradient(0deg,rgba(0,0,0,.5) 0%,rgba(0,0,0,0) 26%)}
 .reveal-ui{background:radial-gradient(80% 60% at 0% 0%,rgba(0,0,0,.6),rgba(0,0,0,0) 62%),linear-gradient(0deg,rgba(0,0,0,.6) 0%,rgba(0,0,0,0) 32%)}
 .pano-head .eyebrow,.reveal-head .eyebrow{text-shadow:0 1px 10px rgba(0,0,0,.7)}
+@media (max-width:760px){
+  .pano-ui,.reveal-ui{background:linear-gradient(180deg,rgba(0,0,0,.72) 0%,rgba(0,0,0,.25) 24%,rgba(0,0,0,0) 40%),linear-gradient(0deg,rgba(0,0,0,.72) 0%,rgba(0,0,0,0) 30%)}
+  .pano-head .h2 em,.reveal-head .h2 em{color:#f0c6f6}
+}
