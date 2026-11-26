@@ -445,3 +445,6 @@ html[data-theme=dark] .theme span:last-child,html[data-theme=light] .theme span:
 @media (max-width:900px){.contact-grid2{grid-template-columns:1fr}.nform .btn{width:100%}}
 .call-float svg{display:block}
 .dubai .frame[data-fx-reveal]{overflow:hidden}
+
+/* keep sticky elements working */
+body{overflow-x:clip}

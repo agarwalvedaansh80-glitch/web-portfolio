@@ -708,3 +708,6 @@ em{font-weight:400}
   .blur-chars{font-size:34px}
 }
 .sig-t h3{line-height:1.06;padding-bottom:.08em}
+
+/* keep sticky elements working */
+body{overflow-x:clip}

@@ -419,3 +419,6 @@ html[data-theme=dark] .theme span:last-child,html[data-theme=light] .theme span:
 .sig-list li.on{color:#eef1ec;transform:translateX(-8px)}
 .sig-list li small{font-family:var(--sans,inherit);font-size:10px;letter-spacing:.22em;margin-right:12px;color:#d9a47a;vertical-align:middle}
 @media (max-width:760px){.hero-close{display:none}.hero-lead{padding-right:0}.sig-list{display:none}}
+
+/* keep sticky elements working */
+body{overflow-x:clip}

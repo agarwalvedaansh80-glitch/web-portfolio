@@ -533,3 +533,6 @@ h1,h2,h3,.h2,.mega,.hero-title{font-optical-sizing:auto}
 .fl-dots{display:flex;gap:10px}.fl-dots i{width:22px;height:2px;background:rgba(236,230,218,.2);transition:background .8s,width .8s}.fl-dots i.on{background:#e0c48f;width:40px}
 .xr-txt p,.wt-txt p{text-shadow:0 2px 18px rgba(7,11,20,.85)}
 @media (max-width:700px){.xr-tag{right:auto;left:var(--pad)}}
+
+/* keep sticky elements working */
+body{overflow-x:clip}

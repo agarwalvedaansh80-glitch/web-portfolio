@@ -446,3 +446,6 @@ body.cfg-closed .cfg-open{opacity:1;transform:none;pointer-events:auto}
 .qform .btn{justify-self:start}
 @media (max-width:620px){.qrow{grid-template-columns:1fr}.qform .btn{width:100%}}
 @media (max-width:760px){.long{display:none}.cfg-x{top:-12px;right:-6px}.cfg-open{left:12px;bottom:14px}}
+
+/* keep sticky elements working */
+body{overflow-x:clip}

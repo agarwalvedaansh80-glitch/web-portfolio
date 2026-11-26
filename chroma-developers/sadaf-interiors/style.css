@@ -431,3 +431,6 @@ html[data-theme=dark] .theme i::after{transform:translateX(18px)}
 .cform input:focus,.cform select:focus,.cform textarea:focus{border-color:var(--brass2)}
 .cform .btn{justify-self:start;margin-top:4px}
 @media (max-width:620px){.cf-row{grid-template-columns:1fr}.cform .btn{width:100%}}
+
+/* keep sticky elements working */
+body{overflow-x:clip}

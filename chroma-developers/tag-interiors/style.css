@@ -453,3 +453,6 @@ html[data-theme=dark] .theme span:last-child,html[data-theme=light] .theme span:
 .cform .btn{justify-self:start}
 @media (max-width:620px){.cf-row{grid-template-columns:1fr}.cform .btn{width:100%}}
 .fine-only{display:none}html.fine .fine-only{display:inline}
+
+/* keep sticky elements working */
+body{overflow-x:clip}

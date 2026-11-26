@@ -690,3 +690,6 @@ html.fine .scard:hover .scard-img img{transform:scale(1.06)}
 .lens-grid img{width:100%;height:100%;object-fit:cover}
 html:not(.fine) .lens-hint{display:none}
 @media (max-width:760px){.lens-grid{grid-template-columns:1fr}.lens-grid figure:nth-child(2){aspect-ratio:16/10}}
+
+/* keep sticky elements working */
+body{overflow-x:clip}

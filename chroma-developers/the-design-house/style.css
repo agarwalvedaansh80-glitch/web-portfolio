@@ -462,3 +462,6 @@ body.cfg-closed .cfg-open{opacity:1;transform:none;pointer-events:auto}
 @media (max-width:760px){.long{display:none}.cfg-x{top:-12px;right:-6px}.cfg-open{left:12px;bottom:14px}.seg button{padding:6px 9px;font-size:9px;letter-spacing:.1em}.logo small{display:none}.logo b{font-size:11px;letter-spacing:.28em}}
 .foot-big{font-size:6.2vw!important;letter-spacing:.12em!important;white-space:nowrap}
 @media (max-width:760px){.foot-big{font-size:7.2vw!important;letter-spacing:.04em!important}}
+
+/* keep sticky elements working */
+body{overflow-x:clip}

@@ -433,3 +433,6 @@ html[data-theme=light] .loader-mark{filter:invert(1)}
 .mono img{width:40px;height:auto;filter:grayscale(1) brightness(1.4)}
 @media (max-width:900px){.contact-grid{grid-template-columns:1fr}.cform .btn{width:100%}}
 :root{--fx-fill:var(--brass2)}
+
+/* keep sticky elements working */
+body{overflow-x:clip}

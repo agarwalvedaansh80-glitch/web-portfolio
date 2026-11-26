@@ -658,3 +658,6 @@ html.fine .scard:hover .scard-img img{transform:scale(1.06)}
   .pano-ui,.reveal-ui{background:linear-gradient(180deg,rgba(0,0,0,.72) 0%,rgba(0,0,0,.25) 24%,rgba(0,0,0,0) 40%),linear-gradient(0deg,rgba(0,0,0,.72) 0%,rgba(0,0,0,0) 30%)}
   .pano-head .h2 em,.reveal-head .h2 em{color:#f0c6f6}
 }
+
+/* keep sticky elements working */
+body{overflow-x:clip}

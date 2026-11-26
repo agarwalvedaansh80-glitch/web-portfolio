@@ -508,3 +508,6 @@ html,body,.services,.pricing,.faq,.foot,.hero,.scard,.calc-form,.tier,.why-card{
 .zoomx{color:#efe8dd;background:#000}
 .fx-zoom-txt{position:absolute;left:var(--pad);right:var(--pad);bottom:clamp(40px,10vh,100px);z-index:2;text-shadow:0 10px 50px rgba(0,0,0,.5)}
 .zoomx .fx-zoom-win::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.55),transparent 55%)}
+
+/* keep sticky elements working */
+body{overflow-x:clip}

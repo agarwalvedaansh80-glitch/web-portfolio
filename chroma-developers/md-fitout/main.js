@@ -165,7 +165,7 @@ function frontPanel() {
 }
 ScrollTrigger.create({ trigger: '#hero', start: 'top top', end: 'bottom top', onToggle: s => heroOn = s.isActive, onUpdate: s => heroP = s.progress });
 document.body.classList.add('in-hero');
-ScrollTrigger.create({ trigger: '#hero', start: 'top top', end: '40% top', onToggle: s => document.body.classList.toggle('in-hero', s.isActive) });
+{ const heroEl = document.querySelector('#hero'); const upd = () => { if (!heroEl) return; const r = heroEl.getBoundingClientRect(); document.body.classList.toggle('in-hero', r.bottom > innerHeight * 0.6); }; addEventListener('scroll', upd, { passive: true }); lenis.on && lenis.on('scroll', upd); upd(); }
 gsap.ticker.add(() => {
   if (!heroOn) return;
   const v = lenis.velocity || 0;

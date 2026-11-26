@@ -549,3 +549,6 @@ html.fine .only-touch{display:none}html:not(.fine) .only-fine{display:none}
   .lens-cap span{font-size:20px}
   .lens-head{margin-bottom:30px}
 }
+
+/* keep sticky elements working */
+body{overflow-x:clip}

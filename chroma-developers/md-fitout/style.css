@@ -543,3 +543,6 @@ html,body,.services,.pricing,.faq,.foot,.hero,.scard,.calc-form,.tier,.why-card{
 
 .sig-t span .sk{font-style:normal;color:inherit}
 @media (max-width:760px){.sig-t span .sk{display:none}.sig-shade{background:linear-gradient(180deg,rgba(0,0,0,.5),rgba(0,0,0,0) 26%,rgba(0,0,0,.1) 45%,rgba(0,0,0,.72))}.ring-label{bottom:calc(16px + 270px)!important}}
+
+/* keep sticky elements working */
+body{overflow-x:clip}

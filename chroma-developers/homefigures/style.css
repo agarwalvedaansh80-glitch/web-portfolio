@@ -383,3 +383,6 @@ html[data-theme=dark] .theme i::after{transform:translateX(18px)}
 @media (max-width:480px){.theme span{display:none}.nav{gap:18px}.logo b{font-size:16px;letter-spacing:.36em}.logo small{font-size:7.5px;letter-spacing:.56em}}
 
 @media (prefers-reduced-motion:reduce){*{animation:none!important}}
+
+/* keep sticky elements working */
+body{overflow-x:clip}
