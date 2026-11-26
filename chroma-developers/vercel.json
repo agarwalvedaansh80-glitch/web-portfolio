@@ -5,6 +5,7 @@
     { "source": "/blackwhite-viz", "destination": "/blackwhite-viz/", "permanent": false },
     { "source": "/villa-furniture-studio", "destination": "/villa-furniture-studio/", "permanent": false },
     { "source": "/rare-design-hive", "destination": "/rare-design-hive/", "permanent": false },
-    { "source": "/render-atelier", "destination": "/render-atelier/", "permanent": false }
+    { "source": "/render-atelier", "destination": "/render-atelier/", "permanent": false },
+    { "source": "/sadaf-interiors", "destination": "/sadaf-interiors/", "permanent": false }
   ]
 }

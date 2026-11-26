@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<base href="/sadaf-interiors/">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sadaf Premium Interiors | Interior Design, Fit-Out &amp; Bespoke Furniture in Dubai</title>
+<meta name="description" content="Sadaf Premium Interior Design and Contracting LLC: design, manage and build. Villa renovation, office, retail and hospitality fit-out, joinery and bespoke furniture made in our own Dubai factory.">
+<meta property="og:title" content="Sadaf Premium Interiors | Design. Manage. Build.">
+<meta property="og:description" content="Interior design, turnkey fit-out and bespoke furniture from our own factory in Dubai Investment Park.">
+<meta property="og:image" content="https://chroma-developers.vercel.app/sadaf-interiors/img/sam1.webp">
+<meta name="theme-color" content="#060b09">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Marcellus&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=1">
+<script>try{if(localStorage.getItem('sd-theme')==='light')document.documentElement.dataset.theme='light'}catch(e){}</script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+</head>
+<body class="loading in-hero">
+
+<div class="loader" id="loader">
+  <div class="loader-panels"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="loader-inner">
+    <div class="loader-mono" aria-hidden="true"><svg viewBox="0 0 80 80"><path d="M40 4 L76 40 L40 76 L4 40 Z"/><path d="M52 26c-4-4-20-4-22 3s20 7 20 15-18 9-22 4"/></svg></div>
+    <div class="loader-word" aria-label="Sadaf"><span>S</span><span>A</span><span>D</span><span>A</span><span>F</span></div>
+    <div class="loader-sub">Premium Interiors</div>
+    <div class="loader-bar"><i id="loaderBar"></i></div>
+    <div class="loader-meta"><span>Dubai · UAE</span><span><b id="loaderNum">0</b>%</span></div>
+  </div>
+</div>
+
+<div class="cursor" id="cursor"><div class="c-ring"><span class="c-label" id="cLabel"></span></div><div class="c-dot"></div></div>
+<canvas id="gal" aria-hidden="true"></canvas>
+
+<header class="nav" id="nav">
+  <a href="#top" class="logo" aria-label="Sadaf Premium Interiors"><b>SADAF</b><small>Premium Interiors</small></a>
+  <nav class="nav-links">
+    <a href="#collection">Projects</a><a href="#collections">Featured</a><a href="#services">Services</a><a href="#process">Process</a><a href="#studio">About</a><a href="#contact">Contact</a>
+  </nav>
+  <button class="theme" id="theme" aria-label="Switch day or night mode" data-cursor="Mode"><span>Day</span><i></i><span>Night</span></button>
+  <a href="#contact" class="btn btn-brass btn-sm nav-cta magnetic">Free consultation</a>
+  <button class="burger" id="burger" aria-label="Menu"><i></i><i></i></button>
+</header>
+<div class="menu" id="menu">
+  <a href="#collection">Projects</a><a href="#collections">Featured</a><a href="#services">Services</a><a href="#process">Process</a><a href="#studio">About</a><a href="#contact">Contact</a>
+  <div class="menu-foot"><a href="https://wa.me/971502440271" target="_blank" rel="noopener">WhatsApp</a><a href="tel:+971529127439">+971 52 912 7439</a></div>
+</div>
+
+<main id="top">
+
+<!-- HERO: live furniture configurator -->
+<section class="hero" id="hero">
+  <div class="hero-pin">
+    <canvas id="cfgGL" aria-label="Interactive 3D sofa"></canvas>
+    <div class="hero-top" id="heroTop">
+      <div class="eyebrow h-in">Design · Manage · Build</div>
+      <h1 class="hero-title split">Premium interiors, <em>built in house.</em></h1>
+      <p class="hero-lead h-in">Villa renovation, office, retail and hospitality fit-out, with joinery, upholstery and metal work made in our own factory in Dubai.</p>
+    </div>
+    <div class="xp" id="xp" aria-hidden="true">
+      <div class="eyebrow">Bespoke furniture</div>
+      <h2 class="xp-title">Made in our factory, <em>piece by piece</em></h2>
+      <p>Frames, upholstery and finishes are produced under one roof, so every piece is made to your size and design.</p>
+    </div>
+    <div class="tags" id="tags">
+      <div class="tag" data-k="back"><i></i><span>Back cushions</span></div>
+      <div class="tag" data-k="seat"><i></i><span>Seat cushions</span></div>
+      <div class="tag" data-k="arm"><i></i><span>Arm with <b class="finName">walnut</b> tray</span></div>
+      <div class="tag" data-k="frame"><i></i><span>Upholstered frame</span></div>
+      <div class="tag" data-k="base"><i></i><span>Base in <b class="finName">walnut</b></span></div>
+      <div class="tag" data-k="table"><i></i><span>Table in <b class="finName">walnut</b></span></div>
+    </div>
+    <div class="cfg h-in" id="cfg">
+      <button class="cfg-x" id="cfgX" aria-label="Close" data-cursor="Close"></button>
+      <div class="cfg-head"><span>Design your sofa</span><b id="cfgSel">Bouclé Ivory · Walnut</b></div>
+      <div class="cfg-row"><label>Upholstery</label>
+        <div class="sw" id="swFab">
+          <button class="on" data-k="boucle" data-n="Bouclé Ivory" data-cursor="Bouclé" style="--sw:radial-gradient(circle at 35% 30%,#fbf7f0,#ddd4c6 70%)" aria-label="Bouclé Ivory"></button>
+          <button data-k="linen" data-n="Linen Stone" data-cursor="Linen" style="--sw:repeating-linear-gradient(90deg,#b7ad9f 0 2px,#a39888 2px 4px)" aria-label="Linen Stone"></button>
+          <button data-k="velvet" data-n="Velvet Mocha" data-cursor="Velvet" style="--sw:radial-gradient(circle at 35% 30%,#8a6a52,#3f2c20 72%)" aria-label="Velvet Mocha"></button>
+          <button data-k="charcoal" data-n="Velvet Charcoal" data-cursor="Charcoal" style="--sw:radial-gradient(circle at 35% 30%,#5a5856,#1c1c1c 72%)" aria-label="Velvet Charcoal"></button>
+          <button data-k="leather" data-n="Leather Cognac" data-cursor="Leather" style="--sw:radial-gradient(circle at 35% 30%,#b0703f,#5e3219 75%)" aria-label="Leather Cognac"></button>
+        </div>
+      </div>
+      <div class="cfg-row"><label>Base finish</label>
+        <div class="sw" id="swFin">
+          <button class="on" data-k="walnut" data-n="Walnut" data-cursor="Walnut" style="--sw:repeating-linear-gradient(100deg,#5a3a25 0 3px,#6e4a30 3px 5px,#4a2f1e 5px 8px)" aria-label="Walnut"></button>
+          <button data-k="oak" data-n="Oak" data-cursor="Oak" style="--sw:repeating-linear-gradient(100deg,#c49a68 0 3px,#b08458 3px 5px,#d2ab7b 5px 8px)" aria-label="Oak"></button>
+          <button data-k="marble" data-n="Marble" data-cursor="Marble" style="--sw:linear-gradient(135deg,#f1ede6 40%,#a59d92 44%,#f1ede6 47%,#e6e0d6 70%,#bdb4a6 72%,#f1ede6 74%)" aria-label="Marble"></button>
+          <button data-k="brass" data-n="Brushed Brass" data-cursor="Brass" style="--sw:linear-gradient(135deg,#8c6a39,#e2c58f 45%,#a98447 60%,#d9b97f)" aria-label="Brushed Brass"></button>
+        </div>
+      </div>
+      <a class="btn btn-brass btn-sm cfg-send magnetic" id="cfgSend" href="https://wa.me/971502440271" target="_blank" rel="noopener">Send this design</a>
+    </div>
+    <button class="cfg-pill" id="cfgPill" data-cursor="Open">Design your sofa</button>
+    <div class="hero-hint h-in"><span class="drag-ico"><i></i></span><span>Drag to rotate<br>Scroll to see it built</span></div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true"><div class="marquee-track">
+  <span>Villa Renovation</span><b></b><span>Offices</span><b></b><span>Retail</span><b></b><span>Restaurants</span><b></b><span>Hotels</span><b></b><span>Clinics</span><b></b><span>Joinery</span><b></b><span>Upholstery</span><b></b>
+  <span>Villa Renovation</span><b></b><span>Offices</span><b></b><span>Retail</span><b></b><span>Restaurants</span><b></b><span>Hotels</span><b></b><span>Clinics</span><b></b><span>Joinery</span><b></b><span>Upholstery</span><b></b>
+</div></div>
+
+<!-- INTRO -->
+<section class="intro" id="studio">
+  <div class="intro-img"><div class="blinds"><img src="img/sam6.webp" alt="Lounge and bookshelf wall at Samana Barari Office by Sadaf" class="par"></div></div>
+  <div class="intro-text">
+    <div class="eyebrow">About Sadaf</div>
+    <h2 class="h2 cblur">Design, manage, <em>build</em></h2>
+    <p class="scrub-text">From the first consultation to handover, one team designs, manufactures and installs your interior, so what you approve is what is built.</p>
+    <p class="muted up">Sadaf Premium Interior Design and Contracting LLC works across villas, offices, retail, restaurants, hotels and clinics in the UAE, with daily project updates and clear communication at every stage.</p>
+    <a href="#services" class="link-arrow up">What we do <span>→</span></a>
+  </div>
+</section>
+
+<!-- STATS (counters) -->
+<section class="stats" id="stats">
+  <div class="stat"><b class="count" data-to="16" data-suf="+">0</b><span>Years in construction</span></div>
+  <div class="stat"><b class="count" data-to="1000" data-suf="+">0</b><span>Completed projects</span></div>
+  <div class="stat"><b class="count" data-to="200" data-suf="+">0</b><span>Skilled employees</span></div>
+  <div class="stat"><b class="count" data-to="5000" data-suf="">0</b><span>Sq ft factory</span></div>
+</section>
+
+<!-- RING GALLERY -->
+<section class="ring-sec" id="collection">
+  <div class="ring-head">
+    <div class="eyebrow">Our projects</div>
+    <h2 class="h2 cblur">Spaces we have <em>delivered</em></h2>
+  </div>
+  <canvas id="ring" aria-label="3D ring of Sadaf projects"></canvas>
+  <div class="ring-label" id="ringLabel"><span id="rlMeta">Samana Barari Office</span><b id="rlName">Reception Lounge</b></div>
+  <div class="ring-hint"><span class="drag-ico"><i></i></span><span>Drag to turn<br>Tap a project to open</span></div>
+</section>
+
+<!-- SHOWCASE (pinned, liquid WebGL) -->
+<section class="show" id="collections">
+  <div class="show-pin">
+    <div class="show-num" id="showNum" aria-hidden="true">01</div>
+    <div class="show-left">
+      <div class="eyebrow light">Featured projects</div>
+      <div class="show-titles" id="showTitles"></div>
+      <div class="show-ctl"><a href="#" class="btn btn-brass magnetic" id="showOpen" data-cursor="Open">Open project</a><div class="show-count"><b id="showN">01</b> / 05</div></div>
+    </div>
+    <div class="show-frame" id="showFrame"><div class="show-imgs" id="showImgs"></div><canvas id="showGL"></canvas></div>
+    <ul class="show-list" id="showList"></ul>
+    <div class="show-bar"><i id="showBar"></i></div>
+  </div>
+</section>
+
+<!-- HORIZONTAL DETAIL STRIP -->
+<section class="hz" id="detail">
+  <div class="hz-pin">
+    <div class="hz-head"><div class="eyebrow">In detail</div><h2 class="h2">Samana Barari <em>Office</em></h2></div>
+    <div class="hz-track" id="hzTrack">
+      <a href="#" class="hz-card" data-piece="sam2"><img src="t/sam2.webp" srcset="t/sam2.webp 720w, img/sam2.webp 2400w" sizes="(max-width:760px) 80vw, 46vw" alt="Bronze portal lobby"><span>Bronze Portal Lobby</span></a>
+      <a href="#" class="hz-card" data-piece="sam3"><img src="t/sam3.webp" srcset="t/sam3.webp 720w, img/sam3.webp 1280w" sizes="(max-width:760px) 80vw, 46vw" alt="Reception counter"><span>Reception Counter</span></a>
+      <a href="#" class="hz-card tall" data-piece="sam4"><img src="t/sam4.webp" srcset="t/sam4.webp 720w, img/sam4.webp 1280w" sizes="(max-width:760px) 80vw, 46vw" alt="Sculpted entrance"><span>Sculpted Entrance</span></a>
+      <a href="#" class="hz-card" data-piece="sam5"><img src="t/sam5.webp" srcset="t/sam5.webp 720w, img/sam5.webp 1280w" sizes="(max-width:760px) 80vw, 46vw" alt="Arched mirror corridor"><span>Arched Mirror Corridor</span></a>
+      <a href="#" class="hz-card" data-piece="sam1"><img src="t/sam1.webp" srcset="t/sam1.webp 720w, img/sam1.webp 2400w" sizes="(max-width:760px) 80vw, 46vw" alt="Reception lounge"><span>Reception Lounge</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY GRID -->
+<section class="work" id="work">
+  <div class="work-head">
+    <div><div class="eyebrow">Selected work</div><h2 class="h2 cblur">From villas to <em>headquarters</em></h2>
+      <p class="muted up">A selection of offices, residences, amenities, boutiques and bespoke furniture delivered by our design, manufacturing and site teams.</p></div>
+  </div>
+  <div class="filters" id="filters" data-lenis-prevent></div>
+  <div class="wgrid" id="wgrid"></div>
+</section>
+
+<!-- WINDOW ZOOM -->
+<section class="window">
+  <div class="window-pin">
+    <div class="window-frame sweep" id="wFrame"><img src="img/dan1.webp" alt="Dining area opening to the garden at Danube Greenz"></div>
+    <div class="window-txt" id="wTxt"><div class="eyebrow light">Under one roof</div><h2 class="mega">Crafted in <em>our factory</em></h2><p>Joinery, metal, upholstery, paint, glass and aluminium divisions work side by side, so quality and timing stay in our hands.</p></div>
+  </div>
+</section>
+
+<!-- SERVICES (stacking) -->
+<section class="services" id="services">
+  <div class="sec-head">
+    <div class="eyebrow">Services</div>
+    <h2 class="h2 cblur">Every space, <em>end to end</em></h2>
+    <p class="muted up">Design, manufacturing and installation for residential and commercial interiors across the UAE.</p>
+  </div>
+  <div class="stack">
+    <article class="scard"><div class="scard-txt"><span class="sn">01</span><h3>Villa Renovation &amp; Decor</h3><p class="sl">Complete villa renovations: kitchens, master bedrooms, living areas, wardrobes and bathrooms.</p><ul><li>Kitchens and wardrobes</li><li>Master bedrooms and living areas</li><li>Bathrooms and finishes</li></ul><a href="#" class="link-arrow" data-cat="amira">View Amira Villa <span>→</span></a></div><div class="scard-img blinds"><img src="img/ami1.webp" alt="Amira Villa living and dining" loading="lazy"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">02</span><h3>Office Fit-Out</h3><p class="sl">Receptions, meeting rooms, work areas and manager offices, planned and built for how your team works.</p><ul><li>Reception counters</li><li>Meeting and board rooms</li><li>Work areas and washrooms</li></ul><a href="#" class="link-arrow" data-cat="meraki">View Meraki Office <span>→</span></a></div><div class="scard-img blinds"><img src="img/mer1.webp" alt="Glass meeting rooms at Meraki Office" loading="lazy"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">03</span><h3>Retail &amp; Hospitality</h3><p class="sl">Boutiques, showrooms, restaurants, hotels, spas and clinics with a strong sense of brand.</p><ul><li>Jewellery boutiques and showrooms</li><li>Restaurants and hotels</li><li>Spas and clinics</li></ul><a href="#" class="link-arrow" data-cat="retail">View retail <span>→</span></a></div><div class="scard-img blinds"><img src="img/ret1.webp" alt="Roberto Coin jewellery boutique" loading="lazy"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">04</span><h3>Lobbies &amp; Amenities</h3><p class="sl">Residential lobbies, lounges, gyms and children's areas for developers and building owners.</p><ul><li>Lobbies and lounges</li><li>Residents' gyms</li><li>Kids areas and amenities</li></ul><a href="#" class="link-arrow" data-cat="elite">View DAMAC Elite <span>→</span></a></div><div class="scard-img blinds"><img src="img/eli2.webp" alt="Reception lobby at DAMAC Elite" loading="lazy"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">05</span><h3>Joinery &amp; Bespoke Furniture</h3><p class="sl">Custom joinery and furniture engineered, manufactured and installed by our own divisions.</p><ul><li>Joinery and wall cladding</li><li>Upholstery and furniture</li><li>Paint shop and finishing</li></ul><a href="#" class="link-arrow" data-cat="furniture">View furniture <span>→</span></a></div><div class="scard-img blinds"><img src="img/fur1.webp" alt="Classic salon furniture by Sadaf" loading="lazy"></div></article>
+    <article class="scard"><div class="scard-txt"><span class="sn">06</span><h3>Metal, Glass &amp; Signage</h3><p class="sl">Metal work and coating, glass and aluminium, civil works and acrylic signage, all in house.</p><ul><li>Metal division and coating</li><li>Glass and aluminium</li><li>Civil works and acrylic signage</li></ul><a href="#" class="link-arrow" data-cat="samana">View Samana Barari <span>→</span></a></div><div class="scard-img blinds"><img src="img/sam2.webp" alt="Bronze portal lobby at Samana Barari Office" loading="lazy"></div></article>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="process-wrap">
+    <div class="plan-sticky">
+      <div class="eyebrow light">Process</div>
+      <h2 class="h2">From first meeting <em>to handover</em></h2>
+      <svg class="plan" viewBox="0 0 560 360" fill="none" aria-hidden="true">
+        <g class="L1" stroke-width="2.4"><path d="M20 330H540"/><rect x="40" y="40" width="480" height="270" rx="2"/></g>
+        <g class="L2" stroke-width="1.6"><path d="M40 170H250M310 170H520"/><path d="M250 40V130M250 210V310"/><path d="M380 170V310"/></g>
+        <g class="L3" stroke-width="1.2"><rect x="70" y="70" width="140" height="70" rx="6"/><rect x="290" y="70" width="200" height="60" rx="30"/><rect x="70" y="210" width="60" height="70" rx="4"/><rect x="150" y="210" width="60" height="70" rx="4"/><circle cx="450" cy="240" r="34"/><rect x="290" y="220" width="60" height="60" rx="4"/></g>
+        <g class="L4" stroke-width="1"><path d="M40 20H520M40 14V26M520 14V26"/><path d="M540 40V310M534 40H546M534 310H546"/><path d="M250 130A40 40 0 0 1 290 170" stroke-dasharray="2 4"/></g>
+        <g class="labels"><text x="250" y="12">Plan</text><text x="96" y="110">Reception</text><text x="340" y="104">Meeting</text><text x="425" y="290">Lounge</text></g>
+      </svg>
+    </div>
+    <div class="steps">
+      <div class="step"><span>01</span><h3>Consultation</h3><p>We meet to understand your space, your business and how it needs to work, so the quote is precise and tailored.</p></div>
+      <div class="step"><span>02</span><h3>Design &amp; 3D</h3><p>Your ideas and requirements become a complete design, with 3D renderings and material selections to approve.</p></div>
+      <div class="step"><span>03</span><h3>Manufacturing</h3><p>Joinery, metal, upholstery and glass are produced in our own factory divisions.</p></div>
+      <div class="step"><span>04</span><h3>Build &amp; manage</h3><p>Our site team builds and manages every trade, with daily project updates.</p></div>
+      <div class="step"><span>05</span><h3>Handover &amp; after care</h3><p>A finished space delivered on schedule, with our support continuing after completion.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROMISES -->
+<section class="why">
+  <div class="sec-head">
+    <div class="eyebrow">Why Sadaf</div>
+    <h2 class="h2 cblur">Quality, timing, <em>clarity</em></h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-card"><span>01</span><h3>One team, start to finish</h3><p>Design, manufacturing and installation managed by one company, without handoffs between contractors.</p></div>
+    <div class="why-card"><span>02</span><h3>Our own factory</h3><p>Joinery, metal, upholstery, paint, glass and aluminium divisions under one roof in Dubai Investment Park.</p></div>
+    <div class="why-card"><span>03</span><h3>Precise quotations</h3><p>An extended consultation phase means your quote reflects your real requirements.</p></div>
+    <div class="why-card"><span>04</span><h3>Daily updates</h3><p>Transparent communication and daily project updates at every stage.</p></div>
+    <div class="why-card"><span>05</span><h3>Every sector</h3><p>Villas, offices, retail, restaurants, hotels, gyms and clinics across the UAE.</p></div>
+    <div class="why-card"><span>06</span><h3>3D before we build</h3><p>Renderings and 3D visualisation, so you see the space before work begins.</p></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="sec-head"><div class="eyebrow">FAQ</div><h2 class="h2 cblur">Questions, <em>answered</em></h2></div>
+  <div class="faq-list">
+    <details><summary>Do you handle both design and construction?</summary><p>Yes. We design, manage and build, from the first consultation and design through manufacturing, installation and handover.</p></details>
+    <details><summary>Do you make furniture and joinery yourselves?</summary><p>Yes. Our factory in Dubai Investment Park has joinery, upholstery, metal, paint, glass and aluminium divisions.</p></details>
+    <details><summary>Which kinds of projects do you take on?</summary><p>Villa renovation and decor, offices, retail shops, restaurants, bars, gyms, spas, clinics, showrooms and hotels.</p></details>
+    <details><summary>Will I see the design before work starts?</summary><p>Yes. We prepare 3D renderings and visualisation, together with material and finish selections, for your approval.</p></details>
+    <details><summary>How do I start?</summary><p>Call or WhatsApp us, or send the form below. We will arrange a free consultation to understand your space and requirements.</p></details>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-bg"><img src="img/mer1.webp" alt="" class="par"></div>
+  <div class="contact-in">
+    <div class="eyebrow light">Contact</div>
+    <h2 class="mega split">Let's build <em>your space</em></h2>
+    <form class="cform up" id="cform">
+      <div class="cf-row"><label><span>Name</span><input name="n" required autocomplete="name"></label><label><span>Phone</span><input name="p" type="tel" autocomplete="tel"></label></div>
+      <div class="cf-row"><label><span>Project</span><select name="t"><option>Villa renovation</option><option>Office fit-out</option><option>Retail or restaurant</option><option>Hotel or hospitality</option><option>Bespoke furniture</option></select></label><label><span>Location</span><input name="l" placeholder="e.g. Dubai Hills"></label></div>
+      <label class="full"><span>Tell us about it</span><textarea name="m" rows="2"></textarea></label>
+      <button class="btn btn-brass magnetic" type="submit">Send on WhatsApp</button>
+    </form>
+    <div class="contact-card up">
+      <div class="mono">S</div>
+      <div><strong>Sadaf Premium Interior Design and Contracting LLC</strong><small>Design · Manage · Build</small></div>
+      <ul>
+        <li><span>Mobile</span><a href="tel:+971529127439">+971 52 912 7439</a></li>
+        <li><span>WhatsApp</span><a href="https://wa.me/971502440271" target="_blank" rel="noopener">+971 50 244 0271</a></li>
+        <li><span>Office</span><a href="tel:+97148820712">+971 4 882 0712</a></li>
+        <li><span>Email</span><a href="mailto:info@sadafpremiuminteriors.com">info@sadafpremiuminteriors.com</a></li>
+        <li><span>Instagram</span><a href="https://www.instagram.com/sadafinteriordesign_/" target="_blank" rel="noopener">@sadafinteriordesign_</a></li>
+        <li><span>Factory</span><b>Warehouse 1, Darvesh Compound, Dubai Investment Park 2</b></li>
+      </ul>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="foot-big"><span>SADAF</span></div>
+  <div class="foot-cols">
+    <div><h5>Studio</h5><a href="#collection">Projects</a><a href="#collections">Featured</a><a href="#services">Services</a><a href="#process">Process</a><a href="#contact">Contact</a></div>
+    <div><h5>Projects</h5><a href="#" data-cat="samana">Samana Barari Office</a><a href="#" data-cat="meraki">Meraki Office</a><a href="#" data-cat="danube">Danube Greenz</a><a href="#" data-cat="amira">Amira Villa</a><a href="#" data-cat="gym">Golf Gate Tower B Gym</a><a href="#" data-cat="furniture">Bespoke Furniture</a></div>
+    <div><h5>Contact</h5><a href="tel:+971529127439">+971 52 912 7439</a><a href="https://wa.me/971502440271" target="_blank" rel="noopener">WhatsApp +971 50 244 0271</a><a href="mailto:info@sadafpremiuminteriors.com">info@sadafpremiuminteriors.com</a><a href="https://www.instagram.com/sadafinteriordesign_/" target="_blank" rel="noopener">Instagram</a><span>P.O. Box 81062, Dubai, UAE</span></div>
+  </div>
+  <div class="foot-bot"><span>© <span id="yr"></span> Sadaf Premium Interior Design and Contracting LLC.</span><a href="#top">Back to top ↑</a></div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/971502440271?text=Hello%20Sadaf%20Premium%20Interiors%2C%20I%20would%20like%20a%20consultation%20for%20my%20project." target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 32 32" width="26" height="26"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.7c-2 0-3.9-.5-5.6-1.5l-.4-.2-3.9 1 1-3.8-.3-.4A10.7 10.7 0 1 1 16 26.7zm5.9-8c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5 1-1.7.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4s-1.2 1.1-1.2 2.8 1.2 3.2 1.4 3.4 2.4 3.7 5.8 5.2c2.2.9 3 1 4.1.8.7-.1 1.9-.8 2.2-1.5s.3-1.3.2-1.5-.3-.2-.6-.4z"/></svg>
+</a>
+
+<div class="modal" id="modal" aria-hidden="true" role="dialog">
+  <button class="modal-x" id="modalX" data-cursor="Close" aria-label="Close"></button>
+  <div class="modal-scroll" id="modalScroll" data-lenis-prevent></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="data.js?v=1"></script>
+<script type="module" src="main.js?v=1"></script>
+</body>
+</html>
