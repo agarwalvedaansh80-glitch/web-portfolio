@@ -104,6 +104,11 @@
       "source": "/shawa",
       "destination": "/shawa/",
       "permanent": false
+    },
+    {
+      "source": "/sfd",
+      "destination": "/sfd/",
+      "permanent": false
     }
   ]
 }
