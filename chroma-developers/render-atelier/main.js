@@ -372,7 +372,7 @@ const SIGVID = { mandarin: 'v/mandarin.mp4', redsea: 'v/redsea.mp4' };
         vec2 u1=cover((uv-.5)*(1.-.05*prog)+.5+dir*prog,res,s1);
         vec2 u2=cover((uv-.5)*(1.+.06*(1.-prog))+.5-dir*(1.-prog),res,s2);
         vec3 c=mix(texture2D(t1,u1).rgb,texture2D(t2,u2).rgb,m);
-        c+=vec3(.45,.88,.84)*(1.-smoothstep(0.,.06,abs(m-.5)))*.22*step(.02,prog)*step(prog,.98);
+        c+=vec3(.72,.36,.95)*(1.-smoothstep(0.,.06,abs(m-.5)))*.22*step(.02,prog)*step(prog,.98);
         gl_FragColor=vec4(c,1.);}`
   })));
   const T = [];
