@@ -279,7 +279,7 @@ function setLayout(k, instant) {
     gsap.to(M.pos, { x: t[0], z: t[1] + L.cz, duration: d, ease: e, delay: instant ? 0 : i * .04 });
     gsap.to(M, { rot: t[2], s: t[3] ? 1 : 0, duration: d, ease: e, delay: instant ? 0 : i * .04 });
   });
-  gsap.to(table.position, { z: (k === 'straight' ? 1.25 : 1.05) + L.cz, duration: d, ease: e });
+  gsap.to(table.position, { z: k === 'straight' ? 1.35 : k === 'l' ? 1.62 : 1.52, duration: d, ease: e });
 }
 const table = new THREE.Group(); sofa.add(table);
 {
