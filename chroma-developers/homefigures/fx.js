@@ -37,7 +37,7 @@ $$('[data-fx-clip]').forEach(el => {
   const k = el.dataset.fxClip; el.classList.add('fxclip', 'fxclip-' + k);
   if (k === 'blinds') { const img = $('img', el); if (img) { const n = 6; for (let i = 0; i < n; i++) { const b = document.createElement('i'); b.style.setProperty('--i', i); b.style.setProperty('--n', n); el.appendChild(b); } } }
   if (RM) { el.classList.add('in'); return; }
-  onScreenOnce(el, () => el.classList.add('in'));
+  onScreenOnce(el.parentElement || el, () => el.classList.add('in'));
 });
 function onScreenOnce(el, cb) { const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { cb(); io.disconnect(); } }), { threshold: .18 }); io.observe(el); }
 
@@ -183,7 +183,7 @@ $$('[data-fx-count]').forEach(el => { const to = +el.dataset.fxCount, o = { v: 0
   ST.create({ trigger: el, start: 'top 88%', once: true, onEnter: () => G.to(o, { v: to, duration: 2.2, ease: 'power3.out', onUpdate: () => el.textContent = Math.round(o.v) }) }); });
 
 /* ---------- 18. curtain wipe on images: [data-fx-wipe] ---------- */
-$$('[data-fx-wipe]').forEach(el => { el.classList.add('fx-wipe'); onScreenOnce(el, () => el.classList.add('in')); });
+$$('[data-fx-wipe]').forEach(el => { el.classList.add('fx-wipe'); onScreenOnce(el.parentElement || el, () => el.classList.add('in')); });
 
 /* ---------- WebGL helpers ---------- */
 function glProg(gl, vs, fs) { const sh = (t, s) => { const o = gl.createShader(t); gl.shaderSource(o, s); gl.compileShader(o); if (!gl.getShaderParameter(o, gl.COMPILE_STATUS)) console.warn(gl.getShaderInfoLog(o)); return o; };
