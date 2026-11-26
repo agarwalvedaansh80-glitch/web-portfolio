@@ -114,6 +114,11 @@
       "source": "/dimora",
       "destination": "/dimora/",
       "permanent": false
+    },
+    {
+      "source": "/cest-ici",
+      "destination": "/cest-ici/",
+      "permanent": false
     }
   ]
 }

@@ -165,7 +165,7 @@ function frontPanel() {
 }
 ScrollTrigger.create({ trigger: '#hero', start: 'top top', end: 'bottom top', onToggle: s => heroOn = s.isActive, onUpdate: s => heroP = s.progress });
 document.body.classList.add('in-hero');
-ScrollTrigger.create({ trigger: '#hero', start: 'top top', end: '40% top', onToggle: s => document.body.classList.toggle('in-hero', s.isActive) });
+{ const hh = () => document.body.classList.toggle('in-hero', scrollY < innerHeight * .4); lenis.on('scroll', hh); addEventListener('scroll', hh, { passive: true }); hh(); }
 gsap.ticker.add(() => {
   if (!heroOn) return;
   const v = lenis.velocity || 0;
