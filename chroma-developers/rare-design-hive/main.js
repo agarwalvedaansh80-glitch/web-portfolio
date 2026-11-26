@@ -132,7 +132,7 @@ function hexPrism() {
 }
 
 const hiveVert = /* glsl */`
-attribute float aFace; attribute vec4 aCell; attribute vec2 aTile;
+attribute float aFace; attribute vec4 aCell; attribute vec2 aTile; attribute float aFlip;
 uniform float uTime, uIntro, uScatter, uHover;
 uniform vec2 uMouse;
 varying vec2 vLocal; varying float vFace; varying vec3 vN; varying float vLift; varying vec2 vTile; varying float vDepth; varying float vFlipK;
@@ -142,18 +142,15 @@ mat3 rotZ(float a){float c=cos(a),s=sin(a);return mat3(c,s,0., -s,c,0., 0.,0.,1.
 void main(){
   vec2 c = aCell.xy; float rnd = aCell.z; float ring = aCell.w;
   float d = distance(c, uMouse);
-  float near = exp(-d*d*1.1) * uHover;
-  float wave = sin(dot(c, vec2(.55,.35))*1.7 - uTime*.9);
-  float lift = near*.95 + wave*.05 + sin(uTime*.6 + rnd*6.283)*.03;
-  float fm = smoothstep(.62, .2, d) * uHover;
-  float ph = fract(rnd*7.31 + uTime*.04 + c.x*.021);
-  float fa = smoothstep(0., .045, ph) - smoothstep(.3, .345, ph);
-  float flip = fa*(1.-fm) + fm*(1.-fa);
+  float near = exp(-d*d*.7) * uHover;
+  float wave = sin(dot(c, vec2(.55,.35))*1.3 - uTime*.3);
+  float lift = near*.5 + wave*.03 + sin(uTime*.22 + rnd*6.283)*.018;
+  float flip = aFlip;
   float t0 = clamp(uIntro*1.9 - ring*.55 - rnd*.3, 0., 1.);
   float ia = 1. - pow(1. - t0, 3.);
   float sc = clamp(uScatter*1.35 - rnd*.35, 0., 1.); sc = sc*sc*(3.-2.*sc);
   vec2 dirm = c - uMouse;
-  float tx = -dirm.y*near*.35, ty = dirm.x*near*.35;
+  float tx = -dirm.y*near*.16, ty = dirm.x*near*.16;
   float ang = flip*3.14159265 + (1.-ia)*(rnd-.5)*7. + sc*(rnd*5.+1.5);
   mat3 R = rotZ((1.-ia)*(rnd-.5)*3. + sc*(rnd-.5)*3.) * rotX(tx + (1.-ia)*rnd*2.5 + sc*(fract(rnd*9.1)-.5)*5.) * rotY(ang + ty);
   vec3 p = R * position * mix(.25, 1., ia);
@@ -167,7 +164,7 @@ void main(){
   vec4 mv = modelViewMatrix * vec4(center + p, 1.);
   gl_Position = projectionMatrix * mv;
   vLocal = position.xy; vFace = aFace; vN = normalize(normalMatrix * n);
-  vLift = near + fm*.3; vTile = aTile; vDepth = -mv.z; vFlipK = abs(sin(flip*3.14159265));
+  vLift = near; vTile = aTile; vDepth = -mv.z; vFlipK = abs(sin(flip*3.14159265));
 }`;
 const hiveFrag = /* glsl */`
 precision highp float;
@@ -233,7 +230,18 @@ async function initHive() {
   cells.forEach((c, i) => { aCell.set([c.x, c.y, c.rnd, c.dist / 4], i * 4); aTile.set([c.front, c.back], i * 2); });
   geo.setAttribute('aCell', new THREE.InstancedBufferAttribute(aCell, 4));
   geo.setAttribute('aTile', new THREE.InstancedBufferAttribute(aTile, 2));
+  const aFlip = new Float32Array(N), flipAttr = new THREE.InstancedBufferAttribute(aFlip, 1);
+  flipAttr.setUsage(THREE.DynamicDrawUsage);
+  geo.setAttribute('aFlip', flipAttr);
   geo.instanceCount = N;
+  cells.forEach(c => { c.face = 0; c.anim = null; c.cool = 0; });
+  const FLIP_DUR = 1.45;
+  const easeIO = k => k < 0.5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2;
+  function flipCell(i, t) {
+    const c = cells[i]; if (!c || c.anim || t < c.cool) return false;
+    c.anim = { from: c.face, to: 1 - c.face, t0: t }; c.face = 1 - c.face; c.cool = t + FLIP_DUR + 1.5; return true;
+  }
+  let nextAuto = 4, hoverSince = 0, hoverFlipped = true;
   const atlas = await loadTex('a/atlas.webp');
   hive.atlas = atlas;
   const uni = {
@@ -277,12 +285,7 @@ async function initHive() {
     for (let i = 0; i < N; i++) { const dx = cells[i].x - lx, dy = cells[i].y - ly, d = dx * dx + dy * dy; if (d < bd) { bd = d; best = i; } }
     return bd < 0.2 ? best : -1;
   }
-  function visibleProject(i, t) {
-    const c = cells[i];
-    const ph = (((c.rnd * 7.31 + t * 0.04 + c.x * 0.021) % 1) + 1) % 1;
-    const fa = ph > 0.02 && ph < 0.32;
-    return fa ? c.front : c.back - 18; // cursor on top flips the cell to its other face
-  }
+  function visibleProject(i) { const c = cells[i]; return c.face === 0 ? c.front : c.back - 18; }
   const lab = { name: $('#clName'), place: $('#clPlace') };
   let labelIdx = 0;
   function setLabel(pi) {
@@ -298,8 +301,8 @@ async function initHive() {
       target.set(l.x, l.y); hovering = true; lastMove = uni.uTime.value;
       const ci = cellAt(l.x, l.y);
       if (ci !== hoverCell) {
-        hoverCell = ci;
-        if (ci >= 0) setLabel(visibleProject(ci, uni.uTime.value));
+        hoverCell = ci; hoverSince = uni.uTime.value; hoverFlipped = false;
+        if (ci >= 0) setLabel(visibleProject(ci));
         const overUI = e.target.closest('a,button');
         if (!overUI) setCursor(ci >= 0 ? 'Open' : '', ci >= 0);
       }
@@ -310,7 +313,7 @@ async function initHive() {
     const l = toLocal(e.clientX, e.clientY); if (!l) return;
     const ci = cellAt(l.x, l.y); if (ci < 0) return;
     target.set(l.x, l.y); uni.uHover.value = 1; lastMove = uni.uTime.value;
-    const pi = visibleProject(ci, uni.uTime.value); setLabel(pi);
+    const pi = visibleProject(ci); setLabel(pi);
     setTimeout(() => openProject(P[pi].slug), FINE ? 0 : 320);
   });
 
@@ -321,24 +324,47 @@ async function initHive() {
   hive.canvas = canvas;
   io.observe(hero);
   let wanderLabelT = 0;
+  hive.scatterTarget = 0;
+  hive.busy = () => uni.uIntro.value < 1 || hive.scatterTarget < 0.999 || Math.abs(uni.uScatter.value - hive.scatterTarget) > 0.0005;
   hive.render = (t, dt) => {
     uni.uTime.value = t;
     uni.uDay.value = day;
+    // scroll scatter: eased toward the scrubbed value
+    const ds = hive.scatterTarget - uni.uScatter.value;
+    uni.uScatter.value = Math.abs(ds) < 0.0005 ? hive.scatterTarget : uni.uScatter.value + ds * 0.06;
     if (uni.uScatter.value > 0.3 && hoverCell >= 0) { hoverCell = -1; setCursor('', false); }
-    const idle = !hovering || t - lastMove > 4;
+    // timed flips
+    let dirty = false, animating = false;
+    for (let i = 0; i < N; i++) {
+      const c = cells[i]; if (!c.anim) continue;
+      const k = Math.min(1, (t - c.anim.t0) / FLIP_DUR);
+      aFlip[i] = c.anim.from + (c.anim.to - c.anim.from) * easeIO(k); dirty = true;
+      if (k >= 1) c.anim = null; else animating = true;
+    }
+    if (dirty) flipAttr.needsUpdate = true;
+    const calm = uni.uIntro.value > 0.99 && uni.uScatter.value < 0.05;
+    if (calm && t > nextAuto) {
+      if (!animating) { const i = Math.floor(Math.random() * N); flipCell(i, t); nextAuto = t + 3 + Math.random() * 2; }
+      else nextAuto = t + 0.6;
+    }
+    if (calm && hoverCell >= 0 && !hoverFlipped && t - hoverSince > 0.35) {
+      hoverFlipped = true;
+      if (flipCell(hoverCell, t)) setTimeout(() => { if (hoverCell >= 0) setLabel(visibleProject(hoverCell)); }, FLIP_DUR * 500);
+    }
+    const idle = !hovering || t - lastMove > 5;
     if (idle) {
-      target.set(Math.sin(t * 0.23) * 2.2, Math.cos(t * 0.31) * 1.7);
-      uni.uHover.value = lerp(uni.uHover.value, 0.75, 0.02);
-      if (t - wanderLabelT > 3.2 && uni.uIntro.value > 0.99) {
+      target.set(Math.sin(t * 0.07) * 2.2, Math.cos(t * 0.09) * 1.7);
+      uni.uHover.value = lerp(uni.uHover.value, 0.6, 0.01);
+      if (t - wanderLabelT > 5 && uni.uIntro.value > 0.99) {
         wanderLabelT = t; const ci = cellAt(target.x, target.y);
-        if (ci >= 0) setLabel(visibleProject(ci, t));
+        if (ci >= 0) setLabel(visibleProject(ci));
       }
-    } else uni.uHover.value = lerp(uni.uHover.value, 1, 0.08);
-    uni.uMouse.value.lerp(target, idle ? 0.03 : 0.12);
+    } else uni.uHover.value = lerp(uni.uHover.value, 1, 0.025);
+    uni.uMouse.value.lerp(target, idle ? 0.01 : 0.035);
     const mx = FINE ? (mouse.x / size.w - 0.5) : 0, my = FINE ? (mouse.y / size.h - 0.5) : 0;
-    group.rotation.x = lerp(group.rotation.x, baseRot.x + my * 0.12 + uni.uScatter.value * 0.35, 0.06);
-    group.rotation.y = lerp(group.rotation.y, baseRot.y + mx * 0.16, 0.06);
-    group.rotation.z = baseRot.z + Math.sin(t * 0.1) * 0.03;
+    group.rotation.x = lerp(group.rotation.x, baseRot.x + my * 0.08 + uni.uScatter.value * 0.35, 0.03);
+    group.rotation.y = lerp(group.rotation.y, baseRot.y + mx * 0.1, 0.03);
+    group.rotation.z = baseRot.z + Math.sin(t * 0.05) * 0.03;
     camera.position.z = 13 - uni.uScatter.value * 4;
     renderer.render(scene, camera);
   };
@@ -349,16 +375,15 @@ async function initHive() {
    ========================================================= */
 const mosaicFrag = /* glsl */`
 precision highp float;
-uniform sampler2D uA, uB; uniform float uAspA, uAspB, uP, uTime, uZoom, uCell;
-uniform vec2 uRes, uMouse;
+uniform sampler2D uA, uB; uniform float uAspA, uAspB, uP, uTime, uCell;
+uniform vec2 uRes;
 varying vec2 vUv;
 vec2 cover(vec2 uv, float ia){ float sa = uRes.x/uRes.y; vec2 s = sa > ia ? vec2(1., ia/sa) : vec2(sa/ia, 1.); return (uv - .5)*s + .5; }
 float h21(vec2 p){ p = fract(p*vec2(123.34, 456.21)); p += dot(p, p + 45.32); return fract(p.x*p.y); }
 float hexD(vec2 p){ p = abs(p); return max(dot(p, normalize(vec2(1., 1.7320508))), p.x); }
 vec4 hexC(vec2 p){ vec2 r = vec2(1., 1.7320508), h = r*.5; vec2 a = mod(p, r) - h, b = mod(p - h, r) - h; vec2 gv = dot(a,a) < dot(b,b) ? a : b; return vec4(gv, p - gv); }
 vec3 samp(sampler2D t, float asp, vec2 uv){
-  uv = (uv - .5)/(1. + uZoom*.07) + .5 + uMouse*.012;
-  return texture2D(t, clamp(cover(uv, asp), .001, .999)).rgb;
+  return texture2D(t, clamp(cover(uv, asp), .0002, .9998)).rgb;
 }
 void main(){
   vec2 px = vUv*uRes;
@@ -366,42 +391,49 @@ void main(){
   vec2 gv = hc.xy, id = hc.zw;
   vec2 cn = id*uCell/uRes;
   float rnd = h21(id);
-  float delay = clamp(cn.x*.62 + (1. - cn.y)*.18 + rnd*.2, 0., 1.);
-  float lp = smoothstep(delay*.7, delay*.7 + .3, uP);
+  float delay = clamp(cn.x*.55 + (1. - cn.y)*.2 + rnd*.25, 0., 1.);
+  float lp = smoothstep(delay*.42, delay*.42 + .58, uP);
   float s = abs(cos(lp*3.14159265));
   s = max(s, .0001);
   vec2 lg = vec2(gv.x/s, gv.y);
   float hd = hexD(lg);
   vec2 suv = (id + lg)*uCell/uRes;
   float wob = sin(lp*3.14159265);
-  suv += vec2(sin(suv.y*9. + uTime*.8), cos(suv.x*8. - uTime*.7))*.006*wob;
+  suv += vec2(sin(suv.y*7. + uTime*.3), cos(suv.x*6. - uTime*.25))*.004*wob;
   vec3 col = lp < .5 ? samp(uA, uAspA, suv) : samp(uB, uAspB, suv);
-  col *= .55 + .45*s;
+  col *= .72 + .28*s;
   vec3 g = mix(vec3(.608,.235,.961), vec3(.949,.635,.886), cn.x);
-  col += g*smoothstep(.4, .5, hd)*wob*.9;
+  col += g*smoothstep(.42, .5, hd)*wob*.55;
   float gap = step(.5, hd)*step(.001, wob);
-  col = mix(col, g*.22*wob, gap);
-  float v = smoothstep(1.25, .35, length(vUv - .5));
-  col *= mix(.78, 1., v);
+  col = mix(col, g*.16*wob, gap);
   gl_FragColor = vec4(col, 1.);
 }`;
 
-const mosaic = { ok: false };
+const mosaic = { ok: false, want: 0 };
+const SHOW_SRC = window.SHOWCASE.map(x => `s/${x.slug}.webp`);
+const shImg = $('#shImg');
+function showAlt(k) { const p = P[BYSLUG[window.SHOWCASE[k].slug]]; return `${p.name}, ${p.place}`; }
 async function initMosaic() {
   const canvas = $('#mosaic');
-  const renderer = makeRenderer(canvas, 1, false);
+  const renderer = makeRenderer(canvas, 2, false);
   const scene = new THREE.Scene();
   const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
   const uni = {
     uA: { value: null }, uB: { value: null }, uAspA: { value: 1.78 }, uAspB: { value: 1.78 }, uP: { value: 0 },
-    uTime: { value: 0 }, uZoom: { value: 0 }, uCell: { value: 90 }, uRes: { value: new THREE.Vector2(1, 1) }, uMouse: { value: new THREE.Vector2() }
+    uTime: { value: 0 }, uCell: { value: 90 }, uRes: { value: new THREE.Vector2(1, 1) }
   };
   const mat = new THREE.ShaderMaterial({ vertexShader: 'varying vec2 vUv; void main(){ vUv = uv; gl_Position = vec4(position.xy, 0., 1.); }', fragmentShader: mosaicFrag, uniforms: uni });
   scene.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), mat));
-  const list = window.SHOWCASE;
-  const texs = await Promise.all(list.map(s => loadTex(`img/${s.slug}-${pad(s.img)}.webp`)));
-  texs.forEach(t => { if (t) t.generateMipmaps = false, t.minFilter = THREE.LinearFilter; });
-  const asp = texs.map(t => t && t.image ? t.image.width / t.image.height : 1.78);
+  const imgs = await Promise.all(SHOW_SRC.map(src => new Promise(res => { const im = new Image(); im.decoding = 'async'; im.onload = () => res(im); im.onerror = () => res(null); im.src = src; })));
+  const maxAniso = renderer.capabilities.getMaxAnisotropy();
+  const texs = imgs.map(im => {
+    if (!im) return null;
+    const t = new THREE.Texture(im);
+    t.colorSpace = THREE.NoColorSpace; t.generateMipmaps = false; t.minFilter = THREE.LinearFilter; t.magFilter = THREE.LinearFilter; t.anisotropy = maxAniso; t.needsUpdate = true;
+    return t;
+  });
+  texs.forEach(t => { if (t) renderer.initTexture(t); });
+  const asp = imgs.map(im => im ? im.naturalWidth / im.naturalHeight : 1.78);
   function layout() {
     const w = canvas.clientWidth || innerWidth, h = canvas.clientHeight || innerHeight;
     renderer.setSize(w, h, false);
@@ -411,21 +443,37 @@ async function initMosaic() {
   }
   layout();
   mosaic.layout = layout;
-  mosaic.progress = 0;
-  const mp = new THREE.Vector2();
-  mosaic.render = t => {
-    const f = Math.min(mosaic.progress * (list.length - 1) * 1.0001, list.length - 1);
-    const a = Math.min(Math.floor(f), list.length - 1), b = Math.min(a + 1, list.length - 1);
-    const fr = f - a;
-    uni.uA.value = texs[a]; uni.uB.value = texs[b]; uni.uAspA.value = asp[a]; uni.uAspB.value = asp[b];
-    uni.uP.value = a === b ? 0 : THREE.MathUtils.smoothstep(fr, 0.18, 0.92);
-    uni.uZoom.value = fr;
-    uni.uTime.value = t;
-    if (FINE) { mp.set(mouse.x / innerWidth - 0.5, mouse.y / innerHeight - 0.5); uni.uMouse.value.lerp(mp, 0.05); }
-    renderer.render(scene, camera);
-  };
+  let cur = 0, anim = null, fadeT = null;
+  mosaic.active = false;
+  // resting state is the sharp <img>; WebGL only draws while the hex tiles turn
+  function start() {
+    if (anim || mosaic.want === cur || !texs[cur] || !texs[mosaic.want]) {
+      if (!anim && mosaic.want !== cur) { cur = mosaic.want; shImg.src = SHOW_SRC[cur]; shImg.alt = showAlt(cur); }
+      return;
+    }
+    const to = mosaic.want;
+    clearTimeout(fadeT);
+    uni.uA.value = texs[cur]; uni.uB.value = texs[to]; uni.uAspA.value = asp[cur]; uni.uAspB.value = asp[to]; uni.uP.value = 0;
+    mosaic.active = true;
+    mosaic.render(performance.now() / 1000);
+    canvas.style.transition = 'none'; canvas.style.opacity = 1;
+    anim = gsap.to(uni.uP, { value: 1, duration: REDUCED ? 0.01 : 1.5, ease: 'sine.inOut', onComplete: () => {
+      cur = to; anim = null;
+      if (mosaic.want !== cur) return start();
+      shImg.src = SHOW_SRC[cur]; shImg.alt = showAlt(cur);
+      const done = () => requestAnimationFrame(() => {
+        if (anim) return;
+        canvas.style.transition = 'opacity .5s ease'; canvas.style.opacity = 0;
+        fadeT = setTimeout(() => { if (!anim) mosaic.active = false; }, 560);
+      });
+      shImg.decode ? shImg.decode().then(done, done) : done();
+    } });
+  }
+  mosaic.go = k => { mosaic.want = k; start(); };
+  mosaic.render = t => { uni.uTime.value = t; renderer.render(scene, camera); };
   mosaic.ok = true;
   io.observe($('#show'));
+  start();
 }
 
 /* =========================================================
@@ -505,9 +553,9 @@ function initTunnel(atlas) {
   const fogC = new THREE.Color();
   tunnel.render = t => {
     const p = tunnel.progress;
-    cz = lerp(cz, 4 - p * (RINGS - 12) * GAP, 0.12);
-    camera.position.set(Math.sin(p * 5 + t * 0.2) * 0.35, Math.cos(p * 4 + t * 0.17) * 0.25, cz);
-    camera.rotation.z = p * 1.1 + Math.sin(t * 0.15) * 0.04;
+    cz = lerp(cz, 4 - p * (RINGS - 12) * GAP, 0.05);
+    camera.position.set(Math.sin(p * 4 + t * 0.08) * 0.3, Math.cos(p * 3 + t * 0.07) * 0.22, cz);
+    camera.rotation.z = p * 0.7 + Math.sin(t * 0.06) * 0.03;
     fogC.setRGB(lerp(BG.dark[0], BG.light[0], day), lerp(BG.dark[1], BG.light[1], day), lerp(BG.dark[2], BG.light[2], day));
     scene.fog.color.copy(fogC); panelMat.uniforms.fogColor.value.copy(fogC);
     ringMat.opacity = 0.95; latMat.opacity = lerp(0.35, 0.5, day);
@@ -524,7 +572,7 @@ function initTunnel(atlas) {
 const grid = $('#grid');
 grid.innerHTML = P.map((p, i) => `
   <a class="card" href="#work" data-open="${p.slug}" data-cats="${p.cats.join(' ')}" aria-label="${p.name}, ${p.place}">
-    <div class="card-media"><img class="lz" src="t/${p.slug}-01.webp" alt="${p.name}, ${p.type.toLowerCase()}" loading="lazy" decoding="async" width="720" height="405"><span class="open">View project</span></div>
+    <div class="card-media"><img class="lz" src="t/${p.slug}-01.webp" srcset="t/${p.slug}-01.webp 720w, img/${p.slug}-01.webp 1280w" sizes="(max-width:760px) 92vw, (max-width:1100px) 46vw, 31vw" alt="${p.name}, ${p.type.toLowerCase()}" loading="lazy" decoding="async" width="720" height="405"><span class="open">View project</span></div>
     <div class="card-body"><h3 class="card-name">${p.name}</h3><span class="card-n">${pad(i + 1)}</span></div>
     <p class="card-place">${p.place}</p><p class="card-type">${p.type}</p>
   </a>`).join('');
@@ -548,8 +596,11 @@ const pv = $('#pv'); let pvIdx = 0, pvReturn = null;
 function setMain(slug, k) {
   const im = $('#pvMain');
   im.style.opacity = 0;
-  const src = `img/${slug}-${pad(k + 1)}.webp`;
-  const pre = new Image(); pre.onload = pre.onerror = () => { im.src = src; im.style.opacity = 1; }; pre.src = src;
+  const f = `${slug}-${pad(k + 1)}.webp`;
+  im.onload = im.onerror = () => { im.style.opacity = 1; };
+  im.sizes = '(max-width:1360px) 92vw, 1250px';
+  im.srcset = `img/${f} 1280w, xl/${f} 2200w`;
+  im.src = `img/${f}`;
   im.alt = `${P[pvIdx].name}, image ${k + 1}`;
   $$('#pvThumbs button').forEach((b, i) => b.classList.toggle('on', i === k));
 }
@@ -622,8 +673,8 @@ let heroST, showST, procST;
 function buildScroll() {
   // hero pin: honeycomb scatters, camera dollies in
   const htl = gsap.timeline({ scrollTrigger: {
-    trigger: '#hero', start: 'top top', end: '+=110%', pin: true, scrub: true,
-    onUpdate: s => { if (hive.uni) hive.uni.uScatter.value = s.progress; }
+    trigger: '#hero', start: 'top top', end: '+=120%', pin: true, scrub: 1,
+    onUpdate: s => { hive.scatterTarget = s.progress; }
   } });
   htl.fromTo('.hero-copy', { y: 0, opacity: 1 }, { y: -90, opacity: 0, ease: 'none', duration: 0.6 }, 0)
      .fromTo('.hero-foot', { opacity: 1 }, { opacity: 0, ease: 'none', duration: 0.3 }, 0)
@@ -639,14 +690,15 @@ function buildScroll() {
     const p = P[BYSLUG[window.SHOWCASE[k].slug]];
     dots.forEach((d, i) => d.classList.toggle('on', i === k));
     shNum.textContent = pad(k + 1);
-    gsap.fromTo([shPlace, shName, shClient], { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.6, stagger: 0.05, ease: 'power3.out', overwrite: true, clearProps: 'transform' });
+    gsap.fromTo([shPlace, shName, shClient], { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 1.1, stagger: 0.08, ease: 'power2.out', overwrite: true, clearProps: 'transform' });
+    if (mosaic.ok) mosaic.go(k); else { mosaic.want = k; if (!glOK) { shImg.src = SHOW_SRC[k]; shImg.alt = showAlt(k); } }
     shName.textContent = p.name; shPlace.textContent = p.place; shClient.textContent = `For ${p.client}`;
     $('#shOpen').onclick = () => openProject(p.slug);
   };
   setShow(0);
   showST = ScrollTrigger.create({
     trigger: '#show', start: 'top top', end: '+=360%', pin: true, scrub: true,
-    onUpdate: s => { mosaic.progress = s.progress; setShow(Math.min(4, Math.round(s.progress * 4))); }
+    onUpdate: s => setShow(Math.min(4, Math.round(s.progress * 4)))
   });
 
   // process pin
@@ -660,7 +712,7 @@ function buildScroll() {
   };
   setStep(0);
   procST = ScrollTrigger.create({
-    trigger: '#process', start: 'top top', end: '+=300%', pin: true, scrub: true,
+    trigger: '#process', start: 'top top', end: '+=300%', pin: true, scrub: 1,
     onUpdate: s => { tunnel.progress = s.progress; bar.style.transform = `scaleX(${s.progress})`; setStep(Math.min(4, Math.floor(s.progress * 5))); }
   });
 
@@ -701,7 +753,7 @@ async function boot() {
   intro.fromTo('.hero-title .ln>span', { yPercent: 110 }, { yPercent: 0, duration: 1.5, stagger: 0.09, ease: 'expo.out', clearProps: 'transform' }, 0.25)
        .fromTo('.hero-copy .h-in', { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 1.1, stagger: 0.08, ease: 'power3.out', clearProps: 'opacity,transform' }, 0.6)
        .fromTo('.hero-foot>*', { opacity: 0 }, { opacity: 1, duration: 1, stagger: 0.1, clearProps: 'opacity' }, 1.1);
-  if (hive.uni) intro.fromTo(hive.uni.uIntro, { value: 0 }, { value: 1, duration: REDUCED ? 0.01 : 2.6, ease: 'power2.out' }, 0);
+  if (hive.uni) intro.fromTo(hive.uni.uIntro, { value: 0 }, { value: 1, duration: REDUCED ? 0.01 : 3.4, ease: 'power2.out' }, 0);
   document.body.classList.remove('is-loading');
   $('#loader').classList.add('out');
   lenis.start();
@@ -722,8 +774,8 @@ gsap.ticker.add(() => {
   const now = performance.now(), t = now / 1000, dt = Math.min(0.05, (now - last) / 1000); last = now;
   day = lerp(day, dayTarget, 0.08);
   cursorTick();
-  if (hive.ok && visible.get(elHero) !== false && (hive.uni.uScatter.value < 0.999 || hive.uni.uIntro.value < 1)) hive.render(t, dt);
-  if (mosaic.ok && visible.get(elShow)) mosaic.render(t);
+  if (hive.ok && visible.get(elHero) !== false && hive.busy()) hive.render(t, dt);
+  if (mosaic.ok && mosaic.active && visible.get(elShow)) mosaic.render(t);
   if (tunnel.ok && visible.get(elProc)) tunnel.render(t);
 });
 

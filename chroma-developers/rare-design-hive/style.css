@@ -162,18 +162,21 @@ html:not(.fine) .hint-touch{display:inline}
 
 /* showcase */
 .show{position:relative;height:100vh;height:100svh;min-height:560px;overflow:hidden;background:#000}
-#mosaic{position:absolute;inset:0;width:100%;height:100%}
-.show-ui{position:absolute;inset:0;pointer-events:none;color:#f4f0f8;background:linear-gradient(0deg,rgba(0,0,0,.82) 0%,rgba(0,0,0,.45) 30%,rgba(0,0,0,0) 55%),linear-gradient(90deg,rgba(0,0,0,.35) 0%,rgba(0,0,0,0) 50%),linear-gradient(180deg,rgba(0,0,0,.45) 0%,rgba(0,0,0,0) 22%)}
+#mosaic{position:absolute;inset:0;width:100%;height:100%;opacity:0}
+.show-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.show-ui{position:absolute;inset:0;pointer-events:none;color:#f4f0f8;text-shadow:0 1px 18px rgba(0,0,0,.28)}
+.show-ui::before{content:"";position:absolute;left:0;right:0;top:0;height:150px;background:linear-gradient(180deg,rgba(0,0,0,.34),rgba(0,0,0,0))}
+.show-info::before{content:"";position:absolute;z-index:-1;left:calc(-1*var(--gut) - 10vw);right:-14vw;top:-28%;bottom:calc(-1*clamp(36px,7vh,70px) - 4vh);background:radial-gradient(ellipse 62% 70% at 32% 72%,rgba(0,0,0,.56),rgba(0,0,0,.22) 55%,rgba(0,0,0,0) 78%);pointer-events:none}
 .show-count{position:absolute;top:96px;left:var(--gut);display:flex;align-items:baseline;gap:12px;font-size:13px;color:rgba(244,240,248,.7)}
 .show-count b{font-family:var(--serif);font-weight:300;font-size:44px;color:#f4f0f8;font-variant-numeric:lining-nums}
-.show-info{position:absolute;left:var(--gut);bottom:clamp(36px,7vh,70px);max-width:min(760px,80vw)}
+.show-info{position:absolute;left:var(--gut);bottom:clamp(36px,7vh,70px);max-width:min(760px,80vw);isolation:isolate}
 .show-place{font-size:15px;color:rgba(244,240,248,.78)}
 .show-name{font-family:var(--serif);font-weight:300;font-size:clamp(46px,7vw,112px);line-height:.95;letter-spacing:-.02em;margin:10px 0 8px}
 .show-client{font-size:15px;color:rgba(244,240,248,.7);margin-bottom:26px}
 .show-info .btn{pointer-events:auto;color:#f4f0f8;border-color:rgba(244,240,248,.4)}
 .show-info .btn:hover{border-color:#f2a2e2;color:#f2a2e2}
 .show-dots{position:absolute;right:var(--gut);top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:14px}
-.show-dots i{width:10px;height:11px;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);background:rgba(244,240,248,.3);transition:background .4s,transform .4s var(--ease)}
+.show-dots i{width:10px;height:11px;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);background:rgba(244,240,248,.38);transition:background 1.2s ease,transform 1.4s var(--ease)}
 .show-dots i.on{background:linear-gradient(160deg,#9b3cf5,#f2a2e2);transform:scale(1.35)}
 .show-info .fadeswap{transition:opacity .35s,transform .5s var(--ease)}
 
@@ -362,6 +365,7 @@ a.ct:hover b{background-size:100% 1px}
   .show-count{top:84px}
   .show-dots{right:14px}
   .show-info{max-width:calc(100vw - 2*var(--gut))}
+  .show-info::before{left:calc(-1*var(--gut));right:calc(-1*var(--gut));top:-45%;background:linear-gradient(0deg,rgba(0,0,0,.66) 0%,rgba(0,0,0,.42) 55%,rgba(0,0,0,0) 100%)}
   .show-name{font-size:clamp(40px,11vw,56px)}
   .proc-ui{padding-top:90px;padding-bottom:36px}
   .steps{height:270px}
