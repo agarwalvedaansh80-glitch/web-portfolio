@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <base href="/homefigures/">
@@ -9,260 +9,172 @@
 <meta property="og:title" content="Home Figures | Bespoke Design House">
 <meta property="og:description" content="Sculptural furniture designed by Lea Chatila and handcrafted in our own UAE workshop.">
 <meta property="og:image" content="https://chroma-developers.vercel.app/homefigures/img/sea2.webp">
-<meta name="theme-color" content="#0b0a0a">
+<meta name="theme-color" content="#0b0a09">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=4">
-<link rel="stylesheet" href="fx.css?v=1">
-<link rel="stylesheet" href="site.css?v=3">
-<script>try{if(localStorage.getItem('hf-theme')==='light')document.documentElement.dataset.theme='light'}catch(e){}</script>
-<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="img/tab1.webp">
+<link rel="stylesheet" href="style.css?v=11">
+<script>document.documentElement.className='js'</script>
 </head>
-<body class="loading in-hero">
+<body class="loading">
 
 <div class="loader" id="loader">
-  <div class="loader-panels"><i></i><i></i><i></i><i></i><i></i></div>
-  <div class="loader-inner">
-    <div class="loader-word" aria-label="Home Figures"><span>H</span><span>O</span><span>M</span><span>E</span><span class="sp"></span><span>F</span><span>I</span><span>G</span><span>U</span><span>R</span><span>E</span><span>S</span></div>
-    <div class="loader-sub">Bespoke Design House</div>
-    <div class="loader-bar"><i id="loaderBar"></i></div>
-    <div class="loader-meta"><span>Dubai · UAE</span><span><b id="loaderNum">0</b>%</span></div>
-  </div>
+  <div class="loader-word">HOME FIGURES</div>
+  <div class="loader-line"><i id="loaderBar"></i></div>
+  <div class="loader-sub">Bespoke Design House, Dubai</div>
 </div>
 
-<div class="cursor" id="cursor"><div class="c-ring"><span class="c-label" id="cLabel"></span></div><div class="c-dot"></div></div>
-<canvas id="gal" aria-hidden="true"></canvas>
+<div class="cursor" id="cursor"><i class="c-ring"></i><i class="c-dot"></i></div>
 
 <header class="nav" id="nav">
-  <a href="#top" class="logo" aria-label="Home Figures"><b>HOME FIGURES</b><small>Bespoke Design House</small></a>
+  <a href="#top" class="logo" aria-label="Home Figures">HOME FIGURES</a>
   <nav class="nav-links">
-    <a href="#signature">Signature</a><a href="#collections">Collections</a><a href="#studio">Designer</a><a href="#services">Bespoke</a><a href="#process">Process</a><a href="#contact">Contact</a>
+    <a href="#collections">Collections</a><a href="#studio">Designer</a><a href="#pieces">Pieces</a><a href="#materials">Materials</a><a href="#bespoke">Bespoke</a>
   </nav>
-  <button class="theme" id="theme" aria-label="Switch day or night mode" data-cursor="Mode"><span>Day</span><i></i><span>Night</span></button>
-  <a href="#contact" class="btn btn-brass btn-sm nav-cta magnetic">Start a piece</a>
+  <a href="#contact" class="nav-cta">Enquire</a>
   <button class="burger" id="burger" aria-label="Menu"><i></i><i></i></button>
 </header>
 <div class="menu" id="menu">
-  <a href="#signature">Signature</a><a href="#collections">Collections</a><a href="#studio">Designer</a><a href="#services">Bespoke</a><a href="#process">Process</a><a href="#contact">Contact</a>
+  <a href="#collections">Collections</a><a href="#studio">Designer</a><a href="#pieces">Pieces</a><a href="#materials">Materials</a><a href="#bespoke">Bespoke</a><a href="#contact">Contact</a>
   <div class="menu-foot"><a href="https://wa.me/971509729558" target="_blank" rel="noopener">WhatsApp</a><a href="tel:+971509729558">+971 50 972 9558</a></div>
 </div>
 
 <main id="top">
 
 <section class="hero" id="hero">
-  <div class="hero-pin">
-    <canvas id="cfgGL" aria-hidden="true"></canvas>
-    <div class="hero-real" aria-hidden="true"><img src="img/tab2.webp" alt=""><img src="img/sea2.webp" alt=""><img src="img/sea4.webp" alt=""></div>
-    <div class="hero-top" id="heroTop">
-      <div class="eyebrow h-in">Bespoke Design House · Dubai</div>
-      <h1 class="hero-title split">Furniture as <em>a piece of art</em></h1>
-      <p class="hero-lead h-in">Sculptural pieces designed by Lea Chatila and handcrafted in our own UAE workshop, in the size, fabric and colour of your choice.</p>
-    </div>
-    <div class="xp" id="xp" aria-hidden="true">
-      <div class="eyebrow">Ideas to reality</div>
-      <h2 class="xp-title">Crafted piece by piece, <em>to your size</em></h2>
-      <p>Select the sizes, materials and colours of your bespoke piece through a variety of samples.</p>
-    </div>
-    <div class="tags" id="tags">
-      <div class="tag" data-k="back"><i></i><span>Back cushions</span></div>
-      <div class="tag" data-k="seat"><i></i><span>Seat cushions</span></div>
-      <div class="tag" data-k="arm"><i></i><span>Arm with <b class="finName">walnut</b> tray</span></div>
-      <div class="tag" data-k="frame"><i></i><span>Upholstered frame</span></div>
-      <div class="tag" data-k="base"><i></i><span>Base in <b class="finName">walnut</b></span></div>
-      <div class="tag" data-k="table"><i></i><span>Table in <b class="finName">walnut</b></span></div>
-    </div>
-    <div class="cfg h-in" id="cfg">
-      <button class="cfg-x" id="cfgX" aria-label="Close" data-cursor="Close"></button>
-      <div class="cfg-head"><span>Personalise your piece</span><b id="cfgSel">Bouclé Ivory · Walnut</b></div>
-      <div class="cfg-row"><label>Upholstery</label>
-        <div class="sw" id="swFab">
-          <button class="on" data-k="boucle" data-n="Bouclé Ivory" data-cursor="Bouclé" style="--sw:radial-gradient(circle at 35% 30%,#fbf7f0,#ddd4c6 70%)" aria-label="Bouclé Ivory"></button>
-          <button data-k="linen" data-n="Linen Stone" data-cursor="Linen" style="--sw:repeating-linear-gradient(90deg,#b7ad9f 0 2px,#a39888 2px 4px)" aria-label="Linen Stone"></button>
-          <button data-k="velvet" data-n="Velvet Mocha" data-cursor="Velvet" style="--sw:radial-gradient(circle at 35% 30%,#8a6a52,#3f2c20 72%)" aria-label="Velvet Mocha"></button>
-          <button data-k="charcoal" data-n="Velvet Charcoal" data-cursor="Charcoal" style="--sw:radial-gradient(circle at 35% 30%,#5a5856,#1c1c1c 72%)" aria-label="Velvet Charcoal"></button>
-          <button data-k="leather" data-n="Leather Cognac" data-cursor="Leather" style="--sw:radial-gradient(circle at 35% 30%,#b0703f,#5e3219 75%)" aria-label="Leather Cognac"></button>
-        </div>
-      </div>
-      <div class="cfg-row"><label>Base finish</label>
-        <div class="sw" id="swFin">
-          <button class="on" data-k="walnut" data-n="Walnut" data-cursor="Walnut" style="--sw:repeating-linear-gradient(100deg,#5a3a25 0 3px,#6e4a30 3px 5px,#4a2f1e 5px 8px)" aria-label="Walnut"></button>
-          <button data-k="oak" data-n="Oak" data-cursor="Oak" style="--sw:repeating-linear-gradient(100deg,#c49a68 0 3px,#b08458 3px 5px,#d2ab7b 5px 8px)" aria-label="Oak"></button>
-          <button data-k="marble" data-n="Travertine" data-cursor="Stone" style="--sw:linear-gradient(135deg,#f1ede6 40%,#a59d92 44%,#f1ede6 47%,#e6e0d6 70%,#bdb4a6 72%,#f1ede6 74%)" aria-label="Stone"></button>
-          <button data-k="brass" data-n="Brushed Metal" data-cursor="Metal" style="--sw:linear-gradient(135deg,#8c6a39,#e2c58f 45%,#a98447 60%,#d9b97f)" aria-label="Brushed Metal"></button>
-        </div>
-      </div>
-      <a class="btn btn-brass btn-sm cfg-send magnetic" id="cfgSend" href="https://wa.me/971509729558" target="_blank" rel="noopener">Send this design</a>
-    </div>
-    <div class="hero-hint h-in"><span class="drag-ico"><i></i></span><span>Drag to rotate<br>Scroll to see it built</span></div>
+  <img class="hero-still" id="heroStill" src="img/tab1.webp" alt="Stainless Steel Splash table by Home Figures">
+  <canvas id="heroGL" aria-hidden="true"></canvas>
+  <div class="hero-shade" aria-hidden="true"></div>
+  <div class="hero-in">
+    <h1 class="hero-h1">Furniture as <em>a piece of art</em></h1>
+    <div class="hero-meta"><span id="heroCat">Tables</span><i></i><span id="heroNote">Brushed stainless steel</span></div>
+    <div class="hero-title" id="heroTitle" aria-live="polite">Stainless Steel Splash</div>
+  </div>
+  <p class="hero-lead">Sculptural pieces designed by Lea Chatila and handcrafted in our own UAE workshop, in the size, fabric and colour of your choice.</p>
+  <div class="hero-bar">
+    <div class="hero-count"><b id="heroN">01</b><span>/ 05</span></div>
+    <div class="hero-ticks" id="heroTicks"></div>
+    <div class="hero-ctl"><button id="heroPrev" aria-label="Previous piece">Prev</button><button id="heroNext" aria-label="Next piece">Next</button></div>
+  </div>
+  <a href="#statement" class="hero-scroll" aria-label="Scroll"><span>Scroll</span><i></i></a>
+</section>
+
+<section class="statement" id="statement">
+  <div class="eyebrow" data-r>The approach</div>
+  <p class="statement-txt" id="fill">For Lea, furniture is much more than a functional item. It is <em>a piece of art</em> that stands out in the space.</p>
+  <div class="statement-facts" data-r>
+    <div><b>Designed</b><span>by Lea Chatila</span></div>
+    <div><b>Handcrafted</b><span>in our own UAE workshop</span></div>
+    <div><b>Made to order</b><span>in your size, fabric and colour</span></div>
   </div>
 </section>
 
-<div class="marquee" aria-hidden="true"><div class="marquee-track">
-  <span>Armchairs</span><b></b><span>Sofas</span><b></b><span>Tables</span><b></b><span>Consoles</span><b></b><span>Cabinets</span><b></b><span>Mirrors</span><b></b><span>Beds</span><b></b><span>Bespoke</span><b></b>
-  <span>Armchairs</span><b></b><span>Sofas</span><b></b><span>Tables</span><b></b><span>Consoles</span><b></b><span>Cabinets</span><b></b><span>Mirrors</span><b></b><span>Beds</span><b></b><span>Bespoke</span><b></b>
-</div></div>
+<section class="coll" id="collections">
+  <div class="coll-pin">
+    <div class="coll-head">
+      <div class="eyebrow">Collections</div>
+      <h2 class="h2" data-split>Five families, <em>one hand</em></h2>
+      <div class="coll-prog"><i id="collBar"></i></div>
+    </div>
+    <div class="coll-track" id="collTrack"></div>
+  </div>
+</section>
 
-<!-- SIGNATURE: 3D cover flow -->
-<section class="sig" id="signature">
+<section class="designer" id="studio">
+  <div class="designer-img" data-clip><img src="img/lea-p.webp" alt="Designer Lea Chatila, founder of Home Figures" width="900" height="1125"></div>
+  <div class="designer-text">
+    <div class="eyebrow" data-r>Our designer</div>
+    <h2 class="h2" data-split>Lea <em>Chatila</em></h2>
+    <p class="lede" data-r>Founded by interior and furniture designer Lea Chatila, Home Figures is a furniture design house born and based in the UAE, with its own production facilities.</p>
+    <p class="muted" data-r>Born and raised in Beirut, Lea likes to experiment with shapes and colours, balancing functionality and creativity while maintaining comfort. Her focus is to understand what each client needs, their aspirations and style, and translate it into a unique creation.</p>
+    <a href="#bespoke" class="tlink" data-r>The bespoke service</a>
+  </div>
+</section>
+
+<section class="pieces" id="pieces">
   <div class="sec-head">
-    <div class="eyebrow">Signature pieces</div>
-    <h2 class="h2" data-fx-chars>Shapes that <em>stand out</em></h2>
+    <div class="eyebrow" data-r>Selected pieces</div>
+    <h2 class="h2" data-split>Made to order, <em>made to last</em></h2>
+    <p class="muted" data-r>Every piece can be personalised in size, materials and colour, or created from scratch with our designer.</p>
   </div>
-  <div class="fx-flow" id="flow" data-cursor="Drag">
-    <a href="#" class="fx-flow-item" data-piece="sea2" data-cap="<b>Stacked Leather Sofa</b><span>Seating</span>"><img src="t/sea2.webp" alt="Stacked Leather Sofa"></a>
-    <a href="#" class="fx-flow-item" data-piece="cab3" data-cap="<b>Bubbles Console</b><span>Consoles</span>"><img src="t/cab3.webp" alt="Bubbles Console"></a>
-    <a href="#" class="fx-flow-item" data-piece="sea4" data-cap="<b>Intersect Armchair</b><span>Seating</span>"><img src="t/sea4.webp" alt="Intersect Armchair"></a>
-    <a href="#" class="fx-flow-item" data-piece="tab5" data-cap="<b>Stacked Dining Table</b><span>Tables</span>"><img src="t/tab5.webp" alt="Stacked Dining Table"></a>
-    <a href="#" class="fx-flow-item" data-piece="mir1" data-cap="<b>Bubbles Mirror</b><span>Mirrors</span>"><img src="t/mir1.webp" alt="Bubbles Mirror"></a>
-    <a href="#" class="fx-flow-item" data-piece="cab1" data-cap="<b>Pory Cabinet</b><span>Cabinets</span>"><img src="t/cab1.webp" alt="Pory Cabinet"></a>
-    <a href="#" class="fx-flow-item" data-piece="sea6" data-cap="<b>Slide Armchair</b><span>Seating</span>"><img src="t/sea6.webp" alt="Slide Armchair"></a>
-    <a href="#" class="fx-flow-item" data-piece="tab1" data-cap="<b>Stainless Steel Splash</b><span>Tables</span>"><img src="t/tab1.webp" alt="Stainless Steel Splash table"></a>
-    <a href="#" class="fx-flow-item" data-piece="sea3" data-cap="<b>Caterpillar Bench</b><span>Seating</span>"><img src="t/sea3.webp" alt="Caterpillar Bench"></a>
-    <div class="fx-flow-cap"></div>
-  </div>
-  <p class="sig-hint">Drag or tap to browse · Open a piece for details</p>
+  <div class="filters" id="filters"></div>
+  <div class="grid" id="grid"></div>
+  <div class="grid-more"><button class="tlink" id="more"></button></div>
 </section>
 
-<!-- DESIGNER -->
-<section class="intro" id="studio">
-  <div class="intro-img"><div class="arch" data-fx-clip="arch"><img src="img/lea.webp" alt="Designer Lea Chatila, founder of Home Figures" class="par"></div></div>
-  <div class="intro-text">
-    <div class="eyebrow">Our designer</div>
-    <h2 class="h2 split">Lea <em>Chatila</em></h2>
-    <p class="scrub-text">Founded by interior and furniture designer Lea Chatila, Home Figures is a furniture design house born and based in the UAE, with its own production facilities.</p>
-    <p class="muted up">Born and raised in Beirut, Lea likes to experiment with shapes and colours, balancing functionality and creativity while maintaining comfort. Her focus is to understand what each client needs, their aspirations and style, and translate it into a unique creation.</p>
-    <a href="#services" class="link-arrow up">The bespoke service <span>→</span></a>
-  </div>
-</section>
-
-<!-- RING GALLERY -->
-<section class="ring-sec" id="collection">
-  <div class="ring-head">
-    <div class="eyebrow">The collection</div>
-    <h2 class="h2 split">Handcrafted <em>to the finest detail</em></h2>
-  </div>
-  <canvas id="ring" aria-label="3D ring of furniture pieces"></canvas>
-  <div class="ring-label" id="ringLabel"><span id="rlMeta">Seating</span><b id="rlName">Intersect Armchair</b></div>
-  <div class="ring-hint"><span class="drag-ico"><i></i></span><span>Drag to turn<br>Tap a piece to open</span></div>
-</section>
-
-<!-- SHOWCASE -->
-<section class="show" id="collections">
-  <div class="show-pin">
-    <div class="show-num" id="showNum" aria-hidden="true">01</div>
-    <div class="show-left">
-      <div class="eyebrow light">Collections</div>
-      <div class="show-titles" id="showTitles"></div>
-      <div class="show-ctl"><a href="#" class="btn btn-brass magnetic" id="showOpen" data-cursor="Open">Open collection</a><div class="show-count"><b id="showN">01</b> / 05</div></div>
-    </div>
-    <div class="show-frame" id="showFrame"><div class="show-imgs" id="showImgs"></div><canvas id="showGL"></canvas></div>
-    <ul class="show-list" id="showList"></ul>
-    <div class="show-bar"><i id="showBar"></i></div>
-  </div>
-</section>
-
-<!-- PHILOSOPHY: gradient fill text -->
-<section class="philo">
-  <div class="eyebrow">The approach</div>
-  <p class="philo-txt" data-fx-fill>For Lea, furniture is much more than a functional item. It is <em>a piece of art</em> that stands out in the space.</p>
-</section>
-
-<!-- INDEX with image trail -->
-<section class="idx" id="index" data-fx-trail data-imgs="t/sea1.webp,t/tab2.webp,t/cab4.webp,t/mir3.webp,t/bed4.webp,t/sea5.webp,t/tab6.webp,t/cab6.webp,t/mir5.webp,t/bed2.webp">
-  <div class="eyebrow">Browse by piece</div>
-  <ul class="idx-list">
-    <li><a href="#" data-cat="seat" data-cursor="Open"><span class="n">01</span><b data-fx-scramble>Armchairs &amp; Sofas</b><i>7 pieces</i></a></li>
-    <li><a href="#" data-cat="tables" data-cursor="Open"><span class="n">02</span><b data-fx-scramble>Tables</b><i>8 pieces</i></a></li>
-    <li><a href="#" data-cat="cabinets" data-cursor="Open"><span class="n">03</span><b data-fx-scramble>Cabinets &amp; Consoles</b><i>8 pieces</i></a></li>
-    <li><a href="#" data-cat="mirrors" data-cursor="Open"><span class="n">04</span><b data-fx-scramble>Mirrors</b><i>6 pieces</i></a></li>
-    <li><a href="#" data-cat="beds" data-cursor="Open"><span class="n">05</span><b data-fx-scramble>Beds &amp; Bedside</b><i>6 pieces</i></a></li>
-  </ul>
-</section>
-
-<!-- GALLERY GRID -->
-<section class="work" id="work">
-  <div class="work-head">
-    <div><div class="eyebrow">Selected pieces</div><h2 class="h2 split">Made to order, <em>made to last</em></h2>
-      <p class="muted up">Every piece can be personalised in size, materials and colour, or created from scratch with our designer.</p></div>
-  </div>
-  <div class="filters" id="filters" data-lenis-prevent></div>
-  <div class="wgrid" id="wgrid"></div>
-</section>
-
-<!-- SERVICES -->
-<section class="services" id="services">
+<section class="mat" id="materials">
   <div class="sec-head">
-    <div class="eyebrow">Bespoke</div>
-    <h2 class="h2 split">Ideas <em>to reality</em></h2>
-    <p class="muted up">From a side table to a DJ stand or a bar, you name it. Our design experts take you through every step, down to the smallest detail.</p>
+    <div class="eyebrow" data-r>Materials and finishes</div>
+    <h2 class="h2" data-split>Selected <em>by hand</em></h2>
+    <p class="muted" data-r>Sizes, materials and colours are chosen together through a variety of samples, at our showroom or delivered to you.</p>
   </div>
-  <div class="stack">
-    <article class="scard"><div class="scard-txt"><span class="sn">01</span><h3>Bespoke Pieces</h3><p class="sl">We transform your ideas into reality, creating a new piece from scratch with our designer.</p><ul><li>Side tables, consoles, bars and more</li><li>Your sizes, materials and colours</li><li>Every material selected from samples</li></ul><a href="#" class="link-arrow" data-cat="tables">View tables <span>→</span></a></div><div class="scard-img"><img src="img/tab5.webp" alt="Stacked Dining Table in plaster finish" loading="lazy"></div></article>
-    <article class="scard"><div class="scard-txt"><span class="sn">02</span><h3>Customise a Piece</h3><p class="sl">Personalise the colour, fabric and size of any piece from our collections.</p><ul><li>Upholstery in the fabric you choose</li><li>Plaster, oak, stone and steel finishes</li><li>Sized for your room</li></ul><a href="#" class="link-arrow" data-cat="seat">View seating <span>→</span></a></div><div class="scard-img"><img src="img/sea6.webp" alt="Slide Armchair" loading="lazy"></div></article>
-    <article class="scard"><div class="scard-txt"><span class="sn">03</span><h3>Trade Program</h3><p class="sl">Exclusive benefits for interior designers who deliver excellence in their projects.</p><ul><li>Special trade pricing</li><li>Priority support and customisation</li><li>Early access to new collections</li></ul><a href="#contact" class="link-arrow">Join the program <span>→</span></a></div><div class="scard-img"><img src="img/cab1.webp" alt="Pory Cabinet" loading="lazy"></div></article>
-    <article class="scard"><div class="scard-txt"><span class="sn">04</span><h3>Delivery &amp; Assembly</h3><p class="sl">Our workshops are based in the UAE, for quick and easy delivery.</p><ul><li>Free delivery within Dubai</li><li>Delivery across the UAE and Saudi Arabia</li><li>Assembly and installation by our team</li></ul><a href="#" class="link-arrow" data-cat="beds">View beds <span>→</span></a></div><div class="scard-img"><img src="img/bed1.webp" alt="Weave Bed" loading="lazy"></div></article>
+  <div class="mat-wrap">
+    <ul class="mat-list" id="matList"></ul>
+    <div class="mat-frame" id="matFrame" data-clip></div>
   </div>
 </section>
 
-<!-- PROCESS -->
+<section class="bespoke" id="bespoke">
+  <div class="sec-head">
+    <div class="eyebrow" data-r>Bespoke</div>
+    <h2 class="h2" data-split>Ideas <em>to reality</em></h2>
+    <p class="muted" data-r>From a side table to a DJ stand or a bar, you name it. Our design experts take you through every step, down to the smallest detail.</p>
+  </div>
+  <div class="svc">
+    <article class="svc-row" data-r data-img="t/tab5.webp"><span class="n">01</span><h3>Bespoke Pieces</h3><div><p>We transform your ideas into reality, creating a new piece from scratch with our designer.</p><ul><li>Side tables, consoles, bars and more</li><li>Your sizes, materials and colours</li><li>Every material selected from samples</li></ul></div></article>
+    <article class="svc-row" data-r data-img="t/sea6.webp"><span class="n">02</span><h3>Customise a Piece</h3><div><p>Personalise the colour, fabric and size of any piece from our collections.</p><ul><li>Upholstery in the fabric you choose</li><li>Plaster, oak, stone and steel finishes</li><li>Sized for your room</li></ul></div></article>
+    <article class="svc-row" data-r data-img="t/cab5.webp"><span class="n">03</span><h3>Trade Program</h3><div><p>Exclusive benefits for interior designers who deliver excellence in their projects.</p><ul><li>Special trade pricing</li><li>Priority support and customisation</li><li>Early access to new collections</li></ul></div></article>
+    <article class="svc-row" data-r data-img="t/bed3.webp"><span class="n">04</span><h3>Delivery and Assembly</h3><div><p>Our workshops are based in the UAE, for quick and easy delivery.</p><ul><li>Free delivery within Dubai</li><li>Delivery across the UAE and Saudi Arabia</li><li>Assembly and installation by our team</li></ul></div></article>
+  </div>
+  <div class="svc-float" id="svcFloat" aria-hidden="true"><img src="t/tab5.webp" alt=""></div>
+</section>
+
 <section class="process" id="process">
-  <div class="process-wrap">
-    <div class="plan-sticky">
-      <div class="eyebrow light">Process</div>
-      <h2 class="h2">From your idea <em>to your home</em></h2>
-      <svg class="plan" viewBox="0 0 560 360" fill="none" aria-hidden="true">
-        <g class="L1" stroke-width="2.4"><path d="M20 318H540"/><rect x="60" y="282" width="440" height="20" rx="3"/><rect x="50" y="250" width="460" height="32" rx="7"/></g>
-        <g class="L2" stroke-width="1.6"><rect x="88" y="128" width="384" height="122" rx="12"/><rect x="50" y="176" width="38" height="74" rx="10"/><rect x="472" y="176" width="38" height="74" rx="10"/><path d="M44 174H94M466 174H516"/></g>
-        <g class="L3" stroke-width="1.2"><rect x="96" y="140" width="118" height="80" rx="18"/><rect x="221" y="140" width="118" height="80" rx="18"/><rect x="346" y="140" width="118" height="80" rx="18"/><rect x="94" y="220" width="122" height="30" rx="10"/><rect x="219" y="220" width="122" height="30" rx="10"/><rect x="344" y="220" width="122" height="30" rx="10"/><path d="M110 302V316M450 302V316"/></g>
-        <g class="L4" stroke-width="1"><path d="M50 96H510M50 90V102M510 90V102"/><path d="M534 128V302M528 128H540M528 302H540"/><path d="M24 220V250M18 220H30M18 250H30" /><path d="M280 96V128" stroke-dasharray="2 4"/></g>
-        <g class="labels"><text x="232" y="84">Width</text><text x="546" y="220" transform="rotate(90 546 220)">Height</text><text x="6" y="268" >Seat</text><text x="216" y="340">Made to your size</text></g>
-      </svg>
-    </div>
-    <div class="steps">
-      <div class="step"><span>01</span><h3>Get in touch</h3><p>Our design experts discuss your aspirations and vision, helping you bring your idea to life.</p></div>
-      <div class="step"><span>02</span><h3>Design the piece</h3><p>Choose a piece to personalise, or create a new one from scratch with our designer.</p></div>
-      <div class="step"><span>03</span><h3>Select every material</h3><p>Sizes, materials and colours are selected together through a variety of samples.</p></div>
-      <div class="step"><span>04</span><h3>Handcrafted</h3><p>Your piece is handcrafted in our UAE workshop. Custom orders typically take two to five weeks.</p></div>
-      <div class="step"><span>05</span><h3>Delivered and assembled</h3><p>Delivery and assembly are handled by our team, free within Dubai.</p></div>
-    </div>
+  <div class="sec-head">
+    <div class="eyebrow" data-r>Process</div>
+    <h2 class="h2" data-split>From your idea <em>to your home</em></h2>
+  </div>
+  <div class="steps">
+    <div class="steps-line"><i id="stepsBar"></i></div>
+    <div class="step" data-r><span>01</span><h3>Get in touch</h3><p>Our design experts discuss your aspirations and vision, helping you bring your idea to life.</p></div>
+    <div class="step" data-r><span>02</span><h3>Design the piece</h3><p>Choose a piece to personalise, or create a new one from scratch with our designer.</p></div>
+    <div class="step" data-r><span>03</span><h3>Select every material</h3><p>Sizes, materials and colours are selected together through a variety of samples.</p></div>
+    <div class="step" data-r><span>04</span><h3>Handcrafted</h3><p>Your piece is handcrafted in our UAE workshop. Custom orders typically take two to five weeks.</p></div>
+    <div class="step" data-r><span>05</span><h3>Delivered and assembled</h3><p>Delivery and assembly are handled by our team, free within Dubai.</p></div>
   </div>
 </section>
 
-<!-- FAQ -->
 <section class="faq" id="faq">
-  <div class="sec-head"><div class="eyebrow">FAQ</div><h2 class="h2 split">Questions, <em>answered</em></h2></div>
-  <div class="faq-list">
+  <div class="sec-head"><div class="eyebrow" data-r>Questions</div><h2 class="h2" data-split>Good <em>to know</em></h2></div>
+  <div class="faq-list" data-r>
     <details><summary>Can I create a piece from scratch?</summary><p>Yes. Home Figures transforms ideas into reality, from a side table to a DJ stand or a bar. You select the sizes, materials and colours, and our designer takes you through every step.</p></details>
     <details><summary>How long does a custom order take?</summary><p>Custom orders typically take between two and five weeks. The exact timeframe is confirmed for each piece.</p></details>
     <details><summary>How can I see a material or colour?</summary><p>Visit our showroom to view material and colour samples, or request a delivery of samples for a nominal fee, credited back when you place your order.</p></details>
     <details><summary>Do you deliver outside Dubai?</summary><p>Yes. Delivery is free within Dubai, with delivery across the UAE and to Saudi Arabia. For other countries, please contact us.</p></details>
     <details><summary>Is assembly included?</summary><p>Yes. Our team handles all assembly and installation.</p></details>
-    <details><summary>Do you work with interior designers?</summary><p>Yes. Our Trade Program offers interior designers special pricing, priority support, customisation options, previews of new collections and fast track delivery.</p></details>
+    <details><summary>Do you work with interior designers?</summary><p>Yes. Our Trade Program offers interior designers special pricing, priority support, customisation options, early access to new collections and fast track delivery.</p></details>
   </div>
 </section>
 
-<!-- CONTACT -->
 <section class="contact" id="contact">
-  <div class="contact-bg"><img src="img/tab4.webp" alt="" class="par"></div>
+  <div class="contact-bg"><img src="img/tab4.webp" alt="" loading="lazy"></div>
   <div class="contact-in">
-    <div class="eyebrow light">Contact</div>
-    <h2 class="mega split">Let's create <em>your piece</em></h2>
-    <p class="big up">Tell us about the piece you have in mind, your space and your style.</p>
-    <form class="cform up" id="cform">
-      <input name="n" placeholder="Your name" required autocomplete="name">
-      <select name="t"><option>A bespoke piece</option><option>Customising a collection piece</option><option>Trade Program</option><option>Visiting the showroom</option></select>
-      <textarea name="m" rows="3" placeholder="Tell us about the piece, the size and the space"></textarea>
-      <button class="btn btn-brass magnetic" type="submit">Send on WhatsApp</button>
-    </form>
-    <div class="contact-card up">
-      <div class="mono">HF</div>
-      <div><strong>Home Figures</strong><small>Bespoke Design House</small></div>
-      <ul>
-        <li><span>Phone</span><a href="tel:+971509729558">+971 50 972 9558</a></li>
+    <div class="eyebrow" data-r>Contact</div>
+    <h2 class="mega" data-split>Let's create <em>your piece</em></h2>
+    <p class="lede" data-r>Tell us about the piece you have in mind, your space and your style.</p>
+    <div class="contact-cols">
+      <form class="cform" id="cform" data-r>
+        <label><span>Your name</span><input name="n" required autocomplete="name"></label>
+        <label><span>Interested in</span><select name="t"><option>A bespoke piece</option><option>Customising a collection piece</option><option>Trade Program</option><option>Visiting the showroom</option></select></label>
+        <label class="full"><span>The piece, the size and the space</span><textarea name="m" rows="3"></textarea></label>
+        <button class="btn" type="submit">Send on WhatsApp</button>
+      </form>
+      <ul class="contact-list" data-r>
+        <li><span>WhatsApp</span><a href="https://wa.me/971509729558" target="_blank" rel="noopener">+971 50 972 9558</a></li>
         <li><span>Email</span><a href="mailto:info@homefigures.com">info@homefigures.com</a></li>
         <li><span>Instagram</span><a href="https://www.instagram.com/homefigures/" target="_blank" rel="noopener">@homefigures</a></li>
-        <li><span>Atelier</span><b>Al Quoz 1 · Dubai</b></li>
+        <li><span>Atelier</span><b>Al Quoz 1, Dubai</b></li>
       </ul>
     </div>
   </div>
@@ -270,30 +182,35 @@
 </main>
 
 <footer class="foot">
-  <div class="foot-big"><span>HOME FIGURES</span></div>
+  <div class="foot-big">HOME FIGURES</div>
   <div class="foot-cols">
-    <div><h5>Studio</h5><a href="#signature">Signature</a><a href="#collections">Collections</a><a href="#studio">Designer</a><a href="#services">Bespoke</a><a href="#contact">Contact</a></div>
-    <div><h5>Collections</h5><a href="#" data-cat="seat">Armchairs &amp; Sofas</a><a href="#" data-cat="tables">Tables</a><a href="#" data-cat="cabinets">Cabinets &amp; Consoles</a><a href="#" data-cat="mirrors">Mirrors</a><a href="#" data-cat="beds">Beds &amp; Bedside</a></div>
+    <div><h5>Studio</h5><a href="#collections">Collections</a><a href="#studio">Designer</a><a href="#materials">Materials</a><a href="#bespoke">Bespoke</a><a href="#contact">Contact</a></div>
+    <div><h5>Collections</h5><a href="#pieces" data-cat="seat">Armchairs &amp; Sofas</a><a href="#pieces" data-cat="tables">Tables</a><a href="#pieces" data-cat="cabinets">Cabinets &amp; Consoles</a><a href="#pieces" data-cat="mirrors">Mirrors</a><a href="#pieces" data-cat="beds">Beds &amp; Bedside</a></div>
     <div><h5>Contact</h5><a href="https://wa.me/971509729558" target="_blank" rel="noopener">WhatsApp +971 50 972 9558</a><a href="mailto:info@homefigures.com">info@homefigures.com</a><a href="https://www.instagram.com/homefigures/" target="_blank" rel="noopener">Instagram</a><span>Al Quoz 1, Dubai, United Arab Emirates</span></div>
   </div>
-  <div class="foot-bot"><span>© <span id="yr"></span> Home Figures. Bespoke Design House.</span><a href="#top">Back to top ↑</a></div>
+  <div class="foot-bot"><span>© <span id="yr"></span> Home Figures. Bespoke Design House.</span><a href="#top">Back to top</a></div>
 </footer>
 
 <a class="wa-float" href="https://wa.me/971509729558?text=Hello%20Home%20Figures%2C%20I%20would%20like%20to%20discuss%20a%20piece." target="_blank" rel="noopener" aria-label="WhatsApp">
-  <svg viewBox="0 0 32 32" width="26" height="26"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.7c-2 0-3.9-.5-5.6-1.5l-.4-.2-3.9 1 1-3.8-.3-.4A10.7 10.7 0 1 1 16 26.7zm5.9-8c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5 1-1.7.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4s-1.2 1.1-1.2 2.8 1.2 3.2 1.4 3.4 2.4 3.7 5.8 5.2c2.2.9 3 1 4.1.8.7-.1 1.9-.8 2.2-1.5s.3-1.3.2-1.5-.3-.2-.6-.4z"/></svg>
+  <svg viewBox="0 0 32 32" width="22" height="22"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.7c-2 0-3.9-.5-5.6-1.5l-.4-.2-3.9 1 1-3.8-.3-.4A10.7 10.7 0 1 1 16 26.7zm5.9-8c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5 1-1.7.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4s-1.2 1.1-1.2 2.8 1.2 3.2 1.4 3.4 2.4 3.7 5.8 5.2c2.2.9 3 1 4.1.8.7-.1 1.9-.8 2.2-1.5s.3-1.3.2-1.5-.3-.2-.6-.4z"/></svg>
 </a>
 
 <div class="modal" id="modal" aria-hidden="true" role="dialog">
-  <button class="modal-x" id="modalX" data-cursor="Close" aria-label="Close"></button>
-  <div class="modal-scroll" id="modalScroll" data-lenis-prevent></div>
+  <button class="modal-x" id="modalX" aria-label="Close"></button>
+  <div class="modal-img"><img id="mImg" src="t/sea2.webp" alt=""></div>
+  <div class="modal-txt">
+    <div class="eyebrow" id="mCat"></div>
+    <h3 id="mTitle"></h3>
+    <p id="mDesc"></p>
+    <ul id="mList"></ul>
+    <a class="btn" id="mWa" target="_blank" rel="noopener">Enquire about this piece</a>
+  </div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="data.js?v=1"></script>
-<script type="module" src="main.js?v=3"></script>
-<script src="fx.js?v=1"></script>
-<script src="site.js?v=1"></script>
+<script src="data.js?v=3"></script>
+<script src="main.js?v=11"></script>
 </body>
 </html>
