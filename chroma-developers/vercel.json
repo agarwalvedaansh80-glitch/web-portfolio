@@ -134,6 +134,11 @@
       "source": "/kamelia",
       "destination": "/kamelia/",
       "permanent": false
+    },
+    {
+      "source": "/vshd",
+      "destination": "/vshd/",
+      "permanent": false
     }
   ]
 }
