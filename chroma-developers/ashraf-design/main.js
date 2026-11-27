@@ -434,7 +434,7 @@ function vtex(src) {
    WINDOW: arch opens to full screen
    ================================================================= */
 gsap.timeline({ scrollTrigger: { trigger: '.window-pin', start: 'top top', end: '+=150%', pin: true, scrub: 1, refreshPriority: 2 } })
-  .to('#wFrame', { clipPath: 'inset(0% 0% 0% 0% round 0px 0px 0px 0px)', ease: 'none', duration: 1 })
+  .fromTo('#wFrame', { clipPath: 'inset(28% 18% 28% 18% round 999px 999px 12px 12px)' }, { clipPath: 'inset(0% 0% 0% 0% round 0px 0px 0px 0px)', ease: 'none', duration: 1, immediateRender: true })
   .to('#wFrame img', { scale: 1, ease: 'none', duration: 1 }, 0)
   .fromTo('#wTxt', { y: 0 }, { y: -40, ease: 'none', duration: 1 }, 0);
 
