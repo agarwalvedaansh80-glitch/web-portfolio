@@ -287,7 +287,7 @@ let drag = false, lx = 0, cfgOn = true, heroP = 0;
 cfgCv.addEventListener('pointerdown', e => { drag = true; lx = e.clientX; try { cfgCv.setPointerCapture(e.pointerId); } catch (_) {} });
 cfgCv.addEventListener('pointermove', e => { if (!drag) return; const dx = e.clientX - lx; lx = e.clientX; yaw.t += dx * .008; yaw.v = dx * .004; });
 ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(t => cfgCv.addEventListener(t, () => drag = false));
-onScreen($('#hero'), v => cfgOn = v, '60px');
+/* 3D model replaced by real photography */
 const tags = $$('.tag').map(el => ({ el, k: el.dataset.k, l: false }));
 const tv = new THREE.Vector3(), tgt = new THREE.Vector3();
 const ease3 = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;

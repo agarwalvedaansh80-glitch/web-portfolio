@@ -1,10 +1,10 @@
 /* SFD* palette: graphite, platinum and a vermilion asterisk */
-:root{--display:"Newsreader",Georgia,serif;--royal:"Unbounded",system-ui,sans-serif;--sans:"Figtree",system-ui,sans-serif;--brass:#b8432f;--brass2:#e0674f;--fx-a:#e0674f}
+:root{--display:"Newsreader",Georgia,serif;--royal:"Archivo",system-ui,sans-serif;--sans:"Inter",system-ui,sans-serif;--brass:#b8432f;--brass2:#e0674f;--fx-a:#e0674f}
 html[data-theme=dark]{--bg:#0b0b0c;--bg2:#121214;--card:#17171a;--ink:#ecebe8;--ink2:#c4c2bd;--mute:#8c8a86;--line:rgba(236,235,232,.12);--brass:#e0674f;--brass2:#ef8a73;--deep:#0b0b0c;--deep2:#141416}
-.logo-main{font-family:"Unbounded",sans-serif;font-weight:400;letter-spacing:.18em}
+.logo-main{font-family:"Archivo",sans-serif;font-weight:400;letter-spacing:.18em}
 .logo-sub{letter-spacing:.42em}
 .h2,.mega,.hero-title{font-weight:300;letter-spacing:-.02em}
-.mono text{font-family:"Unbounded",sans-serif;font-size:22px}
+.mono text{font-family:"Archivo",sans-serif;font-size:22px}
 /* zoom */
 .fx-zoom{background:var(--bg)}
 .fx-zoom-txt .mega{max-width:900px}

@@ -1,7 +1,7 @@
 :root{
   --bg:#f3f3f1;--bg2:#e9e9e6;--card:#fbfbfa;--ink:#120d0b;--ink2:#3d322c;--mute:#7a6d64;--em:#a8432c;
   --line:rgba(11,11,11,.12);--line2:rgba(11,11,11,.26);--inv:#0b0b0b;--inv-ink:#f2f2ef;--glass:rgba(243,243,241,.72);
-  --serif:"DM Serif Display",Didot,"Times New Roman",serif;--sans:"Outfit",system-ui,-apple-system,sans-serif;
+  --serif:"Playfair Display",Didot,"Times New Roman",serif;--sans:"Inter Tight",system-ui,-apple-system,sans-serif;
   --pad:clamp(18px,5vw,80px);--ease:cubic-bezier(.7,0,.2,1);--out:cubic-bezier(.16,1,.3,1);
   --dk:#0a0a0a;--lt:#f2f2ef
 }

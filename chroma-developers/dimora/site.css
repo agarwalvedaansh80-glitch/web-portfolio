@@ -1,5 +1,5 @@
 /* Dimora palette: espresso night, champagne and ivory */
-:root{--serif:"Gilda Display",Georgia,serif;--royal:"Italiana",Georgia,serif;--sans:"Outfit",system-ui,sans-serif;--gold:#9a7b55;--gold2:#cdb08a;--fx-a:#cdb08a}
+:root{--serif:"Gilda Display",Georgia,serif;--royal:"Italiana",Georgia,serif;--sans:"Manrope",system-ui,sans-serif;--gold:#9a7b55;--gold2:#cdb08a;--fx-a:#cdb08a}
 html[data-theme=dark]{--bg:#0d0b0a;--bg2:#141110;--card:#1a1614;--ink:#f1ebe3;--ink2:#cfc5b9;--mute:#968b80;--line:rgba(241,235,227,.12);--gold:#cdb08a;--gold2:#e2c9a6}
 .logo{font-family:"Italiana",serif;letter-spacing:.3em}.logo em{color:var(--gold2)}
 .btn-gold{background:#e2c9a6;color:#14100d}

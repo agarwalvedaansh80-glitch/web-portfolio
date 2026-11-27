@@ -1,7 +1,7 @@
 /* Home Figures palette and sections */
 :root{--bg:#0b0a0a;--bg2:#131010;--card:#1a1515;--ink:#f1e9e2;--ink2:#c9bdb2;--mute:#8f8279;--line:rgba(241,233,226,.12);
   --brass:#cf8f6e;--brass2:#e2a986;--ivory:#f1e9e2;--fx-a:#e2a986;
-  --serif:"Fraunces",Georgia,serif;--cap:"Jost",system-ui,sans-serif;--sans:"Jost",system-ui,sans-serif}
+  --serif:"Bodoni Moda",Georgia,serif;--cap:"Jost",system-ui,sans-serif;--sans:"Jost",system-ui,sans-serif}
 html[data-theme=light]{--bg:#f2ece6;--bg2:#e9e1d9;--card:#faf6f2;--ink:#1a1414;--ink2:#4a3f3a;--mute:#7e716a;--line:rgba(26,20,20,.13);--brass:#a8603f;--brass2:#c47a58;--fx-a:#a8603f}
 .h2,.mega,.hero-title{font-weight:300;letter-spacing:-.025em}
 .logo b{letter-spacing:.34em;font-weight:500}

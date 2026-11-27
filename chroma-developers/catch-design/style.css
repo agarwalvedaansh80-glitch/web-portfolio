@@ -1,7 +1,7 @@
 :root{
   --bg:#f3f0ea;--bg2:#e9e4da;--card:#fcfaf6;--ink:#0e121a;--ink2:#444037;--mute:#77716a;--line:rgba(14,18,26,.13);
   --gold:#8c6a3c;--gold2:#a8834f;--dark:#05070b;--dark2:#090c12;--ivory:#f0eae0;--grad:linear-gradient(115deg,#b08a5a 0%,#d6b688 55%,#eed6b0 100%);--glow:rgba(196,160,110,.28);
-  --serif:"Playfair Display",Georgia,serif;--royal:"Marcellus SC",Georgia,serif;--sans:"Figtree",system-ui,sans-serif;--pad:clamp(20px,5vw,80px);
+  --serif:"Playfair Display",Georgia,serif;--royal:"Marcellus SC",Georgia,serif;--sans:"Inter",system-ui,sans-serif;--pad:clamp(20px,5vw,80px);
   --ease:cubic-bezier(.7,0,.2,1)
 }
 *{box-sizing:border-box;margin:0;padding:0}
